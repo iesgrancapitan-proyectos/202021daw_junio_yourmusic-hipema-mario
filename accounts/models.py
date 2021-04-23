@@ -41,7 +41,7 @@ class TipoOjeador(models.Model):
 class UserProfileMusicos(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     nombre_banda = models.CharField(max_length=255)
-    imagen=models.ImageField(upload_to='user/imagen',blank=True,null=True)
+    avatar=models.ImageField(upload_to='user/imagen',blank=True,null=True)
     generos=models.ManyToManyField(Generos)
     descripcion=models.TextField()
     twitter=models.CharField(max_length=300,blank=True,null=True)
@@ -56,7 +56,7 @@ class UserProfileMusicos(models.Model):
 class UserProfileOjeadores(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     nombre_ojeador = models.CharField(max_length=255)
-    imagen=models.ImageField(upload_to='user/imagen',blank=True,null=True)
+    avatar=models.ImageField(upload_to='user/imagen',blank=True,null=True)
     generos=models.ManyToManyField(Generos)
     descripcion=models.TextField()
     twitter=models.CharField(max_length=300,blank=True,null=True)
