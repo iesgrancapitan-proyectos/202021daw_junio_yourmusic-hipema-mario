@@ -1,35 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="autor" content="Mario Osuna y Manuel Hidalgo">
+    <title>YourMusic</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/user.style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/user.style.css' %}">  {% endcomment %}
+    <script src="{% static 'js/main.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
-
-    <div class="sidenav">
-        <div class="login-main-text">
-            <h2>Application<br> Login Page</h2>
-            <p>Login or register from here to access.</p>
-        </div>
+{% comment %} Cabecera de la página {% endcomment %}
+    <header>
+    <h1>YourMusic</h1>
+    <img src="{% static 'img/your-music-logo.svg' %}">
+    </header>
+{% comment %} Menú de la página {% endcomment %}
+    <div id="barra-menu">
+        <a href="#" class="bt-menu"><i class="fa fa-bars" aria-hidden="true"></i> Menu</a>
     </div>
-    <div class="main">
-        <div class="col-md-6 col-sm-12">
+    <nav id="menu">
+        <ul>
+            <li><a href="#grupos">Grupos</a></li>
+            <li><a href="#Ojeadores">Ojeadores</a></li>
+            <li><a href="#Noticias">Noticias</a></li>
+            <li><a href="#Foro">Foro</a></li>
+            <li><a href="#Iniciar Sesión">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+{% comment %} Página central {% endcomment %}
+    <div class="contenedor">
+    {% comment %} Título de sección {% endcomment %}
+    <h2>Inicio de sesión</h2>
+    <div class="login">
             {% block content %} {% endblock content %}
-
-
         </div>
     </div>
-
-
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    {% comment %} <script src= "{% static 'bootstrap/dist/js/bootstrap.min.js' %}" ></script> {% endcomment %}
 
 
 </body>
