@@ -1,18 +1,48 @@
 {% extends "base_user_account.html" %}{% load bootstrap %} {% block content %}
 <div class="login-form">
 
+    <!-- botones para implementarle las funcionalidades de Google y Facebook Auth-->
+    <div class="botones-autentificacion">
+    <button type="button" class="btn btn-google">
+        <div class="botones-distribucion">
+            <div><i class="fab fa-google"></i></div>
+            <div>Entrar con Google</div>
+        </div>
+    </button>
+    <button type="button" class="btn btn-facebook">
+        <div class="botones-distribucion">
+            <div><i class="fab fa-facebook-f"></i></div>
+            <div>Entrar con Facebook</div>
+        </div>
+    </button>
+    <button type="button" class="btn btn-black">
+        <div class="botones-distribucion">
+            <div><i class="far fa-envelope"></i></div>
+            <div>Entrar con Email</div>
+        </div>
+    </button>
+    <a href="#" class="texto-reducido">¿Aún no estás registrado? ¡Registrate ahora!</a>
+    </div>
+    <p></p>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
+        <!-- Formulario parte petición usuario -->
+        <div class="form-group">
+            <label class="control-label" for="id_username">Usuario</label>
+            <div class= "form-inputs">
+                <input id="id_username" class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="">
+            </div>
+        </div>
+        <!-- Formulario parte petición contraseña -->
+        <div class="form-group">
+            <label class="control-label  " for="id_password">Contraseña</label>
+            <div class="form-inputs">
+                <input type="password" name="password" autocomplete="current-password" class=" form-control" required="" id="id_password">
+            </div>
+        </div>
 
-        <!-- Para hacer que el login funcione lo he mostrado con form. y accedo al campo y lo muestro a través de bootstrap,
-        prueba a cambiarlo si quieres personalizarlo de otra forma e intentas inciar sesión con el superusuario admin admin,
-         si no funciona es posible que tengamos que mostrarlo de esta forma -->
-
-        {{ form.username|bootstrap }} {{ form.password|bootstrap }}
-
-        <div class="clearfix">
-            <!-- Esto devería verse como un botón pero falla puede que sea por bootstrap, a ver si puedes solucionarlo o mostrarlo de otra forma -->
-            <input type="submit" value="login" class="btn btn-success float-end">
+        <div class="clearfix botones-login">
+            <input type="submit" value="Iniciar Sesión" class="btn btn-black">
             <input type="hidden" name="next" value="{{ next }}">
         </div>
 
@@ -30,8 +60,7 @@
         </div> -->
     </form>
     <!-- Estos campos los he mostrado así, pero te dejo a tí que los personalices como quieras -->
-    <a href="{% url 'password_reset' %}">Olvidé contraseña</a>
-
-    <a class="float-right" href="{% url 'account:register' %}">Registrar</a>
+    <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+    <a class="float-right" href="{% url 'account:register' %}">Registrarse</a>
 </div>
 {% endblock %}
