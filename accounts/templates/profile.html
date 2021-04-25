@@ -1,2 +1,33 @@
-{% extends "base_user_account.html" %}
-<p>profile</p>
+{% include "partials/header.html" %}
+{% include "partials/menu.html" %}
+<div class="contenedor">
+        <!-- Título de sección -->
+        <h2>Mi cuenta (grupo usuario)</h2>
+        <div class="mi-cuenta">
+        <button type="button" class="btn btn-black">
+            <div class="botones-distribucion">
+                <div><i class="fas fa-user"></i></div>
+                <div>Datos de acceso</div>
+            </div>
+        </button>
+        <button type="button" class="btn btn-black">
+            <div class="botones-distribucion">
+                <div><i class="fas fa-guitar"></i></div>
+                <div>Información del grupo</div>
+            </div>
+        </button>
+        <button type="button" class="btn btn-black">
+            <div class="botones-distribucion">
+                <div><i class="fas fa-newspaper"></i></div>
+                <div>Noticias</div>
+            </div>
+        </button>
+        <button type="button" class="btn btn-black">
+            <div class="botones-distribucion">
+                <div><i class="fas fa-comments"></i></div>
+                <div>Mensajes</div>
+            </div>
+        </button>
+            {% block content %} {% endblock content %}
+        </div>
+    </div>
