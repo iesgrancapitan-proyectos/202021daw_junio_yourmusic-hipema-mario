@@ -6,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="autor" content="Mario Osuna y Manuel Hidalgo">
     <title>YourMusic</title>
-    {% load static %}
-    {% comment %} <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"> {% endcomment %}
-    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
-    {% comment %} <link rel="stylesheet" href="{% static 'css/user.style.css' %}">  {% endcomment %}
+    {% load static %} {% comment %}
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"> {% endcomment %} {% comment %}
+    <link rel="stylesheet" href="{% static 'css/user.style.css' %}"> {% endcomment %}
     <script src="{% static 'js/main.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-{% comment %} Cabecera de la página {% endcomment %}
+    {% comment %} Cabecera de la página {% endcomment %}
     <header>
-    <h1>YourMusic</h1>
-    <img src="{% static 'img/your-music-logo.svg' %}">
+        <h1>YourMusic</h1>
+        <img src="{% static 'img/your-music-logo.svg' %}">
     </header>
-{% comment %} Menú de la página {% endcomment %}
+    {% comment %} Menú de la página {% endcomment %}
     <div id="barra-menu">
         <a href="#" class="bt-menu"><i class="fa fa-bars" aria-hidden="true"></i> Menu</a>
     </div>
@@ -33,15 +33,16 @@
             <li><a href="#Iniciar Sesión">Iniciar Sesión</a></li>
         </ul>
     </nav>
-{% comment %} Página central {% endcomment %}
+    {% comment %} Página central {% endcomment %}
     <div class="contenedor">
-    {% comment %} Título de sección {% endcomment %}
-    <h2>Inicio de sesión</h2>
-    <div class="login">
+        {% comment %} Título de sección {% endcomment %}
+        <h2>Inicio de sesión</h2>
+        <div class="login">
             {% block content %} {% endblock content %}
         </div>
     </div>
-    {% comment %} <script src= "{% static 'bootstrap/dist/js/bootstrap.min.js' %}" ></script> {% endcomment %}
+    {% comment %}
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script> {% endcomment %}
 
 
 </body>

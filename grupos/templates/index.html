@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+
+<form method="get" class="input-group mb-4" id="filterStore">
+    <input class="form-control w-25" placeholder="Buscar elemento" value="{{search}}" name="search" type="text">
+    <select name="genero_id" class="form-control-sm">
+        <option value="">Sin selección</option>
+            {% for c in generos  %}
+        <option 
+        {% if genero_id == c.id  %} selected {% endif%}
+        value="{{c.id}}">{{c.title}}</option>
+        
+        {% endfor %}
+    </select>
+
+    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+
+</form>
+
+<h1 class="text-center">Grupos</h1>
+
+<div class="row">
+    {% for e in grupos %}
+
+    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+        <div class="single-product">
+            <div class="product-image">
+
+
+                {% if e.elementimages_set.all.count %} {% else %}
+                <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
+
+
+                {% endif %}
+
+                </a>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    {% endfor %} {% include "partials/pagination.html" with page_obj=grupos %}
+
+</div>
+
+{% endblock content %}

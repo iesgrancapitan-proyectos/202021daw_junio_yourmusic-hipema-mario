@@ -1,7 +1,22 @@
 {% extends "base_user_account.html" %}{% load bootstrap %} {% block content %}
 <div class="login-form">
-    <form>
-        <div class="form-group">
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <!-- Para hacer que el login funcione lo he mostrado con form. y accedo al campo y lo muestro a través de bootstrap,
+        prueba a cambiarlo si quieres personalizarlo de otra forma e intentas inciar sesión con el superusuario admin admin,
+         si no funciona es posible que tengamos que mostrarlo de esta forma -->
+
+        {{ form.username|bootstrap }} {{ form.password|bootstrap }}
+
+        <div class="clearfix">
+            <!-- Esto devería verse como un botón pero falla puede que sea por bootstrap, a ver si puedes solucionarlo o mostrarlo de otra forma -->
+            <input type="submit" value="login" class="btn btn-success float-end">
+            <input type="hidden" name="next" value="{{ next }}">
+        </div>
+
+        <!-- <div class="form-group">
             <label>Usuario</label>
             <input type="text" class="form-control" placeholder="usuario">
         </div>
@@ -12,7 +27,11 @@
         <div class="botones-login">
             <button type="submit" class="btn btn-black">Iniciar Sesión</button>
             <button type="submit" class="btn btn-secondary">Registrarse</button>
-        </div>
+        </div> -->
     </form>
+    <!-- Estos campos los he mostrado así, pero te dejo a tí que los personalices como quieras -->
+    <a href="{% url 'password_reset' %}">Olvidé contraseña</a>
+
+    <a class="float-right" href="{% url 'account:register' %}">Registrar</a>
 </div>
 {% endblock %}
