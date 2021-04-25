@@ -1,29 +1,6 @@
 {% extends "base_user_account.html" %}{% load bootstrap %} {% block content %}
 <div class="login-form">
 
-    <!-- botones para implementarle las funcionalidades de Google y Facebook Auth-->
-    <div class="botones-autentificacion">
-    <button type="button" class="btn btn-google">
-        <div class="botones-distribucion">
-            <div><i class="fab fa-google"></i></div>
-            <div>Entrar con Google</div>
-        </div>
-    </button>
-    <button type="button" class="btn btn-facebook">
-        <div class="botones-distribucion">
-            <div><i class="fab fa-facebook-f"></i></div>
-            <div>Entrar con Facebook</div>
-        </div>
-    </button>
-    <button type="button" class="btn btn-black">
-        <div class="botones-distribucion">
-            <div><i class="far fa-envelope"></i></div>
-            <div>Entrar con Email</div>
-        </div>
-    </button>
-    <a href="#" class="texto-reducido">¿Aún no estás registrado? ¡Registrate ahora!</a>
-    </div>
-    <p></p>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <!-- Formulario parte petición usuario -->
@@ -40,11 +17,37 @@
                 <input type="password" name="password" autocomplete="current-password" class=" form-control" required="" id="id_password">
             </div>
         </div>
-
-        <div class="clearfix botones-login">
-            <input type="submit" value="Iniciar Sesión" class="btn btn-black">
-            <input type="hidden" name="next" value="{{ next }}">
+    <!-- Botón de Iniciar sesión -->
+    <div class="clearfix botones-login">
+        <input type="submit" value="Iniciar Sesión" class="btn btn-black">
+        <input type="hidden" name="next" value="{{ next }}">
+        <a href="{% url 'password_reset' %}" class="texto-reducido">¿Olvidaste tu contraseña?</a>
+    </div>
+    <!-- botones para implementarle las funcionalidades de Google y Facebook Auth-->
+    <div class="botones-autentificacion">
+    <p class="text-secondary">También puedes iniciar sesión con:</p>
+    <button type="button" class="btn btn-google">
+        <div class="botones-distribucion">
+            <div><i class="fab fa-google"></i></div>
+            <div>Entrar con Google</div>
         </div>
+    </button>
+    <button type="button" class="btn btn-facebook">
+        <div class="botones-distribucion">
+            <div><i class="fab fa-facebook-f"></i></div>
+            <div>Entrar con Facebook</div>
+        </div>
+    </button>
+    {% comment %} <button type="button" class="btn btn-black">
+        <div class="botones-distribucion">
+            <div><i class="far fa-envelope"></i></div>
+            <div>Entrar con Email</div>
+        </div>
+    </button> {% endcomment %}
+    <a href="{% url 'account:register' %}" class="texto-reducido">¿Aún no estás registrado? ¡Registrate ahora!</a>
+    </div>
+    <p></p>
+    
 
         <!-- <div class="form-group">
             <label>Usuario</label>
@@ -60,7 +63,7 @@
         </div> -->
     </form>
     <!-- Estos campos los he mostrado así, pero te dejo a tí que los personalices como quieras -->
-    <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
-    <a class="float-right" href="{% url 'account:register' %}">Registrarse</a>
+    
+    
 </div>
 {% endblock %}
