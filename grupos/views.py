@@ -11,18 +11,17 @@ from django.http import HttpResponseNotFound, JsonResponse
 
 
 def index(request):
-    search = request.GET.get('search') if request.GET.get('search') else ''
+    """ search = request.GET.get('search') if request.GET.get('search') else ''
     genero_id = request.GET.get('genero_id')
     genero_id = int(genero_id) if genero_id else ''
-    '''   tag_id = request.GET.get('tag_id')
-    tag_id = int(tag_id) if tag_id else '' '''
+    
 
     if search:
-        grupos = UserProfileMusicos.objects.prefetch_related('elementimages_set').filter(
+        grupos = UserProfileMusicos.objects.filter(
             title__icontains=search)  # busca sin importar mayus
         # grupos=Element.objects.filter(title__contains=search) #busca literal, coincidencias
     else:
-        grupos = UserProfileMusicos.objects.prefetch_related('elementimages_set')
+        grupos = UserProfileMusicos.objects
 
     if genero_id:
         grupos = grupos.filter(genero_id=genero_id)
@@ -31,11 +30,14 @@ def index(request):
         tag = get_object_or_404(Tag, id=tag_id)
         grupos = grupos.filter(tags__in=[tag]) '''
 
-    grupos = grupos.filter(type=1)
+    # grupos = grupos.filter(type=1)
     # grupos = grupos.all()
     paginator = Paginator(grupos, 5)
     generos = Generos.objects.all()
 
     page_number = request.GET.get('page')
-    grupos_page = paginator.get_page(page_number)
-    return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'generos': generos, 'search': search, 'genero_id': genero_id, })
+    grupos_page = paginator.get_page(page_number) """
+    grupos = UserProfileMusicos.objects
+    grupos = grupos.all()
+    # return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'generos': generos, 'search': search, 'genero_id': genero_id, })
+    return render(request, 'indexGrupos.html', {'grupos': grupos })
