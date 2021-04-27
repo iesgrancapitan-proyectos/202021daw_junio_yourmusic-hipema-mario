@@ -249,6 +249,12 @@ header img {
   max-width: 450px;
 }
 
+.mi-cuenta button {
+  display: block;
+  margin: 10px auto;
+  width: 90%;
+}
+
 .mi-cuenta select {
   display: block;
   margin: 10px auto;
