@@ -1,8 +1,9 @@
 {% extends "base.html" %} {% block content %}
 
-<form method="get" class="input-group mb-4" id="filterStore">
-    <input class="form-control w-25" placeholder="Buscar elemento" value="{{search}}" name="search" type="text">
-    <select name="genero_id" class="form-control-sm">
+<form method="get" class="input-group mi-cuenta" id="filterStore">
+    <input class="form-control w-25" placeholder="Buscar un grupo" value="{{search}}" name="search" type="text">
+    <button class="btn-blackDos" type="submit">Buscar</button>
+    <select name="genero_id" class="">
         <option value="">Sin selección</option>
             {% for c in generos  %}
         <option 
