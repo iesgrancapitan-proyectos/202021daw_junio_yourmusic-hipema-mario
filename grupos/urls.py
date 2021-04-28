@@ -5,7 +5,7 @@ from django.contrib.sitemaps.views import sitemap
 
 
 
-app_name = 'store'
+app_name = 'grupos'
 urlpatterns = [
     path('', views.index, name='index'),
 

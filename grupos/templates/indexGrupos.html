@@ -2,7 +2,8 @@
 
 <form method="get" class="input-group mi-cuenta" id="filterStore">
     <input class="form-control w-25" placeholder="Buscar un grupo" value="{{search}}" name="search" type="text">
-    <button class="btn-blackDos" type="submit">Buscar</button>
+    <button class="btn-blackDos" type="submit">Buscar</button> {% comment %}
+
     <select name="genero_id" class="">
         <option value="">Sin selección</option>
             {% for c in generos  %}
@@ -11,29 +12,47 @@
         value="{{c.id}}">{{c.title}}</option>
         
         {% endfor %}
-    </select>
+    </select> {% endcomment %}
 
     <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
 
 </form>
 
-<h1 class="text-center">Grupos</h1>
+<h2 class="text-center">Grupos</h2>
 
 <div class="row">
     {% for e in grupos %}
+
+    <!-- Lo ideal sería hacer unas fichas con la información básica de los grupos -->
+    {% comment %}
+
+    <h2> {{e.user}}</h2>
+    {% endcomment %}
+    <h2> {{e.nombre_banda}}</h2>
+    <!-- Esta forma de listar los generos es temporal -->
+    <h2>{{e.generos.all}}</h2>
+    <h2> {{e.descripcion}}</h2>
+
+
+
 
     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
         <div class="single-product">
             <div class="product-image">
 
+                <!-- foto dentro un href, este href sirve para redireccionar a la ficha del grupo, se puede meter para toda la información y no solo la foro -->
+                <a href="">
+                    {% if e.avatar.all.count %}
+                    
+                    <img src="/{{e.avatar.all.0.base_cover_name}}.custom.jpeg" alt="{{e.avatar.all.0.title}}" title="{{e.avatar.all.0.title}}">
+                    {% else %}
+                    <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
+                    <img src="uploads/images/icono.png" title="Imagen por defeto">
+                        
+                    {% endif %}
+    
+                    </a>
 
-                {% if e.elementimages_set.all.count %} {% else %}
-                <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
-
-
-                {% endif %}
-
-                </a>
 
             </div>
 

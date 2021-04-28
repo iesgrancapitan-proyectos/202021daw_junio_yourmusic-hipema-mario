@@ -39,5 +39,6 @@ def index(request):
     grupos_page = paginator.get_page(page_number) """
     grupos = UserProfileMusicos.objects
     grupos = grupos.all()
+    print(grupos)
     # return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'generos': generos, 'search': search, 'genero_id': genero_id, })
     return render(request, 'indexGrupos.html', {'grupos': grupos })

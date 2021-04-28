@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'rest_framework',
-    'rest_framework.authtoken',    
+    'rest_framework.authtoken',
     'bootstrapform',
 ]
 
@@ -82,8 +82,8 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 
 # DATOS PARA CONECTAR CON LA DB
 
-#MANUEL
-
+# MANUEL
+""" 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -94,9 +94,9 @@ DATABASES = {
         'PORT': '3306',
     }
 
-} 
-#MARIO
-'''DATABASES = {
+}  """
+# MARIO
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -106,7 +106,7 @@ DATABASES = {
         'PORT': '3306',
     }
 
-}'''
+}
 
 
 # Password validation
@@ -134,7 +134,6 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -146,6 +145,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'
+LOGOUT_REDIRECT_URL = "/accounts/login"
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
