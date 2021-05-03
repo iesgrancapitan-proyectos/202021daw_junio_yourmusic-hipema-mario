@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
-from accounts.models import UserProfileMusicos,UserProfileOjeadores,Generos
+from accounts.models import UserProfileMusicos, UserProfileOjeadores, Generos,Provincia
 from django.core.paginator import Paginator
 from django.views import generic
 
@@ -8,38 +8,41 @@ from django.views.decorators.http import require_POST
 from django.http import HttpResponseNotFound, JsonResponse
 
 
-
-
 def index(request):
-    """ search = request.GET.get('search') if request.GET.get('search') else ''
-    genero_id = request.GET.get('genero_id')
-    genero_id = int(genero_id) if genero_id else ''
+    search = request.GET.get('search') if request.GET.get('search') else ''
+    genero_id = []
+    provincia_id = request.GET.get('provincia_id') if request.GET.get('provincia_id') else ''
+    grupos = UserProfileMusicos.objects
+    provincia= Provincia.objects.all()
     
+
+    # genero_id = int(genero_id) if genero_id else ''
+    generos = Generos.objects.all()
+
+    for item in request.GET.getlist('generos'):
+        # print(int(item))
+        genero_id.append(item)
 
     if search:
         grupos = UserProfileMusicos.objects.filter(
-            title__icontains=search)  # busca sin importar mayus
-        # grupos=Element.objects.filter(title__contains=search) #busca literal, coincidencias
+            nombre_banda__icontains=search)
     else:
         grupos = UserProfileMusicos.objects
+    
+    if genero_id:        
+        grupos = grupos.filter(generos__in=genero_id)
 
-    if genero_id:
-        grupos = grupos.filter(genero_id=genero_id)
+    if provincia_id:        
+        grupos = grupos.filter(provincia_origen=provincia_id)
 
-    ''' if tag_id:
-        tag = get_object_or_404(Tag, id=tag_id)
-        grupos = grupos.filter(tags__in=[tag]) '''
+    
 
-    # grupos = grupos.filter(type=1)
-    # grupos = grupos.all()
-    paginator = Paginator(grupos, 5)
-    generos = Generos.objects.all()
-
+   
+    """  paginator = Paginator(grupos, 5)
+    
     page_number = request.GET.get('page')
     grupos_page = paginator.get_page(page_number) """
-    generos = Generos.objects.all()
-    grupos = UserProfileMusicos.objects
     grupos = grupos.all()
-    print(grupos)
+   
     # return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'generos': generos, 'search': search, 'genero_id': genero_id, })
-    return render(request, 'indexGrupos.html', {'grupos': grupos,'generos': generos })
+    return render(request, 'indexGrupos.html', {'grupos': grupos,'provincia': provincia, 'generos': generos, 'search': search,'genero_id': genero_id,})

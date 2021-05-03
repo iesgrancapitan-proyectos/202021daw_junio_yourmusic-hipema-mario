@@ -3,16 +3,16 @@
 <form method="get" class="input-group mi-cuenta" id="filterStore">
     <input class="form-control w-25" placeholder="Buscar un grupo" value="{{search}}" name="search" type="text">
     <button class="btn-blackDos" type="submit">Buscar</button> {% for c in generos %}
-    <label><input type="checkbox" {% if genero_id == c.id  %} checked {% endif%} id="{{c.id}}" value="{{c.title}}"> {{c.title}}</label><br> {% endfor %} {% comment %}
-    <select name="genero_id" class="">
+    <label>
+    <input type="checkbox" name="generos" {% for id in genero_id %} {% if id == c.id  %} checked {% endif%}  {% endfor %} id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label><br> {% endfor %}
+    <select name="provincia_id" class="">
         <option value="">Sin selección</option>
-        {% for c in generos  %}
-        <option 
-        
-        value="{{c.id}}">{{c.title}}</option>
+        {% for p in provincia  %}
+        <option         
+        value="{{p.id}}">{{p.title}}</option>
         
         {% endfor %}
-    </select> {% endcomment %}
+    </select>
 
     <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
 

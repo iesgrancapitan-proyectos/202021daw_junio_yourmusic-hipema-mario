@@ -13,6 +13,28 @@ class Generos(models.Model):
 
     class Meta:
         ordering = ('title',)
+
+
+""" class Ciudad(models.Model):
+    title = models.CharField(max_length=30)
+
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title """
+class Provincia(models.Model):
+    title = models.CharField(max_length=30)
+    # ciudades=models.ManyToManyField(Ciudad)
+
+    def __unicode__(self):
+        return self.title
+    def __str__(self) :
+        return self.title
+
+    class Meta:
+        ordering = ('title',)
+
 class Audios(models.Model):
     url_audio = models.CharField(max_length=500)
 
@@ -44,6 +66,8 @@ class UserProfileMusicos(models.Model):
     avatar=models.ImageField(upload_to='user/imagen',blank=True,null=True)
     generos=models.ManyToManyField(Generos)
     descripcion=models.TextField()
+    provincia_origen=models.ForeignKey(Provincia,on_delete=models.CASCADE)   
+    # ciudad_origen=models.ForeignKey(Ciudad)    
     twitter=models.CharField(max_length=300,blank=True,null=True)
     instagram=models.CharField(max_length=300,blank=True,null=True)
     facebook=models.CharField(max_length=300,blank=True,null=True)
@@ -59,6 +83,7 @@ class UserProfileOjeadores(models.Model):
     avatar=models.ImageField(upload_to='user/imagen',blank=True,null=True)
     generos=models.ManyToManyField(Generos)
     descripcion=models.TextField()
+    provincia_origen=models.ForeignKey(Provincia,on_delete=models.CASCADE)   
     twitter=models.CharField(max_length=300,blank=True,null=True)
     instagram=models.CharField(max_length=300,blank=True,null=True)
     facebook=models.CharField(max_length=300,blank=True,null=True)

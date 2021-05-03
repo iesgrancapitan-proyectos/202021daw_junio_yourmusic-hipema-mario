@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2021 at 07:25 PM
+-- Generation Time: May 03, 2021 at 07:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -81,6 +81,75 @@ INSERT INTO `accounts_generos` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `accounts_provincia`
+--
+
+CREATE TABLE `accounts_provincia` (
+  `id` int(11) NOT NULL,
+  `title` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts_provincia`
+--
+
+INSERT INTO `accounts_provincia` (`id`, `title`) VALUES
+(1, 'Córdoba'),
+(2, 'Sevilla'),
+(3, 'Albacete'),
+(4, 'Almería'),
+(5, 'Álava'),
+(6, 'Alicante'),
+(7, 'Asturias'),
+(8, 'Ávila'),
+(9, 'Badajoz'),
+(10, 'Barcelona'),
+(11, 'Burgos'),
+(12, 'Cáceres'),
+(13, 'Cádiz'),
+(14, 'Cantabria'),
+(15, 'Castellón'),
+(16, 'Ciudad Real'),
+(17, 'La Coruña'),
+(18, 'Cuenca'),
+(19, 'Gerona'),
+(20, 'Granada'),
+(21, 'Guadalajara'),
+(22, 'Guipúzcoa'),
+(23, 'Huelva'),
+(24, 'Huesca'),
+(25, 'Baleares'),
+(26, 'Jaén'),
+(27, 'León'),
+(28, 'Lérida'),
+(29, 'Lugo'),
+(30, 'Madrid'),
+(31, 'Málaga'),
+(32, 'Murcia'),
+(33, 'Navarra'),
+(34, 'Orense'),
+(35, 'Palencia'),
+(36, 'Las Palmas'),
+(37, 'Pontevedra'),
+(38, 'La Rioja'),
+(39, 'Salamanca'),
+(40, 'Segovia'),
+(41, 'Soria'),
+(42, 'Tarragona'),
+(43, 'Santa Cruz de Tenerife'),
+(44, 'Teruel'),
+(45, 'Toledo'),
+(46, 'Valencia'),
+(47, 'Valladolid'),
+(48, 'Vizcaya'),
+(49, 'Zamora'),
+(50, 'Zaragoza'),
+(51, 'Ceuta'),
+(52, 'Melilla');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `accounts_tipoojeador`
 --
 
@@ -117,16 +186,17 @@ CREATE TABLE `accounts_userprofilemusicos` (
   `facebook` varchar(300) DEFAULT NULL,
   `web` varchar(300) DEFAULT NULL,
   `email_grupo` varchar(50) DEFAULT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `provincia_origen_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `accounts_userprofilemusicos`
 --
 
-INSERT INTO `accounts_userprofilemusicos` (`id`, `nombre_banda`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_grupo`, `user_id`) VALUES
-(1, 'Terra negra', '', 'Grupo de peñarroya pueblonuevo', NULL, NULL, 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 2),
-(2, 'grupo 2', '', 'Grupo 2 de prueba pass: grupo2pepe', NULL, NULL, NULL, NULL, NULL, 3);
+INSERT INTO `accounts_userprofilemusicos` (`id`, `nombre_banda`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_grupo`, `user_id`, `provincia_origen_id`) VALUES
+(1, 'Terra negra', '', 'Grupo de peñarroya pueblonuevo', NULL, NULL, 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 2, 1),
+(2, 'grupo 2', '', 'Grupo 2 de prueba pass: grupo2pepe', NULL, NULL, NULL, NULL, NULL, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -205,16 +275,17 @@ CREATE TABLE `accounts_userprofileojeadores` (
   `web` varchar(300) DEFAULT NULL,
   `email_ojeador` varchar(50) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `tipo_ojeador_id` int(11) NOT NULL
+  `tipo_ojeador_id` int(11) NOT NULL,
+  `provincia_origen_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `accounts_userprofileojeadores`
 --
 
-INSERT INTO `accounts_userprofileojeadores` (`id`, `nombre_ojeador`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_ojeador`, `user_id`, `tipo_ojeador_id`) VALUES
-(1, 'conciertos', '', 'Bar con música en directo', NULL, NULL, NULL, NULL, 'conciertos@conciertos.com', 4, 4),
-(2, 'factory', '', 'factory records', NULL, NULL, NULL, 'https://factoryrecords.org/', NULL, 5, 2);
+INSERT INTO `accounts_userprofileojeadores` (`id`, `nombre_ojeador`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_ojeador`, `user_id`, `tipo_ojeador_id`, `provincia_origen_id`) VALUES
+(1, 'conciertos', '', 'Bar con música en directo', NULL, NULL, NULL, NULL, 'conciertos@conciertos.com', 4, 4, 13),
+(2, 'factory', '', 'factory records', NULL, NULL, NULL, 'https://factoryrecords.org/', NULL, 5, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -365,7 +436,15 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (53, 'Can add token', 14, 'add_tokenproxy'),
 (54, 'Can change token', 14, 'change_tokenproxy'),
 (55, 'Can delete token', 14, 'delete_tokenproxy'),
-(56, 'Can view token', 14, 'view_tokenproxy');
+(56, 'Can view token', 14, 'view_tokenproxy'),
+(57, 'Can add provincia', 15, 'add_provincia'),
+(58, 'Can change provincia', 15, 'change_provincia'),
+(59, 'Can delete provincia', 15, 'delete_provincia'),
+(60, 'Can view provincia', 15, 'view_provincia'),
+(61, 'Can add ciudad', 16, 'add_ciudad'),
+(62, 'Can change ciudad', 16, 'change_ciudad'),
+(63, 'Can delete ciudad', 16, 'delete_ciudad'),
+(64, 'Can view ciudad', 16, 'view_ciudad');
 
 -- --------------------------------------------------------
 
@@ -392,7 +471,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$9lgeEIehvD5c$kFoCOAv1zOZwJ875s1wpKBlzDfcrwkVo9PFy4Ih+TYk=', '2021-04-25 11:10:38.601585', 1, 'admin', '', '', '', 1, 1, '2021-04-25 11:09:15.487339'),
+(1, 'pbkdf2_sha256$216000$9lgeEIehvD5c$kFoCOAv1zOZwJ875s1wpKBlzDfcrwkVo9PFy4Ih+TYk=', '2021-05-03 16:05:59.128053', 1, 'admin', '', '', '', 1, 1, '2021-04-25 11:09:15.487339'),
 (2, 'pbkdf2_sha256$216000$AZYtmLCTaD20$HMaZ3q4ZI3wxfllmh7aqCtdf7tSz8sBVKzA4lvaamsI=', NULL, 0, 'Mario', '', '', '', 0, 1, '2021-04-26 17:16:41.397201'),
 (3, 'pbkdf2_sha256$216000$pvfrsQVIfxmP$ZNjgQjSqUhXsr5pvNbLVXUHiS0A89eXnPY3d00758zE=', NULL, 0, 'Pepe', '', '', '', 0, 1, '2021-04-26 17:21:04.266866'),
 (4, 'pbkdf2_sha256$216000$AbDHSlmeFnmM$RyoqFIkE6KW3HnR2otH4XJNsiBR4Js6HmwB1Pt4Phgc=', NULL, 0, 'antonio', '', '', '', 0, 1, '2021-04-26 17:23:29.043743'),
@@ -483,7 +562,79 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (37, '2021-04-26 17:23:29.216741', '4', 'antonio', 1, '[{\"added\": {}}]', 4, 1),
 (38, '2021-04-26 17:23:48.567811', '1', 'conciertos', 1, '[{\"added\": {}}]', 11, 1),
 (39, '2021-04-26 17:24:06.405503', '5', 'jimena', 1, '[{\"added\": {}}]', 4, 1),
-(40, '2021-04-26 17:24:41.289088', '2', 'factory', 1, '[{\"added\": {}}]', 11, 1);
+(40, '2021-04-26 17:24:41.289088', '2', 'factory', 1, '[{\"added\": {}}]', 11, 1),
+(41, '2021-05-02 16:01:10.163617', '1', 'Córdoba', 1, '[{\"added\": {}}]', 16, 1),
+(42, '2021-05-02 16:01:20.256954', '2', 'Aguilar de la Frontera', 1, '[{\"added\": {}}]', 16, 1),
+(43, '2021-05-02 16:01:27.744646', '3', 'Almodóvar del Río', 1, '[{\"added\": {}}]', 16, 1),
+(44, '2021-05-02 16:01:32.507503', '4', 'Añora', 1, '[{\"added\": {}}]', 16, 1),
+(45, '2021-05-02 16:01:37.285532', '5', 'Baena', 1, '[{\"added\": {}}]', 16, 1),
+(46, '2021-05-02 16:01:45.722661', '6', 'Cabra', 1, '[{\"added\": {}}]', 16, 1),
+(47, '2021-05-02 16:01:53.447036', '7', 'Fernán-Núñez', 1, '[{\"added\": {}}]', 16, 1),
+(48, '2021-05-02 16:01:58.764395', '8', 'Fuente Obejuna', 1, '[{\"added\": {}}]', 16, 1),
+(49, '2021-05-02 16:02:05.579585', '9', 'Hinojosa del Duque', 1, '[{\"added\": {}}]', 16, 1),
+(50, '2021-05-02 16:02:12.098960', '10', 'La Granjuela', 1, '[{\"added\": {}}]', 16, 1),
+(51, '2021-05-02 16:02:16.568785', '11', 'La Rambla', 1, '[{\"added\": {}}]', 16, 1),
+(52, '2021-05-02 16:02:22.218916', '12', 'Pozoblanco', 1, '[{\"added\": {}}]', 16, 1),
+(53, '2021-05-02 16:02:27.237812', '13', 'Peñarroya-Pueblonuevo', 1, '[{\"added\": {}}]', 16, 1),
+(54, '2021-05-02 16:02:38.600088', '14', 'Lucena', 1, '[{\"added\": {}}]', 16, 1),
+(55, '2021-05-02 16:02:44.268018', '15', 'Montalbán de Córdoba', 1, '[{\"added\": {}}]', 16, 1),
+(56, '2021-05-02 16:02:50.804674', '16', 'Montilla', 1, '[{\"added\": {}}]', 16, 1),
+(57, '2021-05-02 16:02:51.983469', '1', 'Córdoba', 1, '[{\"added\": {}}]', 15, 1),
+(58, '2021-05-03 17:21:49.162701', '2', 'Sevilla', 1, '[{\"added\": {}}]', 15, 1),
+(59, '2021-05-03 17:23:25.612516', '3', 'Albacete', 1, '[{\"added\": {}}]', 15, 1),
+(60, '2021-05-03 17:23:29.514759', '4', 'Almería', 1, '[{\"added\": {}}]', 15, 1),
+(61, '2021-05-03 17:23:35.329313', '5', 'Álava', 1, '[{\"added\": {}}]', 15, 1),
+(62, '2021-05-03 17:23:39.022319', '6', 'Alicante', 1, '[{\"added\": {}}]', 15, 1),
+(63, '2021-05-03 17:23:42.622578', '7', 'Asturias', 1, '[{\"added\": {}}]', 15, 1),
+(64, '2021-05-03 17:23:45.872635', '8', 'Ávila', 1, '[{\"added\": {}}]', 15, 1),
+(65, '2021-05-03 17:23:49.132426', '9', 'Badajoz', 1, '[{\"added\": {}}]', 15, 1),
+(66, '2021-05-03 17:23:52.797591', '10', 'Barcelona', 1, '[{\"added\": {}}]', 15, 1),
+(67, '2021-05-03 17:23:57.291286', '11', 'Burgos', 1, '[{\"added\": {}}]', 15, 1),
+(68, '2021-05-03 17:23:59.802463', '12', 'Cáceres', 1, '[{\"added\": {}}]', 15, 1),
+(69, '2021-05-03 17:24:03.032403', '13', 'Cádiz', 1, '[{\"added\": {}}]', 15, 1),
+(70, '2021-05-03 17:24:06.022665', '14', 'Cantabria', 1, '[{\"added\": {}}]', 15, 1),
+(71, '2021-05-03 17:24:09.142399', '15', 'Castellón', 1, '[{\"added\": {}}]', 15, 1),
+(72, '2021-05-03 17:24:12.219049', '16', 'Ciudad Real', 1, '[{\"added\": {}}]', 15, 1),
+(73, '2021-05-03 17:24:21.412496', '17', 'La Coruña', 1, '[{\"added\": {}}]', 15, 1),
+(74, '2021-05-03 17:24:22.722607', '18', 'Cuenca', 1, '[{\"added\": {}}]', 15, 1),
+(75, '2021-05-03 17:24:25.902309', '19', 'Gerona', 1, '[{\"added\": {}}]', 15, 1),
+(76, '2021-05-03 17:24:28.927307', '20', 'Granada', 1, '[{\"added\": {}}]', 15, 1),
+(77, '2021-05-03 17:24:32.652536', '21', 'Guadalajara', 1, '[{\"added\": {}}]', 15, 1),
+(78, '2021-05-03 17:24:37.182328', '22', 'Guipúzcoa', 1, '[{\"added\": {}}]', 15, 1),
+(79, '2021-05-03 17:24:40.622591', '23', 'Huelva', 1, '[{\"added\": {}}]', 15, 1),
+(80, '2021-05-03 17:24:43.562178', '24', 'Huesca', 1, '[{\"added\": {}}]', 15, 1),
+(81, '2021-05-03 17:24:47.132459', '25', 'Baleares', 1, '[{\"added\": {}}]', 15, 1),
+(82, '2021-05-03 17:24:52.212232', '26', 'Jaén', 1, '[{\"added\": {}}]', 15, 1),
+(83, '2021-05-03 17:24:55.602476', '27', 'León', 1, '[{\"added\": {}}]', 15, 1),
+(84, '2021-05-03 17:24:59.212215', '28', 'Lérida', 1, '[{\"added\": {}}]', 15, 1),
+(85, '2021-05-03 17:25:02.082139', '29', 'Lugo', 1, '[{\"added\": {}}]', 15, 1),
+(86, '2021-05-03 17:25:05.312599', '30', 'Madrid', 1, '[{\"added\": {}}]', 15, 1),
+(87, '2021-05-03 17:25:09.612466', '31', 'Málaga', 1, '[{\"added\": {}}]', 15, 1),
+(88, '2021-05-03 17:25:12.912411', '32', 'Murcia', 1, '[{\"added\": {}}]', 15, 1),
+(89, '2021-05-03 17:25:15.982065', '33', 'Navarra', 1, '[{\"added\": {}}]', 15, 1),
+(90, '2021-05-03 17:25:21.402339', '34', 'Orense', 1, '[{\"added\": {}}]', 15, 1),
+(91, '2021-05-03 17:25:25.192153', '35', 'Palencia', 1, '[{\"added\": {}}]', 15, 1),
+(92, '2021-05-03 17:25:30.082264', '36', 'Las Palmas', 1, '[{\"added\": {}}]', 15, 1),
+(93, '2021-05-03 17:25:34.249116', '37', 'Pontevedra', 1, '[{\"added\": {}}]', 15, 1),
+(94, '2021-05-03 17:25:38.482380', '38', 'La Rioja', 1, '[{\"added\": {}}]', 15, 1),
+(95, '2021-05-03 17:25:41.712147', '39', 'Salamanca', 1, '[{\"added\": {}}]', 15, 1),
+(96, '2021-05-03 17:25:45.052422', '40', 'Segovia', 1, '[{\"added\": {}}]', 15, 1),
+(97, '2021-05-03 17:25:47.992482', '41', 'Soria', 1, '[{\"added\": {}}]', 15, 1),
+(98, '2021-05-03 17:25:51.792555', '42', 'Tarragona', 1, '[{\"added\": {}}]', 15, 1),
+(99, '2021-05-03 17:25:54.802460', '43', 'Santa Cruz de Tenerife', 1, '[{\"added\": {}}]', 15, 1),
+(100, '2021-05-03 17:25:58.702373', '44', 'Teruel', 1, '[{\"added\": {}}]', 15, 1),
+(101, '2021-05-03 17:26:04.882258', '45', 'Toledo', 1, '[{\"added\": {}}]', 15, 1),
+(102, '2021-05-03 17:26:09.652346', '46', 'Valencia', 1, '[{\"added\": {}}]', 15, 1),
+(103, '2021-05-03 17:26:20.742282', '47', 'Valladolid', 1, '[{\"added\": {}}]', 15, 1),
+(104, '2021-05-03 17:26:26.032281', '48', 'Vizcaya', 1, '[{\"added\": {}}]', 15, 1),
+(105, '2021-05-03 17:26:30.856558', '49', 'Zamora', 1, '[{\"added\": {}}]', 15, 1),
+(106, '2021-05-03 17:26:34.972326', '50', 'Zaragoza', 1, '[{\"added\": {}}]', 15, 1),
+(107, '2021-05-03 17:26:38.372256', '51', 'Ceuta', 1, '[{\"added\": {}}]', 15, 1),
+(108, '2021-05-03 17:26:42.232255', '52', 'Melilla', 1, '[{\"added\": {}}]', 15, 1),
+(109, '2021-05-03 17:29:43.704075', '1', 'Terra negra', 2, '[]', 9, 1),
+(110, '2021-05-03 17:29:52.665243', '2', 'grupo 2', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 9, 1),
+(111, '2021-05-03 17:31:08.292883', '1', 'conciertos', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 11, 1),
+(112, '2021-05-03 17:31:16.081780', '2', 'factory', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -503,7 +654,9 @@ CREATE TABLE `django_content_type` (
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (7, 'accounts', 'audios'),
+(16, 'accounts', 'ciudad'),
 (8, 'accounts', 'generos'),
+(15, 'accounts', 'provincia'),
 (12, 'accounts', 'tipoojeador'),
 (9, 'accounts', 'userprofilemusicos'),
 (11, 'accounts', 'userprofileojeadores'),
@@ -565,7 +718,12 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (28, 'authtoken', '0001_initial', '2021-04-25 11:08:50.588207'),
 (29, 'authtoken', '0002_auto_20160226_1747', '2021-04-25 11:08:50.841562'),
 (30, 'authtoken', '0003_tokenproxy', '2021-04-25 11:08:50.849865'),
-(31, 'sessions', '0001_initial', '2021-04-25 11:08:50.901122');
+(31, 'sessions', '0001_initial', '2021-04-25 11:08:50.901122'),
+(32, 'accounts', '0011_auto_20210502_1754', '2021-05-02 15:54:21.312672'),
+(33, 'accounts', '0012_auto_20210502_1759', '2021-05-02 16:00:03.405043'),
+(34, 'accounts', '0013_auto_20210503_1921', '2021-05-03 17:21:24.692442'),
+(35, 'accounts', '0014_auto_20210503_1929', '2021-05-03 17:29:19.642215'),
+(36, 'accounts', '0015_auto_20210503_1930', '2021-05-03 17:30:40.608498');
 
 -- --------------------------------------------------------
 
@@ -584,7 +742,13 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('qqju4e5f46ti9niigfvqb8q0723gr15c', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1laces:EM6tmr8TTEZws_yoPqWlPVXLB_RsklHfXqAHY3pu5Xg', '2021-05-09 11:10:38.605605');
+('6rhc67itaw3m6c3l1rl7bvbwofuxvao6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbQxz:XoOIes_29LZ9n1I_PGBKh9Nuu8W5UKItjDkCRjs1itM', '2021-05-11 16:53:43.338229'),
+('gu2ltix0m6xcrz7kxndl3h3kptd6ia1a', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldESN:QA-dbOKxIZa2aKe3ML2FqRVYkT8ZLRo-CUotJlpCpTE', '2021-05-16 15:56:31.772282'),
+('ht0fiaizw30vg2t0fc303f7rhwjuey48', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lc9w6:3CqKlp82_JqTLF7YXakJhsYBC2s5z940lxQkXSWRpR8', '2021-05-13 16:54:46.618214'),
+('mzr7nrwqby1lwjk1d5xh8hmuro54qtf4', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbHX7:mENho7iRxROiuSGE1UVPGDjtca0jGpdJmOD6uT3i6GM', '2021-05-11 06:49:21.821688'),
+('qqju4e5f46ti9niigfvqb8q0723gr15c', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1laces:EM6tmr8TTEZws_yoPqWlPVXLB_RsklHfXqAHY3pu5Xg', '2021-05-09 11:10:38.605605'),
+('r39cnk8r6047qn7y4kpwhkj9xlrkjop6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldb55:7Cr3teaE3DYiAHqdW8pNdRercW5tqDb9sJXU-2BBnU4', '2021-05-17 16:05:59.138059'),
+('uimze7bqnkx3s1o8lc6ngnv3gijf35jy', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldERH:q45cbQ6KJVlCTt5ut0zMuBySwzvet_o315ZsCfLzEb0', '2021-05-16 15:55:23.485529');
 
 --
 -- Indexes for dumped tables
@@ -603,6 +767,12 @@ ALTER TABLE `accounts_generos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `accounts_provincia`
+--
+ALTER TABLE `accounts_provincia`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `accounts_tipoojeador`
 --
 ALTER TABLE `accounts_tipoojeador`
@@ -613,7 +783,8 @@ ALTER TABLE `accounts_tipoojeador`
 --
 ALTER TABLE `accounts_userprofilemusicos`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id` (`user_id`);
+  ADD UNIQUE KEY `user_id` (`user_id`),
+  ADD KEY `accounts_userprofile_provincia_origen_id_6e00c15a_fk_accounts_` (`provincia_origen_id`);
 
 --
 -- Indexes for table `accounts_userprofilemusicos_generos`
@@ -645,7 +816,8 @@ ALTER TABLE `accounts_userprofilemusicos_url_videos`
 ALTER TABLE `accounts_userprofileojeadores`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_id` (`user_id`),
-  ADD KEY `accounts_userprofile_tipo_ojeador_id_1471de98_fk_accounts_` (`tipo_ojeador_id`);
+  ADD KEY `accounts_userprofile_tipo_ojeador_id_1471de98_fk_accounts_` (`tipo_ojeador_id`),
+  ADD KEY `accounts_userprofile_provincia_origen_id_4f557861_fk_accounts_` (`provincia_origen_id`);
 
 --
 -- Indexes for table `accounts_userprofileojeadores_generos`
@@ -758,6 +930,12 @@ ALTER TABLE `accounts_generos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT for table `accounts_provincia`
+--
+ALTER TABLE `accounts_provincia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
 -- AUTO_INCREMENT for table `accounts_tipoojeador`
 --
 ALTER TABLE `accounts_tipoojeador`
@@ -821,7 +999,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -845,19 +1023,19 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
@@ -867,6 +1045,7 @@ ALTER TABLE `django_migrations`
 -- Constraints for table `accounts_userprofilemusicos`
 --
 ALTER TABLE `accounts_userprofilemusicos`
+  ADD CONSTRAINT `accounts_userprofile_provincia_origen_id_6e00c15a_fk_accounts_` FOREIGN KEY (`provincia_origen_id`) REFERENCES `accounts_provincia` (`id`),
   ADD CONSTRAINT `accounts_userprofilemusicos_user_id_aba2a5a6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
@@ -894,6 +1073,7 @@ ALTER TABLE `accounts_userprofilemusicos_url_videos`
 -- Constraints for table `accounts_userprofileojeadores`
 --
 ALTER TABLE `accounts_userprofileojeadores`
+  ADD CONSTRAINT `accounts_userprofile_provincia_origen_id_4f557861_fk_accounts_` FOREIGN KEY (`provincia_origen_id`) REFERENCES `accounts_provincia` (`id`),
   ADD CONSTRAINT `accounts_userprofile_tipo_ojeador_id_1471de98_fk_accounts_` FOREIGN KEY (`tipo_ojeador_id`) REFERENCES `accounts_tipoojeador` (`id`),
   ADD CONSTRAINT `accounts_userprofileojeadores_user_id_fea11f90_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
