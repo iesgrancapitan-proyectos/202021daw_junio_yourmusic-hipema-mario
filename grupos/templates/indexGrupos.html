@@ -2,9 +2,16 @@
 
 <form method="get" class="input-group mi-cuenta" id="filterStore">
     <input class="form-control w-25" placeholder="Buscar un grupo" value="{{search}}" name="search" type="text">
-    <button class="btn-blackDos" type="submit">Buscar</button> {% for c in generos %}
-    <label>
-    <input type="checkbox" name="generos" {% for id in genero_id %} {% if id == c.id  %} checked {% endif%}  {% endfor %} id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label><br> {% endfor %}
+    <button class="btn-blackDos" type="submit">Buscar</button>
+    <p>Estilo:</p>
+    <div class="lista-generos" id="listGenerosComp">
+        {% for c in generos %}
+        <label>
+        <input type="checkbox" name="generos" {% for id in genero_id %} {% if id == c.id  %} checked {% endif%}  {% endfor %} id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label>
+        {% endfor %}
+    </div>
+    <div class="ver-mas"><span><a href="#" id="verMas">Ver más</a></span></div>
+    <p>Provincia:</p>
     <select name="provincia_id" class="">
         <option value="">Sin selección</option>
         {% for p in provincia  %}
@@ -14,52 +21,47 @@
         {% endfor %}
     </select>
 
-    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+    <button class="btn-blackDos" type="submit">Buscar</button>
 
 </form>
 
-<h2 class="text-center"><strong>Grupos</strong></h2>
+<h2 class="tituloh2">Grupos</h2>
 
-<div class="row">
-    {% for e in grupos %}
+<div class="listado-grupos">
+    {% for e in grupos|slice:":3" %}
+    <dif class="ficha-grupo">
+        <div class="foto-grupo">
+                <!-- foto dentro un href, este href sirve para redireccionar a la ficha del grupo, se puede meter para toda la información, es decir donde sea que pinches nombre, foto, etc... o tan solo la foto (tal y como está ahora mismo). Esto depende del tamaño de la ficha, si va a predominar la foto o no, etc... -->
+                <a href="#">
+                    {% if e.avatar.all.count %}
+                    <img src="/{{e.avatar.all.0.base_cover_name}}.custom.jpeg" alt="{{e.avatar.all.0.title}}" title="{{e.avatar.all.0.title}}">
+                    {% else %}
+                    <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
+                    <img src="static/img/your-music-grupo.svg" title="Imagen de grupo por defeto">
+                    {% endif %}
+                </a>
+        </div>
+    </div>
+    <div class="pie-grupos">
+        <!-- Aquí en vez de la descripción deberíamos poner Ciudad y provincia, o en su defecto, sólo provincia -->
+        <!-- En géneros, quizás pondría para que aparezca sólo uno de los que tenga seleccionado, bien el primero o uno de forma random -->
+        <p><span>{{e.nombre_banda}}</span> - {{e.generos.all|join:", " }} - {{e.descripcion}}</p>
+    </div>
 
     <!-- Lo ideal sería hacer unas fichas con la información básica de los grupos -->
     {% comment %}
 
     <h2> {{e.user}}</h2>
     {% endcomment %}
-    <h2> {{e.nombre_banda}}</h2>
+    {% comment %} <h2> {{e.nombre_banda}}</h2> {% endcomment %}
     <!--Listar los generos indicando un salto al final de cada uno, en su lugar se puede poner una , - etc... -->
-    <h2>{{e.generos.all|join:" <br/> " }}</h2>
-    <h2> {{e.descripcion}}</h2>
+    {% comment %} <h2>{{e.generos.all|join:" <br/> " }}</h2>
+    <h2> {{e.descripcion}}</h2> {% endcomment %}
 
 
 
 
-    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-        <div class="single-product">
-            <div class="product-image">
-
-                <!-- foto dentro un href, este href sirve para redireccionar a la ficha del grupo, se puede meter para toda la información, es decir donde sea que pinches nombre, foto, etc... o tan solo la foto (tal y como está ahora mismo). Esto depende del tamaño de la ficha, si va a predominar la foto o no, etc... -->
-                <a href="">
-                    {% if e.avatar.all.count %}
-                    
-                    <img src="/{{e.avatar.all.0.base_cover_name}}.custom.jpeg" alt="{{e.avatar.all.0.title}}" title="{{e.avatar.all.0.title}}">
-                    {% else %}
-                    <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
-                    <img src="static/img/icono.png" title="Imagen por defeto">
-               
-                        
-                    {% endif %}
     
-                    </a>
-
-
-            </div>
-
-
-        </div>
-    </div>
 
 
     {% endfor %} {% include "partials/pagination.html" with page_obj=grupos %}

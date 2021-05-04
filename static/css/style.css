@@ -118,23 +118,27 @@ header img {
   font-weight: bold;
 }
 
-.mi-cuenta {
+.mi-cuenta, .principal {
   width: 90%;
   margin: auto;
   text-align: center;
   max-width: 450px;
 }
 
-.mi-cuenta button {
+.mi-cuenta button, .principal button {
   display: block;
   margin: 10px auto;
   width: 90%;
 }
 
-.mi-cuenta select {
+.mi-cuenta select, .principal select {
   display: block;
   margin: 10px auto;
   width: 90%;
+}
+
+.mi-cuenta > p {
+  text-align: left;
 }
 
 .texto-reducido {
@@ -641,4 +645,40 @@ textarea.form-control-lg {
 
 .botones-distribucion div:last-child {
   text-align: left;
+}
+
+.lista-generos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: left;
+}
+
+.tituloh2 {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.foto-grupo img {
+  width: 100%;
+}
+
+.pie-grupos p span {
+  font-weight: bold;
+}
+
+.ver-mas {
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.ver-mas a {
+  text-decoration: none;
+  color: #666666;
+}
+
+.lista-oculta {
+  display: none;
 }
