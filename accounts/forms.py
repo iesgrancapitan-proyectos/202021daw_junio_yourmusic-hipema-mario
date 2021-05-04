@@ -53,7 +53,7 @@ class UserProfileForm(forms.ModelForm):
                 "Imagen muy grande, la imagen no puede superar las %s px, %s px" % (max_width, max_height))
 
         # Extension
-        # print("AVATAR:"+str(avatar.content_type))
+        # print("avatar:"+str(avatar.content_type))
         m, t = avatar.content_type.split('/')
 
         if not(m == 'image' and t in ['jpg', 'jpeg', 'png', 'gif']):

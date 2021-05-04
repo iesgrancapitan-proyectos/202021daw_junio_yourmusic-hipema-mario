@@ -7,15 +7,21 @@
     <div class="lista-generos" id="listGenerosComp">
         {% for c in generos %}
         <label>
-        <input type="checkbox" name="generos" {% for id in genero_id %} {% if id == c.id  %} checked {% endif%}  {% endfor %} id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label>
-        {% endfor %}
+        <input type="checkbox" name="generos" 
+            {% for id in genero_id %}             
+                {% if id|floatformat:"0" == c.id|floatformat:"0"  %} 
+                    checked 
+                {% endif%}  
+            {% endfor %} 
+            id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label> {% endfor %}
     </div>
     <div class="ver-mas"><span><a href="#" id="verMas">Ver más</a></span></div>
     <p>Provincia:</p>
     <select name="provincia_id" class="">
         <option value="">Sin selección</option>
         {% for p in provincia  %}
-        <option         
+        <option    
+        {% if provincia_id|floatformat:"0" == p.id|floatformat:"0"  %} selected {% endif%}     
         value="{{p.id}}">{{p.title}}</option>
         
         {% endfor %}
@@ -24,47 +30,48 @@
     <button class="btn-blackDos" type="submit">Buscar</button>
 
 </form>
-
+<!-- TODO: Anotación -->
+<!-- Si deseas ponerlo de otra manera o si prefieres dejarlo así no hay problema.
+    He pensado introducir esta variable que si ha iniciado una busqueda cambia el título de grupos
+    por el de resultados de la busqueda. -->
+{% if busqueda %}
+<h2 class="tituloh2">Resultados de la busqueda:</h2>
+{% else %}
 <h2 class="tituloh2">Grupos</h2>
+{% endif %}
 
 <div class="listado-grupos">
     {% for e in grupos|slice:":3" %}
     <dif class="ficha-grupo">
+        <!-- TODO -->
+        <!-- No se como verías mostrar el nombre del grupo encima de la foto. O si lo ves mejor en el div de pie-grupos tal y como está -->
         <div class="foto-grupo">
-                <!-- foto dentro un href, este href sirve para redireccionar a la ficha del grupo, se puede meter para toda la información, es decir donde sea que pinches nombre, foto, etc... o tan solo la foto (tal y como está ahora mismo). Esto depende del tamaño de la ficha, si va a predominar la foto o no, etc... -->
-                <a href="#">
-                    {% if e.avatar.all.count %}
-                    <img src="/{{e.avatar.all.0.base_cover_name}}.custom.jpeg" alt="{{e.avatar.all.0.title}}" title="{{e.avatar.all.0.title}}">
+            <a href="#">
+                    {% if e.avatar %}
+                    <img src="static/media/{{e.avatar}}" alt="Foto del grupo" title="Foto seleccionada por el grupo">
                     {% else %}
                     <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
                     <img src="static/img/your-music-grupo.svg" title="Imagen de grupo por defeto">
                     {% endif %}
                 </a>
         </div>
-    </div>
-    <div class="pie-grupos">
-        <!-- Aquí en vez de la descripción deberíamos poner Ciudad y provincia, o en su defecto, sólo provincia -->
-        <!-- En géneros, quizás pondría para que aparezca sólo uno de los que tenga seleccionado, bien el primero o uno de forma random -->
-        <p><span>{{e.nombre_banda}}</span> - {{e.generos.all|join:", " }} - {{e.descripcion}}</p>
-    </div>
+</div>
+<div class="pie-grupos">
+    <p><span>{{e.nombre_banda}}</span> - {{e.generos.all|join:", " }} - {{e.provincia_origen}} - {{e.descripcion}} </p>
+</div>
 
-    <!-- Lo ideal sería hacer unas fichas con la información básica de los grupos -->
-    {% comment %}
+{% endfor %}
 
-    <h2> {{e.user}}</h2>
-    {% endcomment %}
-    {% comment %} <h2> {{e.nombre_banda}}</h2> {% endcomment %}
-    <!--Listar los generos indicando un salto al final de cada uno, en su lugar se puede poner una , - etc... -->
-    {% comment %} <h2>{{e.generos.all|join:" <br/> " }}</h2>
-    <h2> {{e.descripcion}}</h2> {% endcomment %}
+<!-- TODO -->
 
+<!-- Este include sirve para que si hay por ejemplo 50 grupos no muestre todos en la misma página.
+    Por ello dentro de accounts/templates/partials está el archivo pagination.
+    Quedaría añadir css para que se vea bien. Como de momento solo tenemos dos grupos, para que se 
+    vean todos los campos que se utilizan en la paginación he puesto que solo liste un grupo por página, 
+    esto lo cambiaré a por ejemplo 5 o los que veamos cuando tengamos el css de la paginación
+-->
 
-
-
-    
-
-
-    {% endfor %} {% include "partials/pagination.html" with page_obj=grupos %}
+{% include "partials/pagination.html" with page_obj=grupos %}
 
 </div>
 
