@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 #from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as make_login
 from .forms import CustomUserCreationForm, UserProfileForm
-from .models import UserProfileMusicos,UserProfileOjeadores
+from .models import UserProfileMusicos, UserProfileOjeadores
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
@@ -13,24 +14,25 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from django.contrib.auth.hashers import check_password
 
+
 @api_view(['POST'])
 def login(request):
-    username=request.POST.get('username')
-    password=request.POST.get('password')
-
+    username = request.POST.get('username')
+    password = request.POST.get('password')
 
     try:
-        user=User.objects.get(username=username)
+        user = User.objects.get(username=username)
     except User.DoesNotExist:
         return Response('Usuario inválido')
 
-    pwd_valid=check_password(password,user.password)
-    
+    pwd_valid = check_password(password, user.password)
+
     if not pwd_valid:
         return Response('Contraseña inválida')
-    token,_=Token.objects.get_or_create(user=user)
+    token, _ = Token.objects.get_or_create(user=user)
 
     return Response(token.key)
+
 
 def user_data(request):
     print(request.user.username)
@@ -40,8 +42,23 @@ def user_data(request):
 @login_required
 def profile(request):
 
-    form = UserProfileForm()
-    if request.method == 'POST':
+    # form = UserProfileForm()
+    tipo = ""
+    userprofile = ""
+    try:
+        userprofile = UserProfileMusicos.objects.get(user=request.user)
+        tipo = "musico"
+    except UserProfileMusicos.DoesNotExist:
+        try:
+            userprofile = UserProfileOjeadores.objects.get(user=request.user)
+            tipo = "ojeador"
+        except UserProfileOjeadores.DoesNotExist:
+            userprofile = User.objects.get(username=request.user)
+            tipo = "admin"
+
+    # print(tipo+str(userprofile))
+
+    ''' if request.method == 'POST':
         pathOldAvatar = None
         # Actualizar imagen
         try:
@@ -62,8 +79,9 @@ def profile(request):
 
             userprofile = form.save(commit=False)
             userprofile.user = request.user
-            userprofile.save()
-    return render(request, 'profile.html', {'form': form})
+            userprofile.save()  '''
+
+    return render(request, 'profile.html', {'usuario': userprofile,'tipo':tipo})
 
 
 def register(request):

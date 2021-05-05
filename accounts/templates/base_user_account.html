@@ -1,17 +1,14 @@
-    <!-- Cabecera de la página -->
-    {% include "partials/header.html" %}
-    {% comment %} Menú de la página {% endcomment %}
-    {% include "partials/menu.html" %}
-    {% comment %} Página central {% endcomment %}
-    <div class="contenedor">
-        {% comment %} Título de sección {% endcomment %}
-        <h2>Inicio de sesión</h2>
-        <div class="login">
-            {% block content %} {% endblock content %}
-        </div>
+<!-- Cabecera de la página -->
+{% include "partials/header.html" %} {% comment %} Página central {% endcomment %}
+<div class="contenedor">
+    {% comment %} Título de sección {% endcomment %}
+    <h2>Inicio de sesión</h2>
+    <div class="login">
+        {% block content %} {% endblock content %}
     </div>
-    {% comment %}
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script> {% endcomment %}
+</div>
+{% comment %}
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script> {% endcomment %}
 
 
 </body>
