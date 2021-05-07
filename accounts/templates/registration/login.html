@@ -1,6 +1,6 @@
-{% extends "base.html" %}{% load bootstrap %} {% block content %}
+{% extends "base_user_account.html" %}{% load bootstrap %} {% block content %}
 <div class="login login-form">
-
+    <h2>Iniciar Sesión</h2>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <!-- Formulario parte petición usuario -->
@@ -38,32 +38,11 @@
             <div><i class="fab fa-facebook-f"></i></div>
             <div>Entrar con Facebook</div>
         </div>
-    </button> {% comment %} <button type="button" class="btn btn-black"> 
-            <div class="botones-distribucion">
-                <div><i class="far fa-envelope"></i></div>
-                <div>Entrar con Email</div>
-            </div>
-            </button> {% endcomment %}
+    </button> 
             <a href="{% url 'account:register' %}" class="texto-reducido">¿Aún no estás registrado? ¡Registrate ahora!</a>
         </div>
         <p></p>
-
-
-        <!-- <div class="form-group">
-            <label>Usuario</label>
-            <input type="text" class="form-control" placeholder="usuario">
-        </div>
-        <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" class="form-control" placeholder="contraseña">
-        </div>
-        <div class="botones-login">
-            <button type="submit" class="btn btn-black">Iniciar Sesión</button>
-            <button type="submit" class="btn btn-secondary">Registrarse</button>
-        </div> -->
     </form>
-    <!-- Estos campos los he mostrado así, pero te dejo a tí que los personalices como quieras -->
-
-
+  
 </div>
 {% endblock %}

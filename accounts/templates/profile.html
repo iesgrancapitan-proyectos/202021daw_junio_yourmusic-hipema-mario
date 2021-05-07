@@ -1,11 +1,8 @@
-{% extends "base.html" %} {% block content %}
-<div class="contenedor">
+{% extends "base_user_account.html" %} {% block content %}
     <!-- Título de sección -->
-
-
     {% if tipo == "admin" %}
 
-    <h2>Bienvenido Admin!</h2>
+    <h2>Bienvenido Admin</h2>
 
     <h5>Si lo deseas entra al panel de administración y modifica los datos</h5>
 
@@ -13,7 +10,7 @@
 
 
     <!-- Nombre de usuario -->
-    <h2>Bienvenido: {{usuario.user.username}}</h2>
+    <h3>Bienvenido {{usuario.user.username}}</h3>
     <!-- Nombre del grupo -->
     <h2>{{usuario}}</h2>
 
@@ -60,7 +57,5 @@
 
     </div>
     {% endif %}
-
-</div>
 
 {% endblock content %}

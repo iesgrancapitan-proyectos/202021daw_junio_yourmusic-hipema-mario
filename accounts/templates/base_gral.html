@@ -3,11 +3,13 @@
 {% include "partials/scripts_gral.html" %} 
 {% include "partials/header.html" %} 
 {% comment %} Página central {% endcomment %}
+<div class="contenedor">
     {% comment %} Título de sección {% endcomment %}
-    <div class="contenedor">
+        <div class="principal">
         {% block content %} {% endblock content %}
+        </div>
         {% include "partials/footer.html" %}
-    </div>
+</div>
 {% comment %}
 <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script> {% endcomment %}
 

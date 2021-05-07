@@ -1,5 +1,6 @@
-{% extends "base.html" %}{% load bootstrap %} {% block content %}
-<div class="login login-form">
+{% extends "base_user_account.html" %}{% load bootstrap %} {% block content %}
+{% comment %} <div class="login login-form"> {% endcomment %}
+<div class="contenedor">
 
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}

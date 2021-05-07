@@ -1,6 +1,6 @@
-{% extends "base.html" %} {% load bootstrap %} {% block content %}
+{% extends "base_gral.html" %} {% load bootstrap %} {% block content %}
 <h2>Información del {{tipo}}</h2>
-<div class="col-md-4 offset-md-4">
+<div class="contenedor">
     {% if userprofile.userprofile %}
 
     <img id="iavatar" class="img-fluid" src="static/media/{{userprofile.avatar}}"> {% else %}

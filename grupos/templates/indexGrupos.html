@@ -31,10 +31,6 @@
     <button class="btn-blackDos" type="submit">Buscar</button>
 
 </form>
-<!-- TODO: Anotación -->
-<!-- Si deseas ponerlo de otra manera o si prefieres dejarlo así no hay problema.
-    He pensado introducir esta variable que si ha iniciado una busqueda cambia el título de grupos
-    por el de resultados de la busqueda. -->
 {% if busqueda %}
 <h2 class="tituloh2">Resultados de la busqueda:</h2>
 {% else %}
@@ -44,7 +40,7 @@
 <div class="listado-grupos">
     {% for e in grupos|slice:":3" %}
     <dif class="ficha-grupo">
-        <!-- TODO -->
+        <!-- TODO2 -->
         <!-- // No se como verías mostrar el nombre del grupo encima de la foto. O si lo ves mejor en el div de pie-grupos tal y como está -->
         <!-- MHP creo que en algunas ocasiones los grupos pondrán por foto el logotipo o portada del disco donde también aparecerá el nombre. Quizás sea mejor abajo por eso -->
         <div class="foto-grupo">
@@ -63,16 +59,7 @@
 </div>
 
 {% endfor %}
-
-<!-- TODO -->
-
-<!-- Este include sirve para que si hay por ejemplo 50 grupos no muestre todos en la misma página.
-    Por ello dentro de accounts/templates/partials está el archivo pagination.
-    Quedaría añadir css para que se vea bien. Como de momento solo tenemos dos grupos, para que se 
-    vean todos los campos que se utilizan en la paginación he puesto que solo liste un grupo por página, 
-    esto lo cambiaré a por ejemplo 5 o los que veamos cuando tengamos el css de la paginación
--->
-
+<!-- Paginación -->
 {% include "partials/pagination.html" with page_obj=grupos %}
 
 </div>
