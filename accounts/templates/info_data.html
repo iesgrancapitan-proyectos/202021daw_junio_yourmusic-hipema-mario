@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% load bootstrap %} {% block content %}
+<h2>Información del {{tipo}}</h2>
+<div class="col-md-4 offset-md-4">
+    {% if userprofile.userprofile %}
+
+    <img id="iavatar" class="img-fluid" src="static/media/{{userprofile.avatar}}"> {% else %}
+    <img id="iavatar" class="img-fluid" src="static/img/your-music-grupo.svg" {% endif %}/>
+</div>
+<form method="post" enctype="multipart/form-data" id="favatar">
+    <div class="custom-file">
+        {{form.avatar}}
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+    {% csrf_token %} {{form.user}}
+    <!-- <input type="submit" value="Enviar" class="btn btn-success "> -->
+
+</form>
+{% endblock %}

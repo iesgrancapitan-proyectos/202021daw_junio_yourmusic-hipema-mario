@@ -1,4 +1,21 @@
 {% extends "base.html" %} {% load bootstrap %} {% block content %}
+<!-- TODO: Dejarlo todo "bonito" xD -->
+<p>{{usuario.username}}</p>
 
-<p>user_data</p>
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <label>Nombre<input  name="nombre" type="text" value="{{usuario.username}}"></label><br>
+    <label>Email<input name="email" type="text" value="{{usuario.email}}"></label><br>
+    <hr>
+    <!-- TODO -->
+    <!-- Este apartado he pensado que JS al pulsar el checkbox se cambian los campos de disabled y 
+        se puede introducir una nueva contraseña,si no está marcado el programa interpretará
+        que la contraseña no se va a cambiar-->
+    <label><input type="checkbox" name="pass" id="pass">Cambiar contraseña</label><br>
+    <label>Nueva contraseña<input disabled name="pass1" type="password" value=""></label><br>
+    <label>Confirmar contraseña<input disabled name="pass2" type="password" value=""></label><br>
+
+    <input type="submit" value="enviar">
+</form>
 {% endblock %}

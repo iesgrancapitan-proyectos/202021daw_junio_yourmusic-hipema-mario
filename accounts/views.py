@@ -34,10 +34,54 @@ def login(request):
     return Response(token.key)
 
 
+@login_required
 def user_data(request):
-    print(request.user.username)
-    return render(request, 'user_data.html')
+    usuario=request.user
+    
+    return render(request, 'user_data.html',{'usuario':usuario})
 
+
+
+@login_required
+def info_data(request,tipo):
+    usuario=request.user
+
+    form = UserProfileForm()
+    userprofile = ""
+
+    
+       
+    if request.method == 'POST':
+        if tipo=="musico":
+            userprofile = UserProfileMusicos.objects.get(user=request.user)
+        elif tipo=="ojeador":
+            userprofile = UserProfileOjeadores.objects.get(user=request.user)
+        else:
+            return render(request, 'indexGrupos.html')
+        
+        pathOldAvatar = None
+        # Actualizar imagen
+        try:
+           
+            form = UserProfileForm(
+                request.POST, request.FILES, instance=userprofile)
+
+            # Obtenemos la ruta de la imagen anterior
+            pathOldAvatar = os.path.join(
+                settings.MEDIA_ROOT, userprofile.avatar.name)
+        except ObjectDoesNotExist:
+            form = UserProfileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            # Se comprueba si la ruta no está vacía y se borra la imagen anterior
+            if pathOldAvatar is not None and os.path.isfile(pathOldAvatar):
+                os.remove(pathOldAvatar)
+
+            userprofile = form.save(commit=False)
+            userprofile.user = request.user
+            userprofile.save()
+    
+    return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form})
 
 @login_required
 def profile(request):

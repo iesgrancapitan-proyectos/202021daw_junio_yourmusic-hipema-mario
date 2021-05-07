@@ -1,4 +1,4 @@
-{% include "partials/header.html" %} {% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="contenedor">
     <!-- Título de sección -->
 
@@ -18,15 +18,16 @@
     <h2>{{usuario}}</h2>
 
     <div class="mi-cuenta">
-        <button type="button" class="btn btn-black">
-            <a href="{% url 'account:user_data' %}">
+        <a href="{% url 'account:user_data' %}">
+            <button type="button" class="btn btn-black">
             <div class="botones-distribucion">
                 <div><i class="fas fa-user"></i></div>
                 <div>Datos de acceso</div>
             </div>
-        </a>
         </button>
-        <button type="button" class="btn btn-black">
+        </a>
+        <a href="{% url 'account:info_data' tipo %}">
+            <button type="button" class="btn btn-black">
             {% if tipo == "musico" %}
             <div class="botones-distribucion">
                 <div><i class="fas fa-guitar"></i></div>
@@ -37,21 +38,26 @@
                 <div><i class="fas fa-music"></i></div>
                 <div>Información del ojeador</div>
             </div>
-            {% endif %}
-            
+            {% endif %}            
         </button>
-        <button type="button" class="btn btn-black">
+        </a>
+        <a href="#">
+            <button type="button" class="btn btn-black">
             <div class="botones-distribucion">
                 <div><i class="fas fa-newspaper"></i></div>
                 <div>Noticias</div>
             </div>
         </button>
-        <button type="button" class="btn btn-black">
+        </a>
+        <a href="#">
+            <button type="button" class="btn btn-black">
             <div class="botones-distribucion">
                 <div><i class="fas fa-comments"></i></div>
                 <div>Mensajes</div>
             </div>
         </button>
+        </a>
+
     </div>
     {% endif %}
 
