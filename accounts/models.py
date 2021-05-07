@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+<<<<<<< Updated upstream
+=======
+# from stdimage import StdImageField, JPEGField
+>>>>>>> Stashed changes
 from django.conf import settings
 from django.dispatch import receiver 
 import os
