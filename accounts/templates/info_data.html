@@ -1,18 +1,88 @@
-{% extends "base_gral.html" %} {% load bootstrap %} {% block content %}
-<h2>Información del {{tipo}}</h2>
-<div class="contenedor">
+{% extends "base_gral.html" %}{% block content %}
+<!-- <h2>Información del {{tipo}}</h2> -->
+<!-- TODO2 aquí hay que poner el nombre del grupo -->
+<h2>Nombre del grupo</h2>
+<div class="cabecera">
     {% if userprofile.userprofile %}
-
-    <img id="iavatar" class="img-fluid" src="static/media/{{userprofile.avatar}}"> {% else %}
-    <img id="iavatar" class="img-fluid" src="static/img/your-music-grupo.svg" {% endif %}/>
+    <img id="iavatar" src="/static/media/{{userprofile.avatar}}"/>
+    {% else %}
+    <img id="iavatar" src="/static/img/your-music-grupo.svg"/>
+    {% endif %}
+    <input class="btn btn-black" type="submit" value="Contactar">
 </div>
-<form method="post" enctype="multipart/form-data" id="favatar">
+<div class="estilos">
+    <div><h3>Géneros musicales</h3></div>
+    <!-- TODO2 Información de los estilos -->
+    <div>Hard Rock, Heavy Metal</div>
+</div>
+<div class="informacion">
+    <div><h3>Información</h3></div>
+    <!-- TODO2 Descripción del grupo -->
+    <div>{% lorem 1 b random %}</div>
+</div>
+    <div><h3 class="tituloh3">Redes Sociales</h3></div>
+<div class="redes-sociales">
+    <!-- TODO2 Información redes sociales -->
+    <div><span>Twitter</span></div>
+    <div><input type="text"/></div>
+    <div><span>Instagram</span></div>
+    <div><input type="text"/></div>
+    <div><span>Facebook</span></div>
+    <div><input type="text"/></div>
+    <div><span>Página web</span></div>
+    <div><input type="text"/></div>
+    <div><span>E-mail</span></div>
+    <div><input type="text"/></div>
+</div>
+<div class="audios">
+    <div><h3 class="tituloh3">Audios</h3></div>
+    <!-- TODO2 Audios de las bandas. He probado a poner el archivo en 
+    varias ubicaciones, pero no me lo reconoce. Me intenta cargar la
+    ruta en plan: 
+    http://localhost:8000/accounts/info_data/static/audio/dream-on-aerosmith.mp3 -->
+    <audio src="/static/audio/dream-on-aerosmith.mp3"></audio>
+    <form method="post" enctype="multipart/form-data" id="idAudio">
+        <div class="custom-file">
+            {% comment %} <label class="custom-file-label" for="customFile">Seleccionar archivo</label> {% endcomment %}
+        </div>
+        <input type="submit" value="Seleccionar audio" class="btn btn-black ">
+    </form>
+</div>
+<div class="videos">
+    <div><h3 class="tituloh3">Videos</h3></div>
+    <!-- TODO2 Descripción del grupo -->
+    <div class="ficha-video">
+        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div>Titulo de la canción</div>
+    </div>
+    <div class="ficha-video">
+        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div>Titulo de la canción</div>
+    </div>
+    <div class="ficha-video">
+        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div>Titulo de la canción</div>
+    </div>
+    <div class="ficha-video">
+        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div>Titulo de la canción</div>
+    </div>
+    <div class="ver-mas">Ver más</div>
+    <div><i class="fas fa-plus-square"></i> Añadir nuevo video</div>
+    <div class="form-video">
+        <div>Título:</div>
+        <div><input type="text"/></div>
+        <div>Enlace:</div>
+        <div><input type="text"/></div>
+    </div>
+</div>
+
+{% comment %} <form method="post" enctype="multipart/form-data" id="favatar">
     <div class="custom-file">
         {{form.avatar}}
         <label class="custom-file-label" for="customFile">Choose file</label>
     </div>
     {% csrf_token %} {{form.user}}
     <!-- <input type="submit" value="Enviar" class="btn btn-success "> -->
-
-</form>
+</form> {% endcomment %}
 {% endblock %}
