@@ -694,3 +694,12 @@ textarea.form-control-lg {
 .paginacion li {
   display: inline;
 }
+
+.datos-acceso label {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  margin: 10px auto;
+  width: 90%;
+  text-align: left;
+  font-weight: bold;
+}

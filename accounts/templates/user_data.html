@@ -25,10 +25,11 @@
                 también la contraseña antigua, se verifica la anterior y si es correcta ya se hace
                 el cambio, a fin de evitar que nadie te la pueda modificar sólo por haber encontrado
                 la sesión abierta. ¿Lo ves viable?-->
-    <label><input type="checkbox" name="pass" id="pass">Cambiar contraseña</label><br>
-    <label>Nueva contraseña<input disabled name="pass1" type="password" value=""></label><br>
-    <label>Confirmar contraseña<input disabled name="pass2" type="password" value=""></label><br>
-
-    <input type="submit" value="enviar">
+    <label><input type="checkbox" name="pass" id="pass"> Cambiar contraseña</label>
+    <div class="datos-acceso">        
+    <label>Nueva contraseña <input disabled name="pass1" type="password" value=""></label>
+    <label>Confirmar contraseña <input disabled name="pass2" type="password" value=""></label>
+    </div>
+    <input class="btn btn-black" type="submit" value="Enviar">
 </form>
 {% endblock %}
