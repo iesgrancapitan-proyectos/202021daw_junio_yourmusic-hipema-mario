@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
-from accounts.models import UserProfileMusicos, UserProfileOjeadores, Generos,Provincia
+from accounts.models import UserProfileMusicos, UserProfileOjeadores, Generos, Provincia
 from django.core.paginator import Paginator
 from django.views import generic
 
@@ -11,11 +11,11 @@ from django.http import HttpResponseNotFound, JsonResponse
 def index(request):
     search = request.GET.get('search') if request.GET.get('search') else ''
     genero_id = []
-    provincia_id = request.GET.get('provincia_id') if request.GET.get('provincia_id') else ''
+    provincia_id = request.GET.get(
+        'provincia_id') if request.GET.get('provincia_id') else ''
     grupos = UserProfileMusicos.objects
-    provincia= Provincia.objects.all()
-    busqueda=False
-    
+    provincia = Provincia.objects.all()
+    busqueda = False
 
     # genero_id = int(genero_id) if genero_id else ''
     generos = Generos.objects.all()
@@ -27,28 +27,25 @@ def index(request):
     if search:
         grupos = UserProfileMusicos.objects.filter(
             nombre_banda__icontains=search)
-        busqueda=True
+        busqueda = True
 
     else:
         grupos = UserProfileMusicos.objects
-    
-    if genero_id:    
-        busqueda=True
+
+    if genero_id:
+        busqueda = True
         grupos = grupos.filter(generos__in=genero_id)
 
-    if provincia_id:     
-        busqueda=True
+    if provincia_id:
+        busqueda = True
         grupos = grupos.filter(provincia_origen=provincia_id)
 
-    
-
-   
     grupos = grupos.all()
 
     paginator = Paginator(grupos, 1)
-    
+
     page_number = request.GET.get('page')
     grupos_page = paginator.get_page(page_number)
-   
+
     # return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'generos': generos, 'search': search, 'genero_id': genero_id, })
-    return render(request, 'indexGrupos.html', {'grupos': grupos_page,'provincia': provincia, 'generos': generos, 'search': search,'genero_id': genero_id,'provincia_id': provincia_id,'busqueda':busqueda})
+    return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'provincia': provincia, 'generos': generos, 'search': search, 'genero_id': genero_id, 'provincia_id': provincia_id, 'busqueda': busqueda})

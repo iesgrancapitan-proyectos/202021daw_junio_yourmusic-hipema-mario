@@ -1,3 +1,66 @@
-{% extends "base.html" %} {% block content %}
-<h2>Ojeador</h2>
-{% endblock %}
+{% extends "base.html" %} {% load static %}{% block content %}
+<h2>¿Buscas un ojeador?</h2>
+
+<form method="get" class="input-group mi-cuenta" id="filterStore">
+    <input class="form-control w-25" placeholder="Buscar un grupo" value="{{search}}" name="search" type="text">
+    <p>Estilo:</p>
+    <div class="lista-generos" id="listGenerosComp">
+        {% for c in generos %}
+        <label>
+        <input type="checkbox" name="generos" 
+            {% for id in genero_id %}             
+                {% if id|floatformat:"0" == c.id|floatformat:"0"  %} 
+                    checked 
+                {% endif%}  
+            {% endfor %} 
+            id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label> {% endfor %}
+    </div>
+    <div class="ver-mas"><span><a href="#" id="verMas">Ver más</a></span></div>
+    <p>Provincia:</p>
+    <select name="provincia_id" class="">
+        <option value="">Sin selección</option>
+        {% for p in provincia  %}
+        <option    
+        {% if provincia_id|floatformat:"0" == p.id|floatformat:"0"  %} selected {% endif%}     
+        value="{{p.id}}">{{p.title}}</option>
+        
+        {% endfor %}
+    </select>
+
+    <button class="btn-blackDos" type="submit">Buscar</button>
+
+</form>
+{% if busqueda %}
+<h2 class="tituloh2">Resultados de la busqueda:</h2>
+{% else %}
+<h2 class="tituloh2">Ojeadores</h2>
+{% endif %}
+
+<div class="listado-grupos">
+    {% for e in ojeador|slice:":3" %}
+    <dif class="ficha-grupo">
+        <!-- TODO2 -->
+        <!-- // No se como verías mostrar el nombre del grupo encima de la foto. O si lo ves mejor en el div de pie-grupos tal y como está -->
+        <!-- MHP creo que en algunas ocasiones los grupos pondrán por foto el logotipo o portada del disco donde también aparecerá el nombre. Quizás sea mejor abajo por eso -->
+        <div class="foto-grupo">
+            <a href="#">
+                    {% if e.avatar %}                   
+                    <img src="{{ STATIC_URL }}/static/media/{{e.avatar}}" alt="Foto del grupo" title="Foto seleccionada por el grupo">
+                    {% else %}
+                    <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
+                    <img src="{% static '/img/your-music-grupo.svg' %}" title="Imagen de grupo por defeto">
+                    {% endif %}
+                </a>
+        </div>
+</div>
+<div class="pie-grupos">
+    <p><span>{{e.nombre_ojeador}}</span> - {{e.generos.all|join:", " }} - {{e.provincia_origen}} - {{e.descripcion}} </p>
+</div>
+
+{% endfor %}
+<!-- Paginación -->
+{% include "partials/pagination.html" with page_obj=ojeador %}
+
+</div>
+
+{% endblock content %}
