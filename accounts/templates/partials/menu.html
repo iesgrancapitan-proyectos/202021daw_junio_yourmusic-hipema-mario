@@ -4,9 +4,9 @@
 <nav id="menu">
     <ul>
         <li><a href="{% url 'grupos:index' %}">Grupos</a></li>
-        <li><a href="#Ojeadores">Ojeadores</a></li>
-        <li><a href="#Noticias">Noticias</a></li>
-        <li><a href="#Foro">Foro</a></li>
+        <li><a href="{% url 'ojeador:ojeador' %}">Ojeadores</a></li>
+        <li><a href="{% url 'noticias:noticias' %}">Noticias</a></li>
+        <li><a href="{% url 'foro:foro' %}">Foro</a></li>
         <!-- Comprobación del usuario-->
         {% if user.is_authenticated %}
         <li><a href="{% url 'account:profile' %}">Perfil</a></li>

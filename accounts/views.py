@@ -33,12 +33,22 @@ def login(request):
 
     return Response(token.key)
 
+@login_required
+def noticias_user(request):
+    usuario=request.user
+    
+    return render(request, 'noticias_user.html',{'usuario':usuario})
 
 @login_required
 def user_data(request):
     usuario=request.user
     
     return render(request, 'user_data.html',{'usuario':usuario})
+@login_required
+def mensajes(request):
+    usuario=request.user
+    
+    return render(request, 'mensajes.html',{'usuario':usuario})
 
 
 

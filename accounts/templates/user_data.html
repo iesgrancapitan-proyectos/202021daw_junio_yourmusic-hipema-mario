@@ -1,5 +1,4 @@
-{% extends "base_user_account.html" %}
-{% block content %}
+{% extends "base_user_account.html" %} {% block content %}
 <!-- TODO: Dejarlo todo "bonito" xD -->
 <h2>Tus datos de acceso</h2>
 <p>{{usuario.username}}</p>
@@ -16,6 +15,8 @@
             <span>Email</span>
             <input name="email" type="text" value="{{usuario.email}}">
         </label>
+        <label>Contraseña <input  name="pass1" type="password" value=""></label>
+
     </div>
     <!-- TODO -->
     <!-- Este apartado he pensado que JS al pulsar el checkbox se cambian los campos de disabled y 
@@ -26,9 +27,9 @@
                 el cambio, a fin de evitar que nadie te la pueda modificar sólo por haber encontrado
                 la sesión abierta. ¿Lo ves viable?-->
     <label><input type="checkbox" name="pass" id="pass"> Cambiar contraseña</label>
-    <div class="datos-acceso">        
-    <label>Nueva contraseña <input disabled name="pass1" type="password" value=""></label>
-    <label>Confirmar contraseña <input disabled name="pass2" type="password" value=""></label>
+    <div class="datos-acceso">
+        <label>Nueva contraseña <input disabled name="pass1" type="password" value=""></label>
+        <label>Confirmar contraseña <input disabled name="pass2" type="password" value=""></label>
     </div>
     <input class="btn btn-black" type="submit" value="Enviar">
 </form>

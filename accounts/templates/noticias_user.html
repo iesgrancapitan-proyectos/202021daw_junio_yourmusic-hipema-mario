@@ -1,0 +1,10 @@
+{% extends "base_user_account.html" %} {% block content %}
+<h2>Noticias</h2>
+<p>{{usuario.username}}</p>
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+
+    <input class="btn btn-black" type="submit" value="Enviar">
+</form>
+{% endblock %}

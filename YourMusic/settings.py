@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'accounts',
+    'ojeador',
+    'foro',
+    'noticias',
     'rest_framework',
     'rest_framework.authtoken',
     'bootstrapform',
@@ -86,7 +89,7 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 # DATOS PARA CONECTAR CON LA DB
 
 # MANUEL
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -96,9 +99,9 @@ DATABASES = {
         'PORT': '3306',
     }
 
-}
+}'''
 # MARIO
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -108,7 +111,7 @@ DATABASES = {
         'PORT': '3306',
     }
 
-}'''
+}
 
 
 # Password validation
