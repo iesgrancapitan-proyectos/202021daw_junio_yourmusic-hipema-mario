@@ -1,7 +1,6 @@
 {% extends "base_user_account.html" %}{% load bootstrap %} {% block content %}
 {% comment %} <div class="login login-form"> {% endcomment %}
-<div class="contenedor">
-
+<h2 class="tituloh2">Registro de usuario</h2>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <!-- Formulario parte petición usuario -->
@@ -46,6 +45,4 @@
         </div>
 
     </form>
-
-</div>
 {% endblock %}
