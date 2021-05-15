@@ -6,6 +6,32 @@ from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
 from django.utils.translation import gettext as _
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username','email',)
+        
+    
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+        u = User.objects.filter(email=email)
+        if u.count():
+            raise ValidationError(_('Email taking'))#"Email ya está registrado"
+        return email
+
+    """ def save(self, commit=True, text=""):
+        instance = super(UserUpdateForm, self).save(commit=commit)
+
+        if(text != ""):
+            instance.text = text  # "No podrás modificarme"
+
+        if(commit):
+            instance.save()
+        return instance """
+
+
+
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
         label='Email',

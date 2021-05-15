@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from accounts.models import  UserProfileOjeadores, Generos, Provincia
+from noticias.models import Noticias
 from django.core.paginator import Paginator
 from django.views import generic
 
@@ -49,3 +50,12 @@ def index_ojeador(request):
 
     # return render(request, 'indexGrupos.html', {'ojeador': ojeador_page, 'generos': generos, 'search': search, 'genero_id': genero_id, })
     return render(request, 'index_ojeador.html', {'ojeador': ojeador_page, 'provincia': provincia, 'generos': generos, 'search': search, 'genero_id': genero_id, 'provincia_id': provincia_id, 'busqueda': busqueda})
+
+def detail_ojeador(request,pk):
+    ojeador = UserProfileOjeadores.objects.get(pk=pk)
+    
+    generos= Generos.objects.filter(userprofileojeadores=ojeador.id)
+    noticias=Noticias.objects.filter(userprofileojeadores=ojeador.id)
+    print(noticias)
+   
+    return render(request,'detail_ojeador.html',{'ojeador':ojeador,'generos':generos,'noticias':noticias})

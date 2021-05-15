@@ -4,6 +4,7 @@ from django.db.models.deletion import CASCADE
 from django.conf import settings
 from django.dispatch import receiver 
 import os
+from noticias.models import Noticias
 
 
 
@@ -82,6 +83,8 @@ class UserProfileMusicos(models.Model):
     email_grupo=models.CharField(max_length=50,blank=True,null=True)
     url_audios=models.ManyToManyField(Audios,blank=True,null=True)
     url_videos=models.ManyToManyField(Videos,blank=True,null=True)
+    noticias=models.ManyToManyField(Noticias,blank=True,null=True)
+    
     def __str__(self) :
         return self.nombre_banda   
 
@@ -99,6 +102,7 @@ class UserProfileOjeadores(models.Model):
     web=models.CharField(max_length=300,blank=True,null=True)
     email_ojeador=models.CharField(max_length=50,blank=True,null=True)
     tipo_ojeador=models.ForeignKey(TipoOjeador,on_delete=models.CASCADE)
+    noticias=models.ManyToManyField(Noticias,blank=True,null=True)
 
     def __str__(self) :
         return self.nombre_ojeador

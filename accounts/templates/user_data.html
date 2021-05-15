@@ -2,34 +2,46 @@
 <!-- TODO: Dejarlo todo "bonito" xD -->
 <h2>Tus datos de acceso</h2>
 <p>{{usuario.username}}</p>
-<form method="post" action="{% url 'login' %}">
+<p> {{form.errors}}</p>
+<form method="post">
     {% csrf_token %}
+
     <!-- Dar borde o sombreado a esta caja para que se separe del resto. 
          Maquetar en distintos niveles los span de los inputs -->
+    <!-- TODO: realizar comprobaciones de los input con js, campos vacíos, que las dos contraseñas coincidan, que se introduca un email, etc... -->
     <div class="datos-acceso">
         <label>
             <span>Nombre</span>
-            <input  name="nombre" type="text" value="{{usuario.username}}">
+            <input  name="nombre" type="text" value="{{usuario.username}}">   
+            <span style="color: red;">{{error.1}}</span>           
+            {% comment %}
+            {{form.username}}
+            {% endcomment %}
         </label>
         <label>
             <span>Email</span>
-            <input name="email" type="text" value="{{usuario.email}}">
+            
+            <input name="email" type="text" value="{{usuario.email}}">          
+            <span style="color: red;">{{error.2}}</span>    
+            {% comment %}
+            {{form.email}}
+            {% endcomment %}
         </label>
-        <label>Contraseña <input  name="pass1" type="password" value=""></label>
+        <label>Contraseña <input  name="password" type="password" value=""><span style="color: red;">{{error.0}}</span></label>
+
 
     </div>
     <!-- TODO -->
     <!-- Este apartado he pensado que JS al pulsar el checkbox se cambian los campos de disabled y 
         se puede introducir una nueva contraseña,si no está marcado el programa interpretará
         que la contraseña no se va a cambiar-->
-    <!-- TODO2 Aquí el problema está en que por seguridad, normalmente se suele pedir que introduzca
-                también la contraseña antigua, se verifica la anterior y si es correcta ya se hace
-                el cambio, a fin de evitar que nadie te la pueda modificar sólo por haber encontrado
-                la sesión abierta. ¿Lo ves viable?-->
+
+
     <label><input type="checkbox" name="pass" id="pass"> Cambiar contraseña</label>
     <div class="datos-acceso">
-        <label>Nueva contraseña <input disabled name="pass1" type="password" value=""></label>
-        <label>Confirmar contraseña <input disabled name="pass2" type="password" value=""></label>
+
+        <label>Nueva contraseña <input  name="pass1" type="password" value=""></label>
+        <label>Confirmar contraseña <input  name="pass2" type="password" value=""></label>
     </div>
     <input class="btn btn-black" type="submit" value="Enviar">
 </form>

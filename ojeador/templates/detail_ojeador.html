@@ -1,0 +1,73 @@
+{% extends "base_gral.html" %} {% load static %}{% block content %}
+<h2>{{ojeador.nombre_ojeador}}</h2>
+<div class="cabecera">
+    <!-- TODO: Al cargar una imagen con distinto tamaño a la de por 
+        defecto, se carga con el tamaño predeterminado de esta.
+        Habría que incluir en el css, una clase para dar siempre 
+        el mismo tamaño a las fotos -->
+    {% if ojeador.avatar %}
+    <img id="iavatar" src="{{ STATIC_URL }}/static/media/{{ojeador.avatar}}" alt="Foto del ojeador" title="Foto seleccionada por el ojeador"> {% else %}
+    <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
+    <img id="iavatar" src="{% static '/img/your-music-grupo.svg' %}" title="Imagen de ojeador por defeto"> {% endif %}
+    <a href="#">
+        <input class="btn btn-black" type="submit" value="Contactar">
+    </a>
+</div>
+<div class="estilos">
+    <div>
+        <h3>Géneros musicales</h3>
+    </div>
+    <div>{% for genero in generos %} {{genero}} {% endfor %}</div>
+</div>
+<div class="informacion">
+    <div>
+        <h3>Información</h3>
+    </div>
+    <div>{{ojeador.descripcion}}</div>
+    <!-- TODO: si se te ocurre una manera de dejar mejor tanto en ojeadores como músicos todo el tema de la provincia y el tipo de ojeador.
+    Es inforamción que creo que hay que resaltar -->
+    <div><strong>{{ojeador.tipo_ojeador}}</strong></div>
+    <div><strong>{{ojeador.provincia_origen}}</strong></div>
+</div>
+<div>
+    <h3 class="tituloh3">Redes Sociales</h3>
+</div>
+<div class="redes-sociales">
+    {% if ojeador.twitter %}
+    <div><span>Twitter</span></div>
+    <div>{{ojeador.twitter}}</div>
+    {% endif %} {% if ojeador.instagram %}
+    <div><span>Instagram</span></div>
+    <div>{{ojeador.instagram}}</div>
+    {% endif %} {% if ojeador.facebook %}
+    <div><span>Facebook</span></div>
+    <div>{{ojeador.facebook}}</div>
+
+    {% endif %} {% if ojeador.web %}
+    <div><span>Página web</span></div>
+    <div>{{ojeador.web}}</div>
+
+    {% endif %} {% if ojeador.email_ojeador %}
+    <div><span>E-mail</span></div>
+    <div>{{ojeador.email_ojeador}}</div>
+    {% endif %}
+</div>
+
+
+{% if noticias %}
+
+<div class="noticias-grupo">
+    <div>
+        <h3>Últimas noticias</h3>
+    </div>
+    {% for n in noticias %}
+
+    <div class="noticia-extracto">
+        <div class="titulo-noticia">{{n.title}}</div>
+        <div class="noticia-entradilla">{{n.descripcion}}</div>
+    </div>
+    {% endfor %}
+
+    <div class="ver-mas">Ver más</div>
+</div>
+{% endif %} {% endblock %}

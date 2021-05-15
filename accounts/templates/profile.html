@@ -15,7 +15,7 @@
 <h2>{{usuario}}</h2>
 
 <div class="mi-cuenta">
-    <a href="{% url 'account:user_data' %}">
+    <a href="{% url 'account:user_data' usuario.user.id %}">
         <button type="button" class="btn btn-black">
             <div class="botones-distribucion">
                 <div><i class="fas fa-user"></i></div>

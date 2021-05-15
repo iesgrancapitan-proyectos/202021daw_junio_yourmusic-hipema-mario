@@ -43,7 +43,7 @@
         <!-- // No se como verías mostrar el nombre del grupo encima de la foto. O si lo ves mejor en el div de pie-grupos tal y como está -->
         <!-- MHP creo que en algunas ocasiones los grupos pondrán por foto el logotipo o portada del disco donde también aparecerá el nombre. Quizás sea mejor abajo por eso -->
         <div class="foto-grupo">
-            <a href="#">
+            <a href="{% url 'ojeador:detail_ojeador' e.id %}">
                     {% if e.avatar %}                   
                     <img src="{{ STATIC_URL }}/static/media/{{e.avatar}}" alt="Foto del grupo" title="Foto seleccionada por el grupo">
                     {% else %}

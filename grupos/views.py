@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
-from accounts.models import UserProfileMusicos, UserProfileOjeadores, Generos, Provincia
+from accounts.models import UserProfileMusicos, UserProfileOjeadores, Generos, Provincia,Videos,Audios
+from noticias.models import Noticias
 from django.core.paginator import Paginator
 from django.views import generic
 
@@ -49,3 +50,10 @@ def index(request):
 
     # return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'generos': generos, 'search': search, 'genero_id': genero_id, })
     return render(request, 'indexGrupos.html', {'grupos': grupos_page, 'provincia': provincia, 'generos': generos, 'search': search, 'genero_id': genero_id, 'provincia_id': provincia_id, 'busqueda': busqueda})
+def detail(request,pk):
+    grupo = UserProfileMusicos.objects.get(id=pk)
+    generos= Generos.objects.filter(userprofilemusicos=grupo.id)
+    audios= Audios.objects.filter(userprofilemusicos=grupo.id)
+    videos= Videos.objects.filter(userprofilemusicos=grupo.id)
+    noticias=Noticias.objects.filter(userprofilemusicos=grupo.id)
+    return render(request,'detail_grupo.html',{'grupo':grupo,'generos':generos,'audios':audios,'videos':videos,'noticias':noticias})
