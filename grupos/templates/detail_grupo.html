@@ -1,14 +1,11 @@
 {% extends "base_gral.html" %} {% load static %}{% block content %}
 <h2>{{grupo.nombre_banda}}</h2>
 <div class="cabecera">
-    <!-- TODO: Al cargar una imagen con distinto tamaño a la de por 
-        defecto, se carga con el tamaño predeterminado de esta.
-        Habría que incluir en el css, una clase para dar siempre 
-        el mismo tamaño a las fotos -->
     {% if grupo.avatar %}
-    <img id="iavatar" src="{{ STATIC_URL }}/static/media/{{grupo.avatar}}" alt="Foto del grupo" title="Foto seleccionada por el grupo"> {% else %}
+    <img id="iavatar" class="foto-grupo" src="{{ STATIC_URL }}/static/media/{{grupo.avatar}}" alt="Foto del grupo" title="Foto seleccionada por el grupo"> {% else %}
     <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
-    <img id="iavatar" src="{% static '/img/your-music-grupo.svg' %}" title="Imagen de grupo por defeto"> {% endif %}
+    <img id="iavatar" class="foto-grupo" src="{% static '/img/your-music-grupo.svg' %}" title="Imagen de grupo por defeto"> {% endif %}
+    <!-- TODO2 aquí habría que incluir el enlace a los mensajes posteriores entre usuarios -->
     <a href="#">
         <input class="btn btn-black" type="submit" value="Contactar">
     </a>
@@ -17,7 +14,7 @@
     <div>
         <h3>Géneros musicales</h3>
     </div>
-    <div>{% for genero in generos %} {{genero}} {% endfor %}</div>
+    {% for genero in generos %} <div>{{genero}}</div> {% endfor %}
 </div>
 <div class="informacion">
     <div>
@@ -35,10 +32,10 @@
     <div>{{grupo.twitter}}</div>
     {% endif %} {% if grupo.instagram %}
     <div><span>Instagram</span></div>
-    <div>{{grupo.instagram}}</div>
+    <div><a href="{{grupo.instagram}}">{{grupo.instagram}}</a></div>
     {% endif %} {% if grupo.facebook %}
     <div><span>Facebook</span></div>
-    <div>{{grupo.facebook}}</div>
+    <div><a href="{{grupo.facebook}}" target="_blank">{{grupo.facebook}}</a></div>
 
     {% endif %} {% if grupo.web %}
     <div><span>Página web</span></div>
@@ -46,11 +43,10 @@
 
     {% endif %} {% if grupo.email_grupo %}
     <div><span>E-mail</span></div>
-    <div>{{grupo.email_grupo}}</div>
+    <div><a href="mailto:{{grupo.email_grupo}}">{{grupo.email_grupo}}</a></div>
     {% endif %}
 </div>
 <!-- TODO: Aplicar con jse enlace ver más, para audios, vídeos y noticias. Para que no muestre todo de golpe -->
-
 {% if audios %}
 <div class="audios">
     <div>
@@ -59,10 +55,9 @@
     {% for row in audios %}
     <audio controls src="{{row.url_audio}}"></audio> {% endfor %}
     <audio controls src="/static/audio/dream-on-aerosmith.mp3"></audio>
-
 </div>
-{% endif %} {% if videos %}
-
+{% endif %} 
+{% if videos %}
 <div class="videos">
     <div>
         <h3 class="tituloh3">Videos</h3>
@@ -70,15 +65,16 @@
 
     {% for v in videos %}
     <div class="ficha-video">
-        <iframe class="videos-youtube" src="{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="videos-youtube" src="https://www.youtube.com/embed/{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     {% endfor %}
 
     <div class="ver-mas">Ver más</div>
 
 </div>
-{% endif %} {% if noticias %}
+{% endif %}
 
+{% if noticias %}
 <div class="noticias-grupo">
     <div>
         <h3>Últimas noticias</h3>
