@@ -5,8 +5,6 @@
 <p> {{form.errors}}</p>
 <form method="post">
     {% csrf_token %}
-    <!-- Dar borde o sombreado a esta caja para que se separe del resto. 
-         Maquetar en distintos niveles los span de los inputs -->
     <!-- TODO: realizar comprobaciones de los input con js, campos vacíos, que las dos contraseñas coincidan, que se introduca un email, etc... -->
     <div class="datos-acceso">
         <label>
@@ -19,7 +17,7 @@
         </label>
         <label>
             <span>Email</span>
-            <input name="email" type="email" class="form-control" value="{{usuario.email}}">          
+            <input name="email" id="email" type="email" class="form-control" value="{{usuario.email}}">          
             <span style="color: red;">{{error.2}}</span>    
             {% comment %}
             {{form.email}}
@@ -33,13 +31,11 @@
     <!-- Este apartado he pensado que JS al pulsar el checkbox se cambian los campos de disabled y 
         se puede introducir una nueva contraseña,si no está marcado el programa interpretará
         que la contraseña no se va a cambiar-->
-
-
     <label><input type="checkbox" name="pass" id="pass"> Cambiar contraseña</label>
     <div class="datos-acceso" id="datos-pass" hidden>
 
-        <label>Nueva contraseña <input  name="pass1" class="form-control"  type="password" value=""></label>
-        <label>Confirmar contraseña <input  name="pass2" class="form-control"  type="password" value=""></label>
+        <label>Nueva contraseña <input id="pass1" name="pass1" class="form-control"  type="password" value=""></label>
+        <label>Confirmar contraseña <input id="pass2" name="pass2" class="form-control"  type="password" value=""></label>
     </div>
     <div><input class="btn btn-black" type="submit" value="Enviar" id="enviar"></div>
 </form>
