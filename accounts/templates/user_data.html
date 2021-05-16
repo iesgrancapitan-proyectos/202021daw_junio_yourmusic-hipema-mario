@@ -1,18 +1,17 @@
-{% extends "base_user_account.html" %} {% block content %}
-<!-- TODO: Dejarlo todo "bonito" xD -->
+{% extends "base_user_account.html" %} {% block content %}{% load static %}
+<script src="{% static 'js/user_data.js' %}"></script>
 <h2>Tus datos de acceso</h2>
 <p>{{usuario.username}}</p>
 <p> {{form.errors}}</p>
 <form method="post">
     {% csrf_token %}
-
     <!-- Dar borde o sombreado a esta caja para que se separe del resto. 
          Maquetar en distintos niveles los span de los inputs -->
     <!-- TODO: realizar comprobaciones de los input con js, campos vacíos, que las dos contraseñas coincidan, que se introduca un email, etc... -->
     <div class="datos-acceso">
         <label>
             <span>Nombre</span>
-            <input  name="nombre" type="text" value="{{usuario.username}}">   
+            <input  name="nombre" class="form-control" type="text" value="{{usuario.username}}">   
             <span style="color: red;">{{error.1}}</span>           
             {% comment %}
             {{form.username}}
@@ -20,14 +19,13 @@
         </label>
         <label>
             <span>Email</span>
-            
-            <input name="email" type="text" value="{{usuario.email}}">          
+            <input name="email" type="email" class="form-control" value="{{usuario.email}}">          
             <span style="color: red;">{{error.2}}</span>    
             {% comment %}
             {{form.email}}
             {% endcomment %}
         </label>
-        <label>Contraseña <input  name="password" type="password" value=""><span style="color: red;">{{error.0}}</span></label>
+        <label>Contraseña <input  name="password" class="form-control"  type="password" value=""><span style="color: red;">{{error.0}}</span></label>
 
 
     </div>
@@ -38,11 +36,11 @@
 
 
     <label><input type="checkbox" name="pass" id="pass"> Cambiar contraseña</label>
-    <div class="datos-acceso">
+    <div class="datos-acceso" id="datos-pass" hidden>
 
-        <label>Nueva contraseña <input  name="pass1" type="password" value=""></label>
-        <label>Confirmar contraseña <input  name="pass2" type="password" value=""></label>
+        <label>Nueva contraseña <input  name="pass1" class="form-control"  type="password" value=""></label>
+        <label>Confirmar contraseña <input  name="pass2" class="form-control"  type="password" value=""></label>
     </div>
-    <input class="btn btn-black" type="submit" value="Enviar">
+    <div><input class="btn btn-black" type="submit" value="Enviar" id="enviar"></div>
 </form>
 {% endblock %}
