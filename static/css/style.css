@@ -692,6 +692,13 @@ textarea.form-control-lg {
   display: inline;
 }
 
+.datos-acceso {
+  box-shadow: 2px 2px 5px #999;
+  padding: 10px 0px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
 .datos-acceso label {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
@@ -738,5 +745,22 @@ textarea.form-control-lg {
 
 .ver-mas a {
   text-decoration: none;
+  color: #666666;
+}
+
+footer {
+  background: black;
+  padding: 5px;
+  color: white;
+  margin: 10px 0px;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a:hover {
   color: #666666;
 }
