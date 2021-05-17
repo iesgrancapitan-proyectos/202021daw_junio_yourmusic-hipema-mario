@@ -1,24 +1,23 @@
-{% extends "base_gral.html" %}{% block content %}
-<!-- TODO2 aquí hay que poner el nombre del grupo -->
-<h2>{{usuario.nombre_profile}}</h2>
-<input name="nombre" type="text" value="{{usuario.nombre_profile}}">
+{% extends "base_gral.html" %} {% load static %} {% block content %}
 
-
-<div class="cabecera">
-    {% if userprofile.userprofile %}
-    <img id="iavatar" src="/static/media/{{userprofile.avatar}}" /> {% else %}
-    <img id="iavatar" src="/static/img/your-music-grupo.svg" /> {% endif %}
-    <input class="btn btn-black" name="foto" type="submit" value="Cambiar imagen">
-</div>
-
-<div class="estilos">
-    <div>
-        <h3>Géneros musicales</h3>
+<form method="post" enctype="multipart/form-data" id="info">
+    {% csrf_token %}
+    <h2>{{usuario.nombre_profile}}</h2>
+    <input name="nombre" type="text" value="{{usuario.nombre_profile}}">
+    <div class="cabecera">
+        {% if userprofile.userprofile %}
+        <img id="iavatar" src="/static/media/{{userprofile.avatar}}" /> {% else %}
+        <img id="iavatar" src="/static/img/your-music-grupo.svg" /> {% endif %}
+        <input class="btn btn-black" name="foto" type="file" value="Cambiar imagen">
     </div>
-    <!-- TODO2 Información de los estilos -->
-    <div class="lista-generos" id="listGenerosComp">
-        {% for c in generos %}
-        <label>
+
+    <div class="estilos">
+        <div>
+            <h3>Géneros musicales</h3>
+        </div>
+        <div class="lista-generos" id="listGenerosComp">
+            {% for c in generos %}
+            <label>
         <input type="checkbox" name="generos" 
             {% for id in genero_id %}             
                 {% if id.id|floatformat:"0" == c.id|floatformat:"0"  %} 
@@ -26,105 +25,116 @@
                 {% endif%}  
             {% endfor %} 
             id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label> {% endfor %}
+        </div>
+        <div class="ver-mas"><span><a href="#" id="verMas">Ver más</a></span></div>
     </div>
-    <div class="ver-mas"><span><a href="#" id="verMas">Ver más</a></span></div>
-</div>
-<div class="informacion">
-    <div>
-        <h3>Información</h3>
-    </div>
-    <!-- TODO2 Descripción del grupo -->
-    <div>
-        <textarea name="descripción" id="" cols="30" rows="10">
+    <div class="informacion">
+        <div>
+            <h3>Información</h3>
+        </div>
+        <div>
+            <textarea name="descripción" id="" cols="30" rows="10">
         {{usuario.descripcion}}
     </textarea>
+        </div>
     </div>
-</div>
-<div>
-    <h3 class="tituloh3">Redes Sociales</h3>
-</div>
-<div class="redes-sociales">
-    <!-- TODO2 Información redes sociales -->
-    <div><span>Twitter</span></div>
-    {% if usuario.twitter %}
-    <div><input type="text" name="twitter" value="{{usuario.twitter}}" /></div>
-    {% else %}
-    <div><input type="text" name="twitter" value="" /></div>
-    {% endif %}
-    <div><span>Instagram</span></div>
-    {% if usuario.instagram %}
-    <div><input type="text" name="twitter" value="{{usuario.instagram}}" /></div>
-    {% else %}
-    <div><input type="text" name="twitter" value="" /></div>
-    {% endif %}
-    <div><span>Facebook</span></div>
-    {% if usuario.facebook %}
-    <div><input type="text" name="twitter" value="{{usuario.facebook}}" /></div>
-    {% else %}
-    <div><input type="text" name="twitter" value="" /></div>
-    {% endif %}
-    <div><span>Página web</span></div>
-    {% if usuario.web %}
-    <div><input type="text" name="twitter" value="{{usuario.web}}" /></div>
-    {% else %}
-    <div><input type="text" name="twitter" value="" /></div>
-    {% endif %}
-    <div><span>E-mail</span></div>
-    {% if usuario.email_profile %}
-    <div><input type="text" name="twitter" value="{{usuario.email_profile}}" /></div>
-    {% else %}
-    <div><input type="text" name="twitter" value="" /></div>
-    {% endif %}
+    <input type="submit" name="info" class="btn btn-black" value="Actualizar Información">
+
+</form>
+<form method="post" enctype="multipart/form-data" id="redesSociales">
+    {% csrf_token %}
+    <div>
+        <h3 class="tituloh3">Redes Sociales</h3>
+    </div>
+    <div class="redes-sociales">
+        <div><span>Twitter</span></div>
+        {% if usuario.twitter %}
+        <div><input type="text" name="twitter" value="{{usuario.twitter}}" /></div>
+        {% else %}
+        <div><input type="text" name="twitter" value="" /></div>
+        {% endif %}
+        <div><span>Instagram</span></div>
+        {% if usuario.instagram %}
+        <div><input type="text" name="twitter" value="{{usuario.instagram}}" /></div>
+        {% else %}
+        <div><input type="text" name="twitter" value="" /></div>
+        {% endif %}
+        <div><span>Facebook</span></div>
+        {% if usuario.facebook %}
+        <div><input type="text" name="twitter" value="{{usuario.facebook}}" /></div>
+        {% else %}
+        <div><input type="text" name="twitter" value="" /></div>
+        {% endif %}
+        <div><span>Página web</span></div>
+        {% if usuario.web %}
+        <div><input type="text" name="twitter" value="{{usuario.web}}" /></div>
+        {% else %}
+        <div><input type="text" name="twitter" value="" /></div>
+        {% endif %}
+        <div><span>E-mail</span></div>
+        {% if usuario.email_profile %}
+        <div><input type="text" name="twitter" value="{{usuario.email_profile}}" /></div>
+        {% else %}
+        <div><input type="text" name="twitter" value="" /></div>
+        {% endif %}
 
 
-</div>
+    </div>
+    <input type="submit" class="btn btn-black" name="redes" value="Actualizar redes">
+
+</form>
 {% if tipo == "musico" %}
+
 
 <div class="audios">
     <div>
         <h3 class="tituloh3">Audios</h3>
     </div>
-    <audio controls src="/static/audio/dream-on-aerosmith.mp3"></audio>
+    {% for row in audios %}
+    <audio controls src="{{row.url_audio}}"></audio>
+    <div>{{row.title}}</div>
+    {% endfor %}
+
     <form method="post" enctype="multipart/form-data" id="idAudio">
+        {% csrf_token %}
         <div class="custom-file">
             {% comment %} <label class="custom-file-label" for="customFile">Seleccionar archivo</label> {% endcomment %}
         </div>
-        <input type="submit" name="audio" value="Seleccionar audio" class="btn btn-black ">
+        <input type="file" name="audio" value="Seleccionar audio" class="btn btn-black">
+        <input type="submit" class="btn btn-black" name="audio" value="Guardar audio">
+
     </form>
 </div>
 <div class="videos">
     <div>
         <h3 class="tituloh3">Videos</h3>
     </div>
-    <!-- TODO2 Videos del grupo -->
+    {% for v in videos %}
     <div class="ficha-video">
-        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div>Titulo de la canción</div>
+        <iframe class="videos-youtube" src="{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div>{{v.title}}</div>
     </div>
-    <div class="ficha-video">
-        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div>Titulo de la canción</div>
-    </div>
-    <div class="ficha-video">
-        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div>Titulo de la canción</div>
-    </div>
-    <div class="ficha-video">
-        <iframe class="videos-youtube" src="https://www.youtube.com/embed/IEqh1NBGbK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div>Titulo de la canción</div>
-    </div>
+    {% endfor %}
+
+
     <div class="ver-mas">Ver más</div>
-    <div><i class="fas fa-plus-square"></i> Añadir nuevo video</div>
-    <div class="form-video">
-        <div>Título:</div>
-        <div><input type="text" /></div>
-        <div>Enlace:</div>
-        <div><input type="text" /></div>
-    </div>
+    <div><button class="btn btn-black"><i class="fas fa-plus-square"></i> Añadir nuevo video</button></div>
+    <form method="post" enctype="multipart/form-data" id="idVideo">
+        {% csrf_token %}
+        <div class="form-video">
+            <div>Título:</div>
+            <div><input type="text" /></div>
+            <div>Enlace:</div>
+            <div><input type="text" /></div>
+        </div>
+        <input type="submit" class="btn btn-black" name="video" value="Guardar video">
+    </form>
 </div>
 {% else %}
-<div><span>Tipo de Ojeador</span></div>
-<select name="tipos" id="tipos">
+<form method="post" enctype="multipart/form-data" id="TipoOjeador">
+    {% csrf_token %}
+    <div><span>Tipo de Ojeador</span></div>
+    <select name="tipos" id="tipos">
     {% for row in tipos %}      
     <option 
     {% if row == tip %}
@@ -134,15 +144,7 @@
         {{row}}
     </option>
     {% endfor %}
-</select> {% endif %}
-
-
-<input type="submit" class="btn btn-black" value="Guardar datos" name="guardar"> {% comment %}
-<form method="post" enctype="multipart/form-data" id="favatar">
-    <div class="custom-file">
-        {{form.avatar}}
-        <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
-    {% csrf_token %} {{form.user}}
-    <!-- <input type="submit" value="Enviar" class="btn btn-success "> -->
-</form> {% endcomment %} {% endblock %}
+</select>
+    <input type="submit" name="ojeador" class="btn btn-black" value="Actualizar tipo">
+</form>
+{% endif %} {% endblock %}

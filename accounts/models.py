@@ -42,23 +42,25 @@ class Provincia(models.Model):
         ordering = ('title',)
 
 class Audios(models.Model):
+    title = models.CharField(max_length=30)
     url_audio = models.CharField(max_length=500)
 
     def __unicode__(self):
         return str(self.id)
     def __str__(self) :
-        return str(self.id)
+        return str(self.title)
     class Meta:
-        ordering = ('url_audio',)
+        ordering = ('title','url_audio',)
 class Videos(models.Model):
+    title = models.CharField(max_length=30)
     url_video = models.CharField(max_length=500)
 
     def __unicode__(self):
         return str(self.id)
     def __str__(self) :
-        return str(self.id)
+        return str(self.title)
     class Meta:
-        ordering = ('url_video',)
+        ordering = ('title','url_video',)
 class TipoOjeador(models.Model):
     title = models.CharField(max_length=30)
 

@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as make_login
 from .forms import UserUpdateForm,CustomUserCreationForm, UserProfileForm
 
-from .models import UserProfileMusicos, UserProfileOjeadores,Generos,TipoOjeador
+from .models import Audios, UserProfileMusicos, UserProfileOjeadores,Generos,TipoOjeador, Videos
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.authtoken.models import Token
@@ -129,41 +129,44 @@ def info_data(request,tipo):
     genero_id = []
     tipos=[]
     tip_user=""
+    videos=""
+    audios=""
    
     if tipo=="musico":
         userprofile = UserProfileMusicos.objects.get(user=request.user)
-        genero_id = Generos.objects.filter(userprofilemusicos=userprofile.id )
+        genero_id = Generos.objects.filter(userprofilemusicos=userprofile.id)
+        videos=Videos.objects.filter(userprofilemusicos=userprofile.id )
+        audios=Audios.objects.filter(userprofilemusicos=userprofile.id )
     elif tipo=="ojeador":
         userprofile = UserProfileOjeadores.objects.get(user=request.user)
         genero_id = Generos.objects.filter(userprofileojeadores=userprofile.id)
         tipos=TipoOjeador.objects.all()
         tip_user=userprofile.tipo_ojeador
-
-
     else:
         return render(request, 'indexGrupos.html')
 
     generos = Generos.objects.all()
-    """ for item in userprofile.generos:
-        genero_id.append(item) """
-
-    print("generos: "+str(genero_id))
-         
-    
        
     if request.method == 'POST':
-        
+
+        if(request.POST['info']):
+            print("info")   
+        else:
+            print("No es")
+       
         pathOldAvatar = None
         # Actualizar imagen
-        try:
-           
+        try:           
             form = UserProfileForm(
                 request.POST, request.FILES, instance=userprofile)
-
+            
+            print(userprofile.avatar.name)
             # Obtenemos la ruta de la imagen anterior
             pathOldAvatar = os.path.join(
-                settings.MEDIA_ROOT, userprofile.avatar.name)
+                settings.STATIC_URL,"/media/", userprofile.avatar.name)
+            print("pathOldAvatar: "+str(pathOldAvatar))
         except ObjectDoesNotExist:
+            print("Objeto no existe")
             form = UserProfileForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -175,7 +178,7 @@ def info_data(request,tipo):
             userprofile.user = request.user
             userprofile.save()
     
-    return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form,'generos':generos,'genero_id':genero_id,'tipos':tipos,'tip':tip_user})
+    return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form,'generos':generos,'genero_id':genero_id,'tipos':tipos,'tip':tip_user,'videos':videos,'audios':audios})
 
 @login_required
 def profile(request):

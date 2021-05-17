@@ -71,23 +71,23 @@ class UserProfileForm(forms.ModelForm):
     def clean_avatar(self):
         avatar = self.cleaned_data['avatar']
 
-        w, h = get_image_dimensions(avatar)
         # Validación por tamaño de la img
+        """   w, h = get_image_dimensions(avatar)
         max_width = max_height = 750
         if w > max_width or h > max_height:
             raise forms.ValidationError(
                 "Imagen muy grande, la imagen no puede superar las %s px, %s px" % (max_width, max_height))
-
+        """
         # Extension
         # print("avatar:"+str(avatar.content_type))
-        m, t = avatar.content_type.split('/')
+        """ m, t = avatar.content_type.split('/')
 
         if not(m == 'image' and t in ['jpg', 'jpeg', 'png', 'gif']):
             raise forms.ValidationError(
-                "Imagen no soportada, extensiones validas: 'jpg','jpeg','png','gif'")
+                "Imagen no soportada, extensiones validas: 'jpg','jpeg','png','gif'") """
         # tamaño de la img
 
-        if len(avatar) > (30*1024):
+        """ if len(avatar) > (30*1024):
             raise forms.ValidationError(
-                "Imagen no puede superar los 30kb")
+                "Imagen no puede superar los 30kb") """
         return avatar
