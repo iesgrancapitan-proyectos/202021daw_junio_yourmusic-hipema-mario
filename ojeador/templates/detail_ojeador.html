@@ -1,5 +1,5 @@
 {% extends "base_gral.html" %} {% load static %}{% block content %}
-<h2>{{ojeador.nombre_ojeador}}</h2>
+<h2>{{ojeador.nombre_profile}}</h2>
 <div class="cabecera">
     <!-- TODO: Al cargar una imagen con distinto tamaño a la de por 
         defecto, se carga con el tamaño predeterminado de esta.
@@ -47,9 +47,9 @@
     <div><span>Página web</span></div>
     <div>{{ojeador.web}}</div>
 
-    {% endif %} {% if ojeador.email_ojeador %}
+    {% endif %} {% if ojeador.email_profile %}
     <div><span>E-mail</span></div>
-    <div>{{ojeador.email_ojeador}}</div>
+    <div>{{ojeador.email_profile}}</div>
     {% endif %}
 </div>
 

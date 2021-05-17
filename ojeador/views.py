@@ -27,7 +27,7 @@ def index_ojeador(request):
 
     if search:
         ojeador = UserProfileOjeadores.objects.filter(
-            nombre_ojeador__icontains=search)
+            nombre_profile__icontains=search)
         busqueda = True
 
     else:

@@ -27,7 +27,7 @@ def index(request):
 
     if search:
         grupos = UserProfileMusicos.objects.filter(
-            nombre_banda__icontains=search)
+            nombre_profile__icontains=search)
         busqueda = True
 
     else:

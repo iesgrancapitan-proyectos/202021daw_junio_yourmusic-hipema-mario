@@ -1,26 +1,44 @@
 {% extends "base_gral.html" %}{% block content %}
-<!-- <h2>Información del {{tipo}}</h2> -->
 <!-- TODO2 aquí hay que poner el nombre del grupo -->
-<h2>Nombre del grupo</h2>
+<h2>{{usuario.nombre_profile}}</h2>
+<input name="nombre" type="text" value="{{usuario.nombre_profile}}">
+
+
 <div class="cabecera">
     {% if userprofile.userprofile %}
     <img id="iavatar" src="/static/media/{{userprofile.avatar}}" /> {% else %}
     <img id="iavatar" src="/static/img/your-music-grupo.svg" /> {% endif %}
-    <input class="btn btn-black" type="submit" value="Contactar">
+    <input class="btn btn-black" name="foto" type="submit" value="Cambiar imagen">
 </div>
+
 <div class="estilos">
     <div>
         <h3>Géneros musicales</h3>
     </div>
     <!-- TODO2 Información de los estilos -->
-    <div>Hard Rock, Heavy Metal</div>
+    <div class="lista-generos" id="listGenerosComp">
+        {% for c in generos %}
+        <label>
+        <input type="checkbox" name="generos" 
+            {% for id in genero_id %}             
+                {% if id.id|floatformat:"0" == c.id|floatformat:"0"  %} 
+                    checked 
+                {% endif%}  
+            {% endfor %} 
+            id="{{c.id}}" value="{{c.id}}"> {{c.title}}</label> {% endfor %}
+    </div>
+    <div class="ver-mas"><span><a href="#" id="verMas">Ver más</a></span></div>
 </div>
 <div class="informacion">
     <div>
         <h3>Información</h3>
     </div>
     <!-- TODO2 Descripción del grupo -->
-    <div>{% lorem 1 b random %}</div>
+    <div>
+        <textarea name="descripción" id="" cols="30" rows="10">
+        {{usuario.descripcion}}
+    </textarea>
+    </div>
 </div>
 <div>
     <h3 class="tituloh3">Redes Sociales</h3>
@@ -28,31 +46,51 @@
 <div class="redes-sociales">
     <!-- TODO2 Información redes sociales -->
     <div><span>Twitter</span></div>
-    <div><input type="text" /></div>
+    {% if usuario.twitter %}
+    <div><input type="text" name="twitter" value="{{usuario.twitter}}" /></div>
+    {% else %}
+    <div><input type="text" name="twitter" value="" /></div>
+    {% endif %}
     <div><span>Instagram</span></div>
-    <div><input type="text" /></div>
+    {% if usuario.instagram %}
+    <div><input type="text" name="twitter" value="{{usuario.instagram}}" /></div>
+    {% else %}
+    <div><input type="text" name="twitter" value="" /></div>
+    {% endif %}
     <div><span>Facebook</span></div>
-    <div><input type="text" /></div>
+    {% if usuario.facebook %}
+    <div><input type="text" name="twitter" value="{{usuario.facebook}}" /></div>
+    {% else %}
+    <div><input type="text" name="twitter" value="" /></div>
+    {% endif %}
     <div><span>Página web</span></div>
-    <div><input type="text" /></div>
+    {% if usuario.web %}
+    <div><input type="text" name="twitter" value="{{usuario.web}}" /></div>
+    {% else %}
+    <div><input type="text" name="twitter" value="" /></div>
+    {% endif %}
     <div><span>E-mail</span></div>
-    <div><input type="text" /></div>
+    {% if usuario.email_profile %}
+    <div><input type="text" name="twitter" value="{{usuario.email_profile}}" /></div>
+    {% else %}
+    <div><input type="text" name="twitter" value="" /></div>
+    {% endif %}
+
+
 </div>
+{% if tipo == "musico" %}
+
 <div class="audios">
     <div>
         <h3 class="tituloh3">Audios</h3>
     </div>
-    <!-- TODO2 Audios de las bandas. He probado a poner el archivo en 
-    varias ubicaciones, pero no me lo reconoce. Me intenta cargar la
-    ruta en plan: 
-    http://localhost:8000/accounts/info_data/static/audio/dream-on-aerosmith.mp3 -->
 
     <audio controls src="/static/audio/dream-on-aerosmith.mp3"></audio>
     <form method="post" enctype="multipart/form-data" id="idAudio">
         <div class="custom-file">
             {% comment %} <label class="custom-file-label" for="customFile">Seleccionar archivo</label> {% endcomment %}
         </div>
-        <input type="submit" value="Seleccionar audio" class="btn btn-black ">
+        <input type="submit" name="audio" value="Seleccionar audio" class="btn btn-black ">
     </form>
 </div>
 <div class="videos">
@@ -85,20 +123,22 @@
         <div><input type="text" /></div>
     </div>
 </div>
-<div class="noticias-grupo">
-    <div>
-        <h3>Últimas noticias</h3>
-    </div>
-    <!-- TODO2 Aparición de noticias de este grupo -->
-    <div class="noticia-extracto">
-        <div class="titulo-noticia">Título de la noticia</div>
-        <div class="noticia-entradilla">Lo que se atisbaba en Las curvas del mundo exterior se confirma con el nuevo single que han lanzando los Yeska. Segundos Fuera —cantada íntegramente por Daniel Toboso del también grupo manchego Vermú y que ya colaboró con los de Herencia en los
-            coros de Gol— es un tema canónicamente indie. Estas dos canciones (Las curvas del mundo exterior y Segundos fuera) son lo primero que podemos escuchar del nuevo EP de Yeska producido por Paco Loco en su estudio de Puerto de Santa María.</div>
-    </div>
-    <div class="ver-mas">Ver más</div>
-</div>
+{% else %}
+<div><span>Tipo de Ojeador</span></div>
+<select name="tipos" id="tipos">
+    {% for row in tipos %}      
+    <option 
+    {% if row == tip %}
+    selected
+    {% endif %}    
+    value="{{row}}">        
+        {{row}}
+    </option>
+    {% endfor %}
+</select> {% endif %}
 
-{% comment %}
+
+<input type="submit" class="btn btn-black" value="Guardar datos" name="guardar"> {% comment %}
 <form method="post" enctype="multipart/form-data" id="favatar">
     <div class="custom-file">
         {{form.avatar}}

@@ -39,9 +39,6 @@
 <div class="listado-grupos">
     {% for e in grupos|slice:":3" %}
     <dif class="ficha-grupo">
-        <!-- TODO2 -->
-        <!-- // No se como verías mostrar el nombre del grupo encima de la foto. O si lo ves mejor en el div de pie-grupos tal y como está -->
-        <!-- MHP creo que en algunas ocasiones los grupos pondrán por foto el logotipo o portada del disco donde también aparecerá el nombre. Quizás sea mejor abajo por eso -->
         <div class="foto-grupo">
             <a href="{% url 'grupos:detail' e.id %}">
                     {% if e.avatar %}
@@ -54,7 +51,7 @@
         </div>
 </div>
 <div class="pie-grupos">
-    <p><span>{{e.nombre_banda}}</span> - {{e.generos.all|join:", " }} - {{e.provincia_origen}} - {{e.descripcion}} </p>
+    <p><span>{{e.nombre_profile}}</span> - {{e.generos.all|join:", " }} - {{e.provincia_origen}} - {{e.descripcion}} </p>
 </div>
 
 {% endfor %}

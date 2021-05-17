@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as make_login
 from .forms import UserUpdateForm,CustomUserCreationForm, UserProfileForm
 
-from .models import UserProfileMusicos, UserProfileOjeadores
+from .models import UserProfileMusicos, UserProfileOjeadores,Generos,TipoOjeador
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.authtoken.models import Token
@@ -124,20 +124,34 @@ def mensajes(request):
 
 @login_required
 def info_data(request,tipo):
-    usuario=request.user
-
+    
     form = UserProfileForm()
-    userprofile = ""
+    genero_id = []
+    tipos=[]
+    tip_user=""
+   
+    if tipo=="musico":
+        userprofile = UserProfileMusicos.objects.get(user=request.user)
+        genero_id = Generos.objects.filter(userprofilemusicos=userprofile.id )
+    elif tipo=="ojeador":
+        userprofile = UserProfileOjeadores.objects.get(user=request.user)
+        genero_id = Generos.objects.filter(userprofileojeadores=userprofile.id)
+        tipos=TipoOjeador.objects.all()
+        tip_user=userprofile.tipo_ojeador
 
+
+    else:
+        return render(request, 'indexGrupos.html')
+
+    generos = Generos.objects.all()
+    """ for item in userprofile.generos:
+        genero_id.append(item) """
+
+    print("generos: "+str(genero_id))
+         
     
        
     if request.method == 'POST':
-        if tipo=="musico":
-            userprofile = UserProfileMusicos.objects.get(user=request.user)
-        elif tipo=="ojeador":
-            userprofile = UserProfileOjeadores.objects.get(user=request.user)
-        else:
-            return render(request, 'indexGrupos.html')
         
         pathOldAvatar = None
         # Actualizar imagen
@@ -161,7 +175,7 @@ def info_data(request,tipo):
             userprofile.user = request.user
             userprofile.save()
     
-    return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form})
+    return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form,'generos':generos,'genero_id':genero_id,'tipos':tipos,'tip':tip_user})
 
 @login_required
 def profile(request):

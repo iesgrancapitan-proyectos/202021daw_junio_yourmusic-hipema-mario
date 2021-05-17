@@ -1,5 +1,5 @@
 {% extends "base_gral.html" %} {% load static %}{% block content %}
-<h2>{{grupo.nombre_banda}}</h2>
+<h2>{{grupo.nombre_profile}}</h2>
 <div class="cabecera">
     <!-- TODO: Al cargar una imagen con distinto tamaño a la de por 
         defecto, se carga con el tamaño predeterminado de esta.
@@ -44,9 +44,9 @@
     <div><span>Página web</span></div>
     <div>{{grupo.web}}</div>
 
-    {% endif %} {% if grupo.email_grupo %}
+    {% endif %} {% if grupo.email_profile %}
     <div><span>E-mail</span></div>
-    <div>{{grupo.email_grupo}}</div>
+    <div>{{grupo.email_profile}}</div>
     {% endif %}
 </div>
 <!-- TODO: Aplicar con jse enlace ver más, para audios, vídeos y noticias. Para que no muestre todo de golpe -->

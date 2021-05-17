@@ -68,7 +68,7 @@ class TipoOjeador(models.Model):
 
 class UserProfileMusicos(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    nombre_banda = models.CharField(max_length=255)
+    nombre_profile = models.CharField(max_length=255)
     avatar=models.ImageField(upload_to='user/img',blank=True,null=True)
     """ avatar = JPEGField(
         , variations={'custom': {'width': 550, 'height': 750, "crop": True}}) """
@@ -80,18 +80,18 @@ class UserProfileMusicos(models.Model):
     instagram=models.CharField(max_length=300,blank=True,null=True)
     facebook=models.CharField(max_length=300,blank=True,null=True)
     web=models.CharField(max_length=300,blank=True,null=True)
-    email_grupo=models.CharField(max_length=50,blank=True,null=True)
+    email_profile=models.CharField(max_length=50,blank=True,null=True)
     url_audios=models.ManyToManyField(Audios,blank=True,null=True)
     url_videos=models.ManyToManyField(Videos,blank=True,null=True)
     noticias=models.ManyToManyField(Noticias,blank=True,null=True)
     
     def __str__(self) :
-        return self.nombre_banda   
+        return self.nombre_profile   
 
 
 class UserProfileOjeadores(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    nombre_ojeador = models.CharField(max_length=255)
+    nombre_profile = models.CharField(max_length=255)
     avatar=models.ImageField(upload_to='user/imagen',blank=True,null=True)
     generos=models.ManyToManyField(Generos)
     descripcion=models.TextField()
@@ -100,12 +100,12 @@ class UserProfileOjeadores(models.Model):
     instagram=models.CharField(max_length=300,blank=True,null=True)
     facebook=models.CharField(max_length=300,blank=True,null=True)
     web=models.CharField(max_length=300,blank=True,null=True)
-    email_ojeador=models.CharField(max_length=50,blank=True,null=True)
+    email_profile=models.CharField(max_length=50,blank=True,null=True)
     tipo_ojeador=models.ForeignKey(TipoOjeador,on_delete=models.CASCADE)
     noticias=models.ManyToManyField(Noticias,blank=True,null=True)
 
     def __str__(self) :
-        return self.nombre_ojeador
+        return self.nombre_profile
 
     
 
