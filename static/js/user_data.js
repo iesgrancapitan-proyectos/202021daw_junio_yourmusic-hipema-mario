@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function (){
 
 
     // Funciones
-
     function mensajeError(oEvent, mensaje){
         oEvent.preventDefault();
         alert(mensaje);

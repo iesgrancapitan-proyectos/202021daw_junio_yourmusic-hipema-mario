@@ -3,12 +3,11 @@
  */
 
 document.addEventListener("DOMContentLoaded", function (){
-    id_username  = document.getElementById("id_username");
-    id_email = document.getElementById("id_email");
-    id_email2 = document.getElementById("id_email2");
-    id_password = document.getElementById("id_password");
-    id_password2 = document.getElementById("id_password2");
-    bt_registrar = document.getElementById("bt_registrar");
+    let id_username  = document.getElementById("id_username");
+    let id_email = document.getElementById("id_email");
+    let id_email2 = document.getElementById("id_email2");
+    let id_password = document.getElementById("id_password");
+    let id_password2 = document.getElementById("id_password2");
 
     document.getElementById("bt_registrar").addEventListener("click", (oEvent) => {
         if (comprobarVacio(id_username.value) || comprobarVacio(id_email) || comprobarVacio(id_email2) || comprobarVacio(id_password) || comprobarVacio(id_password2)){

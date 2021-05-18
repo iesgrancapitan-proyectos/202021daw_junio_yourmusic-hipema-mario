@@ -1,5 +1,5 @@
 {% extends "base_gral.html" %} {% load static %} {% block content %}
-
+<script src="{% static 'js/info_data.js' %}"></script>
 <form method="post" enctype="multipart/form-data" id="info">
     {% csrf_token %}
     <h2>{{usuario.nombre_profile}}</h2>
@@ -33,9 +33,9 @@
             <h3>Información</h3>
         </div>
         <div>
-            <textarea name="descripción" id="" cols="30" rows="10">
-        {{usuario.descripcion}}
-    </textarea>
+            <textarea name="descripción" id="" cols="30" rows="10" class="textarea-info">
+                 {{usuario.descripcion}}
+            </textarea>
         </div>
     </div>
     <input type="submit" name="info" class="btn btn-black" value="Actualizar Información">
@@ -111,23 +111,23 @@
     </div>
     {% for v in videos %}
     <div class="ficha-video">
-        <iframe class="videos-youtube" src="{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="videos-youtube" src="https://www.youtube.com/embed/{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div>{{v.title}}</div>
     </div>
     {% endfor %}
 
 
     <div class="ver-mas">Ver más</div>
-    <div><button class="btn btn-black"><i class="fas fa-plus-square"></i> Añadir nuevo video</button></div>
+    <div><button class="btn btn-black" id="addVideos"><i class="fas fa-plus-square"></i> Añadir nuevo video</button></div>
     <form method="post" enctype="multipart/form-data" id="idVideo">
         {% csrf_token %}
-        <div class="form-video">
+        <div class="form-video" id="form-video" hidden="true">
             <div>Título:</div>
             <div><input type="text" /></div>
             <div>Enlace:</div>
             <div><input type="text" /></div>
-        </div>
         <input type="submit" class="btn btn-black" name="video" value="Guardar video">
+        </div>
     </form>
 </div>
 {% else %}

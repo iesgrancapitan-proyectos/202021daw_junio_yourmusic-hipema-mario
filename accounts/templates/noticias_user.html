@@ -1,10 +1,39 @@
 {% extends "base_user_account.html" %} {% block content %}
 <h2>Noticias</h2>
 <p>{{usuario.username}}</p>
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
+<div class="alta-noticia">
+    <h3 class="tituloh3">Insertar nueva noticia</h3>
+    <form method="post" action="{% url 'login' %}">
+        <label>
+            <div class="titulo-noticia">Título:</div>
+            <div><input type="text"/></div>
+        </label>
+        <label>
+            <div class="titulo-noticia">Noticia:</div>
+            <div><textarea name="" id="" cols="30" rows="10" class="textarea-info">
+            </textarea></div>
+        </label>
+        {% csrf_token %}
+        <input class="btn btn-black" type="submit" value="Enviar">
+    </form>
+</div>
+<div class="listado">
+    <h3 class="tituloh3">Listado de noticias anteriores</h3>
+    <div class="noticia-titulo">
+        <div>Título de la noticia</div>
+        <div><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></div>
+    </div>
+    <div class="noticia-titulo">
+        <div>Título de la noticia más largo para prueba</div>
+        <div><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></div>
+    </div>
+    <div class="noticia-titulo">
+        <div>Título de la noticia mucho más largo para seguir probando todo esto como va</div>
+        <div><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></div>
+    </div>
+    <div class="noticia-titulo">
+        <div>Título de la noticia</div>
+        <div><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></div>
+    </div>
 
-
-    <input class="btn btn-black" type="submit" value="Enviar">
-</form>
 {% endblock %}
