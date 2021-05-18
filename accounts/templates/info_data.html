@@ -5,7 +5,7 @@
     <h2>{{usuario.nombre_profile}}</h2>
     <input name="nombre" type="text" value="{{usuario.nombre_profile}}">
     <div class="cabecera">
-        {% if userprofile.userprofile %}
+        {{form.avatar}} {% if userprofile.userprofile %}
         <img id="iavatar" src="/static/media/{{userprofile.avatar}}" /> {% else %}
         <img id="iavatar" src="/static/img/your-music-grupo.svg" /> {% endif %}
         <input class="btn btn-black" name="foto" type="file" value="Cambiar imagen">

@@ -163,7 +163,7 @@ def info_data(request,tipo):
             print(userprofile.avatar.name)
             # Obtenemos la ruta de la imagen anterior
             pathOldAvatar = os.path.join(
-                settings.STATIC_URL,"/media/", userprofile.avatar.name)
+                settings.STATIC_URL,"/static/media/", userprofile.avatar.name)
             print("pathOldAvatar: "+str(pathOldAvatar))
         except ObjectDoesNotExist:
             print("Objeto no existe")
@@ -173,10 +173,15 @@ def info_data(request,tipo):
             # Se comprueba si la ruta no está vacía y se borra la imagen anterior
             if pathOldAvatar is not None and os.path.isfile(pathOldAvatar):
                 os.remove(pathOldAvatar)
+        
+            print(form)
+            print(form.is_valid)
 
             userprofile = form.save(commit=False)
             userprofile.user = request.user
             userprofile.save()
+
+            print(userprofile)
     
     return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form,'generos':generos,'genero_id':genero_id,'tipos':tipos,'tip':tip_user,'videos':videos,'audios':audios})
 
