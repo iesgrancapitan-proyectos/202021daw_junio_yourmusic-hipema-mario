@@ -1,12 +1,13 @@
 {% extends "base_gral.html" %} {% load static %} {% block content %}
 <script src="{% static 'js/info_data.js' %}"></script>
+
 <form method="post" enctype="multipart/form-data" id="info">
     {% csrf_token %}
     <h2>{{usuario.nombre_profile}}</h2>
     <input name="nombre" type="text" value="{{usuario.nombre_profile}}">
     <div class="cabecera">
-        {{form.avatar}} {% if userprofile.userprofile %}
-        <img id="iavatar" src="/static/media/{{userprofile.avatar}}" /> {% else %}
+        {% if usuario.avatar %}
+        <img id="iavatar" src="/static/media/{{usuario.avatar}}" /> {% else %}
         <img id="iavatar" src="/static/img/your-music-grupo.svg" /> {% endif %}
         <input class="btn btn-black" name="foto" type="file" value="Cambiar imagen">
     </div>
@@ -33,16 +34,13 @@
             <h3>Información</h3>
         </div>
         <div>
-            <textarea name="descripción" id="" cols="30" rows="10" class="textarea-info">
+            <textarea name="descripcion" id="" cols="30" rows="10" class="textarea-info">
                  {{usuario.descripcion}}
             </textarea>
         </div>
     </div>
     <input type="submit" name="info" class="btn btn-black" value="Actualizar Información">
 
-</form>
-<form method="post" enctype="multipart/form-data" id="redesSociales">
-    {% csrf_token %}
     <div>
         <h3 class="tituloh3">Redes Sociales</h3>
     </div>
@@ -55,84 +53,77 @@
         {% endif %}
         <div><span>Instagram</span></div>
         {% if usuario.instagram %}
-        <div><input type="text" name="twitter" value="{{usuario.instagram}}" /></div>
+        <div><input type="text" name="instagram" value="{{usuario.instagram}}" /></div>
         {% else %}
-        <div><input type="text" name="twitter" value="" /></div>
+        <div><input type="text" name="instagram" value="" /></div>
         {% endif %}
         <div><span>Facebook</span></div>
         {% if usuario.facebook %}
-        <div><input type="text" name="twitter" value="{{usuario.facebook}}" /></div>
+        <div><input type="text" name="facebook" value="{{usuario.facebook}}" /></div>
         {% else %}
-        <div><input type="text" name="twitter" value="" /></div>
+        <div><input type="text" name="facebook" value="" /></div>
         {% endif %}
         <div><span>Página web</span></div>
         {% if usuario.web %}
-        <div><input type="text" name="twitter" value="{{usuario.web}}" /></div>
+        <div><input type="text" name="web" value="{{usuario.web}}" /></div>
         {% else %}
-        <div><input type="text" name="twitter" value="" /></div>
+        <div><input type="text" name="web" value="" /></div>
         {% endif %}
         <div><span>E-mail</span></div>
         {% if usuario.email_profile %}
-        <div><input type="text" name="twitter" value="{{usuario.email_profile}}" /></div>
+        <div><input type="text" name="email_profile" value="{{usuario.email_profile}}" /></div>
         {% else %}
-        <div><input type="text" name="twitter" value="" /></div>
+        <div><input type="text" name="email_profile" value="" /></div>
         {% endif %}
 
 
     </div>
-    <input type="submit" class="btn btn-black" name="redes" value="Actualizar redes">
-
-</form>
-{% if tipo == "musico" %}
+    <input type="submit" class="btn btn-black" name="redes" value="Actualizar redes"> {% if tipo == "musico" %}
 
 
-<div class="audios">
-    <div>
-        <h3 class="tituloh3">Audios</h3>
-    </div>
-    {% for row in audios %}
-    <audio controls src="{{row.url_audio}}"></audio>
-    <div>{{row.title}}</div>
-    {% endfor %}
+    <div class="audios">
+        <div>
+            <h3 class="tituloh3">Audios</h3>
+        </div>
+        {% for row in audios %}
+        <audio controls src="{{row.url_audio}}"></audio>
+        <div>{{row.title}}</div>
+        {% endfor %}
 
-    <form method="post" enctype="multipart/form-data" id="idAudio">
-        {% csrf_token %}
+
         <div class="custom-file">
             {% comment %} <label class="custom-file-label" for="customFile">Seleccionar archivo</label> {% endcomment %}
         </div>
         <input type="file" name="audio" value="Seleccionar audio" class="btn btn-black">
         <input type="submit" class="btn btn-black" name="audio" value="Guardar audio">
 
-    </form>
-</div>
-<div class="videos">
-    <div>
-        <h3 class="tituloh3">Videos</h3>
     </div>
-    {% for v in videos %}
-    <div class="ficha-video">
-        <iframe class="videos-youtube" src="https://www.youtube.com/embed/{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div>{{v.title}}</div>
-    </div>
-    {% endfor %}
+    <div class="videos">
+        <div>
+            <h3 class="tituloh3">Videos</h3>
+        </div>
+        {% for v in videos %}
+        <div class="ficha-video">
+            <iframe class="videos-youtube" src="https://www.youtube.com/embed/{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div>{{v.title}}</div>
+        </div>
+        {% endfor %}
 
 
-    <div class="ver-mas">Ver más</div>
-    <div><button class="btn btn-black" id="addVideos"><i class="fas fa-plus-square"></i> Añadir nuevo video</button></div>
-    <form method="post" enctype="multipart/form-data" id="idVideo">
-        {% csrf_token %}
+        <div class="ver-mas">Ver más</div>
+        <div><button class="btn btn-black" id="addVideos"><i class="fas fa-plus-square"></i> Añadir nuevo video</button></div>
+
         <div class="form-video" id="form-video" hidden="true">
             <div>Título:</div>
             <div><input type="text" /></div>
             <div>Enlace:</div>
             <div><input type="text" /></div>
-        <input type="submit" class="btn btn-black" name="video" value="Guardar video">
+            <input type="submit" class="btn btn-black" name="video" value="Guardar video">
         </div>
-    </form>
-</div>
-{% else %}
-<form method="post" enctype="multipart/form-data" id="TipoOjeador">
-    {% csrf_token %}
+
+    </div>
+    {% else %}
+
     <div><span>Tipo de Ojeador</span></div>
     <select name="tipos" id="tipos">
     {% for row in tipos %}      
@@ -140,7 +131,7 @@
     {% if row == tip %}
     selected
     {% endif %}    
-    value="{{row}}">        
+    value="{{row.id}}">        
         {{row}}
     </option>
     {% endfor %}

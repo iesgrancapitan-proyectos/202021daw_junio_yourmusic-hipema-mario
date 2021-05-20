@@ -131,6 +131,11 @@ def info_data(request,tipo):
     tip_user=""
     videos=""
     audios=""
+    infoData=False
+    videosData=False
+    audiosData=False
+    redesData=False
+    ojData=False
    
     if tipo=="musico":
         userprofile = UserProfileMusicos.objects.get(user=request.user)
@@ -148,40 +153,106 @@ def info_data(request,tipo):
     generos = Generos.objects.all()
        
     if request.method == 'POST':
-
-        if(request.POST['info']):
-            print("info")   
-        else:
-            print("No es")
-       
         pathOldAvatar = None
-        # Actualizar imagen
-        try:           
-            form = UserProfileForm(
-                request.POST, request.FILES, instance=userprofile)
+        print("INFOR")
+
+        # Obtener el tipo de submit que se envía
+        for item in request.POST:
+            if(item=='info'):
+                infoData=True
+            elif (item=='redes'):
+                redesData=True
+            elif (item=='audio'):
+                audiosData=True
+            elif (item=='audio'):
+                videosData=True
+            elif (item=='ojeador'):
+                ojData=True
+                
             
-            print(userprofile.avatar.name)
-            # Obtenemos la ruta de la imagen anterior
-            pathOldAvatar = os.path.join(
-                settings.STATIC_URL,"/static/media/", userprofile.avatar.name)
-            print("pathOldAvatar: "+str(pathOldAvatar))
-        except ObjectDoesNotExist:
-            print("Objeto no existe")
-            form = UserProfileForm(request.POST, request.FILES)
 
-        if form.is_valid():
-            # Se comprueba si la ruta no está vacía y se borra la imagen anterior
-            if pathOldAvatar is not None and os.path.isfile(pathOldAvatar):
-                os.remove(pathOldAvatar)
-        
-            print(form)
-            print(form.is_valid)
+        if(infoData):
+            print("info")   
+            # Actualizar imagen
+            try:           
+                form = UserProfileForm(
+                    request.POST, request.FILES, instance=userprofile)
+                
+                # print(userprofile.avatar.name)
+                # Obtenemos la ruta de la imagen anterior
+                pathOldAvatar = os.path.join(
+                    settings.STATIC_URL,"/static/media/", userprofile.avatar.name)
+                # print("pathOldAvatar: "+str(pathOldAvatar))
+            except ObjectDoesNotExist:
+                print("Objeto no existe")
+                form = UserProfileForm(request.POST, request.FILES)
 
-            userprofile = form.save(commit=False)
-            userprofile.user = request.user
+            if form.is_valid():
+                # Se comprueba si la ruta no está vacía y se borra la imagen anterior
+                if pathOldAvatar is not None and os.path.isfile(pathOldAvatar):
+                    os.remove(pathOldAvatar)
+            
+                # print(form)
+                # print(form.is_valid)
+
+                userprofile = form.save(commit=False)
+                userprofile.user = request.user
+                userprofile.save()
+
+            # Actualizar nombre
+            if(request.POST['nombre']):                
+                userprofile.nombre_profile=request.POST['nombre']
+                userprofile.save()
+                print(userprofile)
+
+            #Actualizar generos
+            userprofile.generos.clear()
+            for item in request.POST.getlist('generos'):
+                 gen= Generos.objects.get(id=item)
+                 userprofile.generos.add(gen)
+
+            #Actualizar descripción
+            if(request.POST['descripcion']):               
+                userprofile.descripcion=request.POST['descripcion']
+                userprofile.save()
+                    
+    
+            # return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form,'generos':generos,'genero_id':genero_id,'tipos':tipos,'tip':tip_user,'videos':videos,'audios':audios})
+        # Comprobación de redes sociales 
+        if(redesData):
+            print("redesData: "+str(redesData))
+            # No se permite meter campos vacíos
+            if(request.POST['twitter']):
+                userprofile.twitter=request.POST['twitter']
+                userprofile.save()
+            if(request.POST['instagram']):
+                userprofile.instagram=request.POST['instagram']
+                userprofile.save()
+            if(request.POST['facebook']):
+                userprofile.facebook=request.POST['facebook']
+                userprofile.save()
+            if(request.POST['web']):
+                userprofile.web=request.POST['web']
+                userprofile.save()
+            if(request.POST['email_profile']):
+                userprofile.email_profile=request.POST['email_profile']
+                userprofile.save()
+            
+            print("redes")
+
+        if(audiosData):
+            print("audio")
+        if(videosData):
+            print("video")
+
+        if(ojData):         
+            ti=TipoOjeador.objects.get(id=request.POST['tipos'])   
+            userprofile.tipo_ojeador=ti
             userprofile.save()
+           
 
-            print(userprofile)
+       
+
     
     return render(request, 'info_data.html',{'usuario':userprofile,'tipo':tipo,'form': form,'generos':generos,'genero_id':genero_id,'tipos':tipos,'tip':tip_user,'videos':videos,'audios':audios})
 
