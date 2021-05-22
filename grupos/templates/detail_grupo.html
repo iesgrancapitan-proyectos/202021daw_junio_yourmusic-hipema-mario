@@ -55,8 +55,8 @@
         <h3 class="tituloh3">Audios</h3>
     </div>
     {% for row in audios %}
-    <audio controls src="{{row.url_audio}}"></audio> {% endfor %}
-    <audio controls src="/static/audio/dream-on-aerosmith.mp3"></audio>
+    <div>{{row.title}}</div>
+    <audio controls src="/static/media/{{row.url_audio}}"></audio> {% endfor %}
 </div>
 {% endif %} {% if videos %}
 <div class="videos">

@@ -43,7 +43,9 @@ class Provincia(models.Model):
 
 class Audios(models.Model):
     title = models.CharField(max_length=30)
-    url_audio = models.CharField(max_length=500)
+    # url_audio = models.CharField(max_length=500)
+    url_audio = models.FileField(upload_to="user/song", null=True, blank=True)
+
 
     def __unicode__(self):
         return str(self.id)
@@ -94,7 +96,7 @@ class UserProfileMusicos(models.Model):
 class UserProfileOjeadores(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     nombre_profile = models.CharField(max_length=255)
-    avatar=models.ImageField(upload_to='user/imagen',blank=True,null=True)
+    avatar=models.ImageField(upload_to='user/img',blank=True,null=True)
     generos=models.ManyToManyField(Generos)
     descripcion=models.TextField()
     provincia_origen=models.ForeignKey(Provincia,on_delete=models.CASCADE)   

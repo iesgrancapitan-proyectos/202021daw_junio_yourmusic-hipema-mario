@@ -6,6 +6,8 @@
     <h2>{{usuario.nombre_profile}}</h2>
     <input name="nombre" type="text" value="{{usuario.nombre_profile}}">
     <div class="cabecera">
+        <!--TODO: Dar css a las imagenes al igual que en detail para que muestre 
+            todas las imagenes con un mismo tamaño -->
         {% if usuario.avatar %}
         <img id="iavatar" src="/static/media/{{usuario.avatar}}" /> {% else %}
         <img id="iavatar" src="/static/img/your-music-grupo.svg" /> {% endif %}
@@ -80,21 +82,28 @@
     </div>
     <input type="submit" class="btn btn-black" name="redes" value="Actualizar redes"> {% if tipo == "musico" %}
 
-
+    <!-- TODO: Botón para borrar audios o vídeos, colocar con el tamaño y en el lugar adecuado
+            Ademas de centrarlo todo, incluido titulo de canciones etc... -->
     <div class="audios">
         <div>
             <h3 class="tituloh3">Audios</h3>
         </div>
         {% for row in audios %}
-        <audio controls src="{{row.url_audio}}"></audio>
         <div>{{row.title}}</div>
+        <div>
+            <audio controls src="/static/media/{{row.url_audio}}"></audio>
+
+            <a href="{% url 'account:info_data' tipo row.id 0 %}" class="btn btn-black" id="addVideos"><i class="fas fa-trash-alt"></i></a>
+        </div>
+
         {% endfor %}
 
 
         <div class="custom-file">
             {% comment %} <label class="custom-file-label" for="customFile">Seleccionar archivo</label> {% endcomment %}
         </div>
-        <input type="file" name="audio" value="Seleccionar audio" class="btn btn-black">
+        <input type="text" name="titAudio" value="" placeholder="Título de la canción">
+        <input type="file" name="filAudio" accept="audio/*" value="Seleccionar audio" class="btn btn-black">
         <input type="submit" class="btn btn-black" name="audio" value="Guardar audio">
 
     </div>
@@ -105,19 +114,21 @@
         {% for v in videos %}
         <div class="ficha-video">
             <iframe class="videos-youtube" src="https://www.youtube.com/embed/{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div>{{v.title}}</div>
+            <div>
+                <div>{{v.title}}</div>
+                <a href="{% url 'account:info_data' tipo v.id 1 %}" class="btn btn-black" id="addVideos"><i class="fas fa-trash-alt"></i></a></div>
         </div>
         {% endfor %}
 
 
         <div class="ver-mas">Ver más</div>
-        <div><button class="btn btn-black" id="addVideos"><i class="fas fa-plus-square"></i> Añadir nuevo video</button></div>
+        <div><a class="btn btn-black" id="addVideos"><i class="fas fa-plus-square"></i> Añadir nuevo video</a></div>
 
         <div class="form-video" id="form-video" hidden="true">
             <div>Título:</div>
-            <div><input type="text" /></div>
+            <div><input type="text" name="titVideo" /></div>
             <div>Enlace:</div>
-            <div><input type="text" /></div>
+            <div><input type="text" name="enlVideo" /></div>
             <input type="submit" class="btn btn-black" name="video" value="Guardar video">
         </div>
 

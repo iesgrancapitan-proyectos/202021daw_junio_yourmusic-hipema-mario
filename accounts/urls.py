@@ -7,6 +7,7 @@ app_name='account'
 urlpatterns = [
     path('user_data/<int:pk>', views.user_data, name='user_data'),
     path('info_data/<str:tipo>', views.info_data, name='info_data'),
+    path('info_data/<str:tipo>/<int:pk>/<int:code>', views.info_data, name='info_data'),
     path('noticias_user', views.noticias_user, name='noticias_user'),
     path('mensajes', views.mensajes, name='mensajes'),
     path('profile/', views.profile,name='profile'),

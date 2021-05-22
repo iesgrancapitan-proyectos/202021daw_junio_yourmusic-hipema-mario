@@ -1,10 +1,23 @@
-from .models import UserProfileMusicos,UserProfileOjeadores
+from django.forms.widgets import ClearableFileInput
+from .models import Audios, UserProfileMusicos,UserProfileOjeadores
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
 from django.utils.translation import gettext as _
+
+class CustomClearableFileInput(ClearableFileInput):
+    
+    template_with_clear = '<br>  <label for="%(clear_checkbox_id)s">%(clear_checkbox_label)s</label> %(clear)s'
+
+class FormEntrada(forms.ModelForm):
+    class Meta:
+        model = Audios
+        fields = ('title', 'url_audio')
+        widgets = {
+            'url_audio': CustomClearableFileInput
+        }
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
@@ -72,22 +85,22 @@ class UserProfileForm(forms.ModelForm):
         avatar = self.cleaned_data['avatar']
 
         # Validación por tamaño de la img
-        """   w, h = get_image_dimensions(avatar)
+        w, h = get_image_dimensions(avatar)
         max_width = max_height = 750
         if w > max_width or h > max_height:
             raise forms.ValidationError(
                 "Imagen muy grande, la imagen no puede superar las %s px, %s px" % (max_width, max_height))
-        """
+        
         # Extension
         # print("avatar:"+str(avatar.content_type))
-        """ m, t = avatar.content_type.split('/')
+        m, t = avatar.content_type.split('/')
 
         if not(m == 'image' and t in ['jpg', 'jpeg', 'png', 'gif']):
             raise forms.ValidationError(
-                "Imagen no soportada, extensiones validas: 'jpg','jpeg','png','gif'") """
+                "Imagen no soportada, extensiones validas: 'jpg','jpeg','png','gif'")
         # tamaño de la img
 
-        """ if len(avatar) > (30*1024):
+        if len(avatar) > (30*1024):
             raise forms.ValidationError(
-                "Imagen no puede superar los 30kb") """
+                "Imagen no puede superar los 30kb") 
         return avatar
