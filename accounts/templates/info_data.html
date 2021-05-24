@@ -9,8 +9,8 @@
         <!--TODO: Dar css a las imagenes al igual que en detail para que muestre 
             todas las imagenes con un mismo tamaño -->
         {% if usuario.avatar %}
-        <img id="iavatar" src="/static/media/{{usuario.avatar}}" /> {% else %}
-        <img id="iavatar" src="/static/img/your-music-grupo.svg" /> {% endif %}
+        <img id="iavatar" src="/static/media/{{usuario.avatar}}" class="foto-grupo"/> {% else %}
+        <img id="iavatar" src="/static/img/your-music-grupo.svg" class="foto-grupo"/> {% endif %}
         <input class="btn btn-black" name="foto" type="file" value="Cambiar imagen">
     </div>
 
@@ -93,7 +93,7 @@
         <div>
             <audio controls src="/static/media/{{row.url_audio}}"></audio>
 
-            <a href="{% url 'account:info_data' tipo row.id 0 %}" class="btn btn-black" id="addVideos"><i class="fas fa-trash-alt"></i></a>
+            <a href="{% url 'account:info_data' tipo row.id 0 %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a>
         </div>
 
         {% endfor %}
@@ -116,7 +116,7 @@
             <iframe class="videos-youtube" src="https://www.youtube.com/embed/{{v.url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div>
                 <div>{{v.title}}</div>
-                <a href="{% url 'account:info_data' tipo v.id 1 %}" class="btn btn-black" id="addVideos"><i class="fas fa-trash-alt"></i></a></div>
+                <a href="{% url 'account:info_data' tipo v.id 1 %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a></div>
         </div>
         {% endfor %}
 
