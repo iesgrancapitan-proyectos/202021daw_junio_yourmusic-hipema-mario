@@ -312,9 +312,9 @@ def profile(request):
         try:
             userprofile = UserProfileOjeadores.objects.get(user=request.user)
             tipo = "ojeador"
-        except UserProfileOjeadores.DoesNotExist:
-            userprofile = User.objects.get(username=request.user)
-            tipo = "admin"
+        except UserProfileOjeadores.DoesNotExist:            
+            tipo = "sin"
+            return redirect('account:choose_profile')
 
     # print(tipo+str(userprofile))
 
@@ -343,9 +343,44 @@ def profile(request):
 
     return render(request, 'profile.html', {'usuario': userprofile, 'tipo': tipo})
 
+@login_required
+def choose_profile(request):
+    userprofile=User.objects.get(username=request.user)
+    return render(request, 'choose_profile.html', {'userprofile': userprofile})
 
 def register(request):
-    form = CustomUserCreationForm()
+    error=[]
+    nombre=""
+    email=""
+    registrar=False
+    if request.method == 'POST':            
+        usuario=User.objects.filter(username=request.POST['username'])
+        if usuario.count():
+            error.append("El nombre de usuario ya existe")
+            print("Nombre ya existente")
+            registrar=False       
+        else:
+            registrar=True
+            error.append(" ")
+            nombre=request.POST['username']
+
+        usuario=User.objects.filter(email=request.POST['email'])
+
+        if usuario.count():
+            error.append("El correo introducido ya está registrado")
+            print("Correo ya existente")
+            registrar=False
+        else:
+            registrar=True
+            error.append(" ")
+            email=request.POST['email']
+        
+        if registrar:
+            user = User.objects.create_user(nombre,email,request.POST['password'])
+            make_login(request, user)
+            return redirect('account:choose_profile')
+        
+    ''' form = CustomUserCreationForm()
 
     if request.method == 'POST':
         form = CustomUserCreationForm(data=request.POST)
@@ -354,5 +389,5 @@ def register(request):
             user = form.save()
             if user is not None:
                 make_login(request, user)
-                return redirect(reverse('account:profile'))
-    return render(request, 'register.html', {'form': form})
+                return redirect(reverse('account:profile')) '''
+    return render(request, 'register.html', {'error':error })

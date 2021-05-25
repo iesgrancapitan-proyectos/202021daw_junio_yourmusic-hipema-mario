@@ -43,7 +43,7 @@ def index(request):
 
     grupos = grupos.all()
 
-    paginator = Paginator(grupos, 1)
+    paginator = Paginator(grupos, 5)
 
     page_number = request.GET.get('page')
     grupos_page = paginator.get_page(page_number)
