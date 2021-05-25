@@ -47,17 +47,16 @@
                     <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
                     <img src="static/img/your-music-grupo.svg" title="Imagen de grupo por defeto">
                     {% endif %}
-                </a>
+            </a>
         </div>
-</div>
-<div class="pie-grupos">
-    <p><span>{{e.nombre_profile}}</span> - {{e.generos.all|join:", " }} - {{e.provincia_origen}} - {{e.descripcion}} </p>
-</div>
+    </div>
+    <div class="pie-grupos">
+        <p><span>{{e.nombre_profile}}</span> - {{e.generos.all|join:", " }} - {{e.provincia_origen}} - {{e.descripcion}} </p>
+    </div>
 
 {% endfor %}
 <!-- Paginación -->
 {% include "partials/pagination.html" with page_obj=grupos %}
-
 </div>
 
 {% endblock content %}

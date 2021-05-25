@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 16-05-2021 a las 21:33:57
+-- Tiempo de generación: 25-05-2021 a las 05:59:20
 -- Versión del servidor: 8.0.24
 -- Versión de PHP: 7.4.11
 
@@ -29,15 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accounts_audios` (
   `id` int NOT NULL,
-  `url_audio` varchar(500) NOT NULL
+  `url_audio` varchar(100) DEFAULT NULL,
+  `title` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `accounts_audios`
 --
 
-INSERT INTO `accounts_audios` (`id`, `url_audio`) VALUES
-(1, 'https://open.spotify.com/track/5VTorjtA6UeIWCD4kADTeS?si=vQ2aoiyeQFmYXPPNP4pd4Q');
+INSERT INTO `accounts_audios` (`id`, `url_audio`, `title`) VALUES
+(1, 'https://open.spotify.com/track/5VTorjtA6UeIWCD4kADTeS?si=vQ2aoiyeQFmYXPPNP4pd4Q', 'La fábrica'),
+(2, 'user/song/extreme-shot-1.mp3', 'Extreme Shot'),
+(3, 'user/song/extreme-shot-1_aHp7BFB.mp3', 'Extreme Shot');
 
 -- --------------------------------------------------------
 
@@ -178,14 +181,14 @@ INSERT INTO `accounts_tipoojeador` (`id`, `title`) VALUES
 
 CREATE TABLE `accounts_userprofilemusicos` (
   `id` int NOT NULL,
-  `nombre_banda` varchar(255) NOT NULL,
+  `nombre_profile` varchar(255) NOT NULL,
   `avatar` varchar(100) DEFAULT NULL,
   `descripcion` longtext NOT NULL,
   `twitter` varchar(300) DEFAULT NULL,
   `instagram` varchar(300) DEFAULT NULL,
   `facebook` varchar(300) DEFAULT NULL,
   `web` varchar(300) DEFAULT NULL,
-  `email_grupo` varchar(50) DEFAULT NULL,
+  `email_profile` varchar(50) DEFAULT NULL,
   `user_id` int NOT NULL,
   `provincia_origen_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -194,8 +197,8 @@ CREATE TABLE `accounts_userprofilemusicos` (
 -- Volcado de datos para la tabla `accounts_userprofilemusicos`
 --
 
-INSERT INTO `accounts_userprofilemusicos` (`id`, `nombre_banda`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_grupo`, `user_id`, `provincia_origen_id`) VALUES
-(1, 'Terra negra', '', 'Grupo de peñarroya pueblonuevo', NULL, NULL, 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 2, 1),
+INSERT INTO `accounts_userprofilemusicos` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `user_id`, `provincia_origen_id`) VALUES
+(1, 'Terra negra', 'user/img/0011567717_10.jpg', 'Este grupo es de Peñarroya y realiza una música influenciada por el Hard Rock y Grunge. Empezaron a funcionar en el año 2018  y desde entonces no han parado de dar conciertos.', NULL, NULL, 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 2, 1),
 (2, 'grupo 2', '', 'Grupo 2 de prueba pass: grupo2pepe', NULL, NULL, NULL, NULL, NULL, 3, 5);
 
 -- --------------------------------------------------------
@@ -215,8 +218,8 @@ CREATE TABLE `accounts_userprofilemusicos_generos` (
 --
 
 INSERT INTO `accounts_userprofilemusicos_generos` (`id`, `userprofilemusicos_id`, `generos_id`) VALUES
-(1, 1, 4),
-(2, 1, 22),
+(11, 1, 4),
+(10, 1, 22),
 (3, 2, 5);
 
 -- --------------------------------------------------------
@@ -248,7 +251,9 @@ CREATE TABLE `accounts_userprofilemusicos_url_audios` (
 --
 
 INSERT INTO `accounts_userprofilemusicos_url_audios` (`id`, `userprofilemusicos_id`, `audios_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -267,7 +272,10 @@ CREATE TABLE `accounts_userprofilemusicos_url_videos` (
 --
 
 INSERT INTO `accounts_userprofilemusicos_url_videos` (`id`, `userprofilemusicos_id`, `videos_id`) VALUES
-(1, 1, 1),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
 (2, 2, 2);
 
 -- --------------------------------------------------------
@@ -278,14 +286,14 @@ INSERT INTO `accounts_userprofilemusicos_url_videos` (`id`, `userprofilemusicos_
 
 CREATE TABLE `accounts_userprofileojeadores` (
   `id` int NOT NULL,
-  `nombre_ojeador` varchar(255) NOT NULL,
+  `nombre_profile` varchar(255) NOT NULL,
   `avatar` varchar(100) DEFAULT NULL,
   `descripcion` longtext NOT NULL,
   `twitter` varchar(300) DEFAULT NULL,
   `instagram` varchar(300) DEFAULT NULL,
   `facebook` varchar(300) DEFAULT NULL,
   `web` varchar(300) DEFAULT NULL,
-  `email_ojeador` varchar(50) DEFAULT NULL,
+  `email_profile` varchar(50) DEFAULT NULL,
   `user_id` int NOT NULL,
   `tipo_ojeador_id` int NOT NULL,
   `provincia_origen_id` int NOT NULL
@@ -295,7 +303,7 @@ CREATE TABLE `accounts_userprofileojeadores` (
 -- Volcado de datos para la tabla `accounts_userprofileojeadores`
 --
 
-INSERT INTO `accounts_userprofileojeadores` (`id`, `nombre_ojeador`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_ojeador`, `user_id`, `tipo_ojeador_id`, `provincia_origen_id`) VALUES
+INSERT INTO `accounts_userprofileojeadores` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `user_id`, `tipo_ojeador_id`, `provincia_origen_id`) VALUES
 (1, 'conciertos', '', 'Bar con música en directo', NULL, NULL, NULL, NULL, 'conciertos@conciertos.com', 4, 4, 13),
 (2, 'factory', '', 'factory records', NULL, NULL, NULL, 'https://factoryrecords.org/', NULL, 5, 2, 8);
 
@@ -341,16 +349,20 @@ CREATE TABLE `accounts_userprofileojeadores_noticias` (
 
 CREATE TABLE `accounts_videos` (
   `id` int NOT NULL,
-  `url_video` varchar(500) NOT NULL
+  `url_video` varchar(500) NOT NULL,
+  `title` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `accounts_videos`
 --
 
-INSERT INTO `accounts_videos` (`id`, `url_video`) VALUES
-(1, 'amK7McaUp7Y'),
-(2, 'uGrb-6Vb9Bw');
+INSERT INTO `accounts_videos` (`id`, `url_video`, `title`) VALUES
+(2, 'uGrb-6Vb9Bw', '1'),
+(3, 'amK7McaUp7Y', 'La Fábrica'),
+(4, 'iLsjny61nfg', 'Juanmi con Alaska'),
+(5, '3zrGjc0UEgU', 'Oliver y Benji'),
+(6, 'mB7qorTexqg', 'Dartacan');
 
 -- --------------------------------------------------------
 
@@ -500,7 +512,7 @@ CREATE TABLE `auth_user` (
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
 (1, 'pbkdf2_sha256$216000$9lgeEIehvD5c$kFoCOAv1zOZwJ875s1wpKBlzDfcrwkVo9PFy4Ih+TYk=', '2021-05-03 16:05:59.128053', 1, 'admin', '', '', '', 1, 1, '2021-04-25 11:09:15.487339'),
-(2, 'pbkdf2_sha256$260000$0jWiUZqIoypiNwdF4A6Ftl$2BcCk31Xf/gQ/UR5O7eIFqwUhpEndle6UV78LxAb8fE=', '2021-05-16 21:00:16.591981', 0, 'Mario', '', '', '', 0, 1, '2021-04-26 17:16:41.397201'),
+(2, 'pbkdf2_sha256$260000$0jWiUZqIoypiNwdF4A6Ftl$2BcCk31Xf/gQ/UR5O7eIFqwUhpEndle6UV78LxAb8fE=', '2021-05-25 05:40:34.835237', 0, 'Mario', '', '', '', 0, 1, '2021-04-26 17:16:41.397201'),
 (3, 'pbkdf2_sha256$216000$pvfrsQVIfxmP$ZNjgQjSqUhXsr5pvNbLVXUHiS0A89eXnPY3d00758zE=', NULL, 0, 'Pepe', '', '', '', 0, 1, '2021-04-26 17:21:04.266866'),
 (4, 'pbkdf2_sha256$216000$AbDHSlmeFnmM$RyoqFIkE6KW3HnR2otH4XJNsiBR4Js6HmwB1Pt4Phgc=', NULL, 0, 'antonio', '', '', '', 0, 1, '2021-04-26 17:23:29.043743'),
 (5, 'pbkdf2_sha256$216000$UouehGrLU3wy$x7XNzCA/QKGZA+qLhb5S4Ptmd7ITVRdqSWFvWrr20Y0=', NULL, 0, 'jimena', '', '', '', 0, 1, '2021-04-26 17:24:06.232496');
@@ -544,7 +556,7 @@ CREATE TABLE `django_admin_log` (
   `change_message` longtext NOT NULL,
   `content_type_id` int DEFAULT NULL,
   `user_id` int NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `django_admin_log`
@@ -756,7 +768,11 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (37, 'noticias', '0001_initial', '2021-05-16 19:38:56.961555'),
 (38, 'accounts', '0016_auto_20210504_1840', '2021-05-16 19:38:56.968621'),
 (39, 'accounts', '0017_auto_20210504_1848', '2021-05-16 19:38:56.987739'),
-(40, 'accounts', '0018_auto_20210515_1135', '2021-05-16 19:38:57.459388');
+(40, 'accounts', '0018_auto_20210515_1135', '2021-05-16 19:38:57.459388'),
+(41, 'accounts', '0019_auto_20210516_1454', '2021-05-23 12:15:04.018115'),
+(42, 'accounts', '0020_auto_20210517_1951', '2021-05-23 12:15:04.123111'),
+(43, 'accounts', '0021_auto_20210522_1102', '2021-05-23 12:15:04.250963'),
+(44, 'accounts', '0022_alter_userprofileojeadores_avatar', '2021-05-23 12:15:46.839242');
 
 -- --------------------------------------------------------
 
@@ -777,12 +793,17 @@ CREATE TABLE `django_session` (
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('1hmik5yd1bo6bldd00nv1axfsc6sjwmt', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1liMpd:tzhGlXLu-rHX7a00CI8MNqphxU1bDh1f73jI58AgrLE', '2021-05-30 19:53:45.510036'),
 ('6rhc67itaw3m6c3l1rl7bvbwofuxvao6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbQxz:XoOIes_29LZ9n1I_PGBKh9Nuu8W5UKItjDkCRjs1itM', '2021-05-11 16:53:43.338229'),
+('c2za2b0fcws43c79q2l4cirnj06eaeg9', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1llOIh:d_ulWZTYl0ipl6tRaDLkoMDWf5UA84lGTyPcinfDzb8', '2021-06-08 04:04:15.426006'),
+('gj5rst9yz0vyova5ofvnjft3wuhmwpr2', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1lknOs:6g-nsJ7SYrYiCBCSta5XneGLD_q6idVXMaVEJIklL9s', '2021-06-06 12:40:10.566156'),
 ('gu2ltix0m6xcrz7kxndl3h3kptd6ia1a', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldESN:QA-dbOKxIZa2aKe3ML2FqRVYkT8ZLRo-CUotJlpCpTE', '2021-05-16 15:56:31.772282'),
 ('ht0fiaizw30vg2t0fc303f7rhwjuey48', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lc9w6:3CqKlp82_JqTLF7YXakJhsYBC2s5z940lxQkXSWRpR8', '2021-05-13 16:54:46.618214'),
 ('mzr7nrwqby1lwjk1d5xh8hmuro54qtf4', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbHX7:mENho7iRxROiuSGE1UVPGDjtca0jGpdJmOD6uT3i6GM', '2021-05-11 06:49:21.821688'),
+('nryta4919mk5k83fksi8m4k5ke5251xk', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1llPnu:5NLiOQkNxncNDFAHl5jpxUcS6VXpq96tXMLYAZZ-_8A', '2021-06-08 05:40:34.841229'),
+('op5dcib86byqc1xt9ltef4ld4vskyx5n', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1lknCp:VD_N_7_8VQDvIx7Zv-UatL_TcXxqOOqMC-gqa90Anws', '2021-06-06 12:27:43.564124'),
 ('qqju4e5f46ti9niigfvqb8q0723gr15c', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1laces:EM6tmr8TTEZws_yoPqWlPVXLB_RsklHfXqAHY3pu5Xg', '2021-05-09 11:10:38.605605'),
 ('r39cnk8r6047qn7y4kpwhkj9xlrkjop6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldb55:7Cr3teaE3DYiAHqdW8pNdRercW5tqDb9sJXU-2BBnU4', '2021-05-17 16:05:59.138059'),
-('uimze7bqnkx3s1o8lc6ngnv3gijf35jy', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldERH:q45cbQ6KJVlCTt5ut0zMuBySwzvet_o315ZsCfLzEb0', '2021-05-16 15:55:23.485529');
+('uimze7bqnkx3s1o8lc6ngnv3gijf35jy', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldERH:q45cbQ6KJVlCTt5ut0zMuBySwzvet_o315ZsCfLzEb0', '2021-05-16 15:55:23.485529'),
+('yrj8t5w4j62m18tuxepbfa3l3ocgf2ct', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1llNzU:6AlEn65YKx8svstw8SQGPYzbaST8s2w-15RcBQCIs2o', '2021-06-08 03:44:24.118742');
 
 -- --------------------------------------------------------
 
@@ -989,7 +1010,7 @@ ALTER TABLE `noticias_noticias`
 -- AUTO_INCREMENT de la tabla `accounts_audios`
 --
 ALTER TABLE `accounts_audios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `accounts_generos`
@@ -1019,7 +1040,7 @@ ALTER TABLE `accounts_userprofilemusicos`
 -- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_generos`
 --
 ALTER TABLE `accounts_userprofilemusicos_generos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_noticias`
@@ -1031,13 +1052,13 @@ ALTER TABLE `accounts_userprofilemusicos_noticias`
 -- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_url_audios`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_audios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_url_videos`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_videos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `accounts_userprofileojeadores`
@@ -1061,7 +1082,7 @@ ALTER TABLE `accounts_userprofileojeadores_noticias`
 -- AUTO_INCREMENT de la tabla `accounts_videos`
 --
 ALTER TABLE `accounts_videos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `auth_group`
@@ -1103,7 +1124,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT de la tabla `django_content_type`
@@ -1115,7 +1136,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT de la tabla `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias_noticias`

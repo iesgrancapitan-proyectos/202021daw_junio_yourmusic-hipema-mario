@@ -3,11 +3,9 @@
 
 <form method="post" enctype="multipart/form-data" id="info">
     {% csrf_token %}
-    <h2>{{usuario.nombre_profile}}</h2>
-    <input name="nombre" type="text" value="{{usuario.nombre_profile}}">
+    <h2>{{usuario.nombre_profile}} <a href="#" class="edit" id="edit-nombre"><i class="fas fa-edit"></i></a></h2>
     <div class="cabecera">
-        <!--TODO: Dar css a las imagenes al igual que en detail para que muestre 
-            todas las imagenes con un mismo tamaño -->
+    <input id="nombre-grupo" name="nombre" type="text" value="{{usuario.nombre_profile}}" hidden="true">
         {% if usuario.avatar %}
         <img id="iavatar" src="/static/media/{{usuario.avatar}}" class="foto-grupo"/> {% else %}
         <img id="iavatar" src="/static/img/your-music-grupo.svg" class="foto-grupo"/> {% endif %}
@@ -81,30 +79,30 @@
 
     </div>
     <input type="submit" class="btn btn-black" name="redes" value="Actualizar redes"> {% if tipo == "musico" %}
-
-    <!-- TODO: Botón para borrar audios o vídeos, colocar con el tamaño y en el lugar adecuado
-            Ademas de centrarlo todo, incluido titulo de canciones etc... -->
     <div class="audios">
-        <div>
-            <h3 class="tituloh3">Audios</h3>
-        </div>
+        <h3 class="tituloh3">Audios</h3>
         {% for row in audios %}
-        <div>{{row.title}}</div>
-        <div>
-            <audio controls src="/static/media/{{row.url_audio}}"></audio>
-
-            <a href="{% url 'account:info_data' tipo row.id 0 %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a>
+        <div class="titulo-audios"><span>{{row.title}}</span></div>
+        <div class="audio-controller">
+            <div><audio controls src="/static/media/{{row.url_audio}}" class="audio-tag"></audio></div>
+            <!-- TODO2 No sé si es que no funcionaba anteriormente o me lo he cargado el borrar el audio
+            En base de datos he visto que hay dos tablas para la relación de la canción y el grupo.
+            ¿Quizás sería más óptimo añadir al grupo directamente en la tabla audios? Sin necesidad de 
+            trabajar con dos tablas? (Creo que el fallo al borrar va por ahí, al haber dos tablas, si
+            los datos se están usando en la otra, no te deja borrarlo) -->
+            <div><a href="{% url 'account:info_data' tipo row.id 0 %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a></div>
         </div>
-
         {% endfor %}
 
-
-        <div class="custom-file">
+        <div><a class="btn btn-black" id="addAudios"><i class="fas fa-plus-square"></i> Añadir nuevo audio</a></div>
+        <!-- <div class="custom-file">
             {% comment %} <label class="custom-file-label" for="customFile">Seleccionar archivo</label> {% endcomment %}
+        </div> -->
+        <div class="form-audio" id="form-audio" hidden="true">
+            <div><input type="file" id="sel-audio" name="filAudio" accept="audio/*" value="Seleccionar audio" class="btn btn-black"></div>
+            <div><input type="text" id="titulo-audio" name="titAudio" value="" placeholder="Título de la canción"></div>
+            <div><input type="submit" class="btn btn-black" name="audio" value="Guardar audio" id="save-audio"></div>
         </div>
-        <input type="text" name="titAudio" value="" placeholder="Título de la canción">
-        <input type="file" name="filAudio" accept="audio/*" value="Seleccionar audio" class="btn btn-black">
-        <input type="submit" class="btn btn-black" name="audio" value="Guardar audio">
 
     </div>
     <div class="videos">
