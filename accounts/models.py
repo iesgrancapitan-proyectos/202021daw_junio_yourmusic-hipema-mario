@@ -42,7 +42,7 @@ class Provincia(models.Model):
         ordering = ('title',)
 
 class Audios(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=150)
     # url_audio = models.CharField(max_length=500)
     url_audio = models.FileField(upload_to="user/song", null=True, blank=True)
 
@@ -54,7 +54,7 @@ class Audios(models.Model):
     class Meta:
         ordering = ('title','url_audio',)
 class Videos(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=150)
     url_video = models.CharField(max_length=500)
 
     def __unicode__(self):

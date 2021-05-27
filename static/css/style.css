@@ -25,6 +25,10 @@ header img {
   margin: auto;
 }
 
+.login h2 {
+  text-align: center;
+}
+
 #barra-menu {
   display: block;
   font-size: 1.1rem;
@@ -672,6 +676,10 @@ textarea.form-control-lg {
   margin-bottom: 10px;
 }
 
+.foto-grupo {
+  width: 100%;
+}
+
 .foto-grupo img {
   width: 100%;
 }
@@ -708,20 +716,24 @@ textarea.form-control-lg {
   font-weight: bold;
 }
 
-.estilos div, .informacion div, .audios div, .noticias-grupo div {
+.estilos div, .informacion div, .noticias-grupo div {
   text-align: justify;
 }
 
-.estilos div h3, .informacion div h3, .audios div h3, .noticias-grupo div h3 {
+.estilos div h3, .informacion div h3, .noticias-grupo div h3 {
   margin-bottom: 10px;
 }
 
 .redes-sociales {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 6fr;
 }
 
 .redes-sociales div:nth-child(odd) {
+  text-align: center;
+}
+
+.redes-sociales div:nth-child(even) {
   text-align: left;
 }
 
@@ -784,4 +796,41 @@ footer a:hover {
 
 .alta-noticia .titulo-noticia {
   margin: 0;
+}
+
+.edit {
+  text-decoration: none;
+  color: #666666;
+  font-size: 1rem;
+}
+
+#nombre-grupo {
+  margin-bottom: 20px;
+}
+
+.audio-controller {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  text-align: center;
+}
+
+.audio-tag {
+  margin-top: 10px;
+}
+
+.titulo-audios {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.form-audio div {
+  margin-top: 10px;
+}
+
+.provincia {
+  margin-top: 10px;
+}
+
+.provincia span {
+  font-weight: bold;
 }

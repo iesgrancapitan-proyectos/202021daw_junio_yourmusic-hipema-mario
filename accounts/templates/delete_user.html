@@ -1,0 +1,17 @@
+{% extends "base_user_account.html" %} {% block content %}
+<h2>Configuración de la cuenta</h2>
+
+<form method="post" action="{% url 'account:delete'  %}">
+    {% csrf_token %}
+
+    <div>Si decides darte de baja la furia de los siete dragones orientales caera sobre ti, además de perderte la oportunidad de disfrutar de nuestra bonita aplicación, Estás seguro que quieres? Es por tu bien, queremos que disfrutes...
+    </div>
+    <div>Confirma tu contraseña y usuario si estás seguro de tu decisión</div>
+
+    <label style="color: red;">Usuario <input  name="name" class="form-control"  type="text" value=""><span style="color: red;">{{error.1}}</span></label>
+    <label style="color: red;">Contraseña <input  name="password" class="form-control"  type="password" value=""><span style="color: red;">{{error.0}}</span></label>
+    <!-- TODO: hacer con js que cuando le de al botón salga un modal, alert o ventana de confirmación y
+         que cuando le de a confirmar se lance el evento submit -->
+    <input class="btn btn-black" type="submit" value="Dar de baja">
+</form>
+{% endblock %}

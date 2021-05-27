@@ -38,7 +38,7 @@
             {% endif %}            
         </button>
     </a>
-    <a href="{% url 'account:noticias_user'  %}">
+    <a href="{% url 'account:noticias_user' %}">
         <button type="button" class="btn btn-black">
             <div class="botones-distribucion">
                 <div><i class="fas fa-newspaper"></i></div>
@@ -51,6 +51,14 @@
             <div class="botones-distribucion">
                 <div><i class="fas fa-comments"></i></div>
                 <div>Mensajes</div>
+            </div>
+        </button>
+    </a>
+    <a href="{% url 'account:delete'  %}">
+        <button type="button" class="btn btn-black">
+            <div class="botones-distribucion">
+                <div><i class="fas fa-cog"></i></div>
+                <div>Configuración de la cuenta</div>
             </div>
         </button>
     </a>

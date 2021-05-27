@@ -1,3 +1,4 @@
+from noticias.models import Noticias
 import os
 from pathlib import Path
 from django.conf import settings
@@ -43,11 +44,72 @@ def login(request):
 
 
 @login_required
-def noticias_user(request):
+def noticias_user(request, pk=None, tipo=None):
     usuario = request.user
+    noticias = ""
+    noticiaMod = ""
+    try:
+        usuario = UserProfileMusicos.objects.get(user=request.user)
+        noticias = Noticias.objects.filter(userprofilemusicos=usuario)
+    except UserProfileMusicos.DoesNotExist:
+        try:
+            usuario = UserProfileOjeadores.objects.get(user=request.user)
+            noticias = Noticias.objects.filter(userprofileojeadores=usuario)
 
-    return render(request, 'noticias_user.html', {'usuario': usuario})
+        except UserProfileOjeadores.DoesNotExist:
+            return redirect('account:choose_profile')
+    if tipo:
+        noticiaMod = Noticias.objects.get(id=pk)
+        if tipo == 'borrar':
+            usuario.noticias.remove(noticiaMod)
+            noticiaMod.delete()
+            return redirect('account:noticias_user')
+        else:
+            pass
+    # if 'foto' in request.FILES:
 
+    if request.method == 'POST':
+        print(request.POST)
+        if request.POST['id'] != '':
+            print(request.POST['id'])
+            Noticias.objects.filter(id=request.POST['id']).update(
+                title=request.POST['titulo'], descripcion=request.POST['noticia'])
+        else:
+            res = Noticias.objects.create(
+                title=request.POST['titulo'], descripcion=request.POST['noticia'])
+            usuario.noticias.add(res)
+        return redirect('account:noticias_user')
+
+    return render(request, 'noticias_user.html', {'usuario': usuario, 'noticias': noticias, 'noticiaMod': noticiaMod})
+
+@login_required
+def delete(request):
+    usuario = request.user
+    error = []
+
+    if request.method == 'POST':
+        username=request.POST['name']
+        password=request.POST['password']
+        pwd_valid = check_password(password, usuario.password)
+        
+        if not pwd_valid:
+            error.append("Contraseña inválida")
+            return render(request, 'delete_user.html', {'error': error})
+        else:
+            error.append(" ")
+
+        if username != usuario.username:
+            error.append("El nombre de usuario no coincide")
+            return render(request, 'delete_user.html', {'error': error})
+        else:
+            error.append(" ")
+        
+        User.objects.get(id=usuario.id).delete()
+        return redirect('login')
+        
+
+
+    return render(request, 'delete_user.html')
 
 def user_data(request, pk):
     # usuario=request.user
@@ -156,38 +218,37 @@ def info_data(request, tipo, pk=None, code=None):
 
     pkDelete = pk if pk else None
     codePk = code if code else None
+    print("INFO DATA")
 
-    if(codePk==0):
+    if(codePk == 2):
         if(pkDelete):
-            try:            
-                pathOldAvatar = os.path.join("static/media/", str(userprofile.url_audios.get(id=pkDelete).url_audio))        
-                
+            try:
+                pathOldAvatar = os.path.join(
+                    "static/media/", str(userprofile.url_audios.get(id=pkDelete).url_audio))
+                print("Eliminado audio")
+
                 if pathOldAvatar is not None and os.path.isfile(pathOldAvatar):
                     print("Eliminado")
-                    userprofile.url_audios.remove(pkDelete) 
-                    Audios.objects.get(id=pkDelete).delete() 
+                    userprofile.url_audios.remove(pkDelete)
+                    Audios.objects.get(id=pkDelete).delete()
                     os.remove(pathOldAvatar)
-                    
-                    
-                    return redirect('account:info_data',tipo)
-                    
+
+                    return redirect('account:info_data', tipo)
 
             except print(0):
-                return redirect('account:info_data',tipo)
-    if(codePk==1):
+                print("Da error")
+                return redirect('account:info_data', tipo)
+    if(codePk == 1):
         if(pkDelete):
             try:
                 print("Eliminado video")
-                userprofile.url_videos.remove(pkDelete) 
-                Videos.objects.get(id=pkDelete).delete() 
-                
-                return redirect('account:info_data',tipo)
-                    
+                userprofile.url_videos.remove(pkDelete)
+                Videos.objects.get(id=pkDelete).delete()
+
+                return redirect('account:info_data', tipo)
 
             except print(0):
-                return redirect('account:info_data',tipo)
-
-
+                return redirect('account:info_data', tipo)
 
     if request.method == 'POST':
         pathOldAvatar = None
@@ -205,7 +266,6 @@ def info_data(request, tipo, pk=None, code=None):
                 videosData = True
             elif (item == 'ojeador'):
                 ojData = True
-           
 
         if(infoData):
             print("info")
@@ -213,21 +273,19 @@ def info_data(request, tipo, pk=None, code=None):
 
             if 'foto' in request.FILES:
                 print("Existe")
-                    # Obtenemos la ruta de la imagen anterior
+                # Obtenemos la ruta de la imagen anterior
                 pathOldAvatar = os.path.join(
                     "static/media/", str(userprofile.avatar))
                 if pathOldAvatar is not None and os.path.isfile(pathOldAvatar):
                     os.remove(pathOldAvatar)
-                    userprofile.avatar =request.FILES['foto']
+                    userprofile.avatar = request.FILES['foto']
                     print("Actualizada imagen")
-                else:                
-                    userprofile.avatar=request.FILES['foto']
+                else:
+                    userprofile.avatar = request.FILES['foto']
                     print("Actualizada imagen sin eliminar")
 
             else:
                 print("No existe")
-           
-          
 
             # Actualizar nombre
             if(request.POST['nombre']):
@@ -312,7 +370,7 @@ def profile(request):
         try:
             userprofile = UserProfileOjeadores.objects.get(user=request.user)
             tipo = "ojeador"
-        except UserProfileOjeadores.DoesNotExist:            
+        except UserProfileOjeadores.DoesNotExist:
             tipo = "sin"
             return redirect('account:choose_profile')
 
@@ -343,43 +401,46 @@ def profile(request):
 
     return render(request, 'profile.html', {'usuario': userprofile, 'tipo': tipo})
 
+
 @login_required
 def choose_profile(request):
-    userprofile=User.objects.get(username=request.user)
+    userprofile = User.objects.get(username=request.user)
     return render(request, 'choose_profile.html', {'userprofile': userprofile})
 
+
 def register(request):
-    error=[]
-    nombre=""
-    email=""
-    registrar=False
-    if request.method == 'POST':            
-        usuario=User.objects.filter(username=request.POST['username'])
+    error = []
+    nombre = ""
+    email = ""
+    registrar = False
+    if request.method == 'POST':
+        usuario = User.objects.filter(username=request.POST['username'])
         if usuario.count():
             error.append("El nombre de usuario ya existe")
             print("Nombre ya existente")
-            registrar=False       
+            registrar = False
         else:
-            registrar=True
+            registrar = True
             error.append(" ")
-            nombre=request.POST['username']
+            nombre = request.POST['username']
 
-        usuario=User.objects.filter(email=request.POST['email'])
+        usuario = User.objects.filter(email=request.POST['email'])
 
         if usuario.count():
             error.append("El correo introducido ya está registrado")
             print("Correo ya existente")
-            registrar=False
+            registrar = False
         else:
-            registrar=True
+            registrar = True
             error.append(" ")
-            email=request.POST['email']
-        
+            email = request.POST['email']
+
         if registrar:
-            user = User.objects.create_user(nombre,email,request.POST['password'])
+            user = User.objects.create_user(
+                nombre, email, request.POST['password'])
             make_login(request, user)
             return redirect('account:choose_profile')
-        
+
     ''' form = CustomUserCreationForm()
 
     if request.method == 'POST':
@@ -390,4 +451,4 @@ def register(request):
             if user is not None:
                 make_login(request, user)
                 return redirect(reverse('account:profile')) '''
-    return render(request, 'register.html', {'error':error })
+    return render(request, 'register.html', {'error': error})

@@ -1,3 +1,18 @@
 {% extends "base.html" %} {% block content %}
 <h2>Todas las Noticias</h2>
-{% endblock %}
+<!-- TODO: Por el momento he listado todas las noticias, con su título y noticia
+desde la más reciente a la más antigua. Faltaría darle estilo y si se te ocurre 
+cualquier cosa más perfecto -->
+{% for row in noticias %}
+<div>
+    <h3>Título</h3>
+    <div>{{row.title}}</div>
+    <h3>Noticia</h3>
+    <div>{{row.descripcion}}</div>
+    <h5>By: {{row.userprofilemusicos.nombre_profile}} {{row.userprofileojeadores.nombre_profile}}</h5>
+</div>
+{% endfor %}
+
+<!-- Paginación -->
+
+{% include "partials/pagination.html" with page_obj=noticias %} {% endblock %}

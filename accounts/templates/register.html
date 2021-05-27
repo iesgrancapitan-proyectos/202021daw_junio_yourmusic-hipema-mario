@@ -2,8 +2,8 @@
 <script src="{% static 'js/register.js' %}"></script>
 {% comment %}
 <div class="login login-form"> {% endcomment %}
-    <h2 class="tituloh2">Registro de usuario</h2>
-    <form method="post" action="{% url 'account:register' %}">
+    <h2>Registro de usuario</h2>
+    <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <!-- Formulario parte petición usuario -->
         <div class="form-group">
