@@ -8,7 +8,7 @@ import datetime
 
 def index_noticias(request):
     """ __lte """
-    noticias = Noticias.objects.filter(created_at__gte=datetime.date.today())
+    noticias = Noticias.objects.filter(created_at__lte=datetime.date.today())
 
     # noticias = noticias.all()
 

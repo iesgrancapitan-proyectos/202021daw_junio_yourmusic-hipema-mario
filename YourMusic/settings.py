@@ -160,3 +160,20 @@ LOGOUT_REDIRECT_URL = "/accounts/login/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# Para enviar correo de cambio de contraseña
+""" EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'e8830734a9d022'
+EMAIL_HOST_PASSWORD = 'f2a849878b7d2e'
+EMAIL_PORT = '2525' """
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = '587' 
+""" TODO_ANOTACIÓN: Todos los datos como correo, 
+    contraseñas etc... tanto para la BD como para enviar 
+    correos debemos meterlos en variables de entorno antes 
+    de subirlo al servidor  """
+EMAIL_HOST_USER = 'yrmusicteam@gmail.com'
+EMAIL_HOST_PASSWORD = 'usuarioyourmusic'
+EMAIL_USE_TLS = True

@@ -10,3 +10,4 @@ urlpatterns = [
        path('index_foro/', views.index_foro, name='foro'),
 
 ]
+

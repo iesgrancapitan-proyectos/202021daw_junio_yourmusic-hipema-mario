@@ -22,6 +22,12 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+import threading
+from django.core.mail import EmailMultiAlternatives
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import get_template
+import jwt
 
 
 """ @api_view(['POST'])
@@ -41,6 +47,63 @@ def login(request):
     token, _ = Token.objects.get_or_create(user=user)
 
     return Response(token.key) """
+
+
+def password_reset_complete(request, token):
+    try:            
+        user = jwt.decode(token, "secret", algorithms=["HS256"])
+        print(user)
+        print(user['username'])
+        user = user['username']
+        uspass = User.objects.get(id=user)
+        print(uspass)
+
+        if request.method == 'POST':        
+            uspass.set_password(request.POST['password'])
+            uspass.save()
+            update_session_auth_hash(request, uspass)
+
+            user = authenticate(
+                        username=uspass.username, password=request.POST['password'])
+            login(request, user)
+
+            return redirect('account:profile')
+        else:
+            pass
+
+        return render(request, './resetPassword/reset_password_confirm.html')
+
+    except Exception:
+        return redirect('account:profile')
+
+
+def reset_password(request):
+    info = ""
+    existe = False
+    if request.method == 'POST':
+        """  u = User.objects.filter(username=request.POST['input'])
+        if u.count():
+            print("Existe")
+            existe = True
+        else: """
+        u = User.objects.filter(email=request.POST['input'])
+        print(u)
+        if u.count():
+            print("Existe")
+            user = User.objects.get(email=request.POST['input'])
+            existe = True
+        else:
+            print("No existe")
+
+        if existe:
+            encoded_jwt = jwt.encode(
+                {"username": user.id}, "secret", algorithm="HS256")
+            send_email('Restaurar contraseña de mi cuenta en Your Music',
+                       'reset_password_email.html', encoded_jwt, request.POST['input'])
+
+        info = 'Si el nombre de usuario o email introducido son correctos y existen en nuestra base de datos se habrá enviado un correo de confirmación. Por favor revisa la carpeta de spam si tarda en llegar, o asegurate de que has introducido los datos correctos'
+
+    return render(request, './resetPassword/reset_password.html', {'info': info})
 
 
 @login_required
@@ -82,16 +145,17 @@ def noticias_user(request, pk=None, tipo=None):
 
     return render(request, 'noticias_user.html', {'usuario': usuario, 'noticias': noticias, 'noticiaMod': noticiaMod})
 
+
 @login_required
 def delete(request):
     usuario = request.user
     error = []
 
     if request.method == 'POST':
-        username=request.POST['name']
-        password=request.POST['password']
+        username = request.POST['name']
+        password = request.POST['password']
         pwd_valid = check_password(password, usuario.password)
-        
+
         if not pwd_valid:
             error.append("Contraseña inválida")
             return render(request, 'delete_user.html', {'error': error})
@@ -103,14 +167,14 @@ def delete(request):
             return render(request, 'delete_user.html', {'error': error})
         else:
             error.append(" ")
-        
+
         User.objects.get(id=usuario.id).delete()
         return redirect('login')
-        
-
 
     return render(request, 'delete_user.html')
 
+
+@login_required
 def user_data(request, pk):
     # usuario=request.user
     usuario = get_object_or_404(User, pk=pk)
@@ -413,16 +477,23 @@ def register(request):
     nombre = ""
     email = ""
     registrar = False
+
+    """thread = threading.Thread(target=send_user_mail, args(user, ))
+    thead.start() """
+
     if request.method == 'POST':
         usuario = User.objects.filter(username=request.POST['username'])
+
         if usuario.count():
             error.append("El nombre de usuario ya existe")
             print("Nombre ya existente")
             registrar = False
+            return render(request, 'register.html', {'error': error})
         else:
             registrar = True
             error.append(" ")
             nombre = request.POST['username']
+            print("Nombre nuevo")
 
         usuario = User.objects.filter(email=request.POST['email'])
 
@@ -431,15 +502,19 @@ def register(request):
             print("Correo ya existente")
             registrar = False
         else:
-            registrar = True
             error.append(" ")
             email = request.POST['email']
+            print("Correo nuevo")
 
         if registrar:
             user = User.objects.create_user(
                 nombre, email, request.POST['password'])
             make_login(request, user)
+            send_email('Registrado con exito en Your Music',
+                       'confirm_email.html', nombre, email)
             return redirect('account:choose_profile')
+        else:
+            return render(request, 'register.html', {'error': error})
 
     ''' form = CustomUserCreationForm()
 
@@ -452,3 +527,20 @@ def register(request):
                 make_login(request, user)
                 return redirect(reverse('account:profile')) '''
     return render(request, 'register.html', {'error': error})
+
+
+def send_email(subject, template, dato, email):
+    # subject = 'Registrado con exito en Your Music'      confirm_email.html
+    template = get_template('./registration/'+template)
+
+    content = template.render({
+        'dato': dato,
+    })
+
+    message = EmailMultiAlternatives(subject,
+                                     '',
+                                     settings.EMAIL_HOST_USER,  # Remitente
+                                     [email])  # Destinatario
+
+    message.attach_alternative(content, 'text/html')
+    message.send()

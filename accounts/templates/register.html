@@ -3,7 +3,7 @@
 {% comment %}
 <div class="login login-form"> {% endcomment %}
     <h2>Registro de usuario</h2>
-    <form method="post" action="{% url 'login' %}">
+    <form method="post" action="{% url 'account:register' %}">
         {% csrf_token %}
         <!-- Formulario parte petición usuario -->
         <div class="form-group">

@@ -21,7 +21,7 @@
         <div class="clearfix botones-login">
             <input type="submit" value="Iniciar Sesión" class="btn btn-black">
             <input type="hidden" name="next" value="{{ next }}">
-            <a href="{% url 'password_reset' %}" class="texto-reducido">¿Olvidaste tu contraseña?</a>
+            <a href="{% url 'account:reset_password' %}" class="texto-reducido">¿Olvidaste tu contraseña?</a>
         </div>
         <!-- botones para implementarle las funcionalidades de Google y Facebook Auth-->
         <div class="botones-autentificacion">
@@ -38,11 +38,11 @@
             <div><i class="fab fa-facebook-f"></i></div>
             <div>Entrar con Facebook</div>
         </div>
-    </button> 
+    </button>
             <a href="{% url 'account:register' %}" class="texto-reducido">¿Aún no estás registrado? ¡Registrate ahora!</a>
         </div>
         <p></p>
     </form>
-  
+
 </div>
 {% endblock %}
