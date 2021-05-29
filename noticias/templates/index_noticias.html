@@ -1,15 +1,16 @@
 {% extends "base.html" %} {% block content %}
-<h2>Todas las Noticias</h2>
-<!-- TODO: Por el momento he listado todas las noticias, con su título y noticia
-desde la más reciente a la más antigua. Faltaría darle estilo y si se te ocurre 
-cualquier cosa más perfecto -->
+<h2>Noticias</h2>
 {% for row in noticias %}
-<div>
-    <h3>Título</h3>
-    <div>{{row.title}}</div>
-    <h3>Noticia</h3>
-    <div>{{row.descripcion}}</div>
-    <h5>By: {{row.userprofilemusicos.nombre_profile}} {{row.userprofileojeadores.nombre_profile}}</h5>
+<div class=" noticias-listado">
+    <div class="noticias-individual">
+        <h3 class="noticias-titulo">{{row.title}}</h3>
+        <!-- TODO2 Aquí debemos recibir la info de quien lo escribe que no se ve y la fecha.
+                   Además, también podríamos enlazar al perfil del usuario. -->
+        <div class="noticias-usuario"><a href="#">{{row.userprofilemusicos.nombre_profile}}Usuario</a> - <span>12/02/2021</span></div>
+        <div class="noticias-extracto">{{row.descripcion|slice:":160"}}...</div>
+        <!-- TODO2 Aquí debe enlazar a la noticia individual extendida -->
+        <div class="noticias-ampliar"><a href="#">Leer más</a></div>
+    </div>
 </div>
 {% endfor %}
 

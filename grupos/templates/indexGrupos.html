@@ -38,7 +38,7 @@
 
 <div class="listado-grupos">
     {% for e in grupos|slice:":3" %}
-    <dif class="ficha-grupo">
+    <div class="ficha-grupo">
         <div class="foto-grupo">
             <a href="{% url 'grupos:detail' e.id %}">
                     {% if e.avatar %}

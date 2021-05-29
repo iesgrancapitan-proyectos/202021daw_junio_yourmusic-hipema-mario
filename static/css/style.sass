@@ -696,3 +696,77 @@ footer
   margin-top: 10px
   span
     font-weight: bold
+
+// Sección noticias
+.noticias-listado
+
+.noticias-titulo
+  margin-bottom: 5px
+  text-align: left
+.noticias-usuario
+  text-align: left
+  font-size: 0.8rem
+  font-weight: 600
+  margin-bottom: 10px
+  a
+    text-decoration: none
+    color: $secondary-color
+  a:hover
+    color: $primary-color
+.noticias-extracto
+  text-align: justify
+.noticias-ampliar
+  text-align: right
+  font-size: 0.95rem
+  font-weight: 500
+  a
+    text-decoration: none
+    color: $secondary-color
+  a:hover
+    color: $primary-color
+
+// Wizard de registro
+#regForm 
+  min-width: 300px
+
+.wizzard-parrafo
+  text-align: justify
+  
+/* Style the input fields */
+    
+// input 
+//   padding: 10px
+//   width: 100%
+//   font-size: 17px
+//   font-family: Raleway
+//   border: 1px solid #aaaaaa
+    
+/* Mark input boxes that gets an error on validation: */
+    
+input.invalid 
+  background-color: #ffdddd
+    
+/* Hide all steps by default: */
+    
+.tab 
+    display: none
+    
+/* Make circles that indicate the steps of the form: */
+    
+.step 
+    height: 15px
+    width: 15px
+    margin: 0 2px
+    background-color: #bbbbbb
+    border: none
+    border-radius: 50%
+    display: inline-block
+    opacity: 0.5
+/* Mark the active step: */
+    
+.step.active 
+    opacity: 1
+/* Mark the steps that are finished and valid: */
+    
+.step.finish
+    background-color: #04AA6D
