@@ -834,3 +834,80 @@ footer a:hover {
 .provincia span {
   font-weight: bold;
 }
+
+.noticias-titulo {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.noticias-usuario {
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.noticias-usuario a {
+  text-decoration: none;
+  color: #666666;
+}
+
+.noticias-usuario a:hover {
+  color: black;
+}
+
+.noticias-extracto {
+  text-align: justify;
+}
+
+.noticias-ampliar {
+  text-align: right;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.noticias-ampliar a {
+  text-decoration: none;
+  color: #666666;
+}
+
+.noticias-ampliar a:hover {
+  color: black;
+}
+
+#regForm {
+  min-width: 300px;
+}
+
+/* Style the input fields */
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #04AA6D;
+}

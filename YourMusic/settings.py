@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 # DATOS PARA CONECTAR CON LA DB
 
 # MANUEL
-""" DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -99,9 +99,9 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
         'PORT': '3306',
     }
 
-} """
+} 
 # MARIO
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -111,7 +111,7 @@ DATABASES = {
         'PORT': '3306',
     }
 
-}
+}'''
 
 
 # Password validation
