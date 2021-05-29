@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ojeador',
     'foro',
     'noticias',
+    'mensajes',
     'rest_framework',
     'rest_framework.authtoken',
     'bootstrapform',
