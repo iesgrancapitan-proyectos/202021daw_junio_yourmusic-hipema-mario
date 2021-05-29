@@ -1,5 +1,5 @@
 /**
- * @author: MANUEL HIDALGO PÉREZ
+ * @author: Mario Osuna y Manolo Hidalgo
  */
 
 document.addEventListener("DOMContentLoaded", function (){

@@ -3,11 +3,11 @@
 <!-- Título de sección -->
 <h2>Elige el tipo de perfil</h2>
 <div class="principal">
+    <div class="wizzard-parrafo">{{userprofile}}, para poder completar tu usuario y disfrutar de la experiencia de usar <strong>Your Music</strong>, debes elegir tu perfil. Complétalo a través de este sencillo formulario.</div>
 <form method="post" enctype="multipart/form-data" id="regForm">
     {% csrf_token %}
     <!-- One "tab" for each step in the form: -->
     <div class="tab">
-        <p>Muy buenas {{userprofile}}, para poder terminar de disfrutar de la experiencia de usar your music, registrate como grupo u ojeador según necesites.</p>
         <label for="grupo"> <input type="radio" id="grupo" name="tipoProfile"><i class="fas fa-guitar"> GRUPO</i></label>
         <p>Si quieres que tu grupo se pueda dar a conocer crea ahora tu perfil como músico y habla con ojeadores, comunicate con tu audiencia mediante noticias, deja tus redes, música y vídeos en tu perfil. </p>
         <label for="ojeador"><input type="radio" id="ojeador" name="tipoProfile"><i class="fas fa-music"> OJEADOR</i></label>
