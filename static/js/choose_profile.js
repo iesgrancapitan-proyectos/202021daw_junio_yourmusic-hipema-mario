@@ -4,30 +4,58 @@
 
 document.addEventListener("DOMContentLoaded", function (){
     let currentTab = 0; // Current tab is set to be the first tab (0)
+    let x = document.getElementsByClassName("tab");
+    let prevBtn = document.getElementById("prevBtn");
+    let nextBtn = document.getElementById("nextBtn");
+    let grupo = document.getElementById("registro-grupo");
+    let ojeador = document.getElementById("registro-ojeador");
+    let inputGrupo = document.getElementById("grupo");
+    let inputOjeador = document.getElementById("ojeador");
+    let descripcionGrupo = document.getElementById("descripcionGrupo");
+    let descripcionOjeador = document.getElementById("descripcionOjeador");
+
+    
     showTab(currentTab); // Display the current tab
 
+    prevBtn.addEventListener("click", () => nextPrev(-1));
+    nextBtn.addEventListener("click", () => nextPrev(1));
+    grupo.addEventListener("click", () => marcarOpcion(1));
+    ojeador.addEventListener("click", () => marcarOpcion(-1));
+    
+    function marcarOpcion(n) {
+        if (n == 1){
+            inputGrupo.checked = true;
+            grupo.className = "registro-marcado";
+            ojeador.className = "registro";
+            descripcionGrupo.className = "wizzard-parrafo";
+            descripcionOjeador.className = "descripcionWizzardOculto";
+        } else {
+            inputOjeador.checked = true;
+            grupo.className = "registro";
+            ojeador.className = "registro-marcado";
+            descripcionGrupo.className = "descripcionWizzardOculto";
+            descripcionOjeador.className = "wizzard-parrafo";
+        }
+    }
+
     function showTab(n) {
-        // This function will display the specified tab of the form ...
-        let x = document.getElementsByClassName("tab");
         x[n].style.display = "block";
         // ... and fix the Previous/Next buttons:
         if (n == 0) {
-            document.getElementById("prevBtn").style.display = "none";
+            prevBtn.style.display = "none";
         } else {
-            document.getElementById("prevBtn").style.display = "inline";
+            prevBtn.style.display = "inline";
         }
         if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
+            nextBtn.innerHTML = "Enviar";
         } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
+            nextBtn.innerHTML = "Siguiente";
         }
         // ... and run a function that displays the correct step indicator:
         fixStepIndicator(n)
     }
 
     function nextPrev(n) {
-        // This function will figure out which tab to display
-        let x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
         if (n == 1 && !validateForm()) return false;
         // Hide the current tab:
@@ -46,9 +74,8 @@ document.addEventListener("DOMContentLoaded", function (){
 
     function validateForm() {
         // This function deals with validation of the form fields
-        let x, y, i, valid = true;
-        x = document.getElementsByClassName("tab");
-        y = x[currentTab].getElementsByTagName("input");
+        let valid = true;
+        let y = x[currentTab].getElementsByTagName("input");
         // A loop that checks every input field in the current tab:
         for (i = 0; i < y.length; i++) {
             // If a field is empty...
@@ -68,11 +95,11 @@ document.addEventListener("DOMContentLoaded", function (){
 
     function fixStepIndicator(n) {
         // This function removes the "active" class of all steps...
-        let i, x = document.getElementsByClassName("step");
-        for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" active", "");
+        let z = document.getElementsByClassName("step");
+        for (i = 0; i < z.length; i++) {
+            z[i].className = z[i].className.replace(" active", "");
         }
         //... and adds the "active" class to the current step:
-        x[n].className += " active";
+        z[n].className += " active";
     }
 });
