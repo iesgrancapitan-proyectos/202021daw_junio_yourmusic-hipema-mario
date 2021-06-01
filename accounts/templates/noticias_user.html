@@ -1,7 +1,5 @@
 {% extends "base_user_account.html" %} {% block content %}
 <h2>Noticias</h2>
-<p>{{usuario.user.username}}</p>
-{{noticias}}
 <div class="alta-noticia">
     <h3 class="tituloh3">Insertar nueva noticia</h3>
     <form method="post" action="{% url 'account:noticias_user' %}">
