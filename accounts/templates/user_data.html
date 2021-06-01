@@ -1,6 +1,7 @@
 {% extends "base_user_account.html" %} {% block content %}{% load static %}
 <script src="{% static 'js/user_data.js' %}"></script>
-<h2>Tus datos de acceso</h2>
+<h2>Configuración de la cuenta</h2>
+<h3>Tus datos de acceso</h3>
 <p>{{usuario.username}}</p>
 <p> {{form.errors}}</p>
 <form method="post">
@@ -35,6 +36,9 @@
     <div><input class="btn btn-black" type="submit" value="Enviar" id="enviar"></div>
 </form>
 
+<!-- Apartado para dar de baja al usuario -->
+<div class="texto-reducido apartado-baja">
+<a href="{% url 'account:delete'  %}">¿Deseas dar de baja tu cuenta? Pulsa aquí.</a>
+<div>
 
-<!-- TODO: Crear campos para dar de baja al usuario -->
 {% endblock %}

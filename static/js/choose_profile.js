@@ -46,13 +46,14 @@ document.addEventListener("DOMContentLoaded", function (){
         } else {
             prevBtn.style.display = "inline";
         }
+
         if (n == (x.length - 1)) {
             nextBtn.innerHTML = "Enviar";
         } else {
             nextBtn.innerHTML = "Siguiente";
         }
         // ... and run a function that displays the correct step indicator:
-        fixStepIndicator(n)
+        fixStepIndicator(n);
     }
 
     function nextPrev(n) {
@@ -63,8 +64,7 @@ document.addEventListener("DOMContentLoaded", function (){
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
         // if you have reached the end of the form... :
-        if (currentTab >= x.length) {
-            //...the form gets submitted:
+        if (currentTab == x.length) {
             document.getElementById("regForm").submit();
             return false;
         }
@@ -84,6 +84,22 @@ document.addEventListener("DOMContentLoaded", function (){
                 y[i].className += " invalid";
                 // and set the current valid status to false:
                 valid = false;
+            }
+        }
+        if (currentTab == (x.length -1)){
+            let patron_email = /^\w+([.-]?\w)*[@]\w+([.-]?\w)*[.]\w{2,4}$/;
+            let patron_telefono = /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/;
+
+            if (patron_email.test(y[0].value) && patron_telefono.test(y[1].value)) {
+                valid = true;
+            } else if (!patron_email.test(y[0].value)) {
+                valid = false;
+                y[0].className += " invalid";
+                y[1].className = "input-wizzard";
+            } else {
+                valid = false;
+                y[1].className += " invalid";
+                y[0].className = "input-wizzard";
             }
         }
         // If the valid status is true, mark the step as finished and valid:

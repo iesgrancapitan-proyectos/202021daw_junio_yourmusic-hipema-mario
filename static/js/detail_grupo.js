@@ -19,20 +19,21 @@ document.addEventListener("DOMContentLoaded", function (){
     ocultarLista(videosOcultos);
     ocultarLista(noticiasOcultos);
 
-    verMasAudios.addEventListener("click", function () {
-        verMasOcultar(verMasAudios, lista_audios);
+    verMasAudios.addEventListener("click", function (oEvent) {
+        verMasOcultar(verMasAudios, lista_audios, oEvent);
     });
     
-    verMasVideos.addEventListener("click", function () {
-        verMasOcultar(verMasVideos, lista_videos);
+    verMasVideos.addEventListener("click", function (oEvent) {
+        verMasOcultar(verMasVideos, lista_videos, oEvent);
     });
     
-    verMasNoticias.addEventListener("click", function () {
-        verMasOcultar(verMasNoticias, lista_noticias);
+    verMasNoticias.addEventListener("click", function (oEvent) {
+        verMasOcultar(verMasNoticias, lista_noticias, oEvent);
     });
     
     // Funciones
-    function verMasOcultar(boton, lista) {
+    function verMasOcultar(boton, lista, evento) {
+        evento.preventDefault();
         if (boton.innerHTML == "Ver más"){
             boton.innerHTML = "Ocultar";
             lista.forEach((e) => e.className = "");

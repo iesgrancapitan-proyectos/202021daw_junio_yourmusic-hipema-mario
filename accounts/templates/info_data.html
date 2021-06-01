@@ -44,31 +44,31 @@
         <h3 class="tituloh3">Redes Sociales</h3>
     </div>
     <div class="redes-sociales">
-        <div><span>Twitter</span></div>
+        <div><i class="fab fa-twitter-square"></i></div>
         {% if usuario.twitter %}
         <div><input type="text" name="twitter" value="{{usuario.twitter}}" /></div>
         {% else %}
         <div><input type="text" name="twitter" value="" /></div>
         {% endif %}
-        <div><span>Instagram</span></div>
+        <div><i class="fab fa-instagram-square"></i></div>
         {% if usuario.instagram %}
         <div><input type="text" name="instagram" value="{{usuario.instagram}}" /></div>
         {% else %}
         <div><input type="text" name="instagram" value="" /></div>
         {% endif %}
-        <div><span>Facebook</span></div>
+        <div><i class="fab fa-facebook-square"></i></div>
         {% if usuario.facebook %}
         <div><input type="text" name="facebook" value="{{usuario.facebook}}" /></div>
         {% else %}
         <div><input type="text" name="facebook" value="" /></div>
         {% endif %}
-        <div><span>Página web</span></div>
+        <div><i class="fas fa-link"></i></div>
         {% if usuario.web %}
         <div><input type="text" name="web" value="{{usuario.web}}" /></div>
         {% else %}
         <div><input type="text" name="web" value="" /></div>
         {% endif %}
-        <div><span>E-mail</span></div>
+        <div><i class="fas fa-envelope"></i></div>
         {% if usuario.email_profile %}
         <div><input type="text" name="email_profile" value="{{usuario.email_profile}}" /></div>
         {% else %}
@@ -121,8 +121,8 @@
             <div>Título:</div>
             <div><input type="text" name="titVideo" /></div>
             <div>Enlace:</div>
-            <div><input type="text" name="enlVideo" /></div>
-            <input type="submit" class="btn btn-black" name="video" value="Guardar video">
+            <div><input type="text" name="enlVideo" id="enlace-video"/></div>
+            <input id="guardar-video" type="submit" class="btn btn-black" name="video" value="Guardar video">
         </div>
 
     </div>

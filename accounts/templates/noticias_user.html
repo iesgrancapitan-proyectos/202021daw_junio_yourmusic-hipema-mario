@@ -1,14 +1,14 @@
 {% extends "base_user_account.html" %} {% block content %}
 <h2>Noticias</h2>
 <p>{{usuario.user.username}}</p>
-{{noticias}}
+{% comment %} {{noticias}} {% endcomment %}
 <div class="alta-noticia">
     <h3 class="tituloh3">Insertar nueva noticia</h3>
     <form method="post" action="{% url 'account:noticias_user' %}">
         {% csrf_token %}
         <label>
             <div class="titulo-noticia">Título:</div>
-            <div><input type="text" name="titulo" value="{{noticiaMod.title}}"/></div>
+            <div><input class="input-wizzard" type="text" name="titulo" value="{{noticiaMod.title}}"/></div>
         </label>
         <label>
             <div class="titulo-noticia">Noticia:</div>
@@ -23,24 +23,13 @@
     <h3 class="tituloh3">Listado de noticias anteriores</h3>
     {% for row in noticias %}
     <div class="noticia-titulo">
-        <div>{{row.title}}</div>
+        <!--TODO2 El primero en vez de a editar, debería llevar a la opción de visualizarlo -->
+        <div><a href="{% url 'account:noticias_user' 'editar' row.id %}">{{row.title}}</a></div>
         <div><a href="{% url 'account:noticias_user' 'editar' row.id %}"><i class="fas fa-edit"></i></a>
             <a href="{% url 'account:noticias_user' 'borrar' row.id %}"> <i class="fas fa-trash-alt"></i></a>
         </div>
     </div>
     {% endfor %}
-    <!--  <div class="noticia-titulo">
-        <div>Título de la noticia más largo para prueba</div>
-        <div><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></div>
-    </div>
-    <div class="noticia-titulo">
-        <div>Título de la noticia mucho más largo para seguir probando todo esto como va</div>
-        <div><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></div>
-    </div>
-    <div class="noticia-titulo">
-        <div>Título de la noticia</div>
-        <div><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></div>
-    </div> -->
 </div>
 
 {% endblock %}
