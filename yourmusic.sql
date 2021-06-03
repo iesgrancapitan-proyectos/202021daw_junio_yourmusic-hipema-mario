@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2021 at 11:19 PM
+-- Generation Time: Jun 04, 2021 at 12:54 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -29,9 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accounts_audios` (
   `id` int(11) NOT NULL,
-  `url_audio` varchar(100) DEFAULT NULL,
-  `title` varchar(150) NOT NULL
+  `title` varchar(150) NOT NULL,
+  `url_audio` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts_audios`
+--
+
+INSERT INTO `accounts_audios` (`id`, `title`, `url_audio`) VALUES
+(6, 'Ciudad Dormida', 'user/song/Ciudad_dormida.mp3'),
+(7, 'Mi Piel', 'user/song/MI_PIEL_MASTER.wav'),
+(8, 'Karma', 'user/song/02.Karma.mp3');
 
 -- --------------------------------------------------------
 
@@ -180,18 +189,31 @@ CREATE TABLE `accounts_userprofilemusicos` (
   `facebook` varchar(300) DEFAULT NULL,
   `web` varchar(300) DEFAULT NULL,
   `email_profile` varchar(50) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  `provincia_origen_id` int(11) NOT NULL
+  `provincia_origen_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `accounts_userprofilemusicos`
 --
 
-INSERT INTO `accounts_userprofilemusicos` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `user_id`, `provincia_origen_id`) VALUES
-(1, 'Terra negra', 'user/img/folder.jpg', 'Grupo de peñarroya pueblonuevo', NULL, NULL, 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 2, 1),
-(2, 'Pink Floyd', 'user/img/3.jpg', '                                                   Pink Floyd grupo de Londres de 1965, contraseña usuario\r\n            \r\n            \r\n            ', 'twitter', 'https://www.instagram.com/kakumei_99/', 'https://www.facebook.com/pinkfloyd', 'www.pf.com', 'pinkfloyd@mail.com', 3, 5),
-(3, 'comala', 'user/img/tit_phixr.jpg', 'Grupo de rock alternativo con influencias de Joy Division, Shame,IDLES,Fontaines D.C,The Cure y The Smiths', NULL, NULL, NULL, NULL, 'comala@gmail.com', 13, 5);
+INSERT INTO `accounts_userprofilemusicos` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `provincia_origen_id`, `user_id`) VALUES
+(1, 'Terra Negra', 'user/img/folder.jfif', '                 Grupo de Peñarroya Pueblonuevo\r\n            ', NULL, 'https://www.instagram.com/kakumei_99/', 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 1, 3),
+(2, 'Comala', 'user/img/tit_phixr.jpg', 'Influenciados por Joy Division, Shame, Idles, Fontaines DC, The Cure, The Smiths, etc...', NULL, NULL, NULL, NULL, 'comala@gmail.com', 5, 5),
+(3, 'Karma', 'user/img/folder.jpg', '', NULL, NULL, NULL, NULL, 'karma@g.com', 44, 7),
+(4, 'Blur Time', 'user/img/fot1Front_Cover.jpg', 'Grupo derivado de karma', NULL, NULL, NULL, NULL, 'BT@g.com', 51, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts_userprofilemusicos_canal_mensajes`
+--
+
+CREATE TABLE `accounts_userprofilemusicos_canal_mensajes` (
+  `id` int(11) NOT NULL,
+  `userprofilemusicos_id` int(11) NOT NULL,
+  `canal_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -210,16 +232,17 @@ CREATE TABLE `accounts_userprofilemusicos_generos` (
 --
 
 INSERT INTO `accounts_userprofilemusicos_generos` (`id`, `userprofilemusicos_id`, `generos_id`) VALUES
-(1, 1, 4),
-(2, 1, 22),
-(97, 2, 1),
-(98, 2, 8),
-(96, 2, 18),
-(99, 2, 21),
-(105, 3, 2),
-(104, 3, 7),
-(106, 3, 8),
-(107, 3, 21);
+(8, 1, 4),
+(7, 1, 22),
+(9, 2, 13),
+(10, 3, 1),
+(11, 3, 8),
+(12, 3, 21),
+(15, 4, 2),
+(14, 4, 7),
+(16, 4, 8),
+(17, 4, 21),
+(13, 4, 22);
 
 -- --------------------------------------------------------
 
@@ -238,12 +261,10 @@ CREATE TABLE `accounts_userprofilemusicos_noticias` (
 --
 
 INSERT INTO `accounts_userprofilemusicos_noticias` (`id`, `userprofilemusicos_id`, `noticias_id`) VALUES
-(1, 1, 3),
-(8, 1, 13),
+(1, 2, 3),
 (2, 2, 4),
-(3, 2, 6),
-(5, 2, 8),
-(6, 2, 9);
+(3, 3, 7),
+(4, 4, 8);
 
 -- --------------------------------------------------------
 
@@ -256,6 +277,15 @@ CREATE TABLE `accounts_userprofilemusicos_url_audios` (
   `userprofilemusicos_id` int(11) NOT NULL,
   `audios_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts_userprofilemusicos_url_audios`
+--
+
+INSERT INTO `accounts_userprofilemusicos_url_audios` (`id`, `userprofilemusicos_id`, `audios_id`) VALUES
+(6, 1, 6),
+(7, 2, 7),
+(8, 3, 8);
 
 -- --------------------------------------------------------
 
@@ -275,7 +305,9 @@ CREATE TABLE `accounts_userprofilemusicos_url_videos` (
 
 INSERT INTO `accounts_userprofilemusicos_url_videos` (`id`, `userprofilemusicos_id`, `videos_id`) VALUES
 (1, 1, 1),
-(3, 2, 3);
+(4, 1, 4),
+(6, 2, 6),
+(7, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -293,19 +325,32 @@ CREATE TABLE `accounts_userprofileojeadores` (
   `facebook` varchar(300) DEFAULT NULL,
   `web` varchar(300) DEFAULT NULL,
   `email_profile` varchar(50) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  `provincia_origen_id` int(11) NOT NULL,
   `tipo_ojeador_id` int(11) NOT NULL,
-  `provincia_origen_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `accounts_userprofileojeadores`
 --
 
-INSERT INTO `accounts_userprofileojeadores` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `user_id`, `tipo_ojeador_id`, `provincia_origen_id`) VALUES
-(1, 'CBGB', 'user/img/CBGB-entrance-bw-2016-billboard-1548.jpg', '                                                                                                                                                                                                                                                              Bar con música en directo, ramones, talking head y television entre otros, son los que se han dado a conocer\r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            ', NULL, NULL, NULL, NULL, 'conciertos@conciertos.com', 4, 6, 13),
-(2, 'factory', '', 'factory records', NULL, NULL, NULL, 'https://factoryrecords.org/', NULL, 5, 2, 8),
-(5, 'La Ser', 'user/img/cool-nirvana-wallpaper-1920x108-WTG30810936.jpg', '', NULL, NULL, NULL, NULL, 'laser@gmail.com', 7, 3, 47);
+INSERT INTO `accounts_userprofileojeadores` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `provincia_origen_id`, `tipo_ojeador_id`, `user_id`) VALUES
+(1, 'CBGB', 'user/img/CBGB-entrance-bw-2016-billboard-1548.jpg', 'Mítica sala donde se han dado a conocer grupos como ramones, talking heads, etc...', NULL, NULL, NULL, NULL, 'cbgb@gmail.com', 19, 4, 4),
+(2, 'Factory', 'user/img/3685d980288e3021b74037b47f27cd61.jpg', '', NULL, NULL, NULL, NULL, 'factory@gmail.com', 16, 2, 6),
+(3, 'Vladimir', 'user/img/wallpaper.wiki-Music-nirvana-Kurt-Cobain-Images-1920x1080-PIC-WPE006226.jpg', 'Busco grupos para un cumple', NULL, NULL, NULL, NULL, 'Vladi@g.com', 5, 1, 9),
+(4, 'La Ser', 'user/img/image-003817.jpg', '', NULL, NULL, NULL, NULL, 'prueba@email.com', 42, 3, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts_userprofileojeadores_canal_mensajes`
+--
+
+CREATE TABLE `accounts_userprofileojeadores_canal_mensajes` (
+  `id` int(11) NOT NULL,
+  `userprofileojeadores_id` int(11) NOT NULL,
+  `canal_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -324,17 +369,16 @@ CREATE TABLE `accounts_userprofileojeadores_generos` (
 --
 
 INSERT INTO `accounts_userprofileojeadores_generos` (`id`, `userprofileojeadores_id`, `generos_id`) VALUES
-(40, 1, 2),
-(39, 1, 7),
-(41, 1, 8),
-(42, 1, 21),
-(4, 2, 7),
-(3, 2, 8),
-(49, 5, 1),
-(47, 5, 4),
-(45, 5, 10),
-(46, 5, 11),
-(48, 5, 19);
+(10, 1, 1),
+(8, 1, 2),
+(7, 1, 7),
+(9, 1, 12),
+(12, 1, 16),
+(11, 1, 21),
+(14, 2, 2),
+(13, 2, 7),
+(15, 3, 1),
+(16, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -353,8 +397,10 @@ CREATE TABLE `accounts_userprofileojeadores_noticias` (
 --
 
 INSERT INTO `accounts_userprofileojeadores_noticias` (`id`, `userprofileojeadores_id`, `noticias_id`) VALUES
-(1, 1, 2),
-(2, 2, 5);
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 5),
+(4, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -364,17 +410,19 @@ INSERT INTO `accounts_userprofileojeadores_noticias` (`id`, `userprofileojeadore
 
 CREATE TABLE `accounts_videos` (
   `id` int(11) NOT NULL,
-  `url_video` varchar(500) NOT NULL,
-  `title` varchar(150) NOT NULL
+  `title` varchar(150) NOT NULL,
+  `url_video` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `accounts_videos`
 --
 
-INSERT INTO `accounts_videos` (`id`, `url_video`, `title`) VALUES
-(1, 'https://www.youtube.com/watch?v=amK7McaUp7Y', 'prueba'),
-(3, 'https://youtu.be/YR5ApYxkU-U', 'Another Brick In The Wall');
+INSERT INTO `accounts_videos` (`id`, `title`, `url_video`) VALUES
+(1, 'La Fábrica', 'amK7McaUp7Y'),
+(4, 'Desaprender a vivir', '4lB9fMtizqA'),
+(6, 'Animal', '3E9eQV6YQHQ'),
+(7, 'El Protagonista', 'iQnvJYZaock');
 
 -- --------------------------------------------------------
 
@@ -461,50 +509,46 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (30, 'Can change generos', 8, 'change_generos'),
 (31, 'Can delete generos', 8, 'delete_generos'),
 (32, 'Can view generos', 8, 'view_generos'),
-(33, 'Can add user profile musicos', 9, 'add_userprofilemusicos'),
-(34, 'Can change user profile musicos', 9, 'change_userprofilemusicos'),
-(35, 'Can delete user profile musicos', 9, 'delete_userprofilemusicos'),
-(36, 'Can view user profile musicos', 9, 'view_userprofilemusicos'),
-(37, 'Can add videos', 10, 'add_videos'),
-(38, 'Can change videos', 10, 'change_videos'),
-(39, 'Can delete videos', 10, 'delete_videos'),
-(40, 'Can view videos', 10, 'view_videos'),
-(41, 'Can add user profile ojeadores', 11, 'add_userprofileojeadores'),
-(42, 'Can change user profile ojeadores', 11, 'change_userprofileojeadores'),
-(43, 'Can delete user profile ojeadores', 11, 'delete_userprofileojeadores'),
-(44, 'Can view user profile ojeadores', 11, 'view_userprofileojeadores'),
-(45, 'Can add tipo ojeador', 12, 'add_tipoojeador'),
-(46, 'Can change tipo ojeador', 12, 'change_tipoojeador'),
-(47, 'Can delete tipo ojeador', 12, 'delete_tipoojeador'),
-(48, 'Can view tipo ojeador', 12, 'view_tipoojeador'),
-(49, 'Can add Token', 13, 'add_token'),
-(50, 'Can change Token', 13, 'change_token'),
-(51, 'Can delete Token', 13, 'delete_token'),
-(52, 'Can view Token', 13, 'view_token'),
-(53, 'Can add token', 14, 'add_tokenproxy'),
-(54, 'Can change token', 14, 'change_tokenproxy'),
-(55, 'Can delete token', 14, 'delete_tokenproxy'),
-(56, 'Can view token', 14, 'view_tokenproxy'),
-(57, 'Can add provincia', 15, 'add_provincia'),
-(58, 'Can change provincia', 15, 'change_provincia'),
-(59, 'Can delete provincia', 15, 'delete_provincia'),
-(60, 'Can view provincia', 15, 'view_provincia'),
-(61, 'Can add ciudad', 16, 'add_ciudad'),
-(62, 'Can change ciudad', 16, 'change_ciudad'),
-(63, 'Can delete ciudad', 16, 'delete_ciudad'),
-(64, 'Can view ciudad', 16, 'view_ciudad'),
-(65, 'Can add noticias', 17, 'add_noticias'),
-(66, 'Can change noticias', 17, 'change_noticias'),
-(67, 'Can delete noticias', 17, 'delete_noticias'),
-(68, 'Can view noticias', 17, 'view_noticias'),
-(69, 'Can add mensajes', 18, 'add_mensajes'),
-(70, 'Can change mensajes', 18, 'change_mensajes'),
-(71, 'Can delete mensajes', 18, 'delete_mensajes'),
-(72, 'Can view mensajes', 18, 'view_mensajes'),
-(73, 'Can add conversation', 19, 'add_conversation'),
-(74, 'Can change conversation', 19, 'change_conversation'),
-(75, 'Can delete conversation', 19, 'delete_conversation'),
-(76, 'Can view conversation', 19, 'view_conversation');
+(33, 'Can add provincia', 9, 'add_provincia'),
+(34, 'Can change provincia', 9, 'change_provincia'),
+(35, 'Can delete provincia', 9, 'delete_provincia'),
+(36, 'Can view provincia', 9, 'view_provincia'),
+(37, 'Can add tipo ojeador', 10, 'add_tipoojeador'),
+(38, 'Can change tipo ojeador', 10, 'change_tipoojeador'),
+(39, 'Can delete tipo ojeador', 10, 'delete_tipoojeador'),
+(40, 'Can view tipo ojeador', 10, 'view_tipoojeador'),
+(41, 'Can add videos', 11, 'add_videos'),
+(42, 'Can change videos', 11, 'change_videos'),
+(43, 'Can delete videos', 11, 'delete_videos'),
+(44, 'Can view videos', 11, 'view_videos'),
+(45, 'Can add user profile ojeadores', 12, 'add_userprofileojeadores'),
+(46, 'Can change user profile ojeadores', 12, 'change_userprofileojeadores'),
+(47, 'Can delete user profile ojeadores', 12, 'delete_userprofileojeadores'),
+(48, 'Can view user profile ojeadores', 12, 'view_userprofileojeadores'),
+(49, 'Can add user profile musicos', 13, 'add_userprofilemusicos'),
+(50, 'Can change user profile musicos', 13, 'change_userprofilemusicos'),
+(51, 'Can delete user profile musicos', 13, 'delete_userprofilemusicos'),
+(52, 'Can view user profile musicos', 13, 'view_userprofilemusicos'),
+(53, 'Can add noticias', 14, 'add_noticias'),
+(54, 'Can change noticias', 14, 'change_noticias'),
+(55, 'Can delete noticias', 14, 'delete_noticias'),
+(56, 'Can view noticias', 14, 'view_noticias'),
+(57, 'Can add mensajes', 15, 'add_mensajes'),
+(58, 'Can change mensajes', 15, 'change_mensajes'),
+(59, 'Can delete mensajes', 15, 'delete_mensajes'),
+(60, 'Can view mensajes', 15, 'view_mensajes'),
+(61, 'Can add canal', 16, 'add_canal'),
+(62, 'Can change canal', 16, 'change_canal'),
+(63, 'Can delete canal', 16, 'delete_canal'),
+(64, 'Can view canal', 16, 'view_canal'),
+(65, 'Can add Token', 17, 'add_token'),
+(66, 'Can change Token', 17, 'change_token'),
+(67, 'Can delete Token', 17, 'delete_token'),
+(68, 'Can view Token', 17, 'view_token'),
+(69, 'Can add token', 18, 'add_tokenproxy'),
+(70, 'Can change token', 18, 'change_tokenproxy'),
+(71, 'Can delete token', 18, 'delete_tokenproxy'),
+(72, 'Can view token', 18, 'view_tokenproxy');
 
 -- --------------------------------------------------------
 
@@ -531,15 +575,16 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$9lgeEIehvD5c$kFoCOAv1zOZwJ875s1wpKBlzDfcrwkVo9PFy4Ih+TYk=', '2021-06-03 17:05:53.396441', 1, 'admin', '', '', '', 1, 1, '2021-04-25 11:09:15.487339'),
-(2, 'pbkdf2_sha256$216000$F1btmCeYwl9t$uDEqGYLHUYCSZ/uyh9SPbXEKrMn4Q6HTK6vAhXJfL5U=', '2021-06-03 18:01:44.118419', 0, 'Mario', '', '', 'osunamario26@gmail.com', 0, 1, '2021-04-26 17:16:41.000000'),
-(3, 'pbkdf2_sha256$216000$mujrLT7REf6l$Q+13EHWPPbIoJJYKARtuEp7E7WuFYRPlkdQGr9xRgUE=', '2021-05-27 08:35:09.300063', 0, 'Pepe', '', '', 'pepe@gmail.com', 0, 1, '2021-04-26 17:21:04.266866'),
-(4, 'pbkdf2_sha256$216000$DQRiKzBps8NB$I00nypGhU3hEPRv7Ejc3sRSNg0Oc6fMC2L10CKN3SH4=', '2021-05-22 11:06:22.058623', 0, 'antonio', '', '', 'antonio@mail.com', 0, 1, '2021-04-26 17:23:29.043743'),
-(5, 'pbkdf2_sha256$216000$UouehGrLU3wy$x7XNzCA/QKGZA+qLhb5S4Ptmd7ITVRdqSWFvWrr20Y0=', NULL, 0, 'jimena', '', '', '', 0, 1, '2021-04-26 17:24:06.232496'),
-(7, 'pbkdf2_sha256$216000$qbdfjL1J61uz$ef8YA3jitTys9uqiJvv74mKH+gap5ylKF4bq13BlRMg=', '2021-06-03 20:59:53.992943', 0, 'Jaime', '', '', 'jaime@jaime.com', 0, 1, '2021-05-23 16:51:42.237702'),
-(9, 'pbkdf2_sha256$216000$Jsg3UFkwKYFJ$m1FXD0eGWUEIB8ocr6gP6PAdrpV7LbtUJTMHlkERf68=', '2021-05-28 09:03:07.604985', 0, 'prueba', '', '', 'prueba@email.com', 0, 1, '2021-05-28 09:03:07.388894'),
-(12, 'pbkdf2_sha256$216000$KUMdg6QFTBTZ$VzZYlaNTNAdChewpUTGvG8oJUaXjoVvXzS6o/ApcyL4=', '2021-05-28 16:52:19.852533', 0, 'usuario2', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-05-28 11:59:54.213679'),
-(13, 'pbkdf2_sha256$216000$7egjDn88XRTo$lR0td3uPsW65TMnWecNBVpuM93PaGPwwvzekuAlCDnU=', '2021-06-03 19:40:17.525664', 0, 'usuario', '', '', 'subeunescalon@gmail.com', 0, 1, '2021-06-01 06:38:07.705573');
+(1, 'pbkdf2_sha256$216000$hU3rbPBVEVQ1$rOgZabR1RgwlYFNrWtGKANxrje3q3J2a5T0wrnxPsLU=', '2021-06-03 22:15:43.439886', 1, 'adminMario', '', '', '', 1, 1, '2021-06-03 22:15:21.246117'),
+(2, 'pbkdf2_sha256$216000$L3XYdsPARvq5$dE2L8xiq57cCgAa7y1GAk+mb32Fb8d0JoIqV7b59Yts=', NULL, 1, 'adminManuel', '', '', '', 1, 1, '2021-06-03 22:15:35.054090'),
+(3, 'pbkdf2_sha256$216000$4hWVpFCTUweU$jRQhsbkZlcTgHKLLVTundAnyBU4jNVbWrj6MVE/kUOA=', '2021-06-03 22:53:51.770099', 0, 'mario', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-06-03 22:19:07.590196'),
+(4, 'pbkdf2_sha256$216000$nhONhA0yVmuP$6xZeSct7FVhXbw9wkSA2TsX0JfKhHg2jvwNfZA2JT2g=', '2021-06-03 22:33:52.727181', 0, 'Jaime', '', '', 'jaime@gmail.com', 0, 1, '2021-06-03 22:33:52.520109'),
+(5, 'pbkdf2_sha256$216000$mB0dQfBjuTDw$wITEZEzEP2I+ZPIA+GMeUZwKw2S7NLtjXUtH65bhhO4=', '2021-06-03 22:36:33.635065', 0, 'pepe', '', '', 'pepe@gmail.com', 0, 1, '2021-06-03 22:36:33.452094'),
+(6, 'pbkdf2_sha256$216000$g5891KO2pBkU$cV1F5y3SvFWA+CTPPBeLDQ3Koh6UWb05y9U5Z8lSuH8=', '2021-06-03 22:41:06.494424', 0, 'Jimena', '', '', 'prueba@email.com', 0, 1, '2021-06-03 22:41:06.294400'),
+(7, 'pbkdf2_sha256$216000$0U33Mvb9RAxV$cMxJ6F2z3YCdbNudSbgD/s86xDdbf7GmEz0YIM2yvhU=', '2021-06-03 22:42:34.203377', 0, 'Manuel', '', '', 'subeunescalon@gmail.com', 0, 1, '2021-06-03 22:42:34.012388'),
+(8, 'pbkdf2_sha256$216000$li9FfmpOn5GV$C64GRdhTt+QQArAFhkG7kzeFpgZ79VySZmk8E4j0W4M=', '2021-06-03 22:44:50.415885', 0, 'Jose', '', '', 'Jose@gmail.com', 0, 1, '2021-06-03 22:44:50.204982'),
+(9, 'pbkdf2_sha256$216000$VgljCJHrcpji$7fUTzYqn8ap3JU8FdsMxuwF555ye+enedDi/gvXhU6U=', '2021-06-03 22:49:19.493641', 0, 'Vladimir', '', '', 'elvla@gmail.com', 0, 1, '2021-06-03 22:49:19.290668'),
+(10, 'pbkdf2_sha256$216000$eKcs9MnNalSk$2+jdbM1GjS/5jdukoQUhOHRN3/wxrszxDRxcTWyqQ5A=', '2021-06-03 22:50:56.564378', 0, 'usuario', '', '', 'usuario@email.com', 0, 1, '2021-06-03 22:50:56.378350');
 
 -- --------------------------------------------------------
 
@@ -568,6 +613,43 @@ CREATE TABLE `auth_user_user_permissions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `chat_canal`
+--
+
+CREATE TABLE `chat_canal` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat_canal_mensajes_conver`
+--
+
+CREATE TABLE `chat_canal_mensajes_conver` (
+  `id` int(11) NOT NULL,
+  `canal_id` int(11) NOT NULL,
+  `mensajes_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat_mensajes`
+--
+
+CREATE TABLE `chat_mensajes` (
+  `id` int(11) NOT NULL,
+  `title` varchar(300) NOT NULL,
+  `text` longtext NOT NULL,
+  `date_posted` datetime(6) NOT NULL,
+  `emisor_id` int(11) NOT NULL,
+  `receptor_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `django_admin_log`
 --
 
@@ -587,155 +669,7 @@ CREATE TABLE `django_admin_log` (
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2021-04-26 17:09:11.624720', '1', 'Rock', 1, '[{\"added\": {}}]', 8, 1),
-(2, '2021-04-26 17:09:18.845895', '2', 'Punk', 1, '[{\"added\": {}}]', 8, 1),
-(3, '2021-04-26 17:09:25.631355', '3', 'Heavy Metal', 1, '[{\"added\": {}}]', 8, 1),
-(4, '2021-04-26 17:09:29.976208', '4', 'Hard Rock', 1, '[{\"added\": {}}]', 8, 1),
-(5, '2021-04-26 17:09:34.186758', '5', 'Flamenco', 1, '[{\"added\": {}}]', 8, 1),
-(6, '2021-04-26 17:09:39.111717', '6', 'Electrónica', 1, '[{\"added\": {}}]', 8, 1),
-(7, '2021-04-26 17:09:44.365990', '7', 'Post-Punk', 1, '[{\"added\": {}}]', 8, 1),
-(8, '2021-04-26 17:09:50.600067', '8', 'Rock Alternativo', 1, '[{\"added\": {}}]', 8, 1),
-(9, '2021-04-26 17:10:02.374331', '9', 'Jazz', 1, '[{\"added\": {}}]', 8, 1),
-(10, '2021-04-26 17:10:04.710796', '10', 'Blues', 1, '[{\"added\": {}}]', 8, 1),
-(11, '2021-04-26 17:10:22.986511', '11', 'Funk', 1, '[{\"added\": {}}]', 8, 1),
-(12, '2021-04-26 17:10:26.015814', '12', 'Reggae', 1, '[{\"added\": {}}]', 8, 1),
-(13, '2021-04-26 17:10:30.598937', '13', 'Disco', 1, '[{\"added\": {}}]', 8, 1),
-(14, '2021-04-26 17:10:38.502784', '14', 'Rap', 1, '[{\"added\": {}}]', 8, 1),
-(15, '2021-04-26 17:10:41.781787', '15', 'Hip Hop', 1, '[{\"added\": {}}]', 8, 1),
-(16, '2021-04-26 17:10:46.405670', '16', 'Ska', 1, '[{\"added\": {}}]', 8, 1),
-(17, '2021-04-26 17:10:57.532853', '17', 'House', 1, '[{\"added\": {}}]', 8, 1),
-(18, '2021-04-26 17:11:01.534792', '18', 'Rhythm and blues', 1, '[{\"added\": {}}]', 8, 1),
-(19, '2021-04-26 17:11:04.383837', '19', 'Pop', 1, '[{\"added\": {}}]', 8, 1),
-(20, '2021-04-26 17:12:07.809776', '20', 'Indie', 1, '[{\"added\": {}}]', 8, 1),
-(21, '2021-04-26 17:12:32.054787', '21', 'Rock Psicodélico', 1, '[{\"added\": {}}]', 8, 1),
-(22, '2021-04-26 17:12:35.075950', '22', 'Grunge', 1, '[{\"added\": {}}]', 8, 1),
-(23, '2021-04-26 17:13:19.534327', '1', 'Particular', 1, '[{\"added\": {}}]', 12, 1),
-(24, '2021-04-26 17:13:33.230491', '2', 'Discográfica', 1, '[{\"added\": {}}]', 12, 1),
-(25, '2021-04-26 17:13:44.336415', '3', 'Prensa', 1, '[{\"added\": {}}]', 12, 1),
-(26, '2021-04-26 17:14:01.239218', '4', 'Empresa', 1, '[{\"added\": {}}]', 12, 1),
-(27, '2021-04-26 17:15:49.943915', '4', 'Salas', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 12, 1),
-(28, '2021-04-26 17:15:52.332921', '5', 'Bares', 1, '[{\"added\": {}}]', 12, 1),
-(29, '2021-04-26 17:16:01.751465', '6', 'Otros', 1, '[{\"added\": {}}]', 12, 1),
-(30, '2021-04-26 17:16:41.568223', '2', 'Mario', 1, '[{\"added\": {}}]', 4, 1),
-(31, '2021-04-26 17:18:16.654279', '1', '1', 1, '[{\"added\": {}}]', 10, 1),
-(32, '2021-04-26 17:18:38.917502', '1', '1', 1, '[{\"added\": {}}]', 7, 1),
-(33, '2021-04-26 17:20:11.435956', '1', 'Terra negra', 1, '[{\"added\": {}}]', 9, 1),
-(34, '2021-04-26 17:21:04.474866', '3', 'Pepe', 1, '[{\"added\": {}}]', 4, 1),
-(35, '2021-04-26 17:21:50.103702', '2', '2', 1, '[{\"added\": {}}]', 10, 1),
-(36, '2021-04-26 17:21:52.740659', '2', 'grupo 2', 1, '[{\"added\": {}}]', 9, 1),
-(37, '2021-04-26 17:23:29.216741', '4', 'antonio', 1, '[{\"added\": {}}]', 4, 1),
-(38, '2021-04-26 17:23:48.567811', '1', 'conciertos', 1, '[{\"added\": {}}]', 11, 1),
-(39, '2021-04-26 17:24:06.405503', '5', 'jimena', 1, '[{\"added\": {}}]', 4, 1),
-(40, '2021-04-26 17:24:41.289088', '2', 'factory', 1, '[{\"added\": {}}]', 11, 1),
-(41, '2021-05-02 16:01:10.163617', '1', 'Córdoba', 1, '[{\"added\": {}}]', 16, 1),
-(42, '2021-05-02 16:01:20.256954', '2', 'Aguilar de la Frontera', 1, '[{\"added\": {}}]', 16, 1),
-(43, '2021-05-02 16:01:27.744646', '3', 'Almodóvar del Río', 1, '[{\"added\": {}}]', 16, 1),
-(44, '2021-05-02 16:01:32.507503', '4', 'Añora', 1, '[{\"added\": {}}]', 16, 1),
-(45, '2021-05-02 16:01:37.285532', '5', 'Baena', 1, '[{\"added\": {}}]', 16, 1),
-(46, '2021-05-02 16:01:45.722661', '6', 'Cabra', 1, '[{\"added\": {}}]', 16, 1),
-(47, '2021-05-02 16:01:53.447036', '7', 'Fernán-Núñez', 1, '[{\"added\": {}}]', 16, 1),
-(48, '2021-05-02 16:01:58.764395', '8', 'Fuente Obejuna', 1, '[{\"added\": {}}]', 16, 1),
-(49, '2021-05-02 16:02:05.579585', '9', 'Hinojosa del Duque', 1, '[{\"added\": {}}]', 16, 1),
-(50, '2021-05-02 16:02:12.098960', '10', 'La Granjuela', 1, '[{\"added\": {}}]', 16, 1),
-(51, '2021-05-02 16:02:16.568785', '11', 'La Rambla', 1, '[{\"added\": {}}]', 16, 1),
-(52, '2021-05-02 16:02:22.218916', '12', 'Pozoblanco', 1, '[{\"added\": {}}]', 16, 1),
-(53, '2021-05-02 16:02:27.237812', '13', 'Peñarroya-Pueblonuevo', 1, '[{\"added\": {}}]', 16, 1),
-(54, '2021-05-02 16:02:38.600088', '14', 'Lucena', 1, '[{\"added\": {}}]', 16, 1),
-(55, '2021-05-02 16:02:44.268018', '15', 'Montalbán de Córdoba', 1, '[{\"added\": {}}]', 16, 1),
-(56, '2021-05-02 16:02:50.804674', '16', 'Montilla', 1, '[{\"added\": {}}]', 16, 1),
-(57, '2021-05-02 16:02:51.983469', '1', 'Córdoba', 1, '[{\"added\": {}}]', 15, 1),
-(58, '2021-05-03 17:21:49.162701', '2', 'Sevilla', 1, '[{\"added\": {}}]', 15, 1),
-(59, '2021-05-03 17:23:25.612516', '3', 'Albacete', 1, '[{\"added\": {}}]', 15, 1),
-(60, '2021-05-03 17:23:29.514759', '4', 'Almería', 1, '[{\"added\": {}}]', 15, 1),
-(61, '2021-05-03 17:23:35.329313', '5', 'Álava', 1, '[{\"added\": {}}]', 15, 1),
-(62, '2021-05-03 17:23:39.022319', '6', 'Alicante', 1, '[{\"added\": {}}]', 15, 1),
-(63, '2021-05-03 17:23:42.622578', '7', 'Asturias', 1, '[{\"added\": {}}]', 15, 1),
-(64, '2021-05-03 17:23:45.872635', '8', 'Ávila', 1, '[{\"added\": {}}]', 15, 1),
-(65, '2021-05-03 17:23:49.132426', '9', 'Badajoz', 1, '[{\"added\": {}}]', 15, 1),
-(66, '2021-05-03 17:23:52.797591', '10', 'Barcelona', 1, '[{\"added\": {}}]', 15, 1),
-(67, '2021-05-03 17:23:57.291286', '11', 'Burgos', 1, '[{\"added\": {}}]', 15, 1),
-(68, '2021-05-03 17:23:59.802463', '12', 'Cáceres', 1, '[{\"added\": {}}]', 15, 1),
-(69, '2021-05-03 17:24:03.032403', '13', 'Cádiz', 1, '[{\"added\": {}}]', 15, 1),
-(70, '2021-05-03 17:24:06.022665', '14', 'Cantabria', 1, '[{\"added\": {}}]', 15, 1),
-(71, '2021-05-03 17:24:09.142399', '15', 'Castellón', 1, '[{\"added\": {}}]', 15, 1),
-(72, '2021-05-03 17:24:12.219049', '16', 'Ciudad Real', 1, '[{\"added\": {}}]', 15, 1),
-(73, '2021-05-03 17:24:21.412496', '17', 'La Coruña', 1, '[{\"added\": {}}]', 15, 1),
-(74, '2021-05-03 17:24:22.722607', '18', 'Cuenca', 1, '[{\"added\": {}}]', 15, 1),
-(75, '2021-05-03 17:24:25.902309', '19', 'Gerona', 1, '[{\"added\": {}}]', 15, 1),
-(76, '2021-05-03 17:24:28.927307', '20', 'Granada', 1, '[{\"added\": {}}]', 15, 1),
-(77, '2021-05-03 17:24:32.652536', '21', 'Guadalajara', 1, '[{\"added\": {}}]', 15, 1),
-(78, '2021-05-03 17:24:37.182328', '22', 'Guipúzcoa', 1, '[{\"added\": {}}]', 15, 1),
-(79, '2021-05-03 17:24:40.622591', '23', 'Huelva', 1, '[{\"added\": {}}]', 15, 1),
-(80, '2021-05-03 17:24:43.562178', '24', 'Huesca', 1, '[{\"added\": {}}]', 15, 1),
-(81, '2021-05-03 17:24:47.132459', '25', 'Baleares', 1, '[{\"added\": {}}]', 15, 1),
-(82, '2021-05-03 17:24:52.212232', '26', 'Jaén', 1, '[{\"added\": {}}]', 15, 1),
-(83, '2021-05-03 17:24:55.602476', '27', 'León', 1, '[{\"added\": {}}]', 15, 1),
-(84, '2021-05-03 17:24:59.212215', '28', 'Lérida', 1, '[{\"added\": {}}]', 15, 1),
-(85, '2021-05-03 17:25:02.082139', '29', 'Lugo', 1, '[{\"added\": {}}]', 15, 1),
-(86, '2021-05-03 17:25:05.312599', '30', 'Madrid', 1, '[{\"added\": {}}]', 15, 1),
-(87, '2021-05-03 17:25:09.612466', '31', 'Málaga', 1, '[{\"added\": {}}]', 15, 1),
-(88, '2021-05-03 17:25:12.912411', '32', 'Murcia', 1, '[{\"added\": {}}]', 15, 1),
-(89, '2021-05-03 17:25:15.982065', '33', 'Navarra', 1, '[{\"added\": {}}]', 15, 1),
-(90, '2021-05-03 17:25:21.402339', '34', 'Orense', 1, '[{\"added\": {}}]', 15, 1),
-(91, '2021-05-03 17:25:25.192153', '35', 'Palencia', 1, '[{\"added\": {}}]', 15, 1),
-(92, '2021-05-03 17:25:30.082264', '36', 'Las Palmas', 1, '[{\"added\": {}}]', 15, 1),
-(93, '2021-05-03 17:25:34.249116', '37', 'Pontevedra', 1, '[{\"added\": {}}]', 15, 1),
-(94, '2021-05-03 17:25:38.482380', '38', 'La Rioja', 1, '[{\"added\": {}}]', 15, 1),
-(95, '2021-05-03 17:25:41.712147', '39', 'Salamanca', 1, '[{\"added\": {}}]', 15, 1),
-(96, '2021-05-03 17:25:45.052422', '40', 'Segovia', 1, '[{\"added\": {}}]', 15, 1),
-(97, '2021-05-03 17:25:47.992482', '41', 'Soria', 1, '[{\"added\": {}}]', 15, 1),
-(98, '2021-05-03 17:25:51.792555', '42', 'Tarragona', 1, '[{\"added\": {}}]', 15, 1),
-(99, '2021-05-03 17:25:54.802460', '43', 'Santa Cruz de Tenerife', 1, '[{\"added\": {}}]', 15, 1),
-(100, '2021-05-03 17:25:58.702373', '44', 'Teruel', 1, '[{\"added\": {}}]', 15, 1),
-(101, '2021-05-03 17:26:04.882258', '45', 'Toledo', 1, '[{\"added\": {}}]', 15, 1),
-(102, '2021-05-03 17:26:09.652346', '46', 'Valencia', 1, '[{\"added\": {}}]', 15, 1),
-(103, '2021-05-03 17:26:20.742282', '47', 'Valladolid', 1, '[{\"added\": {}}]', 15, 1),
-(104, '2021-05-03 17:26:26.032281', '48', 'Vizcaya', 1, '[{\"added\": {}}]', 15, 1),
-(105, '2021-05-03 17:26:30.856558', '49', 'Zamora', 1, '[{\"added\": {}}]', 15, 1),
-(106, '2021-05-03 17:26:34.972326', '50', 'Zaragoza', 1, '[{\"added\": {}}]', 15, 1),
-(107, '2021-05-03 17:26:38.372256', '51', 'Ceuta', 1, '[{\"added\": {}}]', 15, 1),
-(108, '2021-05-03 17:26:42.232255', '52', 'Melilla', 1, '[{\"added\": {}}]', 15, 1),
-(109, '2021-05-03 17:29:43.704075', '1', 'Terra negra', 2, '[]', 9, 1),
-(110, '2021-05-03 17:29:52.665243', '2', 'grupo 2', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 9, 1),
-(111, '2021-05-03 17:31:08.292883', '1', 'conciertos', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 11, 1),
-(112, '2021-05-03 17:31:16.081780', '2', 'factory', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 11, 1),
-(113, '2021-05-04 16:51:29.534783', '1', 'Terra negra', 2, '[{\"changed\": {\"fields\": [\"Avatar\"]}}]', 9, 1),
-(114, '2021-05-07 16:00:30.004880', '2', 'Mario', 2, '[{\"changed\": {\"fields\": [\"Email address\"]}}]', 4, 1),
-(115, '2021-05-15 09:37:32.033642', '1', 'Compro oro', 1, '[{\"added\": {}}]', 17, 1),
-(116, '2021-05-15 09:37:39.388178', '2', 'Compro oro', 1, '[{\"added\": {}}]', 17, 1),
-(117, '2021-05-15 09:38:03.269847', '1', 'Compro oro', 3, '', 17, 1),
-(118, '2021-05-15 09:38:24.375801', '3', 'camioneta', 1, '[{\"added\": {}}]', 17, 1),
-(119, '2021-05-15 09:38:43.317621', '4', 'nuevps', 1, '[{\"added\": {}}]', 17, 1),
-(120, '2021-05-15 09:39:08.389974', '5', 'asd', 1, '[{\"added\": {}}]', 17, 1),
-(121, '2021-05-15 09:45:22.274309', '1', 'Terra negra', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 9, 1),
-(122, '2021-05-15 09:45:29.021211', '2', 'grupo 2', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 9, 1),
-(123, '2021-05-15 09:45:35.364308', '1', 'conciertos', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 11, 1),
-(124, '2021-05-15 09:45:41.065991', '2', 'factory', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 11, 1),
-(125, '2021-05-17 17:52:47.032929', '2', '2', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 10, 1),
-(126, '2021-05-17 17:52:56.097250', '1', 'prueba', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 10, 1),
-(127, '2021-05-17 17:53:01.191777', '2', 'otro', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 10, 1),
-(128, '2021-05-17 17:53:07.433773', '1', 'asdasd', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 7, 1),
-(129, '2021-05-17 22:23:50.695214', '2', 'grupo 2', 2, '[{\"changed\": {\"fields\": [\"Avatar\"]}}]', 9, 1),
-(130, '2021-05-22 09:20:32.340259', '2', 'prueba', 1, '[{\"added\": {}}]', 7, 1),
-(131, '2021-05-22 09:21:32.877189', '2', 'Pink Floyd', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Url audios\"]}}]', 9, 1),
-(132, '2021-05-22 10:29:17.163413', '2', 'Pink Floyd', 2, '[{\"changed\": {\"fields\": [\"Url audios\"]}}]', 9, 1),
-(133, '2021-05-22 10:32:19.677838', '3', 'Another Brick In The Wall', 3, '', 7, 1),
-(134, '2021-05-22 10:32:23.005963', '4', 'Another Brick In The Wall', 3, '', 7, 1),
-(135, '2021-05-22 10:32:25.356533', '2', 'prueba', 3, '', 7, 1),
-(136, '2021-05-22 10:34:23.069453', '5', 'brick', 3, '', 7, 1),
-(137, '2021-05-22 10:36:06.862185', '6', 'Another Brick In The Wall', 3, '', 7, 1),
-(138, '2021-05-23 16:51:17.729308', '6', 'Jaime', 3, '', 4, 1),
-(139, '2021-05-25 19:28:01.310336', '1', 'asdasd', 3, '', 7, 1),
-(140, '2021-05-25 19:28:01.328007', '14', 'qwe', 3, '', 7, 1),
-(141, '2021-05-25 19:28:01.333008', '13', 'titlo1', 3, '', 7, 1),
-(142, '2021-05-27 11:06:42.021378', '8', 'eliminar', 1, '[{\"added\": {}}]', 4, 1),
-(143, '2021-05-27 11:07:16.665375', '3', 'elimionar', 1, '[{\"added\": {}}]', 11, 1),
-(144, '2021-05-28 09:14:37.447324', '4', 'sdf', 1, '[{\"added\": {}}]', 11, 1),
-(145, '2021-05-28 11:59:28.794039', '11', 'usuario2', 3, '', 4, 1),
-(146, '2021-05-28 16:59:27.856978', '2', 'Mario', 2, '[{\"changed\": {\"fields\": [\"Email address\"]}}]', 4, 1),
-(147, '2021-06-03 16:53:58.767105', '1', 'Mensaje #1', 1, '[{\"added\": {}}]', 18, 1),
-(148, '2021-06-03 16:54:26.251991', '2', 'Mensaje #2', 1, '[{\"added\": {}}]', 18, 1),
-(149, '2021-06-03 16:55:30.091892', '1', 'Conversation #1', 1, '[{\"added\": {}}]', 19, 1);
+(1, '2021-06-03 22:37:41.072241', '2', 'Comala', 1, '[{\"added\": {}}]', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -755,23 +689,22 @@ CREATE TABLE `django_content_type` (
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (7, 'accounts', 'audios'),
-(16, 'accounts', 'ciudad'),
 (8, 'accounts', 'generos'),
-(15, 'accounts', 'provincia'),
-(12, 'accounts', 'tipoojeador'),
-(9, 'accounts', 'userprofilemusicos'),
-(11, 'accounts', 'userprofileojeadores'),
-(10, 'accounts', 'videos'),
+(9, 'accounts', 'provincia'),
+(10, 'accounts', 'tipoojeador'),
+(13, 'accounts', 'userprofilemusicos'),
+(12, 'accounts', 'userprofileojeadores'),
+(11, 'accounts', 'videos'),
 (1, 'admin', 'logentry'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
-(13, 'authtoken', 'token'),
-(14, 'authtoken', 'tokenproxy'),
+(17, 'authtoken', 'token'),
+(18, 'authtoken', 'tokenproxy'),
+(16, 'chat', 'canal'),
+(15, 'chat', 'mensajes'),
 (5, 'contenttypes', 'contenttype'),
-(19, 'mensajes', 'conversation'),
-(18, 'mensajes', 'mensajes'),
-(17, 'noticias', 'noticias'),
+(14, 'noticias', 'noticias'),
 (6, 'sessions', 'session');
 
 -- --------------------------------------------------------
@@ -792,56 +725,30 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2021-04-25 11:08:45.488362'),
-(2, 'auth', '0001_initial', '2021-04-25 11:08:45.733764'),
-(3, 'accounts', '0001_initial', '2021-04-25 11:08:46.521626'),
-(4, 'accounts', '0002_auto_20210413_1239', '2021-04-25 11:08:47.034850'),
-(5, 'accounts', '0003_auto_20210413_1247', '2021-04-25 11:08:47.644201'),
-(6, 'accounts', '0004_auto_20210413_1252', '2021-04-25 11:08:48.123342'),
-(7, 'accounts', '0005_auto_20210413_1256', '2021-04-25 11:08:48.235835'),
-(8, 'accounts', '0006_auto_20210413_1305', '2021-04-25 11:08:48.784017'),
-(9, 'accounts', '0007_auto_20210413_1309', '2021-04-25 11:08:49.176635'),
-(10, 'accounts', '0008_userprofileojeadores_tipo_ojeador', '2021-04-25 11:08:49.237369'),
-(11, 'accounts', '0009_auto_20210413_1317', '2021-04-25 11:08:49.580695'),
-(12, 'accounts', '0010_auto_20210423_1926', '2021-04-25 11:08:49.634852'),
-(13, 'admin', '0001_initial', '2021-04-25 11:08:49.707383'),
-(14, 'admin', '0002_logentry_remove_auto_add', '2021-04-25 11:08:49.881895'),
-(15, 'admin', '0003_logentry_add_action_flag_choices', '2021-04-25 11:08:49.902897'),
-(16, 'contenttypes', '0002_remove_content_type_name', '2021-04-25 11:08:50.040751'),
-(17, 'auth', '0002_alter_permission_name_max_length', '2021-04-25 11:08:50.200163'),
-(18, 'auth', '0003_alter_user_email_max_length', '2021-04-25 11:08:50.233708'),
-(19, 'auth', '0004_alter_user_username_opts', '2021-04-25 11:08:50.253712'),
-(20, 'auth', '0005_alter_user_last_login_null', '2021-04-25 11:08:50.342165'),
-(21, 'auth', '0006_require_contenttypes_0002', '2021-04-25 11:08:50.349376'),
-(22, 'auth', '0007_alter_validators_add_error_messages', '2021-04-25 11:08:50.367415'),
-(23, 'auth', '0008_alter_user_username_max_length', '2021-04-25 11:08:50.402418'),
-(24, 'auth', '0009_alter_user_last_name_max_length', '2021-04-25 11:08:50.438395'),
-(25, 'auth', '0010_alter_group_name_max_length', '2021-04-25 11:08:50.473395'),
-(26, 'auth', '0011_update_proxy_permissions', '2021-04-25 11:08:50.493396'),
-(27, 'auth', '0012_alter_user_first_name_max_length', '2021-04-25 11:08:50.524399'),
-(28, 'authtoken', '0001_initial', '2021-04-25 11:08:50.588207'),
-(29, 'authtoken', '0002_auto_20160226_1747', '2021-04-25 11:08:50.841562'),
-(30, 'authtoken', '0003_tokenproxy', '2021-04-25 11:08:50.849865'),
-(31, 'sessions', '0001_initial', '2021-04-25 11:08:50.901122'),
-(32, 'accounts', '0011_auto_20210502_1754', '2021-05-02 15:54:21.312672'),
-(33, 'accounts', '0012_auto_20210502_1759', '2021-05-02 16:00:03.405043'),
-(34, 'accounts', '0013_auto_20210503_1921', '2021-05-03 17:21:24.692442'),
-(35, 'accounts', '0014_auto_20210503_1929', '2021-05-03 17:29:19.642215'),
-(36, 'accounts', '0015_auto_20210503_1930', '2021-05-03 17:30:40.608498'),
-(37, 'accounts', '0016_auto_20210504_1840', '2021-05-04 16:40:48.200664'),
-(38, 'accounts', '0017_auto_20210504_1848', '2021-05-04 16:48:34.148988'),
-(39, 'noticias', '0001_initial', '2021-05-15 09:36:04.216317'),
-(40, 'accounts', '0018_auto_20210515_1135', '2021-05-15 09:36:04.346337'),
-(41, 'accounts', '0019_auto_20210516_1454', '2021-05-16 12:54:40.307457'),
-(42, 'accounts', '0020_auto_20210517_1951', '2021-05-17 17:51:07.869696'),
-(43, 'accounts', '0021_auto_20210522_1102', '2021-05-22 09:02:15.687197'),
-(44, 'accounts', '0022_alter_userprofileojeadores_avatar', '2021-05-27 10:16:24.523702'),
-(45, 'accounts', '0023_auto_20210527_1216', '2021-05-27 10:16:24.598896'),
-(46, 'noticias', '0002_auto_20210527_1216', '2021-05-27 10:16:24.674231'),
-(47, 'mensajes', '0001_initial', '2021-05-28 17:37:14.444609'),
-(48, 'accounts', '0024_auto_20210603_1841', '2021-06-03 16:41:47.431879'),
-(49, 'mensajes', '0002_auto_20210603_1846', '2021-06-03 16:46:18.321078'),
-(50, 'accounts', '0025_auto_20210603_1846', '2021-06-03 16:46:18.946063');
+(1, 'noticias', '0001_initial', '2021-06-03 22:13:24.814747'),
+(2, 'contenttypes', '0001_initial', '2021-06-03 22:13:24.894226'),
+(3, 'auth', '0001_initial', '2021-06-03 22:13:25.153688'),
+(4, 'chat', '0001_initial', '2021-06-03 22:13:26.076322'),
+(5, 'accounts', '0001_initial', '2021-06-03 22:13:27.112778'),
+(6, 'admin', '0001_initial', '2021-06-03 22:13:29.358312'),
+(7, 'admin', '0002_logentry_remove_auto_add', '2021-06-03 22:13:29.543205'),
+(8, 'admin', '0003_logentry_add_action_flag_choices', '2021-06-03 22:13:29.568588'),
+(9, 'contenttypes', '0002_remove_content_type_name', '2021-06-03 22:13:29.675458'),
+(10, 'auth', '0002_alter_permission_name_max_length', '2021-06-03 22:13:29.789059'),
+(11, 'auth', '0003_alter_user_email_max_length', '2021-06-03 22:13:29.826053'),
+(12, 'auth', '0004_alter_user_username_opts', '2021-06-03 22:13:29.853033'),
+(13, 'auth', '0005_alter_user_last_login_null', '2021-06-03 22:13:29.937550'),
+(14, 'auth', '0006_require_contenttypes_0002', '2021-06-03 22:13:29.945346'),
+(15, 'auth', '0007_alter_validators_add_error_messages', '2021-06-03 22:13:29.968339'),
+(16, 'auth', '0008_alter_user_username_max_length', '2021-06-03 22:13:30.038845'),
+(17, 'auth', '0009_alter_user_last_name_max_length', '2021-06-03 22:13:30.073862'),
+(18, 'auth', '0010_alter_group_name_max_length', '2021-06-03 22:13:30.118888'),
+(19, 'auth', '0011_update_proxy_permissions', '2021-06-03 22:13:30.185542'),
+(20, 'auth', '0012_alter_user_first_name_max_length', '2021-06-03 22:13:30.219540'),
+(21, 'authtoken', '0001_initial', '2021-06-03 22:13:30.297431'),
+(22, 'authtoken', '0002_auto_20160226_1747', '2021-06-03 22:13:30.567906'),
+(23, 'authtoken', '0003_tokenproxy', '2021-06-03 22:13:30.577895'),
+(24, 'sessions', '0001_initial', '2021-06-03 22:13:30.634561');
 
 -- --------------------------------------------------------
 
@@ -860,35 +767,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('0rjx0hs75350cltp86rip9drcy0mqao4', '.eJxVjEEOwiAQRe_C2hBwGKAu3fcMZIBBqoYmpV0Z765NutDtf-_9lwi0rTVsnZcwZXERTpx-t0jpwW0H-U7tNss0t3WZotwVedAuxznz83q4fweVev3WA2GxWKJyoDKiQR-jP1Mi8gUSa4PGuuyIHWgwBHEAZ9gSabBsVRLvD-ebN9E:1lkrKI:kz1JFvfDzGvsUP1O8kIBxGN95Hlug_cZlXI92iPsGSI', '2021-06-06 16:51:42.435679'),
-('3s78g0toqw3197bsv5sepf5shytmd87e', 'e30:1lmb8J:mfQe-jMVMyrNLMngZN-rk2tqAxge3MS2jIvqpleDlgs', '2021-06-11 11:58:31.166294'),
-('5yemnzsyboyd8xeubq4vqsudv140u91y', '.eJxVjDsOwyAQBe9CHSHxM5Ayfc6AdlkITiKQjF1ZuXuM5CJp5828nQXY1hK2npYwE7syyS6_DCG-Uh0DPaE-Go-trsuMfCj8XDu_N0rv2-n-HRToZdQ2A4FCzBom6bR3iYy1E-WsMAoU2hujBZJQCZwEfUBJRxUVmOgz-3wBEhw5IA:1loqEQ:8sRFjP2XqJzwlegKfIAd6M79xdY685jX0ZqmHr4OeSA', '2021-06-17 16:30:06.937713'),
-('6exxzurgsf5ulqnpyv2q9kkm5pnfs8jx', '.eJxVjMsOwiAQRf-FtSG8YVy67zcQYEapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2ZkpdvrdcioPajvAe2q3zktv6zJnviv8oINPHel5Ody_g5pG_dYhkCxoUBphQOjsSgjZSW-dSQqIUFiRlTOKbL6SBo3ee6m8dBAAoLD3B8bbNtA:1lfgaf:-c6SzOOp13XoGJa5UiU-WUt3Z_4K15qcCc4r_dGxzeQ', '2021-05-23 10:23:13.751234'),
-('6mmgtn4uo0bqmw579nhsmw6q6ae3jr45', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1loqn3:cg3FC3ghJbR01uIyesRpset23FrnH06ycHeWsLkwEfM', '2021-06-17 17:05:53.400513'),
-('6rhc67itaw3m6c3l1rl7bvbwofuxvao6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbQxz:XoOIes_29LZ9n1I_PGBKh9Nuu8W5UKItjDkCRjs1itM', '2021-05-11 16:53:43.338229'),
-('9h7x5ymvghvdg2f8finw7ljcobndda56', '.eJxVjDsOwjAQBe_iGln-20tJzxmsXX9wADlSnFSIu0OkFNC-mXkvFnFbW9xGWeKU2ZlJzU6_I2F6lL6TfMd-m3ma-7pMxHeFH3Tw65zL83K4fwcNR_vWSVZbqVQH1iryploHFAKYLAVpDMaggkygQZITwirpTUEPyWUXdFLs_QEErzeK:1loYLB:0VqIPHX7LNMYIa84Vi37kMbiqLhoRbFZaUTKOzw_PIw', '2021-06-16 21:23:53.341628'),
-('9zzro8flx6snfatt65wmxci3g0q5x3z0', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ljm2Y:xETNKH4BX_ecSUoyaRSzB3VlGEFkl7X6JjlmPMyBDYE', '2021-06-03 17:00:54.642263'),
-('a5dg2o3pujxj82bqci7mit7hnu2rgmgr', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lhcF4:N1YLUUM1io4wZdKVzlxDXahB7E2NwrHkJV_EalsBkPk', '2021-05-28 18:08:54.633209'),
-('ch7pz0ogn992kcch059hxxx3hef2kzfi', '.eJxVjMsOwiAQRf-FtSG8YVy67zcQYEapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2ZkpdvrdcioPajvAe2q3zktv6zJnviv8oINPHel5Ody_g5pG_dYhkCxoUBphQOjsSgjZSW-dSQqIUFiRlTOKbL6SBo3ee6m8dBAAoLD3B8bbNtA:1lgs9J:o1jkj0GOLMUp5iaO35jIg-NVAR6wtXADfFiCf-BuhWs', '2021-05-26 16:55:53.122169'),
-('cydeqgpb747ptixsko0y6i04ygvddu1e', '.eJxVjMsOwiAQRf-FtSEwPCwu3fcbyAwMUjU0Ke3K-O_apAvd3nPOfYmI21rj1nmJUxYXYcTpdyNMD247yHdst1mmua3LRHJX5EG7HOfMz-vh_h1U7PVbMzjSxZ7Bqlz8AOS8dga0olAIGLUbDCqTMlouwehM2gZAZJO888Di_QHTwje3:1litEE:HTBDrqqNa0VF2Pc1Ak7sHHTtZsOHx9kMXOFnHxSwPz8', '2021-06-01 06:29:18.527873'),
-('d18zgv9vd9hjujidpbxcubd2i0y9z8hj', '.eJxVjEEOwiAQRe_C2pABqUxduvcMZGAGqRpISrsy3l2bdKHb_977LxVoXUpYu8xhYnVWTh1-t0jpIXUDfKd6azq1usxT1Juid9r1tbE8L7v7d1Col2-NowhiQgTJkGSIcAILxucjifHos2dmgQTJWefRCkYzRmHKbAb0qN4f7_s4SQ:1ljrRZ:uADHqbYl6XbfkLRh4Ekp1Vi3GPb7FjPDeUbwUBK-2kI', '2021-06-03 22:47:05.051647'),
-('dn5jkf5pdpwgjzpwtn4hv7ftu77lzhnt', '.eJxVjEEOwiAQAP_C2RCgSwGP3vsGsiwgVQNJaU_GvxuSHvQ6M5k383jsxR89bX6N7MqAXX5ZQHqmOkR8YL03Tq3u2xr4SPhpO19aTK_b2f4NCvYytmBsJoGzQ5A6zEqCEoqixTyRkkjWaIjJEECQQFkl63J0DoMWUk7APl_W9zeZ:1leLff:RmEaoZYl3im-Rq5ue8XPajb8lx_uv6U8hjPlfjW2lfo', '2021-05-19 17:50:51.888025'),
-('fzigdo0q50mb8e38yvsjfvh3lp2jh2as', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lf2mU:KagEXDjHdJ4h7lyxT3a9tMV_uagvO5-VFGxhZiVydI4', '2021-05-21 15:52:46.712805'),
-('g9b7tll1ptv38p49h8yy04ahydev025j', '.eJxVjMsOwiAQRf-FtSG8YVy67zcQYEapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2ZkpdvrdcioPajvAe2q3zktv6zJnviv8oINPHel5Ody_g5pG_dYhkCxoUBphQOjsSgjZSW-dSQqIUFiRlTOKbL6SBo3ee6m8dBAAoLD3B8bbNtA:1lfgNh:uTLk0Tpn8qO2Nr8bjHB4Kcmm4sYzQzAqmbNW3phjrOA', '2021-05-23 10:09:49.586752'),
-('gu2ltix0m6xcrz7kxndl3h3kptd6ia1a', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldESN:QA-dbOKxIZa2aKe3ML2FqRVYkT8ZLRo-CUotJlpCpTE', '2021-05-16 15:56:31.772282'),
-('ht0fiaizw30vg2t0fc303f7rhwjuey48', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lc9w6:3CqKlp82_JqTLF7YXakJhsYBC2s5z940lxQkXSWRpR8', '2021-05-13 16:54:46.618214'),
-('k8hr29rqh3rj2m6k7hwznxzxnt5v1fj4', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldooz:13ZEfAjSNc3YrxYMspl26yH8fLLKLhgZhU-dCqlirFs', '2021-05-18 06:46:17.818432'),
-('l77olo12oligo40pz5ekfw4hakrtowao', '.eJxVjEEOwiAQRe_C2hBwGKAu3fcMZIBBqoYmpV0Z765NutDtf-_9lwi0rTVsnZcwZXERTpx-t0jpwW0H-U7tNss0t3WZotwVedAuxznz83q4fweVev3WA2GxWKJyoDKiQR-jP1Mi8gUSa4PGuuyIHWgwBHEAZ9gSabBsVRLvD-ebN9E:1llcpI:nctZYPU0DDTJ_6OXyCV7hYx-XTiR1lH9LwzM5X5fIGs', '2021-06-08 19:34:52.350925'),
-('m7c39bi6af7zny0vzowxw5gxz8o94qv7', '.eJxVjDsOwjAQBe_iGln-20tJzxmsXX9wADlSnFSIu0OkFNC-mXkvFnFbW9xGWeKU2ZlJzU6_I2F6lL6TfMd-m3ma-7pMxHeFH3Tw65zL83K4fwcNR_vWSVZbqVQH1iryploHFAKYLAVpDMaggkygQZITwirpTUEPyWUXdFLs_QEErzeK:1loU8C:DPDEBGrOCAIuGAyacW9MJ-1PQO1e6Ho245ddZ3YJNmY', '2021-06-16 16:54:12.684122'),
-('mzr7nrwqby1lwjk1d5xh8hmuro54qtf4', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbHX7:mENho7iRxROiuSGE1UVPGDjtca0jGpdJmOD6uT3i6GM', '2021-05-11 06:49:21.821688'),
-('q2fd6q393efuzslcoce8mf7diop81x75', '.eJxVjEEOwiAQRe_C2pDCQGFcuvcMZGCoVA0kpV0Z765NutDtf-_9lwi0rSVsPS9hZnEWIE6_W6T0yHUHfKd6azK1ui5zlLsiD9rltXF-Xg7376BQL9964iE650fHbNCxRxvRgwYC9mZKGAejtQKdQBvjLaTslEILagRFhFm8P8nyNsI:1lih2D:iXksbHFSOUBIIJl4WtrBKWFa6X3kkslPounFRY4IBN0', '2021-05-31 17:28:05.987841'),
-('qqju4e5f46ti9niigfvqb8q0723gr15c', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1laces:EM6tmr8TTEZws_yoPqWlPVXLB_RsklHfXqAHY3pu5Xg', '2021-05-09 11:10:38.605605'),
-('r39cnk8r6047qn7y4kpwhkj9xlrkjop6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldb55:7Cr3teaE3DYiAHqdW8pNdRercW5tqDb9sJXU-2BBnU4', '2021-05-17 16:05:59.138059'),
-('s97hyekvn30wf05rxhuwtjr3wv2d4ef8', '.eJxVjEEOwiAQRe_C2hDpDAIu3XsGMsxQqRpISrsy3l2bdKHb_977LxVpXUpce57jJOqsvDr8bon4kesG5E711jS3usxT0puid9r1tUl-Xnb376BQL9-a3CmDBIuIXsIY_GCRyJIndsBAxnkWTME6sGMy3hjg4RjYucAICOr9Adq2Ny0:1lmDrO:BHINlL3LwJZWlk8JyxJu7Iqakw0DXsb2Rz___ZfAuFQ', '2021-06-10 11:07:30.439199'),
-('u6n1cizdm6o3joqomm4bl4xvnpmdgrvo', '.eJxVjEEOwiAQRe_C2hBwGKAu3fcMZIBBqoYmpV0Z765NutDtf-_9lwi0rTVsnZcwZXERTpx-t0jpwW0H-U7tNss0t3WZotwVedAuxznz83q4fweVev3WA2GxWKJyoDKiQR-jP1Mi8gUSa4PGuuyIHWgwBHEAZ9gSabBsVRLvD-ebN9E:1louRV:dG4fg6MIFnVh7jSKHK0QWwYZFyafTr59DYZz5EYNlRI', '2021-06-17 20:59:53.997966'),
-('uimze7bqnkx3s1o8lc6ngnv3gijf35jy', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldERH:q45cbQ6KJVlCTt5ut0zMuBySwzvet_o315ZsCfLzEb0', '2021-05-16 15:55:23.485529'),
-('vjtd84vagie7690obr3l3suxb2coibo0', '.eJxVjEEOwiAQRe_C2pDCQGFcuvcMZGCoVA0kpV0Z765NutDtf-_9lwi0rSVsPS9hZnEWIE6_W6T0yHUHfKd6azK1ui5zlLsiD9rltXF-Xg7376BQL9964iE650fHbNCxRxvRgwYC9mZKGAejtQKdQBvjLaTslEILagRFhFm8P8nyNsI:1liGb4:yhMR5HFB1iozfeluAjwiqVovpmQJGPcdPERM133kbxE', '2021-05-30 13:14:18.691614'),
-('zywo5u2i11vmoom1nsvb8xq63qpoi54i', '.eJxVjMsOwiAQRf-FtSEwPCwu3fcbyAwMUjU0Ke3K-O_apAvd3nPOfYmI21rj1nmJUxYXYcTpdyNMD247yHdst1mmua3LRHJX5EG7HOfMz-vh_h1U7PVbMzjSxZ7Bqlz8AOS8dga0olAIGLUbDCqTMlouwehM2gZAZJO888Di_QHTwje3:1llQdf:LFvu7qaghsg4utnU6SRHGMjZmrVRDp601luHO3a5u2c', '2021-06-08 06:34:03.047937');
+('kg7tzk36laaop0cfjm2yp5ysuz5rhqm7', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1lowDn:YkzVap_AfJet5kcB2UtIZy-Wqmo33rYN6EnbK5Ph4BM', '2021-06-17 22:53:51.781102'),
+('qdggs3per33sir0a7wqtky2q5c2ynw5z', '.eJxVjDsOwjAQRO_iGlleEn-Wkp4zWLv2mgSQI-VTIe6OI6WAcua9mbeKtK1D3BaZ45jVRYE6_XZM6Sl1B_lB9T7pNNV1Hlnvij7oom9Tltf1cP8OBlqGtubSpWAyI1BnvbeC2LsSCHNgNggAYpNDkeaBE_bQ9SGVMxmTsSX1-QLtKzgO:1lovct:DzYaHlfJksyy7pu_Hi0k8t741xUj_lzauxjylp4P5YQ', '2021-06-17 22:15:43.443906');
 
 -- --------------------------------------------------------
 
@@ -909,15 +789,14 @@ CREATE TABLE `noticias_noticias` (
 --
 
 INSERT INTO `noticias_noticias` (`id`, `title`, `descripcion`, `created_at`, `updated_at`) VALUES
-(2, 'Compro oro', 'Pues eso que compro oro', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
-(3, 'camioneta', 'Hemos comprado una camioneta, ah y sacamos disco\r\n            \r\n            ', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
-(4, 'nuevos', 'Somos nuevos, concretamente de 1965\r\n            ', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
-(5, 'asd', 'asdasdsad', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
-(6, 'prueba', 'Noticia de prueba del grupo pink floyd            ', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
-(8, 'asdasdsad', '            fsdfsdfsdf', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
-(9, 'sdfsdf', '            sdfsdf', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
-(11, 'prueba2', '            sadfsdf\r\n            dfds\r\n            ', '2021-05-28 09:17:24.166225', '2021-05-28 09:17:24.166225'),
-(13, 'prueba', '            descripción', '2021-06-01 06:29:16.859442', '2021-06-01 06:29:16.859442');
+(1, 'Nuevos!!', '            Somo relativamente nuevos, te invitamos a una copa', '2021-06-03 22:35:29.845370', '2021-06-03 22:35:29.845370'),
+(2, 'ven al CB', '            CBGB, ven verás que guay está', '2021-06-03 22:35:44.075211', '2021-06-03 22:35:44.075211'),
+(3, 'Noticia de comala', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:39:34.746834', '2021-06-03 22:39:34.746834'),
+(4, 'otra noticia', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:39:51.040848', '2021-06-03 22:39:51.040848'),
+(5, 'nueva discográfica', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:41:52.917375', '2021-06-03 22:41:52.917375'),
+(6, 'Buscamos músicos ', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:42:02.482594', '2021-06-03 22:42:02.482594'),
+(7, 'Grupo de rock psicodélico', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:44:18.678780', '2021-06-03 22:44:18.678780'),
+(8, 'prueba', '            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', '2021-06-03 22:46:02.442822', '2021-06-03 22:46:02.442822');
 
 --
 -- Indexes for dumped tables
@@ -954,6 +833,14 @@ ALTER TABLE `accounts_userprofilemusicos`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_id` (`user_id`),
   ADD KEY `accounts_userprofile_provincia_origen_id_6e00c15a_fk_accounts_` (`provincia_origen_id`);
+
+--
+-- Indexes for table `accounts_userprofilemusicos_canal_mensajes`
+--
+ALTER TABLE `accounts_userprofilemusicos_canal_mensajes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `accounts_userprofilemusi_userprofilemusicos_id_ca_1a475fa1_uniq` (`userprofilemusicos_id`,`canal_id`),
+  ADD KEY `accounts_userprofile_canal_id_1e991e6b_fk_chat_cana` (`canal_id`);
 
 --
 -- Indexes for table `accounts_userprofilemusicos_generos`
@@ -993,8 +880,16 @@ ALTER TABLE `accounts_userprofilemusicos_url_videos`
 ALTER TABLE `accounts_userprofileojeadores`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_id` (`user_id`),
-  ADD KEY `accounts_userprofile_tipo_ojeador_id_1471de98_fk_accounts_` (`tipo_ojeador_id`),
-  ADD KEY `accounts_userprofile_provincia_origen_id_4f557861_fk_accounts_` (`provincia_origen_id`);
+  ADD KEY `accounts_userprofile_provincia_origen_id_4f557861_fk_accounts_` (`provincia_origen_id`),
+  ADD KEY `accounts_userprofile_tipo_ojeador_id_1471de98_fk_accounts_` (`tipo_ojeador_id`);
+
+--
+-- Indexes for table `accounts_userprofileojeadores_canal_mensajes`
+--
+ALTER TABLE `accounts_userprofileojeadores_canal_mensajes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `accounts_userprofileojea_userprofileojeadores_id__cf1238b2_uniq` (`userprofileojeadores_id`,`canal_id`),
+  ADD KEY `accounts_userprofile_canal_id_bb27c251_fk_chat_cana` (`canal_id`);
 
 --
 -- Indexes for table `accounts_userprofileojeadores_generos`
@@ -1071,6 +966,28 @@ ALTER TABLE `auth_user_user_permissions`
   ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
 
 --
+-- Indexes for table `chat_canal`
+--
+ALTER TABLE `chat_canal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `chat_canal_mensajes_conver`
+--
+ALTER TABLE `chat_canal_mensajes_conver`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `chat_canal_mensajes_conver_canal_id_mensajes_id_15129d7f_uniq` (`canal_id`,`mensajes_id`),
+  ADD KEY `chat_canal_mensajes__mensajes_id_8b83330f_fk_chat_mens` (`mensajes_id`);
+
+--
+-- Indexes for table `chat_mensajes`
+--
+ALTER TABLE `chat_mensajes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `chat_mensajes_emisor_id_9d9d7959_fk_auth_user_id` (`emisor_id`),
+  ADD KEY `chat_mensajes_receptor_id_5789791a_fk_auth_user_id` (`receptor_id`);
+
+--
 -- Indexes for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -1112,7 +1029,7 @@ ALTER TABLE `noticias_noticias`
 -- AUTO_INCREMENT for table `accounts_audios`
 --
 ALTER TABLE `accounts_audios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `accounts_generos`
@@ -1136,31 +1053,37 @@ ALTER TABLE `accounts_tipoojeador`
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos`
 --
 ALTER TABLE `accounts_userprofilemusicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `accounts_userprofilemusicos_canal_mensajes`
+--
+ALTER TABLE `accounts_userprofilemusicos_canal_mensajes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_generos`
 --
 ALTER TABLE `accounts_userprofilemusicos_generos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_noticias`
 --
 ALTER TABLE `accounts_userprofilemusicos_noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_url_audios`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_audios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_url_videos`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofileojeadores`
@@ -1169,10 +1092,16 @@ ALTER TABLE `accounts_userprofileojeadores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `accounts_userprofileojeadores_canal_mensajes`
+--
+ALTER TABLE `accounts_userprofileojeadores_canal_mensajes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `accounts_userprofileojeadores_generos`
 --
 ALTER TABLE `accounts_userprofileojeadores_generos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofileojeadores_noticias`
@@ -1184,7 +1113,7 @@ ALTER TABLE `accounts_userprofileojeadores_noticias`
 -- AUTO_INCREMENT for table `accounts_videos`
 --
 ALTER TABLE `accounts_videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `auth_group`
@@ -1202,13 +1131,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -1223,28 +1152,46 @@ ALTER TABLE `auth_user_user_permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `chat_canal`
+--
+ALTER TABLE `chat_canal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `chat_canal_mensajes_conver`
+--
+ALTER TABLE `chat_canal_mensajes_conver`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `chat_mensajes`
+--
+ALTER TABLE `chat_mensajes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `noticias_noticias`
 --
 ALTER TABLE `noticias_noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -1256,6 +1203,13 @@ ALTER TABLE `noticias_noticias`
 ALTER TABLE `accounts_userprofilemusicos`
   ADD CONSTRAINT `accounts_userprofile_provincia_origen_id_6e00c15a_fk_accounts_` FOREIGN KEY (`provincia_origen_id`) REFERENCES `accounts_provincia` (`id`),
   ADD CONSTRAINT `accounts_userprofilemusicos_user_id_aba2a5a6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `accounts_userprofilemusicos_canal_mensajes`
+--
+ALTER TABLE `accounts_userprofilemusicos_canal_mensajes`
+  ADD CONSTRAINT `accounts_userprofile_canal_id_1e991e6b_fk_chat_cana` FOREIGN KEY (`canal_id`) REFERENCES `chat_canal` (`id`),
+  ADD CONSTRAINT `accounts_userprofile_userprofilemusicos_i_1287e1af_fk_accounts_` FOREIGN KEY (`userprofilemusicos_id`) REFERENCES `accounts_userprofilemusicos` (`id`);
 
 --
 -- Constraints for table `accounts_userprofilemusicos_generos`
@@ -1292,6 +1246,13 @@ ALTER TABLE `accounts_userprofileojeadores`
   ADD CONSTRAINT `accounts_userprofile_provincia_origen_id_4f557861_fk_accounts_` FOREIGN KEY (`provincia_origen_id`) REFERENCES `accounts_provincia` (`id`),
   ADD CONSTRAINT `accounts_userprofile_tipo_ojeador_id_1471de98_fk_accounts_` FOREIGN KEY (`tipo_ojeador_id`) REFERENCES `accounts_tipoojeador` (`id`),
   ADD CONSTRAINT `accounts_userprofileojeadores_user_id_fea11f90_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `accounts_userprofileojeadores_canal_mensajes`
+--
+ALTER TABLE `accounts_userprofileojeadores_canal_mensajes`
+  ADD CONSTRAINT `accounts_userprofile_canal_id_bb27c251_fk_chat_cana` FOREIGN KEY (`canal_id`) REFERENCES `chat_canal` (`id`),
+  ADD CONSTRAINT `accounts_userprofile_userprofileojeadores_e73083f3_fk_accounts_` FOREIGN KEY (`userprofileojeadores_id`) REFERENCES `accounts_userprofileojeadores` (`id`);
 
 --
 -- Constraints for table `accounts_userprofileojeadores_generos`
@@ -1339,6 +1300,20 @@ ALTER TABLE `auth_user_groups`
 ALTER TABLE `auth_user_user_permissions`
   ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `chat_canal_mensajes_conver`
+--
+ALTER TABLE `chat_canal_mensajes_conver`
+  ADD CONSTRAINT `chat_canal_mensajes__mensajes_id_8b83330f_fk_chat_mens` FOREIGN KEY (`mensajes_id`) REFERENCES `chat_mensajes` (`id`),
+  ADD CONSTRAINT `chat_canal_mensajes_conver_canal_id_3bb988dd_fk_chat_canal_id` FOREIGN KEY (`canal_id`) REFERENCES `chat_canal` (`id`);
+
+--
+-- Constraints for table `chat_mensajes`
+--
+ALTER TABLE `chat_mensajes`
+  ADD CONSTRAINT `chat_mensajes_emisor_id_9d9d7959_fk_auth_user_id` FOREIGN KEY (`emisor_id`) REFERENCES `auth_user` (`id`),
+  ADD CONSTRAINT `chat_mensajes_receptor_id_5789791a_fk_auth_user_id` FOREIGN KEY (`receptor_id`) REFERENCES `auth_user` (`id`);
 
 --
 -- Constraints for table `django_admin_log`

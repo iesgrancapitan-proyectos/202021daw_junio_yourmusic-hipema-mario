@@ -43,7 +43,7 @@ def index_ojeador(request):
 
     ojeador = ojeador.all()
 
-    paginator = Paginator(ojeador, 5)
+    paginator = Paginator(ojeador, 3)
 
     page_number = request.GET.get('page')
     ojeador_page = paginator.get_page(page_number)

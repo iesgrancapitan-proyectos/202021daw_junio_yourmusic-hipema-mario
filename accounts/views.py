@@ -292,7 +292,7 @@ def info_data(request, tipo, pk=None, code=None):
 
                     return redirect('account:info_data', tipo)
 
-            except print(0):
+            except Exception:
                 print("Da error")
                 return redirect('account:info_data', tipo)
     if(codePk == 1):
@@ -304,7 +304,7 @@ def info_data(request, tipo, pk=None, code=None):
 
                 return redirect('account:info_data', tipo)
 
-            except print(0):
+            except Exception:
                 return redirect('account:info_data', tipo)
 
     if request.method == 'POST':
@@ -393,18 +393,22 @@ def info_data(request, tipo, pk=None, code=None):
             insert = Audios.objects.create(title=titulo, url_audio=archivo)
             userprofile.url_audios.add(insert)
 
+
             # return render(request, 'info_data.html', {'usuario': userprofile, 'tipo': tipo, 'form': form, 'generos': generos, 'genero_id': genero_id, 'tipos': tipos, 'tip': tip_user, 'videos': videos, 'audios': audios})
             # return HttpResponseRedirect(reverse('index'))
             '''  else:
                     messages.error(request, "Error al procesar el formulario")
-             '''
+            '''
             print("audio")
+            return redirect("account:profile")
 
         if(videosData):
             vi = Videos.objects.create(
                 title=request.POST['titVideo'], url_video=request.POST['enlVideo'])
             userprofile.url_videos.add(vi)
             print("video")
+            return redirect("account:profile")
+
 
         if(ojData):
             tip_user = TipoOjeador.objects.get(id=request.POST['tipos'])

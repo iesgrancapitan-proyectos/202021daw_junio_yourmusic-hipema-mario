@@ -1,3 +1,4 @@
+from chat.models import Canal
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
@@ -88,6 +89,7 @@ class UserProfileMusicos(models.Model):
     url_audios=models.ManyToManyField(Audios,blank=True,null=True)
     url_videos=models.ManyToManyField(Videos,blank=True,null=True)
     noticias=models.ManyToManyField(Noticias,blank=True,null=True)
+    canal_mensajes=models.ManyToManyField(Canal,blank=True,null=True)
     
     def __str__(self) :
         return self.nombre_profile   
@@ -107,6 +109,7 @@ class UserProfileOjeadores(models.Model):
     email_profile=models.CharField(max_length=50,blank=True,null=True)
     tipo_ojeador=models.ForeignKey(TipoOjeador,on_delete=models.CASCADE)
     noticias=models.ManyToManyField(Noticias,blank=True,null=True)
+    canal_mensajes=models.ManyToManyField(Canal,blank=True,null=True)
 
     def __str__(self) :
         return self.nombre_profile

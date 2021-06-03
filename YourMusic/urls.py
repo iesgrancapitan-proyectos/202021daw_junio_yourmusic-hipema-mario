@@ -23,7 +23,7 @@ urlpatterns = [
     path('ojeador/', include('ojeador.urls')),
     path('foro/', include('foro.urls')),
     path('accounts/', include('accounts.urls')),
-    path('menssage/', include('mensajes.urls')),
+    path('chat/', include('chat.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('grupos.urls')),
 
