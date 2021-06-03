@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 valid = false;
             }
         }
-        /* TODO: Al darle al enviar no realiza el evento subit y salta un error, 
+        /* TODO: Al darle al enviar no realiza el evento submit y salta un error, 
         a ver si sabes por que puede ser */
         if (currentTab == (x.length - 1)) {
             let patron_email = /^\w+([.-]?\w)*[@]\w+([.-]?\w)*[.]\w{2,4}$/;

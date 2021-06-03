@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: db
--- Tiempo de generación: 25-05-2021 a las 05:59:20
--- Versión del servidor: 8.0.24
--- Versión de PHP: 7.4.11
+-- Host: 127.0.0.1
+-- Generation Time: Jun 03, 2021 at 11:19 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,43 +18,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `yourmusic`
+-- Database: `yourmusic`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_audios`
+-- Table structure for table `accounts_audios`
 --
 
 CREATE TABLE `accounts_audios` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `url_audio` varchar(100) DEFAULT NULL,
-  `title` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `accounts_audios`
---
-
-INSERT INTO `accounts_audios` (`id`, `url_audio`, `title`) VALUES
-(1, 'https://open.spotify.com/track/5VTorjtA6UeIWCD4kADTeS?si=vQ2aoiyeQFmYXPPNP4pd4Q', 'La fábrica'),
-(2, 'user/song/extreme-shot-1.mp3', 'Extreme Shot'),
-(3, 'user/song/extreme-shot-1_aHp7BFB.mp3', 'Extreme Shot');
+  `title` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_generos`
+-- Table structure for table `accounts_generos`
 --
 
 CREATE TABLE `accounts_generos` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `title` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_generos`
+-- Dumping data for table `accounts_generos`
 --
 
 INSERT INTO `accounts_generos` (`id`, `title`) VALUES
@@ -84,16 +75,16 @@ INSERT INTO `accounts_generos` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_provincia`
+-- Table structure for table `accounts_provincia`
 --
 
 CREATE TABLE `accounts_provincia` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `title` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_provincia`
+-- Dumping data for table `accounts_provincia`
 --
 
 INSERT INTO `accounts_provincia` (`id`, `title`) VALUES
@@ -153,16 +144,16 @@ INSERT INTO `accounts_provincia` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_tipoojeador`
+-- Table structure for table `accounts_tipoojeador`
 --
 
 CREATE TABLE `accounts_tipoojeador` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `title` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_tipoojeador`
+-- Dumping data for table `accounts_tipoojeador`
 --
 
 INSERT INTO `accounts_tipoojeador` (`id`, `title`) VALUES
@@ -176,11 +167,11 @@ INSERT INTO `accounts_tipoojeador` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofilemusicos`
+-- Table structure for table `accounts_userprofilemusicos`
 --
 
 CREATE TABLE `accounts_userprofilemusicos` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `nombre_profile` varchar(255) NOT NULL,
   `avatar` varchar(100) DEFAULT NULL,
   `descripcion` longtext NOT NULL,
@@ -189,103 +180,111 @@ CREATE TABLE `accounts_userprofilemusicos` (
   `facebook` varchar(300) DEFAULT NULL,
   `web` varchar(300) DEFAULT NULL,
   `email_profile` varchar(50) DEFAULT NULL,
-  `user_id` int NOT NULL,
-  `provincia_origen_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int(11) NOT NULL,
+  `provincia_origen_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_userprofilemusicos`
+-- Dumping data for table `accounts_userprofilemusicos`
 --
 
 INSERT INTO `accounts_userprofilemusicos` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `user_id`, `provincia_origen_id`) VALUES
-(1, 'Terra negra', 'user/img/0011567717_10.jpg', 'Este grupo es de Peñarroya y realiza una música influenciada por el Hard Rock y Grunge. Empezaron a funcionar en el año 2018  y desde entonces no han parado de dar conciertos.', NULL, NULL, 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 2, 1),
-(2, 'grupo 2', '', 'Grupo 2 de prueba pass: grupo2pepe', NULL, NULL, NULL, NULL, NULL, 3, 5);
+(1, 'Terra negra', 'user/img/folder.jpg', 'Grupo de peñarroya pueblonuevo', NULL, NULL, 'https://www.facebook.com/Terranegraband', NULL, 'terranegraband@gmail.com', 2, 1),
+(2, 'Pink Floyd', 'user/img/3.jpg', '                                                   Pink Floyd grupo de Londres de 1965, contraseña usuario\r\n            \r\n            \r\n            ', 'twitter', 'https://www.instagram.com/kakumei_99/', 'https://www.facebook.com/pinkfloyd', 'www.pf.com', 'pinkfloyd@mail.com', 3, 5),
+(3, 'comala', 'user/img/tit_phixr.jpg', 'Grupo de rock alternativo con influencias de Joy Division, Shame,IDLES,Fontaines D.C,The Cure y The Smiths', NULL, NULL, NULL, NULL, 'comala@gmail.com', 13, 5);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofilemusicos_generos`
+-- Table structure for table `accounts_userprofilemusicos_generos`
 --
 
 CREATE TABLE `accounts_userprofilemusicos_generos` (
-  `id` int NOT NULL,
-  `userprofilemusicos_id` int NOT NULL,
-  `generos_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `userprofilemusicos_id` int(11) NOT NULL,
+  `generos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_userprofilemusicos_generos`
+-- Dumping data for table `accounts_userprofilemusicos_generos`
 --
 
 INSERT INTO `accounts_userprofilemusicos_generos` (`id`, `userprofilemusicos_id`, `generos_id`) VALUES
-(11, 1, 4),
-(10, 1, 22),
-(3, 2, 5);
+(1, 1, 4),
+(2, 1, 22),
+(97, 2, 1),
+(98, 2, 8),
+(96, 2, 18),
+(99, 2, 21),
+(105, 3, 2),
+(104, 3, 7),
+(106, 3, 8),
+(107, 3, 21);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofilemusicos_noticias`
+-- Table structure for table `accounts_userprofilemusicos_noticias`
 --
 
 CREATE TABLE `accounts_userprofilemusicos_noticias` (
-  `id` int NOT NULL,
-  `userprofilemusicos_id` int NOT NULL,
-  `noticias_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `userprofilemusicos_id` int(11) NOT NULL,
+  `noticias_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts_userprofilemusicos_noticias`
+--
+
+INSERT INTO `accounts_userprofilemusicos_noticias` (`id`, `userprofilemusicos_id`, `noticias_id`) VALUES
+(1, 1, 3),
+(8, 1, 13),
+(2, 2, 4),
+(3, 2, 6),
+(5, 2, 8),
+(6, 2, 9);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofilemusicos_url_audios`
+-- Table structure for table `accounts_userprofilemusicos_url_audios`
 --
 
 CREATE TABLE `accounts_userprofilemusicos_url_audios` (
-  `id` int NOT NULL,
-  `userprofilemusicos_id` int NOT NULL,
-  `audios_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `accounts_userprofilemusicos_url_audios`
---
-
-INSERT INTO `accounts_userprofilemusicos_url_audios` (`id`, `userprofilemusicos_id`, `audios_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3);
+  `id` int(11) NOT NULL,
+  `userprofilemusicos_id` int(11) NOT NULL,
+  `audios_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofilemusicos_url_videos`
+-- Table structure for table `accounts_userprofilemusicos_url_videos`
 --
 
 CREATE TABLE `accounts_userprofilemusicos_url_videos` (
-  `id` int NOT NULL,
-  `userprofilemusicos_id` int NOT NULL,
-  `videos_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `userprofilemusicos_id` int(11) NOT NULL,
+  `videos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_userprofilemusicos_url_videos`
+-- Dumping data for table `accounts_userprofilemusicos_url_videos`
 --
 
 INSERT INTO `accounts_userprofilemusicos_url_videos` (`id`, `userprofilemusicos_id`, `videos_id`) VALUES
-(3, 1, 3),
-(4, 1, 4),
-(5, 1, 5),
-(6, 1, 6),
-(2, 2, 2);
+(1, 1, 1),
+(3, 2, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofileojeadores`
+-- Table structure for table `accounts_userprofileojeadores`
 --
 
 CREATE TABLE `accounts_userprofileojeadores` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `nombre_profile` varchar(255) NOT NULL,
   `avatar` varchar(100) DEFAULT NULL,
   `descripcion` longtext NOT NULL,
@@ -294,126 +293,139 @@ CREATE TABLE `accounts_userprofileojeadores` (
   `facebook` varchar(300) DEFAULT NULL,
   `web` varchar(300) DEFAULT NULL,
   `email_profile` varchar(50) DEFAULT NULL,
-  `user_id` int NOT NULL,
-  `tipo_ojeador_id` int NOT NULL,
-  `provincia_origen_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int(11) NOT NULL,
+  `tipo_ojeador_id` int(11) NOT NULL,
+  `provincia_origen_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_userprofileojeadores`
+-- Dumping data for table `accounts_userprofileojeadores`
 --
 
 INSERT INTO `accounts_userprofileojeadores` (`id`, `nombre_profile`, `avatar`, `descripcion`, `twitter`, `instagram`, `facebook`, `web`, `email_profile`, `user_id`, `tipo_ojeador_id`, `provincia_origen_id`) VALUES
-(1, 'conciertos', '', 'Bar con música en directo', NULL, NULL, NULL, NULL, 'conciertos@conciertos.com', 4, 4, 13),
-(2, 'factory', '', 'factory records', NULL, NULL, NULL, 'https://factoryrecords.org/', NULL, 5, 2, 8);
+(1, 'CBGB', 'user/img/CBGB-entrance-bw-2016-billboard-1548.jpg', '                                                                                                                                                                                                                                                              Bar con música en directo, ramones, talking head y television entre otros, son los que se han dado a conocer\r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            ', NULL, NULL, NULL, NULL, 'conciertos@conciertos.com', 4, 6, 13),
+(2, 'factory', '', 'factory records', NULL, NULL, NULL, 'https://factoryrecords.org/', NULL, 5, 2, 8),
+(5, 'La Ser', 'user/img/cool-nirvana-wallpaper-1920x108-WTG30810936.jpg', '', NULL, NULL, NULL, NULL, 'laser@gmail.com', 7, 3, 47);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofileojeadores_generos`
+-- Table structure for table `accounts_userprofileojeadores_generos`
 --
 
 CREATE TABLE `accounts_userprofileojeadores_generos` (
-  `id` int NOT NULL,
-  `userprofileojeadores_id` int NOT NULL,
-  `generos_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `userprofileojeadores_id` int(11) NOT NULL,
+  `generos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_userprofileojeadores_generos`
+-- Dumping data for table `accounts_userprofileojeadores_generos`
 --
 
 INSERT INTO `accounts_userprofileojeadores_generos` (`id`, `userprofileojeadores_id`, `generos_id`) VALUES
-(1, 1, 9),
-(2, 1, 10),
+(40, 1, 2),
+(39, 1, 7),
+(41, 1, 8),
+(42, 1, 21),
 (4, 2, 7),
-(3, 2, 8);
+(3, 2, 8),
+(49, 5, 1),
+(47, 5, 4),
+(45, 5, 10),
+(46, 5, 11),
+(48, 5, 19);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_userprofileojeadores_noticias`
+-- Table structure for table `accounts_userprofileojeadores_noticias`
 --
 
 CREATE TABLE `accounts_userprofileojeadores_noticias` (
-  `id` int NOT NULL,
-  `userprofileojeadores_id` int NOT NULL,
-  `noticias_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `userprofileojeadores_id` int(11) NOT NULL,
+  `noticias_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts_userprofileojeadores_noticias`
+--
+
+INSERT INTO `accounts_userprofileojeadores_noticias` (`id`, `userprofileojeadores_id`, `noticias_id`) VALUES
+(1, 1, 2),
+(2, 2, 5);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts_videos`
+-- Table structure for table `accounts_videos`
 --
 
 CREATE TABLE `accounts_videos` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `url_video` varchar(500) NOT NULL,
-  `title` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts_videos`
+-- Dumping data for table `accounts_videos`
 --
 
 INSERT INTO `accounts_videos` (`id`, `url_video`, `title`) VALUES
-(2, 'uGrb-6Vb9Bw', '1'),
-(3, 'amK7McaUp7Y', 'La Fábrica'),
-(4, 'iLsjny61nfg', 'Juanmi con Alaska'),
-(5, '3zrGjc0UEgU', 'Oliver y Benji'),
-(6, 'mB7qorTexqg', 'Dartacan');
+(1, 'https://www.youtube.com/watch?v=amK7McaUp7Y', 'prueba'),
+(3, 'https://youtu.be/YR5ApYxkU-U', 'Another Brick In The Wall');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `authtoken_token`
+-- Table structure for table `authtoken_token`
 --
 
 CREATE TABLE `authtoken_token` (
   `key` varchar(40) NOT NULL,
   `created` datetime(6) NOT NULL,
-  `user_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auth_group`
+-- Table structure for table `auth_group`
 --
 
 CREATE TABLE `auth_group` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auth_group_permissions`
+-- Table structure for table `auth_group_permissions`
 --
 
 CREATE TABLE `auth_group_permissions` (
-  `id` int NOT NULL,
-  `group_id` int NOT NULL,
-  `permission_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auth_permission`
+-- Table structure for table `auth_permission`
 --
 
 CREATE TABLE `auth_permission` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `content_type_id` int NOT NULL,
+  `content_type_id` int(11) NOT NULL,
   `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `auth_permission`
+-- Dumping data for table `auth_permission`
 --
 
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
@@ -484,16 +496,24 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (65, 'Can add noticias', 17, 'add_noticias'),
 (66, 'Can change noticias', 17, 'change_noticias'),
 (67, 'Can delete noticias', 17, 'delete_noticias'),
-(68, 'Can view noticias', 17, 'view_noticias');
+(68, 'Can view noticias', 17, 'view_noticias'),
+(69, 'Can add mensajes', 18, 'add_mensajes'),
+(70, 'Can change mensajes', 18, 'change_mensajes'),
+(71, 'Can delete mensajes', 18, 'delete_mensajes'),
+(72, 'Can view mensajes', 18, 'view_mensajes'),
+(73, 'Can add conversation', 19, 'add_conversation'),
+(74, 'Can change conversation', 19, 'change_conversation'),
+(75, 'Can delete conversation', 19, 'delete_conversation'),
+(76, 'Can view conversation', 19, 'view_conversation');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auth_user`
+-- Table structure for table `auth_user`
 --
 
 CREATE TABLE `auth_user` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `password` varchar(128) NOT NULL,
   `last_login` datetime(6) DEFAULT NULL,
   `is_superuser` tinyint(1) NOT NULL,
@@ -504,62 +524,66 @@ CREATE TABLE `auth_user` (
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `auth_user`
+-- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$9lgeEIehvD5c$kFoCOAv1zOZwJ875s1wpKBlzDfcrwkVo9PFy4Ih+TYk=', '2021-05-03 16:05:59.128053', 1, 'admin', '', '', '', 1, 1, '2021-04-25 11:09:15.487339'),
-(2, 'pbkdf2_sha256$260000$0jWiUZqIoypiNwdF4A6Ftl$2BcCk31Xf/gQ/UR5O7eIFqwUhpEndle6UV78LxAb8fE=', '2021-05-25 05:40:34.835237', 0, 'Mario', '', '', '', 0, 1, '2021-04-26 17:16:41.397201'),
-(3, 'pbkdf2_sha256$216000$pvfrsQVIfxmP$ZNjgQjSqUhXsr5pvNbLVXUHiS0A89eXnPY3d00758zE=', NULL, 0, 'Pepe', '', '', '', 0, 1, '2021-04-26 17:21:04.266866'),
-(4, 'pbkdf2_sha256$216000$AbDHSlmeFnmM$RyoqFIkE6KW3HnR2otH4XJNsiBR4Js6HmwB1Pt4Phgc=', NULL, 0, 'antonio', '', '', '', 0, 1, '2021-04-26 17:23:29.043743'),
-(5, 'pbkdf2_sha256$216000$UouehGrLU3wy$x7XNzCA/QKGZA+qLhb5S4Ptmd7ITVRdqSWFvWrr20Y0=', NULL, 0, 'jimena', '', '', '', 0, 1, '2021-04-26 17:24:06.232496');
+(1, 'pbkdf2_sha256$216000$9lgeEIehvD5c$kFoCOAv1zOZwJ875s1wpKBlzDfcrwkVo9PFy4Ih+TYk=', '2021-06-03 17:05:53.396441', 1, 'admin', '', '', '', 1, 1, '2021-04-25 11:09:15.487339'),
+(2, 'pbkdf2_sha256$216000$F1btmCeYwl9t$uDEqGYLHUYCSZ/uyh9SPbXEKrMn4Q6HTK6vAhXJfL5U=', '2021-06-03 18:01:44.118419', 0, 'Mario', '', '', 'osunamario26@gmail.com', 0, 1, '2021-04-26 17:16:41.000000'),
+(3, 'pbkdf2_sha256$216000$mujrLT7REf6l$Q+13EHWPPbIoJJYKARtuEp7E7WuFYRPlkdQGr9xRgUE=', '2021-05-27 08:35:09.300063', 0, 'Pepe', '', '', 'pepe@gmail.com', 0, 1, '2021-04-26 17:21:04.266866'),
+(4, 'pbkdf2_sha256$216000$DQRiKzBps8NB$I00nypGhU3hEPRv7Ejc3sRSNg0Oc6fMC2L10CKN3SH4=', '2021-05-22 11:06:22.058623', 0, 'antonio', '', '', 'antonio@mail.com', 0, 1, '2021-04-26 17:23:29.043743'),
+(5, 'pbkdf2_sha256$216000$UouehGrLU3wy$x7XNzCA/QKGZA+qLhb5S4Ptmd7ITVRdqSWFvWrr20Y0=', NULL, 0, 'jimena', '', '', '', 0, 1, '2021-04-26 17:24:06.232496'),
+(7, 'pbkdf2_sha256$216000$qbdfjL1J61uz$ef8YA3jitTys9uqiJvv74mKH+gap5ylKF4bq13BlRMg=', '2021-06-03 20:59:53.992943', 0, 'Jaime', '', '', 'jaime@jaime.com', 0, 1, '2021-05-23 16:51:42.237702'),
+(9, 'pbkdf2_sha256$216000$Jsg3UFkwKYFJ$m1FXD0eGWUEIB8ocr6gP6PAdrpV7LbtUJTMHlkERf68=', '2021-05-28 09:03:07.604985', 0, 'prueba', '', '', 'prueba@email.com', 0, 1, '2021-05-28 09:03:07.388894'),
+(12, 'pbkdf2_sha256$216000$KUMdg6QFTBTZ$VzZYlaNTNAdChewpUTGvG8oJUaXjoVvXzS6o/ApcyL4=', '2021-05-28 16:52:19.852533', 0, 'usuario2', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-05-28 11:59:54.213679'),
+(13, 'pbkdf2_sha256$216000$7egjDn88XRTo$lR0td3uPsW65TMnWecNBVpuM93PaGPwwvzekuAlCDnU=', '2021-06-03 19:40:17.525664', 0, 'usuario', '', '', 'subeunescalon@gmail.com', 0, 1, '2021-06-01 06:38:07.705573');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auth_user_groups`
+-- Table structure for table `auth_user_groups`
 --
 
 CREATE TABLE `auth_user_groups` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `group_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auth_user_user_permissions`
+-- Table structure for table `auth_user_user_permissions`
 --
 
 CREATE TABLE `auth_user_user_permissions` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `permission_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `django_admin_log`
+-- Table structure for table `django_admin_log`
 --
 
 CREATE TABLE `django_admin_log` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `action_time` datetime(6) NOT NULL,
-  `object_id` longtext,
+  `object_id` longtext DEFAULT NULL,
   `object_repr` varchar(200) NOT NULL,
-  `action_flag` smallint UNSIGNED NOT NULL,
+  `action_flag` smallint(5) UNSIGNED NOT NULL CHECK (`action_flag` >= 0),
   `change_message` longtext NOT NULL,
-  `content_type_id` int DEFAULT NULL,
-  `user_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `django_admin_log`
+-- Dumping data for table `django_admin_log`
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
@@ -674,22 +698,59 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (109, '2021-05-03 17:29:43.704075', '1', 'Terra negra', 2, '[]', 9, 1),
 (110, '2021-05-03 17:29:52.665243', '2', 'grupo 2', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 9, 1),
 (111, '2021-05-03 17:31:08.292883', '1', 'conciertos', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 11, 1),
-(112, '2021-05-03 17:31:16.081780', '2', 'factory', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 11, 1);
+(112, '2021-05-03 17:31:16.081780', '2', 'factory', 2, '[{\"changed\": {\"fields\": [\"Provincia origen\"]}}]', 11, 1),
+(113, '2021-05-04 16:51:29.534783', '1', 'Terra negra', 2, '[{\"changed\": {\"fields\": [\"Avatar\"]}}]', 9, 1),
+(114, '2021-05-07 16:00:30.004880', '2', 'Mario', 2, '[{\"changed\": {\"fields\": [\"Email address\"]}}]', 4, 1),
+(115, '2021-05-15 09:37:32.033642', '1', 'Compro oro', 1, '[{\"added\": {}}]', 17, 1),
+(116, '2021-05-15 09:37:39.388178', '2', 'Compro oro', 1, '[{\"added\": {}}]', 17, 1),
+(117, '2021-05-15 09:38:03.269847', '1', 'Compro oro', 3, '', 17, 1),
+(118, '2021-05-15 09:38:24.375801', '3', 'camioneta', 1, '[{\"added\": {}}]', 17, 1),
+(119, '2021-05-15 09:38:43.317621', '4', 'nuevps', 1, '[{\"added\": {}}]', 17, 1),
+(120, '2021-05-15 09:39:08.389974', '5', 'asd', 1, '[{\"added\": {}}]', 17, 1),
+(121, '2021-05-15 09:45:22.274309', '1', 'Terra negra', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 9, 1),
+(122, '2021-05-15 09:45:29.021211', '2', 'grupo 2', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 9, 1),
+(123, '2021-05-15 09:45:35.364308', '1', 'conciertos', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 11, 1),
+(124, '2021-05-15 09:45:41.065991', '2', 'factory', 2, '[{\"changed\": {\"fields\": [\"Noticias\"]}}]', 11, 1),
+(125, '2021-05-17 17:52:47.032929', '2', '2', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 10, 1),
+(126, '2021-05-17 17:52:56.097250', '1', 'prueba', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 10, 1),
+(127, '2021-05-17 17:53:01.191777', '2', 'otro', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 10, 1),
+(128, '2021-05-17 17:53:07.433773', '1', 'asdasd', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 7, 1),
+(129, '2021-05-17 22:23:50.695214', '2', 'grupo 2', 2, '[{\"changed\": {\"fields\": [\"Avatar\"]}}]', 9, 1),
+(130, '2021-05-22 09:20:32.340259', '2', 'prueba', 1, '[{\"added\": {}}]', 7, 1),
+(131, '2021-05-22 09:21:32.877189', '2', 'Pink Floyd', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Url audios\"]}}]', 9, 1),
+(132, '2021-05-22 10:29:17.163413', '2', 'Pink Floyd', 2, '[{\"changed\": {\"fields\": [\"Url audios\"]}}]', 9, 1),
+(133, '2021-05-22 10:32:19.677838', '3', 'Another Brick In The Wall', 3, '', 7, 1),
+(134, '2021-05-22 10:32:23.005963', '4', 'Another Brick In The Wall', 3, '', 7, 1),
+(135, '2021-05-22 10:32:25.356533', '2', 'prueba', 3, '', 7, 1),
+(136, '2021-05-22 10:34:23.069453', '5', 'brick', 3, '', 7, 1),
+(137, '2021-05-22 10:36:06.862185', '6', 'Another Brick In The Wall', 3, '', 7, 1),
+(138, '2021-05-23 16:51:17.729308', '6', 'Jaime', 3, '', 4, 1),
+(139, '2021-05-25 19:28:01.310336', '1', 'asdasd', 3, '', 7, 1),
+(140, '2021-05-25 19:28:01.328007', '14', 'qwe', 3, '', 7, 1),
+(141, '2021-05-25 19:28:01.333008', '13', 'titlo1', 3, '', 7, 1),
+(142, '2021-05-27 11:06:42.021378', '8', 'eliminar', 1, '[{\"added\": {}}]', 4, 1),
+(143, '2021-05-27 11:07:16.665375', '3', 'elimionar', 1, '[{\"added\": {}}]', 11, 1),
+(144, '2021-05-28 09:14:37.447324', '4', 'sdf', 1, '[{\"added\": {}}]', 11, 1),
+(145, '2021-05-28 11:59:28.794039', '11', 'usuario2', 3, '', 4, 1),
+(146, '2021-05-28 16:59:27.856978', '2', 'Mario', 2, '[{\"changed\": {\"fields\": [\"Email address\"]}}]', 4, 1),
+(147, '2021-06-03 16:53:58.767105', '1', 'Mensaje #1', 1, '[{\"added\": {}}]', 18, 1),
+(148, '2021-06-03 16:54:26.251991', '2', 'Mensaje #2', 1, '[{\"added\": {}}]', 18, 1),
+(149, '2021-06-03 16:55:30.091892', '1', 'Conversation #1', 1, '[{\"added\": {}}]', 19, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `django_content_type`
+-- Table structure for table `django_content_type`
 --
 
 CREATE TABLE `django_content_type` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `django_content_type`
+-- Dumping data for table `django_content_type`
 --
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
@@ -708,24 +769,26 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (13, 'authtoken', 'token'),
 (14, 'authtoken', 'tokenproxy'),
 (5, 'contenttypes', 'contenttype'),
+(19, 'mensajes', 'conversation'),
+(18, 'mensajes', 'mensajes'),
 (17, 'noticias', 'noticias'),
 (6, 'sessions', 'session');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `django_migrations`
+-- Table structure for table `django_migrations`
 --
 
 CREATE TABLE `django_migrations` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `django_migrations`
+-- Dumping data for table `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
@@ -765,88 +828,127 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (34, 'accounts', '0013_auto_20210503_1921', '2021-05-03 17:21:24.692442'),
 (35, 'accounts', '0014_auto_20210503_1929', '2021-05-03 17:29:19.642215'),
 (36, 'accounts', '0015_auto_20210503_1930', '2021-05-03 17:30:40.608498'),
-(37, 'noticias', '0001_initial', '2021-05-16 19:38:56.961555'),
-(38, 'accounts', '0016_auto_20210504_1840', '2021-05-16 19:38:56.968621'),
-(39, 'accounts', '0017_auto_20210504_1848', '2021-05-16 19:38:56.987739'),
-(40, 'accounts', '0018_auto_20210515_1135', '2021-05-16 19:38:57.459388'),
-(41, 'accounts', '0019_auto_20210516_1454', '2021-05-23 12:15:04.018115'),
-(42, 'accounts', '0020_auto_20210517_1951', '2021-05-23 12:15:04.123111'),
-(43, 'accounts', '0021_auto_20210522_1102', '2021-05-23 12:15:04.250963'),
-(44, 'accounts', '0022_alter_userprofileojeadores_avatar', '2021-05-23 12:15:46.839242');
+(37, 'accounts', '0016_auto_20210504_1840', '2021-05-04 16:40:48.200664'),
+(38, 'accounts', '0017_auto_20210504_1848', '2021-05-04 16:48:34.148988'),
+(39, 'noticias', '0001_initial', '2021-05-15 09:36:04.216317'),
+(40, 'accounts', '0018_auto_20210515_1135', '2021-05-15 09:36:04.346337'),
+(41, 'accounts', '0019_auto_20210516_1454', '2021-05-16 12:54:40.307457'),
+(42, 'accounts', '0020_auto_20210517_1951', '2021-05-17 17:51:07.869696'),
+(43, 'accounts', '0021_auto_20210522_1102', '2021-05-22 09:02:15.687197'),
+(44, 'accounts', '0022_alter_userprofileojeadores_avatar', '2021-05-27 10:16:24.523702'),
+(45, 'accounts', '0023_auto_20210527_1216', '2021-05-27 10:16:24.598896'),
+(46, 'noticias', '0002_auto_20210527_1216', '2021-05-27 10:16:24.674231'),
+(47, 'mensajes', '0001_initial', '2021-05-28 17:37:14.444609'),
+(48, 'accounts', '0024_auto_20210603_1841', '2021-06-03 16:41:47.431879'),
+(49, 'mensajes', '0002_auto_20210603_1846', '2021-06-03 16:46:18.321078'),
+(50, 'accounts', '0025_auto_20210603_1846', '2021-06-03 16:46:18.946063');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `django_session`
+-- Table structure for table `django_session`
 --
 
 CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `django_session`
+-- Dumping data for table `django_session`
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('1hmik5yd1bo6bldd00nv1axfsc6sjwmt', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1liMpd:tzhGlXLu-rHX7a00CI8MNqphxU1bDh1f73jI58AgrLE', '2021-05-30 19:53:45.510036'),
+('0rjx0hs75350cltp86rip9drcy0mqao4', '.eJxVjEEOwiAQRe_C2hBwGKAu3fcMZIBBqoYmpV0Z765NutDtf-_9lwi0rTVsnZcwZXERTpx-t0jpwW0H-U7tNss0t3WZotwVedAuxznz83q4fweVev3WA2GxWKJyoDKiQR-jP1Mi8gUSa4PGuuyIHWgwBHEAZ9gSabBsVRLvD-ebN9E:1lkrKI:kz1JFvfDzGvsUP1O8kIBxGN95Hlug_cZlXI92iPsGSI', '2021-06-06 16:51:42.435679'),
+('3s78g0toqw3197bsv5sepf5shytmd87e', 'e30:1lmb8J:mfQe-jMVMyrNLMngZN-rk2tqAxge3MS2jIvqpleDlgs', '2021-06-11 11:58:31.166294'),
+('5yemnzsyboyd8xeubq4vqsudv140u91y', '.eJxVjDsOwyAQBe9CHSHxM5Ayfc6AdlkITiKQjF1ZuXuM5CJp5828nQXY1hK2npYwE7syyS6_DCG-Uh0DPaE-Go-trsuMfCj8XDu_N0rv2-n-HRToZdQ2A4FCzBom6bR3iYy1E-WsMAoU2hujBZJQCZwEfUBJRxUVmOgz-3wBEhw5IA:1loqEQ:8sRFjP2XqJzwlegKfIAd6M79xdY685jX0ZqmHr4OeSA', '2021-06-17 16:30:06.937713'),
+('6exxzurgsf5ulqnpyv2q9kkm5pnfs8jx', '.eJxVjMsOwiAQRf-FtSG8YVy67zcQYEapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2ZkpdvrdcioPajvAe2q3zktv6zJnviv8oINPHel5Ody_g5pG_dYhkCxoUBphQOjsSgjZSW-dSQqIUFiRlTOKbL6SBo3ee6m8dBAAoLD3B8bbNtA:1lfgaf:-c6SzOOp13XoGJa5UiU-WUt3Z_4K15qcCc4r_dGxzeQ', '2021-05-23 10:23:13.751234'),
+('6mmgtn4uo0bqmw579nhsmw6q6ae3jr45', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1loqn3:cg3FC3ghJbR01uIyesRpset23FrnH06ycHeWsLkwEfM', '2021-06-17 17:05:53.400513'),
 ('6rhc67itaw3m6c3l1rl7bvbwofuxvao6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbQxz:XoOIes_29LZ9n1I_PGBKh9Nuu8W5UKItjDkCRjs1itM', '2021-05-11 16:53:43.338229'),
-('c2za2b0fcws43c79q2l4cirnj06eaeg9', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1llOIh:d_ulWZTYl0ipl6tRaDLkoMDWf5UA84lGTyPcinfDzb8', '2021-06-08 04:04:15.426006'),
-('gj5rst9yz0vyova5ofvnjft3wuhmwpr2', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1lknOs:6g-nsJ7SYrYiCBCSta5XneGLD_q6idVXMaVEJIklL9s', '2021-06-06 12:40:10.566156'),
+('9h7x5ymvghvdg2f8finw7ljcobndda56', '.eJxVjDsOwjAQBe_iGln-20tJzxmsXX9wADlSnFSIu0OkFNC-mXkvFnFbW9xGWeKU2ZlJzU6_I2F6lL6TfMd-m3ma-7pMxHeFH3Tw65zL83K4fwcNR_vWSVZbqVQH1iryploHFAKYLAVpDMaggkygQZITwirpTUEPyWUXdFLs_QEErzeK:1loYLB:0VqIPHX7LNMYIa84Vi37kMbiqLhoRbFZaUTKOzw_PIw', '2021-06-16 21:23:53.341628'),
+('9zzro8flx6snfatt65wmxci3g0q5x3z0', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ljm2Y:xETNKH4BX_ecSUoyaRSzB3VlGEFkl7X6JjlmPMyBDYE', '2021-06-03 17:00:54.642263'),
+('a5dg2o3pujxj82bqci7mit7hnu2rgmgr', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lhcF4:N1YLUUM1io4wZdKVzlxDXahB7E2NwrHkJV_EalsBkPk', '2021-05-28 18:08:54.633209'),
+('ch7pz0ogn992kcch059hxxx3hef2kzfi', '.eJxVjMsOwiAQRf-FtSG8YVy67zcQYEapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2ZkpdvrdcioPajvAe2q3zktv6zJnviv8oINPHel5Ody_g5pG_dYhkCxoUBphQOjsSgjZSW-dSQqIUFiRlTOKbL6SBo3ee6m8dBAAoLD3B8bbNtA:1lgs9J:o1jkj0GOLMUp5iaO35jIg-NVAR6wtXADfFiCf-BuhWs', '2021-05-26 16:55:53.122169'),
+('cydeqgpb747ptixsko0y6i04ygvddu1e', '.eJxVjMsOwiAQRf-FtSEwPCwu3fcbyAwMUjU0Ke3K-O_apAvd3nPOfYmI21rj1nmJUxYXYcTpdyNMD247yHdst1mmua3LRHJX5EG7HOfMz-vh_h1U7PVbMzjSxZ7Bqlz8AOS8dga0olAIGLUbDCqTMlouwehM2gZAZJO888Di_QHTwje3:1litEE:HTBDrqqNa0VF2Pc1Ak7sHHTtZsOHx9kMXOFnHxSwPz8', '2021-06-01 06:29:18.527873'),
+('d18zgv9vd9hjujidpbxcubd2i0y9z8hj', '.eJxVjEEOwiAQRe_C2pABqUxduvcMZGAGqRpISrsy3l2bdKHb_977LxVoXUpYu8xhYnVWTh1-t0jpIXUDfKd6azq1usxT1Juid9r1tbE8L7v7d1Col2-NowhiQgTJkGSIcAILxucjifHos2dmgQTJWefRCkYzRmHKbAb0qN4f7_s4SQ:1ljrRZ:uADHqbYl6XbfkLRh4Ekp1Vi3GPb7FjPDeUbwUBK-2kI', '2021-06-03 22:47:05.051647'),
+('dn5jkf5pdpwgjzpwtn4hv7ftu77lzhnt', '.eJxVjEEOwiAQAP_C2RCgSwGP3vsGsiwgVQNJaU_GvxuSHvQ6M5k383jsxR89bX6N7MqAXX5ZQHqmOkR8YL03Tq3u2xr4SPhpO19aTK_b2f4NCvYytmBsJoGzQ5A6zEqCEoqixTyRkkjWaIjJEECQQFkl63J0DoMWUk7APl_W9zeZ:1leLff:RmEaoZYl3im-Rq5ue8XPajb8lx_uv6U8hjPlfjW2lfo', '2021-05-19 17:50:51.888025'),
+('fzigdo0q50mb8e38yvsjfvh3lp2jh2as', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lf2mU:KagEXDjHdJ4h7lyxT3a9tMV_uagvO5-VFGxhZiVydI4', '2021-05-21 15:52:46.712805'),
+('g9b7tll1ptv38p49h8yy04ahydev025j', '.eJxVjMsOwiAQRf-FtSG8YVy67zcQYEapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2ZkpdvrdcioPajvAe2q3zktv6zJnviv8oINPHel5Ody_g5pG_dYhkCxoUBphQOjsSgjZSW-dSQqIUFiRlTOKbL6SBo3ee6m8dBAAoLD3B8bbNtA:1lfgNh:uTLk0Tpn8qO2Nr8bjHB4Kcmm4sYzQzAqmbNW3phjrOA', '2021-05-23 10:09:49.586752'),
 ('gu2ltix0m6xcrz7kxndl3h3kptd6ia1a', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldESN:QA-dbOKxIZa2aKe3ML2FqRVYkT8ZLRo-CUotJlpCpTE', '2021-05-16 15:56:31.772282'),
 ('ht0fiaizw30vg2t0fc303f7rhwjuey48', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lc9w6:3CqKlp82_JqTLF7YXakJhsYBC2s5z940lxQkXSWRpR8', '2021-05-13 16:54:46.618214'),
+('k8hr29rqh3rj2m6k7hwznxzxnt5v1fj4', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldooz:13ZEfAjSNc3YrxYMspl26yH8fLLKLhgZhU-dCqlirFs', '2021-05-18 06:46:17.818432'),
+('l77olo12oligo40pz5ekfw4hakrtowao', '.eJxVjEEOwiAQRe_C2hBwGKAu3fcMZIBBqoYmpV0Z765NutDtf-_9lwi0rTVsnZcwZXERTpx-t0jpwW0H-U7tNss0t3WZotwVedAuxznz83q4fweVev3WA2GxWKJyoDKiQR-jP1Mi8gUSa4PGuuyIHWgwBHEAZ9gSabBsVRLvD-ebN9E:1llcpI:nctZYPU0DDTJ_6OXyCV7hYx-XTiR1lH9LwzM5X5fIGs', '2021-06-08 19:34:52.350925'),
+('m7c39bi6af7zny0vzowxw5gxz8o94qv7', '.eJxVjDsOwjAQBe_iGln-20tJzxmsXX9wADlSnFSIu0OkFNC-mXkvFnFbW9xGWeKU2ZlJzU6_I2F6lL6TfMd-m3ma-7pMxHeFH3Tw65zL83K4fwcNR_vWSVZbqVQH1iryploHFAKYLAVpDMaggkygQZITwirpTUEPyWUXdFLs_QEErzeK:1loU8C:DPDEBGrOCAIuGAyacW9MJ-1PQO1e6Ho245ddZ3YJNmY', '2021-06-16 16:54:12.684122'),
 ('mzr7nrwqby1lwjk1d5xh8hmuro54qtf4', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1lbHX7:mENho7iRxROiuSGE1UVPGDjtca0jGpdJmOD6uT3i6GM', '2021-05-11 06:49:21.821688'),
-('nryta4919mk5k83fksi8m4k5ke5251xk', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1llPnu:5NLiOQkNxncNDFAHl5jpxUcS6VXpq96tXMLYAZZ-_8A', '2021-06-08 05:40:34.841229'),
-('op5dcib86byqc1xt9ltef4ld4vskyx5n', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1lknCp:VD_N_7_8VQDvIx7Zv-UatL_TcXxqOOqMC-gqa90Anws', '2021-06-06 12:27:43.564124'),
+('q2fd6q393efuzslcoce8mf7diop81x75', '.eJxVjEEOwiAQRe_C2pDCQGFcuvcMZGCoVA0kpV0Z765NutDtf-_9lwi0rSVsPS9hZnEWIE6_W6T0yHUHfKd6azK1ui5zlLsiD9rltXF-Xg7376BQL9964iE650fHbNCxRxvRgwYC9mZKGAejtQKdQBvjLaTslEILagRFhFm8P8nyNsI:1lih2D:iXksbHFSOUBIIJl4WtrBKWFa6X3kkslPounFRY4IBN0', '2021-05-31 17:28:05.987841'),
 ('qqju4e5f46ti9niigfvqb8q0723gr15c', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1laces:EM6tmr8TTEZws_yoPqWlPVXLB_RsklHfXqAHY3pu5Xg', '2021-05-09 11:10:38.605605'),
 ('r39cnk8r6047qn7y4kpwhkj9xlrkjop6', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldb55:7Cr3teaE3DYiAHqdW8pNdRercW5tqDb9sJXU-2BBnU4', '2021-05-17 16:05:59.138059'),
+('s97hyekvn30wf05rxhuwtjr3wv2d4ef8', '.eJxVjEEOwiAQRe_C2hDpDAIu3XsGMsxQqRpISrsy3l2bdKHb_977LxVpXUpce57jJOqsvDr8bon4kesG5E711jS3usxT0puid9r1tUl-Xnb376BQL9-a3CmDBIuIXsIY_GCRyJIndsBAxnkWTME6sGMy3hjg4RjYucAICOr9Adq2Ny0:1lmDrO:BHINlL3LwJZWlk8JyxJu7Iqakw0DXsb2Rz___ZfAuFQ', '2021-06-10 11:07:30.439199'),
+('u6n1cizdm6o3joqomm4bl4xvnpmdgrvo', '.eJxVjEEOwiAQRe_C2hBwGKAu3fcMZIBBqoYmpV0Z765NutDtf-_9lwi0rTVsnZcwZXERTpx-t0jpwW0H-U7tNss0t3WZotwVedAuxznz83q4fweVev3WA2GxWKJyoDKiQR-jP1Mi8gUSa4PGuuyIHWgwBHEAZ9gSabBsVRLvD-ebN9E:1louRV:dG4fg6MIFnVh7jSKHK0QWwYZFyafTr59DYZz5EYNlRI', '2021-06-17 20:59:53.997966'),
 ('uimze7bqnkx3s1o8lc6ngnv3gijf35jy', '.eJxVjDsOwyAQBe9CHSF-MpAyfc6AFu9ucBKBZOzKyt0jJBdJ-2bmHSLBvpW0d1rTguIqtLj8bhnmF9UB8An10eTc6rYuWQ5FnrTLe0N6307376BAL6OOhBMFNGSZ0KBXzlhknY1zimb0BBxRIyNzsJBVtipE6yefjQFi8fkCHo45VA:1ldERH:q45cbQ6KJVlCTt5ut0zMuBySwzvet_o315ZsCfLzEb0', '2021-05-16 15:55:23.485529'),
-('yrj8t5w4j62m18tuxepbfa3l3ocgf2ct', '.eJxVjEEOwiAQRe_C2hBoGaAu3XuGZhgGqRpISrsy3l1JutDtf-_9l5hx3_K8N17nJYqzGMTpdwtIDy4dxDuWW5VUy7YuQXZFHrTJa438vBzu30HGlnvtEDRZTtpzwOBI0ciGjQWbgFQcgFUYJ2dV0DwR25g8oGbjPX4TEO8PCFc4mA:1llNzU:6AlEn65YKx8svstw8SQGPYzbaST8s2w-15RcBQCIs2o', '2021-06-08 03:44:24.118742');
+('vjtd84vagie7690obr3l3suxb2coibo0', '.eJxVjEEOwiAQRe_C2pDCQGFcuvcMZGCoVA0kpV0Z765NutDtf-_9lwi0rSVsPS9hZnEWIE6_W6T0yHUHfKd6azK1ui5zlLsiD9rltXF-Xg7376BQL9964iE650fHbNCxRxvRgwYC9mZKGAejtQKdQBvjLaTslEILagRFhFm8P8nyNsI:1liGb4:yhMR5HFB1iozfeluAjwiqVovpmQJGPcdPERM133kbxE', '2021-05-30 13:14:18.691614'),
+('zywo5u2i11vmoom1nsvb8xq63qpoi54i', '.eJxVjMsOwiAQRf-FtSEwPCwu3fcbyAwMUjU0Ke3K-O_apAvd3nPOfYmI21rj1nmJUxYXYcTpdyNMD247yHdst1mmua3LRHJX5EG7HOfMz-vh_h1U7PVbMzjSxZ7Bqlz8AOS8dga0olAIGLUbDCqTMlouwehM2gZAZJO888Di_QHTwje3:1llQdf:LFvu7qaghsg4utnU6SRHGMjZmrVRDp601luHO3a5u2c', '2021-06-08 06:34:03.047937');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `noticias_noticias`
+-- Table structure for table `noticias_noticias`
 --
 
 CREATE TABLE `noticias_noticias` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `title` varchar(30) NOT NULL,
-  `descripcion` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `descripcion` longtext NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- Dumping data for table `noticias_noticias`
+--
+
+INSERT INTO `noticias_noticias` (`id`, `title`, `descripcion`, `created_at`, `updated_at`) VALUES
+(2, 'Compro oro', 'Pues eso que compro oro', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
+(3, 'camioneta', 'Hemos comprado una camioneta, ah y sacamos disco\r\n            \r\n            ', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
+(4, 'nuevos', 'Somos nuevos, concretamente de 1965\r\n            ', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
+(5, 'asd', 'asdasdsad', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
+(6, 'prueba', 'Noticia de prueba del grupo pink floyd            ', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
+(8, 'asdasdsad', '            fsdfsdfsdf', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
+(9, 'sdfsdf', '            sdfsdf', '2021-05-27 10:16:24.612433', '2021-05-27 10:16:24.647064'),
+(11, 'prueba2', '            sadfsdf\r\n            dfds\r\n            ', '2021-05-28 09:17:24.166225', '2021-05-28 09:17:24.166225'),
+(13, 'prueba', '            descripción', '2021-06-01 06:29:16.859442', '2021-06-01 06:29:16.859442');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `accounts_audios`
+-- Indexes for table `accounts_audios`
 --
 ALTER TABLE `accounts_audios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `accounts_generos`
+-- Indexes for table `accounts_generos`
 --
 ALTER TABLE `accounts_generos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `accounts_provincia`
+-- Indexes for table `accounts_provincia`
 --
 ALTER TABLE `accounts_provincia`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `accounts_tipoojeador`
+-- Indexes for table `accounts_tipoojeador`
 --
 ALTER TABLE `accounts_tipoojeador`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `accounts_userprofilemusicos`
+-- Indexes for table `accounts_userprofilemusicos`
 --
 ALTER TABLE `accounts_userprofilemusicos`
   ADD PRIMARY KEY (`id`),
@@ -854,7 +956,7 @@ ALTER TABLE `accounts_userprofilemusicos`
   ADD KEY `accounts_userprofile_provincia_origen_id_6e00c15a_fk_accounts_` (`provincia_origen_id`);
 
 --
--- Indices de la tabla `accounts_userprofilemusicos_generos`
+-- Indexes for table `accounts_userprofilemusicos_generos`
 --
 ALTER TABLE `accounts_userprofilemusicos_generos`
   ADD PRIMARY KEY (`id`),
@@ -862,7 +964,7 @@ ALTER TABLE `accounts_userprofilemusicos_generos`
   ADD KEY `accounts_userprofile_generos_id_6830a457_fk_accounts_` (`generos_id`);
 
 --
--- Indices de la tabla `accounts_userprofilemusicos_noticias`
+-- Indexes for table `accounts_userprofilemusicos_noticias`
 --
 ALTER TABLE `accounts_userprofilemusicos_noticias`
   ADD PRIMARY KEY (`id`),
@@ -870,7 +972,7 @@ ALTER TABLE `accounts_userprofilemusicos_noticias`
   ADD KEY `accounts_userprofile_noticias_id_f1801b4d_fk_noticias_` (`noticias_id`);
 
 --
--- Indices de la tabla `accounts_userprofilemusicos_url_audios`
+-- Indexes for table `accounts_userprofilemusicos_url_audios`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_audios`
   ADD PRIMARY KEY (`id`),
@@ -878,7 +980,7 @@ ALTER TABLE `accounts_userprofilemusicos_url_audios`
   ADD KEY `accounts_userprofile_audios_id_d9a53020_fk_accounts_` (`audios_id`);
 
 --
--- Indices de la tabla `accounts_userprofilemusicos_url_videos`
+-- Indexes for table `accounts_userprofilemusicos_url_videos`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_videos`
   ADD PRIMARY KEY (`id`),
@@ -886,7 +988,7 @@ ALTER TABLE `accounts_userprofilemusicos_url_videos`
   ADD KEY `accounts_userprofile_videos_id_451a8e44_fk_accounts_` (`videos_id`);
 
 --
--- Indices de la tabla `accounts_userprofileojeadores`
+-- Indexes for table `accounts_userprofileojeadores`
 --
 ALTER TABLE `accounts_userprofileojeadores`
   ADD PRIMARY KEY (`id`),
@@ -895,7 +997,7 @@ ALTER TABLE `accounts_userprofileojeadores`
   ADD KEY `accounts_userprofile_provincia_origen_id_4f557861_fk_accounts_` (`provincia_origen_id`);
 
 --
--- Indices de la tabla `accounts_userprofileojeadores_generos`
+-- Indexes for table `accounts_userprofileojeadores_generos`
 --
 ALTER TABLE `accounts_userprofileojeadores_generos`
   ADD PRIMARY KEY (`id`),
@@ -903,7 +1005,7 @@ ALTER TABLE `accounts_userprofileojeadores_generos`
   ADD KEY `accounts_userprofile_generos_id_bde67c3a_fk_accounts_` (`generos_id`);
 
 --
--- Indices de la tabla `accounts_userprofileojeadores_noticias`
+-- Indexes for table `accounts_userprofileojeadores_noticias`
 --
 ALTER TABLE `accounts_userprofileojeadores_noticias`
   ADD PRIMARY KEY (`id`),
@@ -911,27 +1013,27 @@ ALTER TABLE `accounts_userprofileojeadores_noticias`
   ADD KEY `accounts_userprofile_noticias_id_e1c60d19_fk_noticias_` (`noticias_id`);
 
 --
--- Indices de la tabla `accounts_videos`
+-- Indexes for table `accounts_videos`
 --
 ALTER TABLE `accounts_videos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `authtoken_token`
+-- Indexes for table `authtoken_token`
 --
 ALTER TABLE `authtoken_token`
   ADD PRIMARY KEY (`key`),
   ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
--- Indices de la tabla `auth_group`
+-- Indexes for table `auth_group`
 --
 ALTER TABLE `auth_group`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indices de la tabla `auth_group_permissions`
+-- Indexes for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD PRIMARY KEY (`id`),
@@ -939,21 +1041,21 @@ ALTER TABLE `auth_group_permissions`
   ADD KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`);
 
 --
--- Indices de la tabla `auth_permission`
+-- Indexes for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`);
 
 --
--- Indices de la tabla `auth_user`
+-- Indexes for table `auth_user`
 --
 ALTER TABLE `auth_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indices de la tabla `auth_user_groups`
+-- Indexes for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
   ADD PRIMARY KEY (`id`),
@@ -961,7 +1063,7 @@ ALTER TABLE `auth_user_groups`
   ADD KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`);
 
 --
--- Indices de la tabla `auth_user_user_permissions`
+-- Indexes for table `auth_user_user_permissions`
 --
 ALTER TABLE `auth_user_user_permissions`
   ADD PRIMARY KEY (`id`),
@@ -969,7 +1071,7 @@ ALTER TABLE `auth_user_user_permissions`
   ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
 
 --
--- Indices de la tabla `django_admin_log`
+-- Indexes for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   ADD PRIMARY KEY (`id`),
@@ -977,214 +1079,214 @@ ALTER TABLE `django_admin_log`
   ADD KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`);
 
 --
--- Indices de la tabla `django_content_type`
+-- Indexes for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`);
 
 --
--- Indices de la tabla `django_migrations`
+-- Indexes for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `django_session`
+-- Indexes for table `django_session`
 --
 ALTER TABLE `django_session`
   ADD PRIMARY KEY (`session_key`),
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
--- Indices de la tabla `noticias_noticias`
+-- Indexes for table `noticias_noticias`
 --
 ALTER TABLE `noticias_noticias`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `accounts_audios`
+-- AUTO_INCREMENT for table `accounts_audios`
 --
 ALTER TABLE `accounts_audios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_generos`
+-- AUTO_INCREMENT for table `accounts_generos`
 --
 ALTER TABLE `accounts_generos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_provincia`
+-- AUTO_INCREMENT for table `accounts_provincia`
 --
 ALTER TABLE `accounts_provincia`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_tipoojeador`
+-- AUTO_INCREMENT for table `accounts_tipoojeador`
 --
 ALTER TABLE `accounts_tipoojeador`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos`
+-- AUTO_INCREMENT for table `accounts_userprofilemusicos`
 --
 ALTER TABLE `accounts_userprofilemusicos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_generos`
+-- AUTO_INCREMENT for table `accounts_userprofilemusicos_generos`
 --
 ALTER TABLE `accounts_userprofilemusicos_generos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_noticias`
+-- AUTO_INCREMENT for table `accounts_userprofilemusicos_noticias`
 --
 ALTER TABLE `accounts_userprofilemusicos_noticias`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_url_audios`
+-- AUTO_INCREMENT for table `accounts_userprofilemusicos_url_audios`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_audios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofilemusicos_url_videos`
+-- AUTO_INCREMENT for table `accounts_userprofilemusicos_url_videos`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_videos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofileojeadores`
+-- AUTO_INCREMENT for table `accounts_userprofileojeadores`
 --
 ALTER TABLE `accounts_userprofileojeadores`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofileojeadores_generos`
+-- AUTO_INCREMENT for table `accounts_userprofileojeadores_generos`
 --
 ALTER TABLE `accounts_userprofileojeadores_generos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_userprofileojeadores_noticias`
+-- AUTO_INCREMENT for table `accounts_userprofileojeadores_noticias`
 --
 ALTER TABLE `accounts_userprofileojeadores_noticias`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `accounts_videos`
+-- AUTO_INCREMENT for table `accounts_videos`
 --
 ALTER TABLE `accounts_videos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `auth_group`
+-- AUTO_INCREMENT for table `auth_group`
 --
 ALTER TABLE `auth_group`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `auth_group_permissions`
+-- AUTO_INCREMENT for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `auth_permission`
+-- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
--- AUTO_INCREMENT de la tabla `auth_user`
+-- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT de la tabla `auth_user_groups`
+-- AUTO_INCREMENT for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `auth_user_user_permissions`
+-- AUTO_INCREMENT for table `auth_user_user_permissions`
 --
 ALTER TABLE `auth_user_user_permissions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `django_admin_log`
+-- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
--- AUTO_INCREMENT de la tabla `django_content_type`
+-- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT de la tabla `django_migrations`
+-- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT de la tabla `noticias_noticias`
+-- AUTO_INCREMENT for table `noticias_noticias`
 --
 ALTER TABLE `noticias_noticias`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `accounts_userprofilemusicos`
+-- Constraints for table `accounts_userprofilemusicos`
 --
 ALTER TABLE `accounts_userprofilemusicos`
   ADD CONSTRAINT `accounts_userprofile_provincia_origen_id_6e00c15a_fk_accounts_` FOREIGN KEY (`provincia_origen_id`) REFERENCES `accounts_provincia` (`id`),
   ADD CONSTRAINT `accounts_userprofilemusicos_user_id_aba2a5a6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Filtros para la tabla `accounts_userprofilemusicos_generos`
+-- Constraints for table `accounts_userprofilemusicos_generos`
 --
 ALTER TABLE `accounts_userprofilemusicos_generos`
   ADD CONSTRAINT `accounts_userprofile_generos_id_6830a457_fk_accounts_` FOREIGN KEY (`generos_id`) REFERENCES `accounts_generos` (`id`),
   ADD CONSTRAINT `accounts_userprofile_userprofilemusicos_i_2b48c412_fk_accounts_` FOREIGN KEY (`userprofilemusicos_id`) REFERENCES `accounts_userprofilemusicos` (`id`);
 
 --
--- Filtros para la tabla `accounts_userprofilemusicos_noticias`
+-- Constraints for table `accounts_userprofilemusicos_noticias`
 --
 ALTER TABLE `accounts_userprofilemusicos_noticias`
   ADD CONSTRAINT `accounts_userprofile_noticias_id_f1801b4d_fk_noticias_` FOREIGN KEY (`noticias_id`) REFERENCES `noticias_noticias` (`id`),
   ADD CONSTRAINT `accounts_userprofile_userprofilemusicos_i_412878d7_fk_accounts_` FOREIGN KEY (`userprofilemusicos_id`) REFERENCES `accounts_userprofilemusicos` (`id`);
 
 --
--- Filtros para la tabla `accounts_userprofilemusicos_url_audios`
+-- Constraints for table `accounts_userprofilemusicos_url_audios`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_audios`
   ADD CONSTRAINT `accounts_userprofile_audios_id_d9a53020_fk_accounts_` FOREIGN KEY (`audios_id`) REFERENCES `accounts_audios` (`id`),
   ADD CONSTRAINT `accounts_userprofile_userprofilemusicos_i_e6bb59a0_fk_accounts_` FOREIGN KEY (`userprofilemusicos_id`) REFERENCES `accounts_userprofilemusicos` (`id`);
 
 --
--- Filtros para la tabla `accounts_userprofilemusicos_url_videos`
+-- Constraints for table `accounts_userprofilemusicos_url_videos`
 --
 ALTER TABLE `accounts_userprofilemusicos_url_videos`
   ADD CONSTRAINT `accounts_userprofile_userprofilemusicos_i_10654708_fk_accounts_` FOREIGN KEY (`userprofilemusicos_id`) REFERENCES `accounts_userprofilemusicos` (`id`),
   ADD CONSTRAINT `accounts_userprofile_videos_id_451a8e44_fk_accounts_` FOREIGN KEY (`videos_id`) REFERENCES `accounts_videos` (`id`);
 
 --
--- Filtros para la tabla `accounts_userprofileojeadores`
+-- Constraints for table `accounts_userprofileojeadores`
 --
 ALTER TABLE `accounts_userprofileojeadores`
   ADD CONSTRAINT `accounts_userprofile_provincia_origen_id_4f557861_fk_accounts_` FOREIGN KEY (`provincia_origen_id`) REFERENCES `accounts_provincia` (`id`),
@@ -1192,54 +1294,54 @@ ALTER TABLE `accounts_userprofileojeadores`
   ADD CONSTRAINT `accounts_userprofileojeadores_user_id_fea11f90_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Filtros para la tabla `accounts_userprofileojeadores_generos`
+-- Constraints for table `accounts_userprofileojeadores_generos`
 --
 ALTER TABLE `accounts_userprofileojeadores_generos`
   ADD CONSTRAINT `accounts_userprofile_generos_id_bde67c3a_fk_accounts_` FOREIGN KEY (`generos_id`) REFERENCES `accounts_generos` (`id`),
   ADD CONSTRAINT `accounts_userprofile_userprofileojeadores_de79c8b2_fk_accounts_` FOREIGN KEY (`userprofileojeadores_id`) REFERENCES `accounts_userprofileojeadores` (`id`);
 
 --
--- Filtros para la tabla `accounts_userprofileojeadores_noticias`
+-- Constraints for table `accounts_userprofileojeadores_noticias`
 --
 ALTER TABLE `accounts_userprofileojeadores_noticias`
   ADD CONSTRAINT `accounts_userprofile_noticias_id_e1c60d19_fk_noticias_` FOREIGN KEY (`noticias_id`) REFERENCES `noticias_noticias` (`id`),
   ADD CONSTRAINT `accounts_userprofile_userprofileojeadores_266eef6b_fk_accounts_` FOREIGN KEY (`userprofileojeadores_id`) REFERENCES `accounts_userprofileojeadores` (`id`);
 
 --
--- Filtros para la tabla `authtoken_token`
+-- Constraints for table `authtoken_token`
 --
 ALTER TABLE `authtoken_token`
   ADD CONSTRAINT `authtoken_token_user_id_35299eff_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Filtros para la tabla `auth_group_permissions`
+-- Constraints for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
 
 --
--- Filtros para la tabla `auth_permission`
+-- Constraints for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
   ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
 
 --
--- Filtros para la tabla `auth_user_groups`
+-- Constraints for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
   ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
   ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Filtros para la tabla `auth_user_user_permissions`
+-- Constraints for table `auth_user_user_permissions`
 --
 ALTER TABLE `auth_user_user_permissions`
   ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Filtros para la tabla `django_admin_log`
+-- Constraints for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),

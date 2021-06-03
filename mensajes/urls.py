@@ -5,7 +5,7 @@ from . import views
 
 app_name='menssage'
 urlpatterns = [
-    path('allMessage/<int:pk>', views.allMessage, name='allMessage'),
+    path('allMessage', views.allMessage, name='allMessage'),
     path('conversation/<int:receptor>/<int:emisor>', views.allMessage, name='allMessage'),
     
 ]

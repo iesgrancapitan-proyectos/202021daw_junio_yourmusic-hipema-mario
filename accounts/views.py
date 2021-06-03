@@ -244,13 +244,6 @@ def user_data(request, pk):
 
 
 @login_required
-def mensajes(request):
-    usuario = request.user
-
-    return render(request, 'mensajes.html', {'usuario': usuario})
-
-
-@login_required
 def info_data(request, tipo, pk=None, code=None):
 
     form = UserProfileForm()
@@ -414,8 +407,8 @@ def info_data(request, tipo, pk=None, code=None):
             print("video")
 
         if(ojData):
-            ti = TipoOjeador.objects.get(id=request.POST['tipos'])
-            userprofile.tipo_ojeador = ti
+            tip_user = TipoOjeador.objects.get(id=request.POST['tipos'])
+            userprofile.tipo_ojeador = tip_user
             userprofile.save()
 
     return render(request, 'info_data.html', {'usuario': userprofile, 'tipo': tipo, 'form': form, 'generos': generos, 'genero_id': genero_id, 'tipos': tipos, 'tip': tip_user, 'videos': videos, 'audios': audios})
@@ -473,36 +466,33 @@ def choose_profile(request):
     tipos = TipoOjeador.objects.all()
     generos = Generos.objects.all()
     if request.method == 'POST':
+        nombre = request.POST['nombre']
+        descripcion = request.POST['descripcion']
+        email = request.POST['email']
+        
+        print(request.POST)
+
         if request.POST['tipoProfile'] == "grupo":
-            nombre = request.POST['nombre']
-
-            file = request.POST['file']
-            descripcion = request.POST['descripcion']
-            email = request.POST['email']
-            provincia = request.POST['provincia']
-            generosSel = request.POST['generos']
-
+    
             usuario = UserProfileMusicos.objects.create(user=request.user, nombre_profile=nombre,
-                                                        avatar=file, descripcion=descripcion, email_profile=email, provincia_origen=provincia)
-            for item in request.POST.getlist('generos'):
-                gen = Generos.objects.get(id=item)
-                usuario.generos.add(gen)
+                                                        descripcion=descripcion, email_profile=email,provincia_origen=Provincia.objects.get(id=request.POST['provincia']))          
+            
         else:
-            # Información básica
-            nombre = request.POST['nombre']
-            tipo = request.POST['TipoOjeador']
-            file = request.POST['file']
-            descripcion = request.POST['descripcion']
-            email = request.POST['email']
-            provincia = request.POST['provincia']
-            # generosSel=request.POST['generos']
+            
+           
+            tipo = request.POST['TipoOjeador']           
 
-            usuario = UserProfileOjeadores.objects.create(user=request.user, nombre_profile=nombre,tipo_ojeador=tipo,
-                                                          avatar=file, descripcion=descripcion, email_profile=email, provincia_origen=provincia)
-
-            for item in request.POST.getlist('generos'):
-                gen = Generos.objects.get(id=item)
-                usuario.generos.add(gen)
+            usuario = UserProfileOjeadores.objects.create(user=request.user, nombre_profile=nombre, tipo_ojeador=TipoOjeador.objects.get(id=tipo),
+                                                          descripcion=descripcion, email_profile=email,provincia_origen=Provincia.objects.get(id=request.POST['provincia']))
+       
+        usuario.avatar = request.FILES['inputFile']
+        '''  po = Provincia.objects.get(id=request.POST['provincia'])
+        print(po)
+        usuario.provincia_origen = po '''
+        for item in request.POST.getlist('generos'):
+            gen = Generos.objects.get(id=item)
+            usuario.generos.add(gen)
+        usuario.save()
 
         return redirect('account:profile')
     return render(request, 'choose_profile.html', {'userprofile': userprofile, 'provincias': provincias, 'tipos': tipos, 'generos': generos})

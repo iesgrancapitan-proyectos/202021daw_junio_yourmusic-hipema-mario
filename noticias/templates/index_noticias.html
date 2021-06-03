@@ -1,13 +1,15 @@
 {% extends "base.html" %} {% block content %}
 <h2>Noticias</h2>
-{% for row in noticias %}
+
+
+{% for row in usuario %} {{row}}{% for row in noticias %} {% endfor %}
 
 <div class=" noticias-listado">
     <div class="noticias-individual">
         <h3 class="noticias-titulo">{{row.title}}</h3>
         <!-- TODO2 Aquí debemos recibir la info de quien lo escribe que no se ve y la fecha.
                    Además, también podríamos enlazar al perfil del usuario. -->
-        <div class="noticias-usuario"><a href="#">{{usuarios.forloop.counter0}} Usuario</a> - <span>12/02/2021</span></div>
+        <div class="noticias-usuario"><a href="#">Usuario</a> - <span>12/02/2021</span></div>
         <div class="noticias-extracto">{{row.descripcion|slice:":160"}}...</div>
         <!-- TODO2 Aquí debe enlazar a la noticia individual extendida -->
         <div class="noticias-ampliar"><a href="#">Leer más</a></div>
