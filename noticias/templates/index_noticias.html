@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <h2>Noticias</h2>
-{% for key,row in noticias %}
+{% for row in noticias %}
 
 <div class=" noticias-listado">
     <div class="noticias-individual">
@@ -12,7 +12,7 @@
         <!-- TODO2 Aquí debe enlazar a la noticia individual extendida -->
         <div class="noticias-ampliar"><a href="#">Leer más</a></div>
     </div>
-    {{forloop.counter0}} {{key}}
+    {% comment %} {{forloop.counter0}} {% endcomment %}
 </div>
 {% endfor %}
 

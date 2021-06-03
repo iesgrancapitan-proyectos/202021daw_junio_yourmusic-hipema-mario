@@ -62,14 +62,11 @@
         </div>
         {% endfor %}
     </div>
-    <!-- TODO: He pensado que para todos los enlaces como son ver más, ocultar y similar. 
-        Le podemos poner en el css que sea cursor: pointer, para que se vea que se puede pinchar. 
-        O bien los metemos en un enlace aunque este no haga nada. La idea es que le resalte un poco 
-        al usuario y cuando se ponga encima vea que se puede interactuar-->
     <!-- TODO2 Si hay sólo 3 audios o menos no debe mostrarse (hidden),
             si no se pone directamente saltan errores en consola al faltarel id.-->
     <!-- TODO: Respecto al TODO2 anterior no entiendo exactamente a que te refieres -->
-    <div class="ver-mas" id="verMasAudios">Ver más</div>
+    <!-- TODO2: Se trataría de ocultar este campo, según si hay más cosas que mostrar o no -->
+    <div class="ver-mas"><span><a href="#" id="verMasAudios">Ver más</a></span></div>
 </div>
 {% else %}
 <div id="lista-audios"></div>
@@ -91,7 +88,7 @@
     </div>
     <!-- TODO2 Si hay sólo 3 vídeos o menos no debe mostrarse (hidden),
     si no se pone directamente saltan errores en consola al faltarel id.-->
-    <div class="ver-mas" id="verMasVideos">Ver más</div>
+    <div class="ver-mas"><span><a href="#" id="verMasVideos">Ver más</a></span></div>
 
 </div>
 {% else %}
@@ -112,7 +109,7 @@
     </div>
     <!-- TODO2 Si hay sólo 3 vídeos o menos no debe mostrarse (hidden),
     si no se pone directamente saltan errores en consola al faltarel id.-->
-    <div class="ver-mas" id="verMasNoticias">Ver más</div>
+    <div class="ver-mas"><span><a href="#" id="verMasNoticias">Ver más</a></span></div>
 </div>
 {% else %}
 <div id="lista-noticias"></div>

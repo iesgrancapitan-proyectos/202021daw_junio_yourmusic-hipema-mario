@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function (){
     let edit_nombre = document.getElementById("nombre-grupo");
     let sel_audio = document.getElementById("sel-audio");
     let tit_audio = document.getElementById("titulo-audio");
+    let enlace_video = document.getElementById("enlace-video");
 
     document.getElementById("addVideos").addEventListener("click", function () {
         mostrarOcultar(form_video);
@@ -25,6 +26,14 @@ document.addEventListener("DOMContentLoaded", function (){
         if (sel_audio.value == "" || tit_audio.value == ""){
             oEvent.preventDefault();
         }
+    });
+
+    document.getElementById("guardar-video").addEventListener("click", function (oEvent) {
+        let patron_video = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+        let resultado;
+        resultado = enlace_video.value.match(patron_video);
+        resultado = resultado[5];
+        enlace_video.value = resultado;
     });
 
     function mostrarOcultar(campo) {

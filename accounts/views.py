@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as make_login
 from .forms import FormEntrada, UserUpdateForm, CustomUserCreationForm, UserProfileForm
 
-from .models import Audios, UserProfileMusicos, UserProfileOjeadores, Generos, TipoOjeador, Videos
+from .models import Audios, Provincia, UserProfileMusicos, UserProfileOjeadores, Generos, TipoOjeador, Videos
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.authtoken.models import Token
@@ -50,7 +50,7 @@ def login(request):
 
 
 def password_reset_complete(request, token):
-    try:            
+    try:
         user = jwt.decode(token, "secret", algorithms=["HS256"])
         print(user)
         print(user['username'])
@@ -58,13 +58,13 @@ def password_reset_complete(request, token):
         uspass = User.objects.get(id=user)
         print(uspass)
 
-        if request.method == 'POST':        
+        if request.method == 'POST':
             uspass.set_password(request.POST['password'])
             uspass.save()
             update_session_auth_hash(request, uspass)
 
             user = authenticate(
-                        username=uspass.username, password=request.POST['password'])
+                username=uspass.username, password=request.POST['password'])
             login(request, user)
 
             return redirect('account:profile')
@@ -469,7 +469,43 @@ def profile(request):
 @login_required
 def choose_profile(request):
     userprofile = User.objects.get(username=request.user)
-    return render(request, 'choose_profile.html', {'userprofile': userprofile})
+    provincias = Provincia.objects.all()
+    tipos = TipoOjeador.objects.all()
+    generos = Generos.objects.all()
+    if request.method == 'POST':
+        if request.POST['tipoProfile'] == "grupo":
+            nombre = request.POST['nombre']
+
+            file = request.POST['file']
+            descripcion = request.POST['descripcion']
+            email = request.POST['email']
+            provincia = request.POST['provincia']
+            generosSel = request.POST['generos']
+
+            usuario = UserProfileMusicos.objects.create(user=request.user, nombre_profile=nombre,
+                                                        avatar=file, descripcion=descripcion, email_profile=email, provincia_origen=provincia)
+            for item in request.POST.getlist('generos'):
+                gen = Generos.objects.get(id=item)
+                usuario.generos.add(gen)
+        else:
+            # Información básica
+            nombre = request.POST['nombre']
+            tipo = request.POST['TipoOjeador']
+            file = request.POST['file']
+            descripcion = request.POST['descripcion']
+            email = request.POST['email']
+            provincia = request.POST['provincia']
+            # generosSel=request.POST['generos']
+
+            usuario = UserProfileOjeadores.objects.create(user=request.user, nombre_profile=nombre,tipo_ojeador=tipo,
+                                                          avatar=file, descripcion=descripcion, email_profile=email, provincia_origen=provincia)
+
+            for item in request.POST.getlist('generos'):
+                gen = Generos.objects.get(id=item)
+                usuario.generos.add(gen)
+
+        return redirect('account:profile')
+    return render(request, 'choose_profile.html', {'userprofile': userprofile, 'provincias': provincias, 'tipos': tipos, 'generos': generos})
 
 
 def register(request):
