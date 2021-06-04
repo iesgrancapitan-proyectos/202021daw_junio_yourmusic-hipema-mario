@@ -1,13 +1,36 @@
 {% extends "base_user_account.html" %} {% block content %}
-<h2>Mensajes</h2>
-<p>{{usuario.username}}</p>
-{% comment %}
-<form method="post" action="{% url 'login' %}">
+<h2>Conversación con {{otroUsuario}}</h2>
+<!-- TODO: maquetar y dar estilo, poner los mensajes del usuario a la derecha y del otro usuario a la izquierda.  -->
+{% for row in mensajes %}
+<div id="mensajes">
+
+    <!-- TODO: Para hacer la comprobación se puede hacer con esto: -->
+    {% if row.emisor == usuario %}
+    <!-- Mensaje del usuario -->
+    <div id="MensajeUsuario">
+        <h3 id="titulo">{{row.title}}</h3>
+        <div id="mensaje">{{row.text}}</div><br>
+        <small>{{row.emisor}} - {{row.date_posted}}</small>
+    </div>
+    {% else %}
+    <!-- Mensaje del otro usuario -->
+    <div id="MensajeOtro">
+        <h3 id="titulo">{{row.title}}</h3>
+        <div id="mensaje">{{row.text}}</div><br>
+        <small>{{row.emisor}} - {{row.date_posted}}</small>
+    </div> {% endif %}
+
+</div>
+<br> {% endfor %} {% include "partials/pagination.html" with page_obj=mensajes %}
+<!-- TODO: Estaría bien dar estilo al form de manera que se diferencie la parte de id=mensajes, con form -->
+<!-- TODO:Validar que se rellenan todos los campos -->
+<!-- TODO: Si te parece podemos limitar el número de caractéres -->
+<form method="post">
     {% csrf_token %}
-
-
+    <input type="text" placeholder="título" name="title" id=""><br><br>
+    <textarea name="text" placeholder="Mensaje para {{otroUsuario}}..." id="text" cols="30" rows="10"></textarea><br>
     <input class="btn btn-black" type="submit" value="Enviar">
 </form>
-{% endcomment %}
-<h2>Conversaciones comenzadas</h2>
-{% for row in emisor %} {{row.emisor_id.}} {% endfor %} {% endblock %}
+
+
+{% endblock %}

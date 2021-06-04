@@ -6,7 +6,7 @@
     <img id="iavatar" class="foto-grupo" src="{{ STATIC_URL }}/static/media/{{ojeador.avatar}}" alt="Foto del ojeador" title="Foto seleccionada por el ojeador"> {% else %}
     <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
     <img id="iavatar" class="foto-grupo" src="{% static '/img/your-music-grupo.svg' %}" title="Imagen de ojeador por defeto"> {% endif %}
-    <a href="#">
+    <a href="{% url 'chat:contactar' pk %}">
         <input class="btn btn-black" type="submit" value="Contactar">
     </a>
 </div>
@@ -14,7 +14,8 @@
     <div>
         <h3>Géneros musicales</h3>
     </div>
-    {% for genero in generos %} <div>{{genero}}</div> {% endfor %}
+    {% for genero in generos %}
+    <div>{{genero}}</div> {% endfor %}
 </div>
 <div class="informacion">
     <div>
@@ -31,22 +32,18 @@
     {% if ojeador.twitter %}
     <div><i class="fab fa-twitter-square"></i></div>
     <div>{{ojeador.twitter}}</div>
-    {% endif %} 
-    {% if ojeador.instagram %}
+    {% endif %} {% if ojeador.instagram %}
     <div><i class="fab fa-instagram-square"></i></div>
     <div><a href="{{ojeador.instagram}}">{{ojeador.instagram}}</a></div>
-    {% endif %} 
-    {% if ojeador.facebook %}
+    {% endif %} {% if ojeador.facebook %}
     <div><i class="fab fa-facebook-square"></i></div>
     <div><a href="{{ojeador.facebook}}" target="_blank">{{ojeador.facebook}}</a></div>
 
-    {% endif %} 
-    {% if ojeador.web %}
+    {% endif %} {% if ojeador.web %}
     <div><i class="fas fa-link"></i></div>
     <div><a href="{{ojeador.web}}" target="_blank">{{ojeador.web}}</a></div>
 
-    {% endif %} 
-    {% if ojeador.email_profile %}
+    {% endif %} {% if ojeador.email_profile %}
     <div><i class="fas fa-envelope"></i></div>
     <div><a href="mailto:{{ojeador.email_profile}}">{{ojeador.email_profile}}</a></div>
     {% endif %}
@@ -58,19 +55,18 @@
         <h3>Últimas noticias</h3>
     </div>
     <div id="lista-noticias">
-    {% for n in noticias %}
-    <div class="noticia-extracto">
-        <div class="titulo-noticia">{{n.title}}</div>
-        <div class="noticia-entradilla">{{n.descripcion}}</div>
-    </div>
-    {% endfor %}
+        {% for n in noticias %}
+        <div class="noticia-extracto">
+            <div class="titulo-noticia">{{n.title}}</div>
+            <div class="noticia-entradilla">{{n.descripcion}}</div>
+        </div>
+        {% endfor %}
     </div>
     <!-- TODO2 Si hay sólo 3 vídeos o menos no debe mostrarse (hidden),
     si no se pone directamente saltan errores en consola al faltarel id.-->
     <div class="ver-mas" id="verMasNoticias">Ver más</div>
 </div>
 {% else %}
-    <div id="lista-noticias"></div>
-    <div id="verMasNoticias"></div>
-{% endif %}
-{% endblock %}
+<div id="lista-noticias"></div>
+<div id="verMasNoticias"></div>
+{% endif %} {% endblock %}

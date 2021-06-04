@@ -58,4 +58,4 @@ def detail_ojeador(request,pk):
     noticias=Noticias.objects.filter(userprofileojeadores=ojeador.id)
     print(noticias)
    
-    return render(request,'detail_ojeador.html',{'ojeador':ojeador,'generos':generos,'noticias':noticias})
+    return render(request,'detail_ojeador.html',{'ojeador':ojeador,'generos':generos,'noticias':noticias,'pk':pk})

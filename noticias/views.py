@@ -11,8 +11,7 @@ import datetime
 
 def index_noticias(request):
     """ __lte """
-    noticias = Noticias.objects.filter(
-        created_at__lte=datetime.date.today()).values()
+    noticias = Noticias.objects.all().order_by('-updated_at')
     '''
     created_at, descripcion, id, title, updated_at, userprofilemusicos, userprofileojeadores
     '''

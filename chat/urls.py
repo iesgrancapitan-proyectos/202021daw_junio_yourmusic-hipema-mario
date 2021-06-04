@@ -6,6 +6,7 @@ from . import views
 app_name='chat'
 urlpatterns = [
     path('allMessage', views.allMessage, name='allMessage'),
-    path('conversation/<int:receptor>/<int:emisor>', views.allMessage, name='allMessage'),
+    path('conversation/<int:pk>', views.conversation, name='conversation'),
+    path('contactar/<int:pk>', views.contactar, name='contactar'),
     
 ]

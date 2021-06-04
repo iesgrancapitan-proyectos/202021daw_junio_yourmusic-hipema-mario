@@ -56,4 +56,4 @@ def detail(request,pk):
     audios= Audios.objects.filter(userprofilemusicos=grupo.id)
     videos= Videos.objects.filter(userprofilemusicos=grupo.id)
     noticias=Noticias.objects.filter(userprofilemusicos=grupo.id)
-    return render(request,'detail_grupo.html',{'grupo':grupo,'generos':generos,'audios':audios,'videos':videos,'noticias':noticias})
+    return render(request,'detail_grupo.html',{'grupo':grupo,'generos':generos,'audios':audios,'videos':videos,'noticias':noticias,'pk':pk})

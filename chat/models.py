@@ -12,3 +12,8 @@ class Mensajes(models.Model):
         return 'Mensaje #{}'.format(self.id)
 class Canal(models.Model):
     mensajes_conver=models.ManyToManyField(Mensajes,blank=True,null=True)
+    usuarios=models.ManyToManyField(User,blank=True,null=True)
+
+
+    def __str__(self):
+        return 'Conversación #{}'.format(self.id)

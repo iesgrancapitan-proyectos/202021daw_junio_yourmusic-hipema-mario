@@ -1,0 +1,13 @@
+{% extends "base_user_account.html" %} {% block content %}
+<h2>Mensajes</h2>
+<p>{{usuario.username}}</p>
+<h3>Conversaciones:</h3>
+{% comment %}
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+
+    <input class="btn btn-black" type="submit" value="Enviar">
+</form>
+{% endcomment %} {% for row in canales %} {% for r in row.usuarios.all %} {% if r != usuario %}
+<a href="{% url 'chat:conversation' row.id %}">Conversación - {{r.userprofileojeadores}}{{r.userprofilemusicos}}</a><br> {% endif %} {% endfor %} {% endfor %} {% endblock %}
