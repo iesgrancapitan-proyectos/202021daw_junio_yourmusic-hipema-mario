@@ -51,7 +51,39 @@ def conversation(request, pk):
 
 
 @login_required
-def contactar(request, pk):
-    
-    return redirect('chat:conversation', pk)
+def contactar(request, pk, tipo):
+    print(request.user.userprofilemusicos.id)
+    us = ""
+    usPr = ""
+    if(tipo == "grupo"):
+        us = UserProfileMusicos.objects.get(id=pk)
+        try:
+            usPr = request.user.userprofilemusicos
+            if(us == usPr):
+                return redirect('chat:allMessage')
 
+        except Exception:
+            usPr = request.user.userprofileojeadores
+
+    else:
+        us = UserProfileOjeadores.objects.get(id=pk)
+        try:
+            usPr = request.user.userprofileojeadores
+
+            if(us == usPr):
+                return redirect('chat:allMessage')
+
+        except Exception:
+            usPr = request.user.userprofilemusicos
+
+    canal = Canal.objects.create()
+
+    canal.usuarios.add(request.user)
+    canal.usuarios.add(us.user)
+    canal.save()
+    print(canal)
+    print(canal.id)
+    us.canal_mensajes.add(canal)
+    usPr.canal_mensajes.add(canal)
+    
+    return redirect('chat:conversation', canal.id)

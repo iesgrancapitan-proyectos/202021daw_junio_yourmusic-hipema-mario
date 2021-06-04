@@ -6,7 +6,7 @@
     <img id="iavatar" class="foto-grupo" src="{{ STATIC_URL }}/static/media/{{ojeador.avatar}}" alt="Foto del ojeador" title="Foto seleccionada por el ojeador"> {% else %}
     <!-- Imagen por defecto en caso de que no exista la imagen del producto -->
     <img id="iavatar" class="foto-grupo" src="{% static '/img/your-music-grupo.svg' %}" title="Imagen de ojeador por defeto"> {% endif %}
-    <a href="{% url 'chat:contactar' pk %}">
+    <a href="{% url 'chat:contactar' pk 'ojeador' %}">
         <input class="btn btn-black" type="submit" value="Contactar">
     </a>
 </div>

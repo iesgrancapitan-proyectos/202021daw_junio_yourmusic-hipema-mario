@@ -8,7 +8,7 @@
     <img id="iavatar" class="foto-grupo" src="{% static '/img/your-music-grupo.svg' %}" title="Imagen de grupo por defeto"> {% endif %}
     <!-- TODO2 aquí habría que incluir el enlace a los mensajes posteriores entre usuarios -->
     <!-- TODO conforme tengamos toda la parte de los char cogemos el id del grupo y conectamos al usuario que está conectado con el grupo -->
-    <a href="{% url 'chat:contactar' pk %}">
+    <a href="{% url 'chat:contactar' pk 'grupo' %}">
         <input class="btn btn-black" type="submit" value="Contactar">
     </a>
 </div>

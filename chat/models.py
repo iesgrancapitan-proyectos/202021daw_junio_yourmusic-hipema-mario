@@ -13,7 +13,7 @@ class Mensajes(models.Model):
 class Canal(models.Model):
     mensajes_conver=models.ManyToManyField(Mensajes,blank=True,null=True)
     usuarios=models.ManyToManyField(User,blank=True,null=True)
-
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return 'Conversación #{}'.format(self.id)
