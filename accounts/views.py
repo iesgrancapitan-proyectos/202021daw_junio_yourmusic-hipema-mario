@@ -139,7 +139,7 @@ def noticias_user(request, pk=None, tipo=None):
                 title=request.POST['titulo'], descripcion=request.POST['noticia'])
         else:
             res = Noticias.objects.create(
-                title=request.POST['titulo'], descripcion=request.POST['noticia'])
+                title=request.POST['titulo'], descripcion=request.POST['noticia'],usuario=request.user)
             usuario.noticias.add(res)
         return redirect('account:noticias_user')
 

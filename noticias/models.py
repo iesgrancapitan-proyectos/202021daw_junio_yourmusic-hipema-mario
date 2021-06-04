@@ -8,7 +8,7 @@ class Noticias(models.Model):
     descripcion=models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # usuario=models.ForeignKey(User,on_delete=models.CASCADE)
+    usuario=models.ForeignKey(User,on_delete=models.CASCADE)
     
     def __unicode__(self):
         return self.title

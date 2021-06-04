@@ -1,15 +1,19 @@
 {% extends "base_gral.html" %} {% block content %}
 <h2>Noticias</h2>
-{% for row in noticias %} {{row.userprofilemusicos}}
+{% for row in noticias %}
 <div class="noticias-listado">
     <div class="noticias-individual">
         <h3 class="noticias-titulo">{{row.title}}</h3>
         <!--  Aquí debemos recibir la info de quien lo escribe que no se ve y la fecha.
                    Además, también podríamos enlazar al perfil del usuario. -->
-        <div class="noticias-usuario"><a href="#">Usuario</a> - <span>12/02/2021</span></div>
+        {% if row.usuario.userprofilemusicos %}
+        <div class="noticias-usuario"><a href="{% url 'grupos:detail' row.usuario.userprofilemusicos.id %}">{{row.usuario.userprofilemusicos}}</a> - <span>{{row.updated_at}}</span></div>
+        {% else %}
+        <div class="noticias-usuario"><a href="{% url 'ojeador:detail_ojeador' row.usuario.userprofileojeadores.id %}">{{row.usuario.userprofileojeadores}}</a> - <span>{{row.updated_at}}</span></div>
+        {% endif %}
         <div class="noticias-extracto">{{row.descripcion|slice:":160"}}...</div>
         <!--  Aquí debe enlazar a la noticia individual extendida -->
-        <div class="noticias-ampliar"><a href="#">Leer más</a></div>
+        <div class="noticias-ampliar"><a href="{% url 'noticias:noticia' row.id %}">Leer más</a></div>
     </div>
     {% comment %} {{forloop.counter0}} {% endcomment %}
 </div>

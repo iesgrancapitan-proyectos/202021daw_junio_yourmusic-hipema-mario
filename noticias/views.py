@@ -16,6 +16,7 @@ def index_noticias(request):
     created_at, descripcion, id, title, updated_at, userprofilemusicos, userprofileojeadores
     '''
 
+
     usuario = User.objects.all()
 
     paginator = Paginator(noticias, 4)
@@ -24,3 +25,9 @@ def index_noticias(request):
     noticias_page = paginator.get_page(page_number)
 
     return render(request, 'index_noticias.html', {'noticias':  noticias_page,  'noticiasU': usuario})
+
+def noticia(request,pk):
+
+    noticia = Noticias.objects.get(id=pk)
+    
+    return render(request, 'noticia.html', {'noticia':  noticia})
