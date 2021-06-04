@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2021 at 12:54 AM
+-- Generation Time: Jun 04, 2021 at 08:34 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -577,13 +577,13 @@ CREATE TABLE `auth_user` (
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
 (1, 'pbkdf2_sha256$216000$hU3rbPBVEVQ1$rOgZabR1RgwlYFNrWtGKANxrje3q3J2a5T0wrnxPsLU=', '2021-06-03 22:15:43.439886', 1, 'adminMario', '', '', '', 1, 1, '2021-06-03 22:15:21.246117'),
 (2, 'pbkdf2_sha256$216000$L3XYdsPARvq5$dE2L8xiq57cCgAa7y1GAk+mb32Fb8d0JoIqV7b59Yts=', NULL, 1, 'adminManuel', '', '', '', 1, 1, '2021-06-03 22:15:35.054090'),
-(3, 'pbkdf2_sha256$216000$4hWVpFCTUweU$jRQhsbkZlcTgHKLLVTundAnyBU4jNVbWrj6MVE/kUOA=', '2021-06-03 22:53:51.770099', 0, 'mario', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-06-03 22:19:07.590196'),
+(3, 'pbkdf2_sha256$216000$4hWVpFCTUweU$jRQhsbkZlcTgHKLLVTundAnyBU4jNVbWrj6MVE/kUOA=', '2021-06-04 18:10:56.564668', 0, 'mario', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-06-03 22:19:07.590196'),
 (4, 'pbkdf2_sha256$216000$nhONhA0yVmuP$6xZeSct7FVhXbw9wkSA2TsX0JfKhHg2jvwNfZA2JT2g=', '2021-06-03 22:33:52.727181', 0, 'Jaime', '', '', 'jaime@gmail.com', 0, 1, '2021-06-03 22:33:52.520109'),
 (5, 'pbkdf2_sha256$216000$mB0dQfBjuTDw$wITEZEzEP2I+ZPIA+GMeUZwKw2S7NLtjXUtH65bhhO4=', '2021-06-03 22:36:33.635065', 0, 'pepe', '', '', 'pepe@gmail.com', 0, 1, '2021-06-03 22:36:33.452094'),
 (6, 'pbkdf2_sha256$216000$g5891KO2pBkU$cV1F5y3SvFWA+CTPPBeLDQ3Koh6UWb05y9U5Z8lSuH8=', '2021-06-03 22:41:06.494424', 0, 'Jimena', '', '', 'prueba@email.com', 0, 1, '2021-06-03 22:41:06.294400'),
 (7, 'pbkdf2_sha256$216000$0U33Mvb9RAxV$cMxJ6F2z3YCdbNudSbgD/s86xDdbf7GmEz0YIM2yvhU=', '2021-06-03 22:42:34.203377', 0, 'Manuel', '', '', 'subeunescalon@gmail.com', 0, 1, '2021-06-03 22:42:34.012388'),
 (8, 'pbkdf2_sha256$216000$li9FfmpOn5GV$C64GRdhTt+QQArAFhkG7kzeFpgZ79VySZmk8E4j0W4M=', '2021-06-03 22:44:50.415885', 0, 'Jose', '', '', 'Jose@gmail.com', 0, 1, '2021-06-03 22:44:50.204982'),
-(9, 'pbkdf2_sha256$216000$VgljCJHrcpji$7fUTzYqn8ap3JU8FdsMxuwF555ye+enedDi/gvXhU6U=', '2021-06-03 22:49:19.493641', 0, 'Vladimir', '', '', 'elvla@gmail.com', 0, 1, '2021-06-03 22:49:19.290668'),
+(9, 'pbkdf2_sha256$216000$VgljCJHrcpji$7fUTzYqn8ap3JU8FdsMxuwF555ye+enedDi/gvXhU6U=', '2021-06-04 18:10:32.779226', 0, 'Vladimir', '', '', 'elvla@gmail.com', 0, 1, '2021-06-03 22:49:19.290668'),
 (10, 'pbkdf2_sha256$216000$eKcs9MnNalSk$2+jdbM1GjS/5jdukoQUhOHRN3/wxrszxDRxcTWyqQ5A=', '2021-06-03 22:50:56.564378', 0, 'usuario', '', '', 'usuario@email.com', 0, 1, '2021-06-03 22:50:56.378350');
 
 -- --------------------------------------------------------
@@ -620,6 +620,15 @@ CREATE TABLE `chat_canal` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `chat_canal`
+--
+
+INSERT INTO `chat_canal` (`id`) VALUES
+(1),
+(2),
+(3);
+
 -- --------------------------------------------------------
 
 --
@@ -631,6 +640,44 @@ CREATE TABLE `chat_canal_mensajes_conver` (
   `canal_id` int(11) NOT NULL,
   `mensajes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat_canal_mensajes_conver`
+--
+
+INSERT INTO `chat_canal_mensajes_conver` (`id`, `canal_id`, `mensajes_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(3, 2, 3),
+(4, 3, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat_canal_usuarios`
+--
+
+CREATE TABLE `chat_canal_usuarios` (
+  `id` int(11) NOT NULL,
+  `canal_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat_canal_usuarios`
+--
+
+INSERT INTO `chat_canal_usuarios` (`id`, `canal_id`, `user_id`) VALUES
+(2, 1, 3),
+(1, 1, 9),
+(3, 2, 4),
+(4, 2, 7),
+(5, 3, 3),
+(6, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -646,6 +693,20 @@ CREATE TABLE `chat_mensajes` (
   `emisor_id` int(11) NOT NULL,
   `receptor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat_mensajes`
+--
+
+INSERT INTO `chat_mensajes` (`id`, `title`, `text`, `date_posted`, `emisor_id`, `receptor_id`) VALUES
+(1, 'Me interesa', 'Me interesa vuestro grupo os quiero contratar cuanto cobrais', '2021-06-04 15:21:40.647109', 9, 3),
+(2, 'Hola 500', '500 € mínimo por dos horas, donde sería? hay trato?', '2021-06-04 15:22:35.692411', 3, 9),
+(3, 'Hoola que tocais?', 'Pues eso qué tocais', '2021-06-04 15:23:00.808369', 4, 7),
+(4, 'asd', 'asasd', '2021-06-04 17:03:35.243825', 3, 4),
+(5, 'No son 500', 'son 550 Perdona', '2021-06-04 18:03:30.881387', 3, 9),
+(6, 'asdasd', 'asdasd', '2021-06-04 18:05:29.537387', 3, 9),
+(7, 'Último mensaje que te dejo', 'lo dicho', '2021-06-04 18:09:58.919904', 3, 9),
+(8, 'Pos mu bien', 'Eres mu carero', '2021-06-04 18:10:48.035729', 9, 3);
 
 -- --------------------------------------------------------
 
@@ -669,7 +730,19 @@ CREATE TABLE `django_admin_log` (
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2021-06-03 22:37:41.072241', '2', 'Comala', 1, '[{\"added\": {}}]', 13, 1);
+(1, '2021-06-03 22:37:41.072241', '2', 'Comala', 1, '[{\"added\": {}}]', 13, 1),
+(2, '2021-06-04 15:21:40.649590', '1', 'Mensaje #1', 1, '[{\"added\": {}}]', 15, 1),
+(3, '2021-06-04 15:22:35.693450', '2', 'Mensaje #2', 1, '[{\"added\": {}}]', 15, 1),
+(4, '2021-06-04 15:22:39.324120', '1', 'Mensaje #1', 2, '[]', 15, 1),
+(5, '2021-06-04 15:23:00.808369', '3', 'Mensaje #3', 1, '[{\"added\": {}}]', 15, 1),
+(6, '2021-06-04 15:23:07.763066', '1', 'Canal object (1)', 1, '[{\"added\": {}}]', 16, 1),
+(7, '2021-06-04 15:23:11.216228', '2', 'Canal object (2)', 1, '[{\"added\": {}}]', 16, 1),
+(8, '2021-06-04 15:32:09.447864', '1', 'Conversación #1', 2, '[{\"changed\": {\"fields\": [\"Usuarios\"]}}]', 16, 1),
+(9, '2021-06-04 15:32:24.674603', '2', 'Conversación #2', 2, '[{\"changed\": {\"fields\": [\"Usuarios\"]}}]', 16, 1),
+(10, '2021-06-04 17:03:35.246001', '4', 'Mensaje #4', 1, '[{\"added\": {}}]', 15, 1),
+(11, '2021-06-04 17:03:49.925304', '3', 'Conversación #3', 1, '[{\"added\": {}}]', 16, 1),
+(12, '2021-06-04 17:37:46.215577', '1', 'Mensaje #1', 2, '[{\"changed\": {\"fields\": [\"Text\"]}}]', 15, 1),
+(13, '2021-06-04 18:04:59.306645', '1', 'Conversación #1', 2, '[{\"changed\": {\"fields\": [\"Mensajes conver\"]}}]', 16, 1);
 
 -- --------------------------------------------------------
 
@@ -748,7 +821,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (21, 'authtoken', '0001_initial', '2021-06-03 22:13:30.297431'),
 (22, 'authtoken', '0002_auto_20160226_1747', '2021-06-03 22:13:30.567906'),
 (23, 'authtoken', '0003_tokenproxy', '2021-06-03 22:13:30.577895'),
-(24, 'sessions', '0001_initial', '2021-06-03 22:13:30.634561');
+(24, 'sessions', '0001_initial', '2021-06-03 22:13:30.634561'),
+(25, 'chat', '0002_canal_usuarios', '2021-06-04 15:31:55.365248');
 
 -- --------------------------------------------------------
 
@@ -768,7 +842,8 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('kg7tzk36laaop0cfjm2yp5ysuz5rhqm7', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1lowDn:YkzVap_AfJet5kcB2UtIZy-Wqmo33rYN6EnbK5Ph4BM', '2021-06-17 22:53:51.781102'),
-('qdggs3per33sir0a7wqtky2q5c2ynw5z', '.eJxVjDsOwjAQRO_iGlleEn-Wkp4zWLv2mgSQI-VTIe6OI6WAcua9mbeKtK1D3BaZ45jVRYE6_XZM6Sl1B_lB9T7pNNV1Hlnvij7oom9Tltf1cP8OBlqGtubSpWAyI1BnvbeC2LsSCHNgNggAYpNDkeaBE_bQ9SGVMxmTsSX1-QLtKzgO:1lovct:DzYaHlfJksyy7pu_Hi0k8t741xUj_lzauxjylp4P5YQ', '2021-06-17 22:15:43.443906');
+('qdggs3per33sir0a7wqtky2q5c2ynw5z', '.eJxVjDsOwjAQRO_iGlleEn-Wkp4zWLv2mgSQI-VTIe6OI6WAcua9mbeKtK1D3BaZ45jVRYE6_XZM6Sl1B_lB9T7pNNV1Hlnvij7oom9Tltf1cP8OBlqGtubSpWAyI1BnvbeC2LsSCHNgNggAYpNDkeaBE_bQ9SGVMxmTsSX1-QLtKzgO:1lovct:DzYaHlfJksyy7pu_Hi0k8t741xUj_lzauxjylp4P5YQ', '2021-06-17 22:15:43.443906'),
+('w7vpiqyx7m7l2qe3nght7ctyy5q35q84', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1lpEHY:RnQHtWumybXsTy4cXuccb8z7nMc1GcfDwM3n54cndUg', '2021-06-18 18:10:56.569620');
 
 -- --------------------------------------------------------
 
@@ -980,6 +1055,14 @@ ALTER TABLE `chat_canal_mensajes_conver`
   ADD KEY `chat_canal_mensajes__mensajes_id_8b83330f_fk_chat_mens` (`mensajes_id`);
 
 --
+-- Indexes for table `chat_canal_usuarios`
+--
+ALTER TABLE `chat_canal_usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `chat_canal_usuarios_canal_id_user_id_ee955381_uniq` (`canal_id`,`user_id`),
+  ADD KEY `chat_canal_usuarios_user_id_812721b8_fk_auth_user_id` (`user_id`);
+
+--
 -- Indexes for table `chat_mensajes`
 --
 ALTER TABLE `chat_mensajes`
@@ -1155,25 +1238,31 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `chat_canal`
 --
 ALTER TABLE `chat_canal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `chat_canal_mensajes_conver`
 --
 ALTER TABLE `chat_canal_mensajes_conver`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `chat_canal_usuarios`
+--
+ALTER TABLE `chat_canal_usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `chat_mensajes`
 --
 ALTER TABLE `chat_mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -1185,7 +1274,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `noticias_noticias`
@@ -1307,6 +1396,13 @@ ALTER TABLE `auth_user_user_permissions`
 ALTER TABLE `chat_canal_mensajes_conver`
   ADD CONSTRAINT `chat_canal_mensajes__mensajes_id_8b83330f_fk_chat_mens` FOREIGN KEY (`mensajes_id`) REFERENCES `chat_mensajes` (`id`),
   ADD CONSTRAINT `chat_canal_mensajes_conver_canal_id_3bb988dd_fk_chat_canal_id` FOREIGN KEY (`canal_id`) REFERENCES `chat_canal` (`id`);
+
+--
+-- Constraints for table `chat_canal_usuarios`
+--
+ALTER TABLE `chat_canal_usuarios`
+  ADD CONSTRAINT `chat_canal_usuarios_canal_id_c88e1814_fk_chat_canal_id` FOREIGN KEY (`canal_id`) REFERENCES `chat_canal` (`id`),
+  ADD CONSTRAINT `chat_canal_usuarios_user_id_812721b8_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
 -- Constraints for table `chat_mensajes`
