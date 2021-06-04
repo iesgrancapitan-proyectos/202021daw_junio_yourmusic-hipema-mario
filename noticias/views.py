@@ -15,36 +15,8 @@ def index_noticias(request):
     '''
     created_at, descripcion, id, title, updated_at, userprofilemusicos, userprofileojeadores
     '''
-    print("NT")
 
-    noticiasU = []
     usuario = User.objects.all()
-
-    ''' for item in usuario:
-        try:
-            noticiasU.append(item.userprofilemusicos)
-        except Exception:
-            try:
-                noticiasU.append(item.userprofileojeadores)
-            except Exception:
-                print("Usuario sin perfil: "+str(item))
-    print("noticiasU")
-    print(noticiasU) '''
-
-    ''' for item in noticias:
-
-        user = UserProfileMusicos.objects.filter(noticias=item['id']).values()
-        if user.count():
-            for i in user:
-                usuarios.append(i['nombre_profile'])
-            pass
-        else:
-            user = UserProfileOjeadores.objects.filter(
-                noticias=item['id']).values()
-            for i in user:
-                usuarios.append(i['nombre_profile']) '''
-
-    # print(usuarios)
 
     paginator = Paginator(noticias, 4)
 

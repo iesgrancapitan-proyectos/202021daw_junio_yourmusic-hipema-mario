@@ -1,6 +1,6 @@
 {% extends "base_gral.html" %} {% block content %}
 <h2>Noticias</h2>
-{{row}}{% for row in noticias %}
+{% for row in noticias %} {{row.userprofilemusicos}}
 <div class="noticias-listado">
     <div class="noticias-individual">
         <h3 class="noticias-titulo">{{row.title}}</h3>

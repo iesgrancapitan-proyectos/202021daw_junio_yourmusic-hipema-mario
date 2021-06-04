@@ -52,7 +52,6 @@ def conversation(request, pk):
 
 @login_required
 def contactar(request, pk, tipo):
-    print(request.user.userprofilemusicos.id)
     us = ""
     usPr = ""
     if(tipo == "grupo"):
@@ -83,7 +82,22 @@ def contactar(request, pk, tipo):
     canal.save()
     print(canal)
     print(canal.id)
+    """ Provisional, puede que se quite el campo canal_mensajes de la tabla """
     us.canal_mensajes.add(canal)
     usPr.canal_mensajes.add(canal)
-    
+
     return redirect('chat:conversation', canal.id)
+
+
+""" @login_required
+def delete(request,pk):
+    canal = Canal.objects.get(id=pk)
+
+    try:
+        usPr = request.user.userprofilemusicos
+    except Exception:
+        usPr = request.user.userprofileojeadores
+    canal.usuarios.remove(request.user)
+    usPr.canal_mensajes.remove(pk)        
+
+    return redirect('chat:allMessage') """
