@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2021 at 08:34 PM
+-- Generation Time: Jun 07, 2021 at 12:33 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -261,6 +261,7 @@ CREATE TABLE `accounts_userprofilemusicos_noticias` (
 --
 
 INSERT INTO `accounts_userprofilemusicos_noticias` (`id`, `userprofilemusicos_id`, `noticias_id`) VALUES
+(5, 1, 9),
 (1, 2, 3),
 (2, 2, 4),
 (3, 3, 7),
@@ -351,6 +352,13 @@ CREATE TABLE `accounts_userprofileojeadores_canal_mensajes` (
   `userprofileojeadores_id` int(11) NOT NULL,
   `canal_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts_userprofileojeadores_canal_mensajes`
+--
+
+INSERT INTO `accounts_userprofileojeadores_canal_mensajes` (`id`, `userprofileojeadores_id`, `canal_id`) VALUES
+(1, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -548,7 +556,19 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (69, 'Can add token', 18, 'add_tokenproxy'),
 (70, 'Can change token', 18, 'change_tokenproxy'),
 (71, 'Can delete token', 18, 'delete_tokenproxy'),
-(72, 'Can view token', 18, 'view_tokenproxy');
+(72, 'Can view token', 18, 'view_tokenproxy'),
+(73, 'Can add tema_foro', 19, 'add_tema_foro'),
+(74, 'Can change tema_foro', 19, 'change_tema_foro'),
+(75, 'Can delete tema_foro', 19, 'delete_tema_foro'),
+(76, 'Can view tema_foro', 19, 'view_tema_foro'),
+(77, 'Can add post', 20, 'add_post'),
+(78, 'Can change post', 20, 'change_post'),
+(79, 'Can delete post', 20, 'delete_post'),
+(80, 'Can view post', 20, 'view_post'),
+(81, 'Can add mensajes_post', 21, 'add_mensajes_post'),
+(82, 'Can change mensajes_post', 21, 'change_mensajes_post'),
+(83, 'Can delete mensajes_post', 21, 'delete_mensajes_post'),
+(84, 'Can view mensajes_post', 21, 'view_mensajes_post');
 
 -- --------------------------------------------------------
 
@@ -578,7 +598,7 @@ INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `userna
 (1, 'pbkdf2_sha256$216000$hU3rbPBVEVQ1$rOgZabR1RgwlYFNrWtGKANxrje3q3J2a5T0wrnxPsLU=', '2021-06-03 22:15:43.439886', 1, 'adminMario', '', '', '', 1, 1, '2021-06-03 22:15:21.246117'),
 (2, 'pbkdf2_sha256$216000$L3XYdsPARvq5$dE2L8xiq57cCgAa7y1GAk+mb32Fb8d0JoIqV7b59Yts=', NULL, 1, 'adminManuel', '', '', '', 1, 1, '2021-06-03 22:15:35.054090'),
 (3, 'pbkdf2_sha256$216000$4hWVpFCTUweU$jRQhsbkZlcTgHKLLVTundAnyBU4jNVbWrj6MVE/kUOA=', '2021-06-04 18:10:56.564668', 0, 'mario', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-06-03 22:19:07.590196'),
-(4, 'pbkdf2_sha256$216000$nhONhA0yVmuP$6xZeSct7FVhXbw9wkSA2TsX0JfKhHg2jvwNfZA2JT2g=', '2021-06-03 22:33:52.727181', 0, 'Jaime', '', '', 'jaime@gmail.com', 0, 1, '2021-06-03 22:33:52.520109'),
+(4, 'pbkdf2_sha256$216000$nhONhA0yVmuP$6xZeSct7FVhXbw9wkSA2TsX0JfKhHg2jvwNfZA2JT2g=', '2021-06-04 23:32:28.972581', 0, 'Jaime', '', '', 'jaime@gmail.com', 0, 1, '2021-06-03 22:33:52.520109'),
 (5, 'pbkdf2_sha256$216000$mB0dQfBjuTDw$wITEZEzEP2I+ZPIA+GMeUZwKw2S7NLtjXUtH65bhhO4=', '2021-06-03 22:36:33.635065', 0, 'pepe', '', '', 'pepe@gmail.com', 0, 1, '2021-06-03 22:36:33.452094'),
 (6, 'pbkdf2_sha256$216000$g5891KO2pBkU$cV1F5y3SvFWA+CTPPBeLDQ3Koh6UWb05y9U5Z8lSuH8=', '2021-06-03 22:41:06.494424', 0, 'Jimena', '', '', 'prueba@email.com', 0, 1, '2021-06-03 22:41:06.294400'),
 (7, 'pbkdf2_sha256$216000$0U33Mvb9RAxV$cMxJ6F2z3YCdbNudSbgD/s86xDdbf7GmEz0YIM2yvhU=', '2021-06-03 22:42:34.203377', 0, 'Manuel', '', '', 'subeunescalon@gmail.com', 0, 1, '2021-06-03 22:42:34.012388'),
@@ -617,17 +637,16 @@ CREATE TABLE `auth_user_user_permissions` (
 --
 
 CREATE TABLE `chat_canal` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `created_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `chat_canal`
 --
 
-INSERT INTO `chat_canal` (`id`) VALUES
-(1),
-(2),
-(3);
+INSERT INTO `chat_canal` (`id`, `created_at`) VALUES
+(8, '2021-06-04 23:20:18.426834');
 
 -- --------------------------------------------------------
 
@@ -646,14 +665,7 @@ CREATE TABLE `chat_canal_mensajes_conver` (
 --
 
 INSERT INTO `chat_canal_mensajes_conver` (`id`, `canal_id`, `mensajes_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(5, 1, 5),
-(6, 1, 6),
-(7, 1, 7),
-(8, 1, 8),
-(3, 2, 3),
-(4, 3, 4);
+(11, 8, 11);
 
 -- --------------------------------------------------------
 
@@ -672,12 +684,8 @@ CREATE TABLE `chat_canal_usuarios` (
 --
 
 INSERT INTO `chat_canal_usuarios` (`id`, `canal_id`, `user_id`) VALUES
-(2, 1, 3),
-(1, 1, 9),
-(3, 2, 4),
-(4, 2, 7),
-(5, 3, 3),
-(6, 3, 4);
+(17, 8, 3),
+(16, 8, 4);
 
 -- --------------------------------------------------------
 
@@ -699,14 +707,7 @@ CREATE TABLE `chat_mensajes` (
 --
 
 INSERT INTO `chat_mensajes` (`id`, `title`, `text`, `date_posted`, `emisor_id`, `receptor_id`) VALUES
-(1, 'Me interesa', 'Me interesa vuestro grupo os quiero contratar cuanto cobrais', '2021-06-04 15:21:40.647109', 9, 3),
-(2, 'Hola 500', '500 € mínimo por dos horas, donde sería? hay trato?', '2021-06-04 15:22:35.692411', 3, 9),
-(3, 'Hoola que tocais?', 'Pues eso qué tocais', '2021-06-04 15:23:00.808369', 4, 7),
-(4, 'asd', 'asasd', '2021-06-04 17:03:35.243825', 3, 4),
-(5, 'No son 500', 'son 550 Perdona', '2021-06-04 18:03:30.881387', 3, 9),
-(6, 'asdasd', 'asdasd', '2021-06-04 18:05:29.537387', 3, 9),
-(7, 'Último mensaje que te dejo', 'lo dicho', '2021-06-04 18:09:58.919904', 3, 9),
-(8, 'Pos mu bien', 'Eres mu carero', '2021-06-04 18:10:48.035729', 9, 3);
+(11, 'Hola que tal', 'Bien?', '2021-06-04 23:27:41.351953', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -742,7 +743,38 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (10, '2021-06-04 17:03:35.246001', '4', 'Mensaje #4', 1, '[{\"added\": {}}]', 15, 1),
 (11, '2021-06-04 17:03:49.925304', '3', 'Conversación #3', 1, '[{\"added\": {}}]', 16, 1),
 (12, '2021-06-04 17:37:46.215577', '1', 'Mensaje #1', 2, '[{\"changed\": {\"fields\": [\"Text\"]}}]', 15, 1),
-(13, '2021-06-04 18:04:59.306645', '1', 'Conversación #1', 2, '[{\"changed\": {\"fields\": [\"Mensajes conver\"]}}]', 16, 1);
+(13, '2021-06-04 18:04:59.306645', '1', 'Conversación #1', 2, '[{\"changed\": {\"fields\": [\"Mensajes conver\"]}}]', 16, 1),
+(14, '2021-06-04 23:06:48.406208', '5', 'Conversación #5', 3, '', 16, 1),
+(15, '2021-06-04 23:07:23.290345', '4', 'Conversación #4', 3, '', 16, 1),
+(16, '2021-06-04 23:07:32.427343', '9', 'Mensaje #9', 3, '', 15, 1),
+(17, '2021-06-04 23:20:40.112512', '10', 'Mensaje #10', 3, '', 15, 1),
+(18, '2021-06-04 23:20:40.117511', '8', 'Mensaje #8', 3, '', 15, 1),
+(19, '2021-06-04 23:20:40.121510', '7', 'Mensaje #7', 3, '', 15, 1),
+(20, '2021-06-04 23:20:40.130535', '6', 'Mensaje #6', 3, '', 15, 1),
+(21, '2021-06-04 23:20:40.133529', '5', 'Mensaje #5', 3, '', 15, 1),
+(22, '2021-06-04 23:20:40.136530', '4', 'Mensaje #4', 3, '', 15, 1),
+(23, '2021-06-04 23:20:40.139551', '3', 'Mensaje #3', 3, '', 15, 1),
+(24, '2021-06-04 23:20:40.142221', '2', 'Mensaje #2', 3, '', 15, 1),
+(25, '2021-06-04 23:20:40.146214', '1', 'Mensaje #1', 3, '', 15, 1),
+(26, '2021-06-04 23:20:51.327317', '7', 'Conversación #7', 3, '', 16, 1),
+(27, '2021-06-04 23:20:51.332330', '6', 'Conversación #6', 3, '', 16, 1),
+(28, '2021-06-04 23:20:51.341330', '3', 'Conversación #3', 3, '', 16, 1),
+(29, '2021-06-04 23:20:51.346480', '2', 'Conversación #2', 3, '', 16, 1),
+(30, '2021-06-04 23:20:51.350486', '1', 'Conversación #1', 3, '', 16, 1),
+(31, '2021-06-04 23:34:56.698389', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Usuarios\"]}}]', 16, 1),
+(32, '2021-06-04 23:45:13.829939', '2', 'ven al CB', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Usuario\"]}}]', 14, 1),
+(33, '2021-06-04 23:45:58.665930', '1', 'Nuevos!!', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Usuario\"]}}]', 14, 1),
+(34, '2021-06-04 23:46:12.510160', '5', 'nueva discográfica', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Usuario\"]}}]', 14, 1),
+(35, '2021-06-04 23:46:17.175854', '6', 'Buscamos músicos', 2, '[{\"changed\": {\"fields\": [\"Title\", \"Descripcion\", \"Usuario\"]}}]', 14, 1),
+(36, '2021-06-04 23:46:38.935050', '4', 'otra noticia', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Usuario\"]}}]', 14, 1),
+(37, '2021-06-04 23:46:47.085409', '3', 'Noticia de comala', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Usuario\"]}}]', 14, 1),
+(38, '2021-06-04 23:47:01.128280', '7', 'Grupo de rock psicodélico', 2, '[{\"changed\": {\"fields\": [\"Usuario\"]}}]', 14, 1),
+(39, '2021-06-04 23:47:12.404415', '8', 'prueba', 2, '[{\"changed\": {\"fields\": [\"Descripcion\", \"Usuario\"]}}]', 14, 1),
+(40, '2021-06-06 21:47:47.979213', '1', '¿Buscas Grupo para tu evento?', 1, '[{\"added\": {}}]', 19, 1),
+(41, '2021-06-06 21:48:42.098110', '2', '¿Organizamos un concierto?', 1, '[{\"added\": {}}]', 19, 1),
+(42, '2021-06-06 21:49:32.561514', '3', 'Compra-venta de Instrumentos', 1, '[{\"added\": {}}]', 19, 1),
+(43, '2021-06-06 21:49:59.564142', '4', 'Off-Topic', 1, '[{\"added\": {}}]', 19, 1),
+(44, '2021-06-06 22:25:53.650910', '1', 'post de prueba', 3, '', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -777,6 +809,9 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (16, 'chat', 'canal'),
 (15, 'chat', 'mensajes'),
 (5, 'contenttypes', 'contenttype'),
+(21, 'foro', 'mensajes_post'),
+(20, 'foro', 'post'),
+(19, 'foro', 'tema_foro'),
 (14, 'noticias', 'noticias'),
 (6, 'sessions', 'session');
 
@@ -822,7 +857,12 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (22, 'authtoken', '0002_auto_20160226_1747', '2021-06-03 22:13:30.567906'),
 (23, 'authtoken', '0003_tokenproxy', '2021-06-03 22:13:30.577895'),
 (24, 'sessions', '0001_initial', '2021-06-03 22:13:30.634561'),
-(25, 'chat', '0002_canal_usuarios', '2021-06-04 15:31:55.365248');
+(25, 'chat', '0002_canal_usuarios', '2021-06-04 15:31:55.365248'),
+(26, 'chat', '0003_canal_created_at', '2021-06-04 23:05:24.323194'),
+(27, 'noticias', '0002_noticias_usuario', '2021-06-04 23:43:53.369245'),
+(28, 'foro', '0001_initial', '2021-06-06 21:44:01.507161'),
+(29, 'foro', '0002_auto_20210606_2345', '2021-06-06 21:45:07.253657'),
+(30, 'foro', '0003_auto_20210606_2346', '2021-06-06 21:46:52.893496');
 
 -- --------------------------------------------------------
 
@@ -841,9 +881,115 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('e1klt7fbg783d9b1k9g2ax7d4q73bnmx', '.eJxVjEEOwiAQRe_C2hBgwIJL9z0DGZipVA0kpV0Z765NutDtf-_9l4i4rSVunZc4k7gIK06_W8L84LoDumO9NZlbXZc5yV2RB-1ybMTP6-H-HRTs5VszuAxE6Wwp-0yJM1hCpRMOSQEMPlg9IbLS2oFjDGjYBG2CM0FN4MX7Aw3vOB4:1lpJIi:nuucKYk2leCWOnA4JllsL1Nm6eLWcF4YUpSfzACk4w4', '2021-06-18 23:32:28.977121'),
 ('kg7tzk36laaop0cfjm2yp5ysuz5rhqm7', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1lowDn:YkzVap_AfJet5kcB2UtIZy-Wqmo33rYN6EnbK5Ph4BM', '2021-06-17 22:53:51.781102'),
 ('qdggs3per33sir0a7wqtky2q5c2ynw5z', '.eJxVjDsOwjAQRO_iGlleEn-Wkp4zWLv2mgSQI-VTIe6OI6WAcua9mbeKtK1D3BaZ45jVRYE6_XZM6Sl1B_lB9T7pNNV1Hlnvij7oom9Tltf1cP8OBlqGtubSpWAyI1BnvbeC2LsSCHNgNggAYpNDkeaBE_bQ9SGVMxmTsSX1-QLtKzgO:1lovct:DzYaHlfJksyy7pu_Hi0k8t741xUj_lzauxjylp4P5YQ', '2021-06-17 22:15:43.443906'),
 ('w7vpiqyx7m7l2qe3nght7ctyy5q35q84', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1lpEHY:RnQHtWumybXsTy4cXuccb8z7nMc1GcfDwM3n54cndUg', '2021-06-18 18:10:56.569620');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foro_mensajes_post`
+--
+
+CREATE TABLE `foro_mensajes_post` (
+  `id` int(11) NOT NULL,
+  `title` varchar(30) NOT NULL,
+  `descripcion` longtext NOT NULL,
+  `date_posted` datetime(6) NOT NULL,
+  `autor_mensaje_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `foro_mensajes_post`
+--
+
+INSERT INTO `foro_mensajes_post` (`id`, `title`, `descripcion`, `date_posted`, `autor_mensaje_id`) VALUES
+(1, 'mensaje de prueba', 'asdasdsdf', '2021-06-06 22:26:04.119837', 3),
+(2, 'asdas', 'asdasd', '2021-06-06 22:31:56.009440', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foro_post`
+--
+
+CREATE TABLE `foro_post` (
+  `id` int(11) NOT NULL,
+  `title` varchar(30) NOT NULL,
+  `descripcion` longtext NOT NULL,
+  `autor_post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `foro_post`
+--
+
+INSERT INTO `foro_post` (`id`, `title`, `descripcion`, `autor_post_id`) VALUES
+(2, 'post de prueba', 'asdasd', 3),
+(3, 'sd', 'ds', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foro_post_mensajes_post`
+--
+
+CREATE TABLE `foro_post_mensajes_post` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `mensajes_post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `foro_post_mensajes_post`
+--
+
+INSERT INTO `foro_post_mensajes_post` (`id`, `post_id`, `mensajes_post_id`) VALUES
+(1, 2, 1),
+(2, 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foro_tema_foro`
+--
+
+CREATE TABLE `foro_tema_foro` (
+  `id` int(11) NOT NULL,
+  `title` varchar(30) NOT NULL,
+  `descripcion` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `foro_tema_foro`
+--
+
+INSERT INTO `foro_tema_foro` (`id`, `title`, `descripcion`) VALUES
+(1, '¿Buscas Grupo para tu evento?', 'Si buscas grupo y tienes unas condiciones muy claras de lo que quieres postealo y los usuarios interesados te contestarán'),
+(2, '¿Organizamos un concierto?', 'Si eres un grupo que busca organizar concierto y necesita de grupos o locales donde hacerlo postealo aquí y los interesados se pondrán en contacto contigo'),
+(3, 'Compra-venta de Instrumentos', 'Para todos los amantes de la música, en este post podréis buscar nuevos instrumentos o vender los que ya no utiliceis'),
+(4, 'Off-Topic', 'Para hablar de cualquier tema');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foro_tema_foro_post_foro`
+--
+
+CREATE TABLE `foro_tema_foro_post_foro` (
+  `id` int(11) NOT NULL,
+  `tema_foro_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `foro_tema_foro_post_foro`
+--
+
+INSERT INTO `foro_tema_foro_post_foro` (`id`, `tema_foro_id`, `post_id`) VALUES
+(2, 1, 2),
+(3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -856,22 +1002,24 @@ CREATE TABLE `noticias_noticias` (
   `title` varchar(30) NOT NULL,
   `descripcion` longtext NOT NULL,
   `created_at` datetime(6) NOT NULL,
-  `updated_at` datetime(6) NOT NULL
+  `updated_at` datetime(6) NOT NULL,
+  `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `noticias_noticias`
 --
 
-INSERT INTO `noticias_noticias` (`id`, `title`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'Nuevos!!', '            Somo relativamente nuevos, te invitamos a una copa', '2021-06-03 22:35:29.845370', '2021-06-03 22:35:29.845370'),
-(2, 'ven al CB', '            CBGB, ven verás que guay está', '2021-06-03 22:35:44.075211', '2021-06-03 22:35:44.075211'),
-(3, 'Noticia de comala', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:39:34.746834', '2021-06-03 22:39:34.746834'),
-(4, 'otra noticia', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:39:51.040848', '2021-06-03 22:39:51.040848'),
-(5, 'nueva discográfica', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:41:52.917375', '2021-06-03 22:41:52.917375'),
-(6, 'Buscamos músicos ', '            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:42:02.482594', '2021-06-03 22:42:02.482594'),
-(7, 'Grupo de rock psicodélico', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:44:18.678780', '2021-06-03 22:44:18.678780'),
-(8, 'prueba', '            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', '2021-06-03 22:46:02.442822', '2021-06-03 22:46:02.442822');
+INSERT INTO `noticias_noticias` (`id`, `title`, `descripcion`, `created_at`, `updated_at`, `usuario_id`) VALUES
+(1, 'Nuevos!!', 'Somo relativamente nuevos, te invitamos a una copa', '2021-06-03 22:35:29.845370', '2021-06-04 23:45:58.664822', 4),
+(2, 'ven al CB', 'CBGB, ven verás que guay está', '2021-06-03 22:35:44.075211', '2021-06-04 23:45:13.828200', 4),
+(3, 'Noticia de comala', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:39:34.746834', '2021-06-04 23:46:47.084408', 5),
+(4, 'otra noticia', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:39:51.040848', '2021-06-04 23:46:38.934048', 5),
+(5, 'nueva discográfica', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:41:52.917375', '2021-06-04 23:46:12.509153', 6),
+(6, 'Buscamos músicos', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:42:02.482594', '2021-06-04 23:46:17.173942', 6),
+(7, 'Grupo de rock psicodélico', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:44:18.678780', '2021-06-04 23:47:01.127280', 7),
+(8, 'prueba', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2021-06-03 22:46:02.442822', '2021-06-04 23:47:12.403414', 8),
+(9, 'sdfdfsfsd', '            dddddddddddd', '2021-06-04 23:50:01.492550', '2021-06-04 23:50:01.492550', 3);
 
 --
 -- Indexes for dumped tables
@@ -1099,10 +1247,47 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indexes for table `foro_mensajes_post`
+--
+ALTER TABLE `foro_mensajes_post`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `foro_mensajes_post_autor_mensaje_id_cddfec64_fk_auth_user_id` (`autor_mensaje_id`);
+
+--
+-- Indexes for table `foro_post`
+--
+ALTER TABLE `foro_post`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `foro_post_autor_post_id_03835bb0_fk_auth_user_id` (`autor_post_id`);
+
+--
+-- Indexes for table `foro_post_mensajes_post`
+--
+ALTER TABLE `foro_post_mensajes_post`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `foro_post_mensajes_post_post_id_mensajes_post_id_3fa2606a_uniq` (`post_id`,`mensajes_post_id`),
+  ADD KEY `foro_post_mensajes_p_mensajes_post_id_fea3815e_fk_foro_mens` (`mensajes_post_id`);
+
+--
+-- Indexes for table `foro_tema_foro`
+--
+ALTER TABLE `foro_tema_foro`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `foro_tema_foro_post_foro`
+--
+ALTER TABLE `foro_tema_foro_post_foro`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `foro_tema_foro_post_foro_tema_foro_id_post_id_43f732a8_uniq` (`tema_foro_id`,`post_id`),
+  ADD KEY `foro_tema_foro_post_foro_post_id_d328e107_fk_foro_post_id` (`post_id`);
+
+--
 -- Indexes for table `noticias_noticias`
 --
 ALTER TABLE `noticias_noticias`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `noticias_noticias_usuario_id_c63df26d_fk_auth_user_id` (`usuario_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1142,7 +1327,7 @@ ALTER TABLE `accounts_userprofilemusicos`
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_canal_mensajes`
 --
 ALTER TABLE `accounts_userprofilemusicos_canal_mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_generos`
@@ -1154,7 +1339,7 @@ ALTER TABLE `accounts_userprofilemusicos_generos`
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_noticias`
 --
 ALTER TABLE `accounts_userprofilemusicos_noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_url_audios`
@@ -1178,7 +1363,7 @@ ALTER TABLE `accounts_userprofileojeadores`
 -- AUTO_INCREMENT for table `accounts_userprofileojeadores_canal_mensajes`
 --
 ALTER TABLE `accounts_userprofileojeadores_canal_mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofileojeadores_generos`
@@ -1214,7 +1399,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -1238,49 +1423,79 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `chat_canal`
 --
 ALTER TABLE `chat_canal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `chat_canal_mensajes_conver`
 --
 ALTER TABLE `chat_canal_mensajes_conver`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `chat_canal_usuarios`
 --
 ALTER TABLE `chat_canal_usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `chat_mensajes`
 --
 ALTER TABLE `chat_mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `foro_mensajes_post`
+--
+ALTER TABLE `foro_mensajes_post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `foro_post`
+--
+ALTER TABLE `foro_post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `foro_post_mensajes_post`
+--
+ALTER TABLE `foro_post_mensajes_post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `foro_tema_foro`
+--
+ALTER TABLE `foro_tema_foro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `foro_tema_foro_post_foro`
+--
+ALTER TABLE `foro_tema_foro_post_foro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `noticias_noticias`
 --
 ALTER TABLE `noticias_noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -1417,6 +1632,38 @@ ALTER TABLE `chat_mensajes`
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `foro_mensajes_post`
+--
+ALTER TABLE `foro_mensajes_post`
+  ADD CONSTRAINT `foro_mensajes_post_autor_mensaje_id_cddfec64_fk_auth_user_id` FOREIGN KEY (`autor_mensaje_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `foro_post`
+--
+ALTER TABLE `foro_post`
+  ADD CONSTRAINT `foro_post_autor_post_id_03835bb0_fk_auth_user_id` FOREIGN KEY (`autor_post_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `foro_post_mensajes_post`
+--
+ALTER TABLE `foro_post_mensajes_post`
+  ADD CONSTRAINT `foro_post_mensajes_p_mensajes_post_id_fea3815e_fk_foro_mens` FOREIGN KEY (`mensajes_post_id`) REFERENCES `foro_mensajes_post` (`id`),
+  ADD CONSTRAINT `foro_post_mensajes_post_post_id_b4c18b84_fk_foro_post_id` FOREIGN KEY (`post_id`) REFERENCES `foro_post` (`id`);
+
+--
+-- Constraints for table `foro_tema_foro_post_foro`
+--
+ALTER TABLE `foro_tema_foro_post_foro`
+  ADD CONSTRAINT `foro_tema_foro_post__tema_foro_id_f6ccb99c_fk_foro_tema` FOREIGN KEY (`tema_foro_id`) REFERENCES `foro_tema_foro` (`id`),
+  ADD CONSTRAINT `foro_tema_foro_post_foro_post_id_d328e107_fk_foro_post_id` FOREIGN KEY (`post_id`) REFERENCES `foro_post` (`id`);
+
+--
+-- Constraints for table `noticias_noticias`
+--
+ALTER TABLE `noticias_noticias`
+  ADD CONSTRAINT `noticias_noticias_usuario_id_c63df26d_fk_auth_user_id` FOREIGN KEY (`usuario_id`) REFERENCES `auth_user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

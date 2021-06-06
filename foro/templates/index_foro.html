@@ -1,3 +1,13 @@
 {% extends "base.html" %} {% block content %}
+
+<!-- TODO: Dar estilo al apratado foro -->
+
 <h2>Foro</h2>
-{% endblock %}
+
+{% for r in temas %}
+
+<div>
+    <a href="{% url 'foro:post' r.id %}">{{r.title}}</a>
+    <div>{{r.descripcion}}</div>
+
+</div><br> {% endfor %} {% endblock %}

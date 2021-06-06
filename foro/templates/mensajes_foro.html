@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- TODO: Dar estilo al apratado foro -->
+<h2>Mensajes</h2>
+<div>
+    <strong>{{post.title}}</strong>
+
+</div>
+<br> {% for row in post.mensajes_post.all %}
+<div>
+    <strong>{{row.autor_mensaje}}</strong><small> {{row.date_posted}}</small>
+    <div>{{row.title}}-{{row.descripcion}}</div>
+</div> {% endfor %} {% include "partials/pagination.html" with page_obj=post %}
+<form method="post">
+    {% csrf_token %}
+    <h3>Añadir nueva respuesta</h3>
+    <input type="text" placeholder="Título respuesta" name="title" id=""><br><br>
+    <textarea name="text" placeholder="Respuesta..." id="text" cols="30" rows="10"></textarea><br>
+    <input class="btn btn-black" type="submit" value="Añadir">
+</form>
+
+
+
+{% endblock %}

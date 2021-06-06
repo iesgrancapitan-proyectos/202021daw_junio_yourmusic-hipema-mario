@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- TODO: Dar estilo al apratado foro -->
+
+<h2>Post</h2>
+<div>
+    <strong>{{tema.title}}</strong>
+    <div>{{tema.descripcion}}</div>
+</div>
+<br> {% for r in tema.post_foro.all %}
+
+<div><strong><a href="{% url 'foro:post_mensajes' r.id %}">{{r}}</a></strong>
+    <div>{{r.descripcion}}</div>
+</div>{% endfor %} {% include "partials/pagination.html" with page_obj=tema %}
+<form method="post">
+    {% csrf_token %}
+    <h3>Añadir nuevo Post</h3>
+    <input type="text" placeholder="título" name="title" id=""><br><br>
+    <textarea name="text" placeholder="Descripción del post..." id="text" cols="30" rows="10"></textarea><br>
+    <input class="btn btn-black" type="submit" value="Enviar">
+</form>
+
+
+
+{% endblock %}
