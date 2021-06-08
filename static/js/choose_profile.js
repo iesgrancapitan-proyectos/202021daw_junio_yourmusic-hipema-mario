@@ -11,8 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let ojeador = document.getElementById("registro-ojeador");
     let inputGrupo = document.getElementById("grupo");
     let inputOjeador = document.getElementById("ojeador");
+    let nombreGrupo = document.getElementById("nombre-grupo");
     let descripcionGrupo = document.getElementById("descripcionGrupo");
     let descripcionOjeador = document.getElementById("descripcionOjeador");
+    let selTipoOjeador = document.getElementById("selec-tipo-ojeador");
+    let imagen = document.getElementById("inputFile1");
+    let img = document.getElementById('img1');
+    let eventoImagen;
 
 
     showTab(currentTab); // Display the current tab
@@ -21,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
     nextBtn.addEventListener("click", () => nextPrev(1));
     grupo.addEventListener("click", () => marcarOpcion(1));
     ojeador.addEventListener("click", () => marcarOpcion(-1));
+    imagen.addEventListener("change", mostrarImagen, false);
+    nombreGrupo.addEventListener("keyup", () => comprobarEstilo());
 
 
 
@@ -59,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function nextPrev(n) {
+        comprobarCamposMostrar();
         // Exit the function if any field in the current tab is invalid:
         if (n == 1 && !validateForm()) return false;
         // Hide the current tab:
@@ -79,34 +87,29 @@ document.addEventListener("DOMContentLoaded", function() {
         let valid = true;
         let y = x[currentTab].getElementsByTagName("input");
         // A loop that checks every input field in the current tab:
-
-        /*TODO: Tenemos que meter aquí la excepción para 
-        que no coja como obligatorios todos los input, 
-          concretamente el de subir imagen  */
         for (i = 0; i < y.length; i++) {
             // If a field is empty...
-            if (y[i].value == "") {
+            if (y[i].value == "" && y[i] != imagen) {
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
                 // and set the current valid status to false:
                 valid = false;
             }
         }
-        /* TODO: Al darle al enviar no realiza el evento submit y salta un error, 
-        a ver si sabes por que puede ser */
         if (currentTab == (x.length - 1)) {
             let patron_email = /^\w+([.-]?\w)*[@]\w+([.-]?\w)*[.]\w{2,4}$/;
             // let patron_telefono = /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/;
 
             if (patron_email.test(y[0].value)) {
                 valid = true;
+                y[0].className = "input-wizzard";
             } else if (!patron_email.test(y[0].value)) {
                 valid = false;
                 y[0].className += " invalid";
-                // y[1].className = "input-wizzard";
+                y[1].className = "input-wizzard";
             } else {
                 valid = false;
-                // y[1].className += " invalid";
+                y[1].className += " invalid";
                 y[0].className = "input-wizzard";
             }
         }
@@ -126,21 +129,26 @@ document.addEventListener("DOMContentLoaded", function() {
         //... and adds the "active" class to the current step:
         z[n].className += " active";
     }
-    /* Comprobar que perfil se ha elegido*/
-    /* TODO: comprobar el radiobutton marcado, si no está marcado el de ojeador le indicamos 
-    document.getElementById("TipoOjeador").style.display = "none"; y si está marcado se le indica que está visible */
 
     /* Mostrar imagen */
-    let inputFile = document.getElementById('inputFile1');
-    inputFile.addEventListener('change', mostrarImagen, false);
+    
+    
 
-    function mostrarImagen(event) {
-        let file = event.target.files[0];
+    function mostrarImagen(oEvent) {
+        eventoImagen = oEvent;
+        let file = oEvent.target.files[0];
         let reader = new FileReader();
-        reader.onload = function(event) {
-            let img = document.getElementById('img1');
-            img.src = event.target.result;
+        reader.onload = function(oEvent) {
+            img.src = oEvent.target.result;
         }
         reader.readAsDataURL(file);
+    }
+    function comprobarEstilo(params) {
+        if (nombreGrupo.value != "") nombreGrupo.className = "input-wizzard";
+    }
+
+    function comprobarCamposMostrar(params) {
+        (!inputOjeador.checked) ? selTipoOjeador.className = "lista-oculta" : selTipoOjeador.className = "";
+        if (imagen.value != "" && !eventoImagen) imagen.value = "";
     }
 });

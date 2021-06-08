@@ -1,11 +1,12 @@
 {% extends "base_gral.html" %} {% block content %}
-
-<!-- TODO: Dar estilo a la noticia -->
-
+<div class="principal">
 <h2>{{noticia.title}}</h2>
-<div>{{noticia.descripcion}}</div>
-
+<div class="noticia-extendida">{{noticia.descripcion}}</div>
+<div class="pie-noticia">
 {% if noticia.usuario.userprofilemusicos %}
-<strong><a href="{% url 'grupos:detail' noticia.usuario.userprofilemusicos.id %}">{{noticia.usuario.userprofilemusicos}}</a></strong> {% else %}
-<strong><a href="{% url 'ojeador:detail_ojeador' noticia.usuario.userprofileojeadores.id %}">{{noticia.usuario.userprofileojeadores}}</a></strong> {% endif %}
-<small>{{noticia.updated_at}}</small> {% endblock %}
+<div><a href="{% url 'grupos:detail' noticia.usuario.userprofilemusicos.id %}">{{noticia.usuario.userprofilemusicos}}</a></div> {% else %}
+<div><a href="{% url 'ojeador:detail_ojeador' noticia.usuario.userprofileojeadores.id %}">{{noticia.usuario.userprofileojeadores}}</a></div> {% endif %}
+<small>{{noticia.updated_at}}</small> 
+</div>
+</div>
+{% endblock %}
