@@ -25,8 +25,10 @@ SECRET_KEY = 'e8x)y7zv3p3y0auhzoa!p*(!%u_$21t=$3ou#!r0@_vrp+-4@)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+''' https://yourmusic.com:8000/ '''
+ALLOWED_HOSTS = [
+    'yourmusic.com', 'localhost', '127.0.0.1'
+]
 
 
 # Application definition
@@ -48,6 +50,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'bootstrapform',
+    'django_extensions',
+    'social_django',
+
 ]
 
 MIDDLEWARE = [
@@ -134,6 +139,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
+                           'account.authentication.AuthByEmailBackend',
+                           'social_core.backends.google.GoogleOAuth2',
+                           'social_core.backends.facebook.FacebookOAuth2',
+                           ]
+
+''' ID de cliente:  '''
+
+''' SECRET Client:  '''
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1053664879539-tjpuspsgup09kat3e583oi3la4bq6ti2.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'G9GIPjuIZt8bLiIhkWr9LGku'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -154,7 +171,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'media')
+MEDIA_ROOT = os.path.join(os.path.dirname(
+    os.path.dirname(__file__)), 'static', 'media')
 MEDIA_URL = '/media/'
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 
@@ -170,7 +188,7 @@ EMAIL_PORT = '2525' """
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.googlemail.com'
-EMAIL_PORT = '587' 
+EMAIL_PORT = '587'
 """ TODO_ANOTACIÓN: Todos los datos como correo, 
     contraseñas etc... tanto para la BD como para enviar 
     correos debemos meterlos en variables de entorno antes 
