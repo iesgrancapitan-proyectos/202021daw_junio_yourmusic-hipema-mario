@@ -684,6 +684,14 @@ textarea.form-control-lg {
   width: 100%;
 }
 
+.foto-wizzard {
+  margin-top: 10px;
+}
+
+.foto-wizzard img {
+  margin-bottom: 10px;
+}
+
 .pie-grupos p span {
   font-weight: bold;
 }
@@ -971,7 +979,12 @@ input.invalid {
 }
 
 .boton-wizzard {
-  width: 100% !important;
+  width: 80%;
+}
+
+.botones-wizzard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .input-wizzard {
@@ -989,6 +1002,11 @@ input.invalid {
 
 .texto-justificado ul li {
   margin-top: 5px;
+}
+
+.titulo-seccion-tab {
+  text-align: left;
+  margin-bottom: 5px;
 }
 
 .dar-de-baja {
@@ -1018,4 +1036,64 @@ input.invalid {
 
 .form-video input {
   width: 100%;
+}
+
+.lista-mensajes {
+  display: grid;
+  grid-template-columns: 1fr 18fr 4fr 4fr;
+}
+
+.titulo-mensaje, .usuario-mensaje {
+  text-align: left;
+}
+
+.titulo-mensaje {
+  margin-left: 10px;
+}
+
+.mensaje {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.mensaje .texto-reducido {
+  text-align: right;
+}
+
+.mensajeUsuario {
+  display: flex;
+  justify-content: right;
+}
+
+.mensajeUsuario .mensaje {
+  width: 80%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.mensajeOtro {
+  display: flex;
+  justify-content: left;
+}
+
+.mensajeOtro .mensaje {
+  width: 80%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.input-mensajes {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.noticia-extendida {
+  text-align: justify;
+}
+
+.pie-noticia {
+  font-size: 0.8rem;
+  margin-top: 30px;
 }

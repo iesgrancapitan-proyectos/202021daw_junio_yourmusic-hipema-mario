@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load static %}{% block content %}
 <script src="{% static 'js/choose_profile.js' %}"></script>
 <!-- Título de sección -->
-<h2>Elige el tipo de perfil</h2>
+<h2>Completa tu perfil</h2>
 <div class="principal">
     <div class="wizzard-parrafo">{{userprofile}}, para poder completar tu usuario y disfrutar de la experiencia de usar <strong>Your Music</strong>, debes elegir tu perfil. Complétalo a través de este sencillo formulario.</div>
     <form method="post" enctype="multipart/form-data" id="regForm">
@@ -26,53 +26,57 @@
                 Si quieres que tu grupo se pueda dar a conocer crea ahora tu perfil como músico y habla con ojeadores, comunicate con tu audiencia mediante noticias, deja tus redes, música y vídeos en tu perfil.
             </div>
             <div class="descripcionWizzardOculto" id="descripcionOjeador">
-                Si buscas impulsar tu negocio o simplemente conocer la música que se está dando a conocer crea un perfil para comunicarte con grupos, clientes o audiencia. Además de poder facilitar la busqueda del sonido que deseas.
+                Si buscas impulsar tu negocio o simplemente conocer la música que se mueve crea un perfil para comunicarte con grupos, clientes o audiencia. Además de poder facilitar la busqueda del sonido que deseas.
             </div>
         </div>
-        <!--TODO: Esta parte la podríamos dividir en dos columnas o como si fuera una ficha y no tanto un formulario en el que venga una cosa debajo de otra  -->
+
         <div class="tab">
             <div>
                 <h3 class="tituloh3">Información básica:</h3>
             </div>
-            <div><input class="input-wizzard" type="text" name="nombre" placeholder="Nombre"></div>
-            <div>Foto del grupo<br/>
-                <input id="inputFile1" name="inputFile" type="file"><br>
-                <!-- TODO: Le he puesto temporalmente el tamaño, estaría bien ponerle para que cuando
-                     no se haya seleccionado ninguna foto no se muestre el cuadro de la imagen, a través de css con display:none o similar,
-                      lo que mejor veas. Y faltaría lo que ya te he comentado en el js, hacer que este input no sea obligatorio  -->
-                <img style="width: 300px; height: 300px;" id="img1"></div>
-            <div><textarea name="descripcion" placeholder="Descripción básica de tu grupo, integrantes historia, y todo aquello que queráis contar para atraer ojeadores" id="descripcion" cols="38" rows="10" class="textarea-info"></textarea></div>
+            <div>
+                <div class="titulo-seccion-tab">Nombre del grupo:</div>
+                <div><input class="input-wizzard" type="text" name="nombre" placeholder="Nombre" id="nombre-grupo"></div>
+            </div>
 
+            <div>
+                <div class="titulo-seccion-tab">Foto del grupo</div>
+                <div><input class="btn btn-black" id="inputFile1" name="inputFile" type="file" value="Cambiar imagen"></div>
+                <div class="foto-grupo foto-wizzard"><img id="img1"></div>
+            </div>
 
+            <div>
+                <div class="titulo-seccion-tab">Descripción de la banda:</div>
+                <div><textarea name="descripcion" placeholder="Descripción básica de tu grupo, integrantes historia, y todo aquello que queráis contar para atraer ojeadores" id="descripcion" cols="38" rows="10" class="textarea-info"></textarea></div>
+            </div>
 
             <!-- <div><input class="input-wizzard" type="file" name="avatar"></div> -->
             <!-- <div><input class="input-wizzard" placeholder="Last name..." oninput="this.className = ''"></div> -->
         </div>
 
         <div class="tab">
-            <div>
-                <h3 class="tituloh3">Información necesaria para obtener busquedas:</h3>
+            <div><h3 class="tituloh3">Información necesaria para obtener busquedas:</h3></div>
+            
+            <div id="selec-tipo-ojeador">
+                <div class="titulo-seccion-tab">Tipo de ojeador</div>
+                <select name="TipoOjeador" id="TipoOjeador">
+                {% for row in tipos %}      
+                    <option value="{{row.id}}">{{row}}</option>
+                {% endfor %}
+                </select>
             </div>
 
-            <div id="TipoOjeador">Tipo de ojeador<select name="TipoOjeador" id="TipoOjeador">{% for row in tipos %}      
-                <option                  
-                value="{{row.id}}">        
-                    {{row}}
-                </option>
-                {% endfor %}
-            </select></div>
-            <div>Provincia de origen:<select name="provincia" id="provincia">{% for row in provincias %}      
-                <option                  
-                value="{{row.id}}">        
-                    {{row}}
-                </option>
-                {% endfor %}
-            </select></select>
+            <div class="provincia">
+                <div class="titulo-seccion-tab">Provincia:</div>
+                    <select name="provincia" id="provincia">
+                    {% for row in provincias %}      
+                        <option value="{{row.id}}">{{row}}</option>
+                    {% endfor %}
+                    </select>
             </div>
+
             <div class="estilos">
-                <div>
-                    <h3>Géneros musicales</h3>
-                </div>
+                <div class="titulo-seccion-tab">Estilos musicales:</div>
                 <div class="lista-generos" id="listGenerosComp">
                     {% for c in generos %}
                     <label>
@@ -86,7 +90,6 @@
                 </div>
                 <div class="ver-mas"><span><a href="#" id="verMas">Ver más</a></span></div>
             </div>
-
         </div>
 
         <div class="tab">
@@ -98,7 +101,7 @@
         </div>
 
         <div style="overflow:auto;">
-            <div style="float:right;">
+            <div class="botones-wizzard">
                 <button class="btn btn-black boton-wizzard" type="button" id="prevBtn">Anterior</button>
                 <button class="btn btn-black boton-wizzard" type="button" id="nextBtn">Siguiente</button>
             </div>
