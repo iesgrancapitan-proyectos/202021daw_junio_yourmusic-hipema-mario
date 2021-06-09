@@ -1,4 +1,5 @@
-{% extends "base_user_account.html" %} {% block content %}
+{% extends "base_user_account.html" %} {% load static %}{% block content %}
+<script src="{% static 'js/mensajes.js' %}"></script>
 <h2>Conversación con {{otroUsuario}}</h2>
 {% for row in mensajes %}
 <div class="mensajes">
@@ -22,7 +23,6 @@
     </div> {% endif %}
 
 </div> {% endfor %} {% include "partials/pagination.html" with page_obj=mensajes %}
-<!-- TODO: Estaría bien dar estilo al form de manera que se diferencie la parte de id=mensajes, con form -->
 <!-- TODO:Validar que se rellenan todos los campos -->
 <!-- TODO: Si te parece podemos limitar el número de caractéres -->
 <div class="formulario-mensajes">
@@ -31,10 +31,10 @@
         {% csrf_token %}
         <div class="usuario-mensaje">Título</div>
         <!-- TODO2: Aquí sería interesante que el título fuese Re: XXX donde esto sea el título del último mensaje -->
-        <div><input class="input-mensajes" type="text" placeholder="título" name="title" id=""></div>
+        <div><input class="input-mensajes" type="text" placeholder="título" name="title" id="titMensaje"></div>
         <div class="usuario-mensaje">Mensaje</div>
         <div><textarea class="input-mensajes" name="text" placeholder="Mensaje para {{otroUsuario}}..." id="text" cols="30" rows="10"></textarea></div>
-        <div><input class="btn btn-black" type="submit" value="Enviar"></div>
+        <div><input class="btn btn-black" type="submit" value="Enviar" id="enviarMensaje"/></div>
     </form>
 </div>
 
