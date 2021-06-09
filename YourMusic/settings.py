@@ -24,7 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'e8x)y7zv3p3y0auhzoa!p*(!%u_$21t=$3ou#!r0@_vrp+-4@)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 ''' https://yourmusic.com:8000/ '''
 ALLOWED_HOSTS = [
     'yourmusic.com', 'localhost', '127.0.0.1'
@@ -95,7 +94,7 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 # DATOS PARA CONECTAR CON LA DB
 
 # MANUEL
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -105,9 +104,9 @@ DATABASES = {
         'PORT': '3306',
     }
 
-}  
+}   """
 # MARIO
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -117,7 +116,7 @@ DATABASES = {
         'PORT': '3306',
     }
 
-}'''
+}
 
 
 # Password validation
@@ -138,24 +137,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
-                           'account.authentication.AuthByEmailBackend',
+                            'accounts.authentication.AuthByEmailBackend',
                            'social_core.backends.google.GoogleOAuth2',
                            'social_core.backends.facebook.FacebookOAuth2',
                            ]
-
-''' ID de cliente:  '''
-
-''' SECRET Client:  '''
+""" https://yourmusic.com:8000/social-auth/complete/google-oauth2/ """
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1053664879539-tjpuspsgup09kat3e583oi3la4bq6ti2.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'G9GIPjuIZt8bLiIhkWr9LGku'
-
+""" https://yourmusic.com:8000/social-auth/complete/google-oauth2/ """
+SOCIAL_AUTH_FACEBOOK_KEY = '924871281636213'
+SOCIAL_AUTH_FACEBOOK_SECRET = '60deb3d0929dacbc16b2932d39e2a27a'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
+DEBUG = True
 
 TIME_ZONE = 'UTC'
 

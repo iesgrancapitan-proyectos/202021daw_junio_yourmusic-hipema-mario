@@ -26,19 +26,19 @@
         <!-- botones para implementarle las funcionalidades de Google y Facebook Auth-->
         <div class="botones-autentificacion">
             <p class="text-secondary">También puedes iniciar sesión con:</p>
-            <a href="{% url 'social:begin' " google-oauth2 " %}"><button type="button" class="btn btn-google">
+            <a href="{% url 'social:begin' 'google-oauth2' %}"><button type="button" class="btn btn-google">
         <div class="botones-distribucion">
             <div><i class="fab fa-google"></i></div>
             <div>Entrar con Google</div>
         </div>
     </button></a>
 
-            <button type="button" class="btn btn-facebook">
+            <a href="{% url 'social:begin' 'facebook' %}"><button type="button" class="btn btn-facebook">
         <div class="botones-distribucion">
             <div><i class="fab fa-facebook-f"></i></div>
             <div>Entrar con Facebook</div>
         </div>
-    </button>
+    </button></a>
             <a href="{% url 'account:register' %}" class="texto-reducido">¿Aún no estás registrado? ¡Registrate ahora!</a>
         </div>
         <p></p>

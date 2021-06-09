@@ -1,6 +1,8 @@
 {% extends "base_user_account.html" %} {% load static %}{% block content %}
 <script src="{% static 'js/mensajes.js' %}"></script>
 <h2>Conversación con {{otroUsuario}}</h2>
+<h3>{{canal.title}}</h3>
+
 {% for row in mensajes %}
 <div class="mensajes">
     {% if row.emisor == usuario %}
@@ -8,7 +10,9 @@
     <div class="mensajeUsuario">
         <div class="mensaje">
             <div class="texto-reducido">{{row.emisor}} - {{row.date_posted}}</div>
+            {% comment %}
             <h3 id="titulo">{{row.title}}</h3>
+            {% endcomment %}
             <div id="mensaje">{{row.text}}</div>
         </div>
     </div>
@@ -17,7 +21,9 @@
     <div class="mensajeOtro">
         <div class="mensaje">
             <div class="texto-reducido">{{row.emisor}} - {{row.date_posted}}</div>
+            {% comment %}
             <h3 id="titulo">{{row.title}}</h3>
+            {% endcomment %}
             <div id="mensaje">{{row.text}}</div>
         </div>
     </div> {% endif %}
@@ -28,13 +34,17 @@
 <div class="formulario-mensajes">
     <div class="titulo-noticia">Responder:</div>
     <form method="post">
-        {% csrf_token %}
+        {% csrf_token %} {% if canal.title == 'conversation' %}
         <div class="usuario-mensaje">Título</div>
-        <!-- TODO2: Aquí sería interesante que el título fuese Re: XXX donde esto sea el título del último mensaje -->
         <div><input class="input-mensajes" type="text" placeholder="título" name="title" id="titMensaje"></div>
+
+
+        {% endif %}
+
+
         <div class="usuario-mensaje">Mensaje</div>
         <div><textarea class="input-mensajes" name="text" placeholder="Mensaje para {{otroUsuario}}..." id="text" cols="30" rows="10"></textarea></div>
-        <div><input class="btn btn-black" type="submit" value="Enviar" id="enviarMensaje"/></div>
+        <div><input class="btn btn-black" type="submit" value="Enviar" id="enviarMensaje" /></div>
     </form>
 </div>
 

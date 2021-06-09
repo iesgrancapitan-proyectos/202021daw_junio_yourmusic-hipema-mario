@@ -1,24 +1,32 @@
 {% extends "base_user_account.html" %} {% block content %}
 <div class="principal">
-<h2>Bandeja de Entrada</h2>
-{% comment %} <p>{{usuario.username}}</p> {% endcomment %}
-<div class="lista-mensajes">
-{% for row in canales %} {% for r in row.usuarios.all %} 
-{% if r != usuario %}
-<!-- TODO2: Si la conversación no está como leída, muestra el icono de la estrella, sino no -->
-<div class="status-mensaje"><i class="fas fa-star"></i></div>
-<!-- TODO2: Se debe mostrar el título de la conversación -->
-<div class="titulo-mensaje"><a href="{% url 'chat:conversation' row.id %}">Título de la conversación</a></div>
-<div class="usuario-mensaje">{{r.userprofileojeadores}}{{r.userprofilemusicos}}</div>
-<!-- TODO2: Debe mostrar la fecha del último mensaje -->
-<div class="fecha-mensaje">12.02.2021</div>
-{% endif %} 
-{% endfor %} 
-{% endfor %} 
+    <h2>Bandeja de Entrada</h2>
+    {% comment %}
+    <p>{{usuario.username}}</p> {% endcomment %}
+    <div class="lista-mensajes">
+        {% for row in canales %} {% for r in row.usuarios.all %} {% if r != usuario %} {% if row.emisor == usuario %} {% if row.leido_emisor %}
+        <div class="status-mensaje"><i class="far fa-envelope-open"></i></div>
+
+        {% else %}
+        <div class="status-mensaje"><i class="fas fa-envelope"></i></div>
+
+        {% endif %} {% else %} {% if row.leido_receptor %}
+        <div class="status-mensaje"><i class="far fa-envelope-open"></i></div>
+
+        {% else %}
+
+        <div class="status-mensaje"><i class="fas fa-envelope"></i></div>
+
+        {% endif %} {% endif %}
+
+        <div class="titulo-mensaje"><a href="{% url 'chat:conversation' row.id %}">{{row.title}}</a></div>
+        <div class="usuario-mensaje">{{r.userprofileojeadores}}{{r.userprofilemusicos}}</div>
+
+        <div class="fecha-mensaje">{{row.updated_at}}</div>
+        {% endif %} {% endfor %} {% endfor %}
+    </div>
 </div>
-</div>
-{% endblock %} 
-{% comment %}
+{% endblock %} {% comment %}
 
 <div><a href="{% url 'chat:delete' row.id  %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a></div>
-{% endcomment %}
+{% endcomment %} {% comment %} {% endcomment %}

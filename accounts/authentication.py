@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 # Login vía email
-""" class AuthByEmailBackend:
+class AuthByEmailBackend:
     def authenticate(self,request,username=None,password=None):
         try:
             user=User.objects.get(email=username)
@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
             return User.objects.get(pk=user_id)
             
         except User.DoesNotExist:
-            return None """
+            return None
 
 """             html_message = loader.render_to_string(
                  'email/comment.html', {'comment': comment})
