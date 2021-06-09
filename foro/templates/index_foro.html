@@ -1,13 +1,15 @@
 {% extends "base.html" %} {% block content %}
 
 <!-- TODO: Dar estilo al apartado foro -->
-
+<div class="principal">
 <h2>Foro</h2>
-
+<div class="foro-general">
 {% for r in temas %}
-
-<div>
-    <a href="{% url 'foro:post' r.id %}">{{r.title}}</a>
-    <div>{{r.descripcion}}</div>
-
-</div><br> {% endfor %} {% endblock %}
+<div class="foro-seccion">
+    <button class="foro-titulo"><a href="{% url 'foro:post' r.id %}">{{r.title}}</a></button>
+    <div class="foro-descripcion-seccion">{{r.descripcion}}</div>
+</div>
+{% endfor %}
+</div>
+</div>
+ {% endblock %}
