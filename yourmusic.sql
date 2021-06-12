@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 12:33 AM
+-- Generation Time: Jun 12, 2021 at 01:44 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -353,13 +353,6 @@ CREATE TABLE `accounts_userprofileojeadores_canal_mensajes` (
   `canal_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `accounts_userprofileojeadores_canal_mensajes`
---
-
-INSERT INTO `accounts_userprofileojeadores_canal_mensajes` (`id`, `userprofileojeadores_id`, `canal_id`) VALUES
-(1, 1, 8);
-
 -- --------------------------------------------------------
 
 --
@@ -568,7 +561,27 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (81, 'Can add mensajes_post', 21, 'add_mensajes_post'),
 (82, 'Can change mensajes_post', 21, 'change_mensajes_post'),
 (83, 'Can delete mensajes_post', 21, 'delete_mensajes_post'),
-(84, 'Can view mensajes_post', 21, 'view_mensajes_post');
+(84, 'Can view mensajes_post', 21, 'view_mensajes_post'),
+(85, 'Can add association', 22, 'add_association'),
+(86, 'Can change association', 22, 'change_association'),
+(87, 'Can delete association', 22, 'delete_association'),
+(88, 'Can view association', 22, 'view_association'),
+(89, 'Can add code', 23, 'add_code'),
+(90, 'Can change code', 23, 'change_code'),
+(91, 'Can delete code', 23, 'delete_code'),
+(92, 'Can view code', 23, 'view_code'),
+(93, 'Can add nonce', 24, 'add_nonce'),
+(94, 'Can change nonce', 24, 'change_nonce'),
+(95, 'Can delete nonce', 24, 'delete_nonce'),
+(96, 'Can view nonce', 24, 'view_nonce'),
+(97, 'Can add user social auth', 25, 'add_usersocialauth'),
+(98, 'Can change user social auth', 25, 'change_usersocialauth'),
+(99, 'Can delete user social auth', 25, 'delete_usersocialauth'),
+(100, 'Can view user social auth', 25, 'view_usersocialauth'),
+(101, 'Can add partial', 26, 'add_partial'),
+(102, 'Can change partial', 26, 'change_partial'),
+(103, 'Can delete partial', 26, 'delete_partial'),
+(104, 'Can view partial', 26, 'view_partial');
 
 -- --------------------------------------------------------
 
@@ -595,16 +608,20 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$hU3rbPBVEVQ1$rOgZabR1RgwlYFNrWtGKANxrje3q3J2a5T0wrnxPsLU=', '2021-06-03 22:15:43.439886', 1, 'adminMario', '', '', '', 1, 1, '2021-06-03 22:15:21.246117'),
+(1, 'pbkdf2_sha256$216000$hU3rbPBVEVQ1$rOgZabR1RgwlYFNrWtGKANxrje3q3J2a5T0wrnxPsLU=', '2021-06-08 15:42:59.027890', 1, 'adminMario', '', '', '', 1, 1, '2021-06-03 22:15:21.246117'),
 (2, 'pbkdf2_sha256$216000$L3XYdsPARvq5$dE2L8xiq57cCgAa7y1GAk+mb32Fb8d0JoIqV7b59Yts=', NULL, 1, 'adminManuel', '', '', '', 1, 1, '2021-06-03 22:15:35.054090'),
-(3, 'pbkdf2_sha256$216000$4hWVpFCTUweU$jRQhsbkZlcTgHKLLVTundAnyBU4jNVbWrj6MVE/kUOA=', '2021-06-04 18:10:56.564668', 0, 'mario', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-06-03 22:19:07.590196'),
-(4, 'pbkdf2_sha256$216000$nhONhA0yVmuP$6xZeSct7FVhXbw9wkSA2TsX0JfKhHg2jvwNfZA2JT2g=', '2021-06-04 23:32:28.972581', 0, 'Jaime', '', '', 'jaime@gmail.com', 0, 1, '2021-06-03 22:33:52.520109'),
+(3, 'pbkdf2_sha256$216000$4hWVpFCTUweU$jRQhsbkZlcTgHKLLVTundAnyBU4jNVbWrj6MVE/kUOA=', '2021-06-12 10:46:38.461715', 0, 'mario', '', '', 'marioosuna26@gmail.com', 0, 1, '2021-06-03 22:19:07.590196'),
+(4, 'pbkdf2_sha256$216000$nhONhA0yVmuP$6xZeSct7FVhXbw9wkSA2TsX0JfKhHg2jvwNfZA2JT2g=', '2021-06-09 19:28:59.584589', 0, 'Jaime', '', '', 'jaime@gmail.com', 0, 1, '2021-06-03 22:33:52.520109'),
 (5, 'pbkdf2_sha256$216000$mB0dQfBjuTDw$wITEZEzEP2I+ZPIA+GMeUZwKw2S7NLtjXUtH65bhhO4=', '2021-06-03 22:36:33.635065', 0, 'pepe', '', '', 'pepe@gmail.com', 0, 1, '2021-06-03 22:36:33.452094'),
-(6, 'pbkdf2_sha256$216000$g5891KO2pBkU$cV1F5y3SvFWA+CTPPBeLDQ3Koh6UWb05y9U5Z8lSuH8=', '2021-06-03 22:41:06.494424', 0, 'Jimena', '', '', 'prueba@email.com', 0, 1, '2021-06-03 22:41:06.294400'),
+(6, 'pbkdf2_sha256$216000$g5891KO2pBkU$cV1F5y3SvFWA+CTPPBeLDQ3Koh6UWb05y9U5Z8lSuH8=', '2021-06-12 11:26:02.191971', 0, 'Jimena', '', '', 'prueba@email.com', 0, 1, '2021-06-03 22:41:06.294400'),
 (7, 'pbkdf2_sha256$216000$0U33Mvb9RAxV$cMxJ6F2z3YCdbNudSbgD/s86xDdbf7GmEz0YIM2yvhU=', '2021-06-03 22:42:34.203377', 0, 'Manuel', '', '', 'subeunescalon@gmail.com', 0, 1, '2021-06-03 22:42:34.012388'),
 (8, 'pbkdf2_sha256$216000$li9FfmpOn5GV$C64GRdhTt+QQArAFhkG7kzeFpgZ79VySZmk8E4j0W4M=', '2021-06-03 22:44:50.415885', 0, 'Jose', '', '', 'Jose@gmail.com', 0, 1, '2021-06-03 22:44:50.204982'),
 (9, 'pbkdf2_sha256$216000$VgljCJHrcpji$7fUTzYqn8ap3JU8FdsMxuwF555ye+enedDi/gvXhU6U=', '2021-06-04 18:10:32.779226', 0, 'Vladimir', '', '', 'elvla@gmail.com', 0, 1, '2021-06-03 22:49:19.290668'),
-(10, 'pbkdf2_sha256$216000$eKcs9MnNalSk$2+jdbM1GjS/5jdukoQUhOHRN3/wxrszxDRxcTWyqQ5A=', '2021-06-03 22:50:56.564378', 0, 'usuario', '', '', 'usuario@email.com', 0, 1, '2021-06-03 22:50:56.378350');
+(10, 'pbkdf2_sha256$216000$eKcs9MnNalSk$2+jdbM1GjS/5jdukoQUhOHRN3/wxrszxDRxcTWyqQ5A=', '2021-06-03 22:50:56.564378', 0, 'usuario', '', '', 'usuario@email.com', 0, 1, '2021-06-03 22:50:56.378350'),
+(12, '!GCEWByI5Dxa1vzhxmXnKh4nm7Bw6gKA2atTq9Dou', '2021-06-08 16:18:28.837632', 0, 'comalaband', 'Comala', 'Band', 'comalaband@gmail.com', 0, 1, '2021-06-08 15:55:27.613678'),
+(14, '!Es652Dw3ZpruEz2P0mgpim6NJ13NhzdAI5pwgiTK', '2021-06-09 15:48:54.027149', 0, 'MarioOsunaOrdez', 'Mario', 'Osuna Ordóñez', '', 0, 1, '2021-06-08 16:17:31.055442'),
+(15, '!KdkJGnBU10HDZvSCyrTHSw01ESwAxH60PvHTX6ss', '2021-06-09 15:48:40.813205', 0, 'osunamario26', 'Mario', 'Osuna', 'osunamario26@gmail.com', 0, 1, '2021-06-09 15:48:40.775832'),
+(16, '!Yrv28A0cjLkSPoeDvmVvQC4F7oIwZIwvAbnwDO06', '2021-06-09 16:33:07.528137', 0, 'marioosuna26', 'Mario', 'Osuna Ordóñez', 'marioosuna26@gmail.com', 0, 1, '2021-06-09 16:33:07.491658');
 
 -- --------------------------------------------------------
 
@@ -638,15 +655,16 @@ CREATE TABLE `auth_user_user_permissions` (
 
 CREATE TABLE `chat_canal` (
   `id` int(11) NOT NULL,
-  `created_at` datetime(6) NOT NULL
+  `created_at` datetime(6) NOT NULL,
+  `title` varchar(300) DEFAULT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `eliminado_emisor` tinyint(1) NOT NULL,
+  `eliminado_receptor` tinyint(1) NOT NULL,
+  `leido_emisor` tinyint(1) NOT NULL,
+  `leido_receptor` tinyint(1) NOT NULL,
+  `emisor_id` int(11) DEFAULT NULL,
+  `receptor_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `chat_canal`
---
-
-INSERT INTO `chat_canal` (`id`, `created_at`) VALUES
-(8, '2021-06-04 23:20:18.426834');
 
 -- --------------------------------------------------------
 
@@ -660,13 +678,6 @@ CREATE TABLE `chat_canal_mensajes_conver` (
   `mensajes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `chat_canal_mensajes_conver`
---
-
-INSERT INTO `chat_canal_mensajes_conver` (`id`, `canal_id`, `mensajes_id`) VALUES
-(11, 8, 11);
-
 -- --------------------------------------------------------
 
 --
@@ -679,14 +690,6 @@ CREATE TABLE `chat_canal_usuarios` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `chat_canal_usuarios`
---
-
-INSERT INTO `chat_canal_usuarios` (`id`, `canal_id`, `user_id`) VALUES
-(17, 8, 3),
-(16, 8, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -695,7 +698,6 @@ INSERT INTO `chat_canal_usuarios` (`id`, `canal_id`, `user_id`) VALUES
 
 CREATE TABLE `chat_mensajes` (
   `id` int(11) NOT NULL,
-  `title` varchar(300) NOT NULL,
   `text` longtext NOT NULL,
   `date_posted` datetime(6) NOT NULL,
   `emisor_id` int(11) NOT NULL,
@@ -706,8 +708,25 @@ CREATE TABLE `chat_mensajes` (
 -- Dumping data for table `chat_mensajes`
 --
 
-INSERT INTO `chat_mensajes` (`id`, `title`, `text`, `date_posted`, `emisor_id`, `receptor_id`) VALUES
-(11, 'Hola que tal', 'Bien?', '2021-06-04 23:27:41.351953', 3, 4);
+INSERT INTO `chat_mensajes` (`id`, `text`, `date_posted`, `emisor_id`, `receptor_id`) VALUES
+(11, 'Bien?', '2021-06-04 23:27:41.351953', 3, 4),
+(12, 'asdasd', '2021-06-09 16:37:35.956529', 4, 3),
+(13, 'asdasd', '2021-06-09 17:34:16.913170', 4, 5),
+(14, 'asdasda', '2021-06-09 17:59:06.963883', 3, 4),
+(15, 'Muy bien, me gusta', '2021-06-09 18:03:12.617387', 3, 5),
+(16, 'Muy bien, me gusta', '2021-06-09 18:03:40.068311', 3, 5),
+(17, 'Muy bien, me gusta', '2021-06-09 18:03:50.444163', 3, 5),
+(18, 'Muy bien, me gusta', '2021-06-09 18:03:58.737187', 3, 5),
+(19, 'asdasfs', '2021-06-09 18:04:28.744262', 3, 6),
+(20, 'Contratadnos os vamos a gustar', '2021-06-12 10:47:56.681152', 3, 6),
+(21, 'No', '2021-06-12 10:59:49.763886', 6, 3),
+(22, 'xq?', '2021-06-12 11:00:12.821386', 3, 6),
+(23, 'Si o k?', '2021-06-12 11:04:02.185291', 3, 6),
+(24, 'Ni de fly', '2021-06-12 11:04:26.368208', 6, 3),
+(25, 'Porfa', '2021-06-12 11:06:46.552969', 3, 6),
+(26, 'Nuu', '2021-06-12 11:06:56.779891', 6, 3),
+(27, 'Bueno como quieras, te borro la conver', '2021-06-12 11:07:12.916031', 3, 6),
+(28, 'Tal vez', '2021-06-12 11:25:53.474984', 6, 3);
 
 -- --------------------------------------------------------
 
@@ -774,7 +793,28 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (41, '2021-06-06 21:48:42.098110', '2', '¿Organizamos un concierto?', 1, '[{\"added\": {}}]', 19, 1),
 (42, '2021-06-06 21:49:32.561514', '3', 'Compra-venta de Instrumentos', 1, '[{\"added\": {}}]', 19, 1),
 (43, '2021-06-06 21:49:59.564142', '4', 'Off-Topic', 1, '[{\"added\": {}}]', 19, 1),
-(44, '2021-06-06 22:25:53.650910', '1', 'post de prueba', 3, '', 20, 1);
+(44, '2021-06-06 22:25:53.650910', '1', 'post de prueba', 3, '', 20, 1),
+(45, '2021-06-08 16:17:20.422339', '13', 'MarioOsunaOrdez', 3, '', 4, 1),
+(46, '2021-06-09 17:52:59.935283', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 16, 1),
+(47, '2021-06-09 17:53:10.200379', '9', 'Conversación #9', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 16, 1),
+(48, '2021-06-09 17:53:13.461105', '12', 'Conversación #12', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 16, 1),
+(49, '2021-06-09 18:02:45.485512', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Title\"]}}]', 16, 1),
+(50, '2021-06-09 19:10:30.369744', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Emisor\", \"Receptor\"]}}]', 16, 1),
+(51, '2021-06-09 19:18:02.445766', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Leido emisor\"]}}]', 16, 1),
+(52, '2021-06-09 19:19:47.792858', '14', 'Conversación #14', 3, '', 16, 1),
+(53, '2021-06-09 19:19:47.795856', '13', 'Conversación #13', 3, '', 16, 1),
+(54, '2021-06-09 19:19:47.798861', '12', 'Conversación #12', 3, '', 16, 1),
+(55, '2021-06-12 10:56:13.618164', '15', 'Conversación #15', 2, '[{\"changed\": {\"fields\": [\"Leido receptor\"]}}]', 16, 1),
+(56, '2021-06-12 11:03:31.277494', '15', 'Conversación #15', 3, '', 16, 1),
+(57, '2021-06-12 11:26:51.371994', '16', 'Conversación #16', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\", \"Eliminado receptor\"]}}]', 16, 1),
+(58, '2021-06-12 11:29:20.651881', '16', 'Conversación #16', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\", \"Eliminado receptor\"]}}]', 16, 1),
+(59, '2021-06-12 11:30:30.211811', '16', 'Conversación #16', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\", \"Eliminado receptor\"]}}]', 16, 1),
+(60, '2021-06-12 11:32:20.221580', '16', 'Conversación #16', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\", \"Eliminado receptor\"]}}]', 16, 1),
+(61, '2021-06-12 11:34:44.421018', '16', 'Conversación #16', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\", \"Eliminado receptor\"]}}]', 16, 1),
+(62, '2021-06-12 11:36:18.850928', '16', 'Conversación #16', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\", \"Eliminado receptor\"]}}]', 16, 1),
+(63, '2021-06-12 11:37:09.770949', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Usuarios\", \"Receptor\"]}}]', 16, 1),
+(64, '2021-06-12 11:37:39.292813', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\"]}}]', 16, 1),
+(65, '2021-06-12 11:39:37.875357', '8', 'Conversación #8', 2, '[{\"changed\": {\"fields\": [\"Eliminado emisor\"]}}]', 16, 1);
 
 -- --------------------------------------------------------
 
@@ -813,7 +853,12 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (20, 'foro', 'post'),
 (19, 'foro', 'tema_foro'),
 (14, 'noticias', 'noticias'),
-(6, 'sessions', 'session');
+(6, 'sessions', 'session'),
+(22, 'social_django', 'association'),
+(23, 'social_django', 'code'),
+(24, 'social_django', 'nonce'),
+(26, 'social_django', 'partial'),
+(25, 'social_django', 'usersocialauth');
 
 -- --------------------------------------------------------
 
@@ -862,7 +907,32 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (27, 'noticias', '0002_noticias_usuario', '2021-06-04 23:43:53.369245'),
 (28, 'foro', '0001_initial', '2021-06-06 21:44:01.507161'),
 (29, 'foro', '0002_auto_20210606_2345', '2021-06-06 21:45:07.253657'),
-(30, 'foro', '0003_auto_20210606_2346', '2021-06-06 21:46:52.893496');
+(30, 'foro', '0003_auto_20210606_2346', '2021-06-06 21:46:52.893496'),
+(31, 'default', '0001_initial', '2021-06-07 17:44:50.230842'),
+(32, 'social_auth', '0001_initial', '2021-06-07 17:44:50.237848'),
+(33, 'default', '0002_add_related_name', '2021-06-07 17:44:50.489882'),
+(34, 'social_auth', '0002_add_related_name', '2021-06-07 17:44:50.498899'),
+(35, 'default', '0003_alter_email_max_length', '2021-06-07 17:44:50.521354'),
+(36, 'social_auth', '0003_alter_email_max_length', '2021-06-07 17:44:50.531393'),
+(37, 'default', '0004_auto_20160423_0400', '2021-06-07 17:44:50.562405'),
+(38, 'social_auth', '0004_auto_20160423_0400', '2021-06-07 17:44:50.571157'),
+(39, 'social_auth', '0005_auto_20160727_2333', '2021-06-07 17:44:50.605370'),
+(40, 'social_django', '0006_partial', '2021-06-07 17:44:50.655476'),
+(41, 'social_django', '0007_code_timestamp', '2021-06-07 17:44:50.793519'),
+(42, 'social_django', '0008_partial_timestamp', '2021-06-07 17:44:50.854518'),
+(43, 'social_django', '0009_auto_20191118_0520', '2021-06-07 17:44:50.978047'),
+(44, 'social_django', '0010_uid_db_index', '2021-06-07 17:44:51.037179'),
+(45, 'social_django', '0004_auto_20160423_0400', '2021-06-07 17:44:51.054687'),
+(46, 'social_django', '0001_initial', '2021-06-07 17:44:51.065172'),
+(47, 'social_django', '0002_add_related_name', '2021-06-07 17:44:51.074180'),
+(48, 'social_django', '0003_alter_email_max_length', '2021-06-07 17:44:51.083069'),
+(49, 'social_django', '0005_auto_20160727_2333', '2021-06-07 17:44:51.091069'),
+(50, 'chat', '0004_auto_20210609_1943', '2021-06-09 17:43:59.977037'),
+(51, 'chat', '0005_auto_20210609_1952', '2021-06-09 17:52:30.569452'),
+(52, 'chat', '0006_auto_20210609_2005', '2021-06-09 18:05:56.858739'),
+(53, 'chat', '0007_canal_updated_at', '2021-06-09 18:08:11.026060'),
+(54, 'chat', '0008_auto_20210609_2104', '2021-06-09 19:04:39.665444'),
+(55, 'chat', '0009_auto_20210609_2109', '2021-06-09 19:09:15.716308');
 
 -- --------------------------------------------------------
 
@@ -881,8 +951,12 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('114xozoztax53b9erba5k27zuxgyibyi', '.eJxVjL0OwiAYAN-F2ZAUgYKju89Avj-kaiAp7WR8d0PSQde7y71Vgn0rae-ypoXVRXl1-mUI9JQ6BD-g3pumVrd1QT0Sfdiub43ldT3av0GBXsY2GgMcAGIO4KwPkkOIGVw-x2hIeCakOE-TE8rWIxgkA8KIyNYEUJ8vB2M5aQ:1ls1m6:4dCblExBwebvdsYCNwjvtBOMVHypzKuxWE-UyabpxsE', '2021-06-26 11:26:02.201975'),
+('5lh1h05g1tkrm4zzqlsr36c4o10qobq3', '.eJxVjEEOwiAQRe_C2hBgwIJL9z0DGZipVA0kpV0Z765NutDtf-_9l4i4rSVunZc4k7gIK06_W8L84LoDumO9NZlbXZc5yV2RB-1ybMTP6-H-HRTs5VszuAxE6Wwp-0yJM1hCpRMOSQEMPlg9IbLS2oFjDGjYBG2CM0FN4MX7Aw3vOB4:1lr18o:YsIAdR4iYhtlpfs4h5eiaRVL6uQ98zGot_yLVr8jJ_A', '2021-06-23 16:33:18.146614'),
+('akkpb8smwadesuwgg0v2f0qqtbmzphr1', '.eJxVjEEOwiAQRe_C2hBgwIJL9z0DGZipVA0kpV0Z765NutDtf-_9l4i4rSVunZc4k7gIK06_W8L84LoDumO9NZlbXZc5yV2RB-1ybMTP6-H-HRTs5VszuAxE6Wwp-0yJM1hCpRMOSQEMPlg9IbLS2oFjDGjYBG2CM0FN4MX7Aw3vOB4:1lr3sp:q7kJm7RGgeFnXp2jAHBBqKVTxYsTEx0LOXAtzbudpvA', '2021-06-23 19:28:59.594589'),
+('dn9ilkwrqd1el9q93jbhxbgb6om4ldmt', '.eJxVjDsOwjAQRO_iGlleEn-Wkp4zWLv2mgSQI-VTIe6OI6WAcua9mbeKtK1D3BaZ45jVRYE6_XZM6Sl1B_lB9T7pNNV1Hlnvij7oom9Tltf1cP8OBlqGtubSpWAyI1BnvbeC2LsSCHNgNggAYpNDkeaBE_bQ9SGVMxmTsSX1-QLtKzgO:1lqdsZ:slJR8b9j2rLe5eDDEDF_bUYQZYg5jNR-iSy4K_lqGuo', '2021-06-22 15:42:59.031892'),
 ('e1klt7fbg783d9b1k9g2ax7d4q73bnmx', '.eJxVjEEOwiAQRe_C2hBgwIJL9z0DGZipVA0kpV0Z765NutDtf-_9l4i4rSVunZc4k7gIK06_W8L84LoDumO9NZlbXZc5yV2RB-1ybMTP6-H-HRTs5VszuAxE6Wwp-0yJM1hCpRMOSQEMPlg9IbLS2oFjDGjYBG2CM0FN4MX7Aw3vOB4:1lpJIi:nuucKYk2leCWOnA4JllsL1Nm6eLWcF4YUpSfzACk4w4', '2021-06-18 23:32:28.977121'),
-('kg7tzk36laaop0cfjm2yp5ysuz5rhqm7', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1lowDn:YkzVap_AfJet5kcB2UtIZy-Wqmo33rYN6EnbK5Ph4BM', '2021-06-17 22:53:51.781102'),
+('l5203gwhc0w3f2lbded3oy3faozcau99', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1ls19y:PGP9LOl9YR-VWmIwaa1v3-6Eeho8JaPJQq4uR7SxGBo', '2021-06-26 10:46:38.484211'),
 ('qdggs3per33sir0a7wqtky2q5c2ynw5z', '.eJxVjDsOwjAQRO_iGlleEn-Wkp4zWLv2mgSQI-VTIe6OI6WAcua9mbeKtK1D3BaZ45jVRYE6_XZM6Sl1B_lB9T7pNNV1Hlnvij7oom9Tltf1cP8OBlqGtubSpWAyI1BnvbeC2LsSCHNgNggAYpNDkeaBE_bQ9SGVMxmTsSX1-QLtKzgO:1lovct:DzYaHlfJksyy7pu_Hi0k8t741xUj_lzauxjylp4P5YQ', '2021-06-17 22:15:43.443906'),
 ('w7vpiqyx7m7l2qe3nght7ctyy5q35q84', '.eJxVjMsOwiAQRf-FtSFleIy4dN9vIANMpWogKe3K-O_apAvd3nPOfYlA21rC1nkJcxYXocXpd4uUHlx3kO9Ub02mVtdljnJX5EG7HFvm5_Vw_w4K9fKtwUxAOjE4ZKM8QMpgSbF12g1-QmNNjA6RHars2ZA9-0EndEnFYQIU7w_KqTcb:1lpEHY:RnQHtWumybXsTy4cXuccb8z7nMc1GcfDwM3n54cndUg', '2021-06-18 18:10:56.569620');
 
@@ -1020,6 +1094,90 @@ INSERT INTO `noticias_noticias` (`id`, `title`, `descripcion`, `created_at`, `up
 (7, 'Grupo de rock psicodélico', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-06-03 22:44:18.678780', '2021-06-04 23:47:01.127280', 7),
 (8, 'prueba', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2021-06-03 22:46:02.442822', '2021-06-04 23:47:12.403414', 8),
 (9, 'sdfdfsfsd', '            dddddddddddd', '2021-06-04 23:50:01.492550', '2021-06-04 23:50:01.492550', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_auth_association`
+--
+
+CREATE TABLE `social_auth_association` (
+  `id` int(11) NOT NULL,
+  `server_url` varchar(255) NOT NULL,
+  `handle` varchar(255) NOT NULL,
+  `secret` varchar(255) NOT NULL,
+  `issued` int(11) NOT NULL,
+  `lifetime` int(11) NOT NULL,
+  `assoc_type` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_auth_code`
+--
+
+CREATE TABLE `social_auth_code` (
+  `id` int(11) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `code` varchar(32) NOT NULL,
+  `verified` tinyint(1) NOT NULL,
+  `timestamp` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_auth_nonce`
+--
+
+CREATE TABLE `social_auth_nonce` (
+  `id` int(11) NOT NULL,
+  `server_url` varchar(255) NOT NULL,
+  `timestamp` int(11) NOT NULL,
+  `salt` varchar(65) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_auth_partial`
+--
+
+CREATE TABLE `social_auth_partial` (
+  `id` int(11) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  `next_step` smallint(5) UNSIGNED NOT NULL CHECK (`next_step` >= 0),
+  `backend` varchar(32) NOT NULL,
+  `data` longtext NOT NULL,
+  `timestamp` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_auth_usersocialauth`
+--
+
+CREATE TABLE `social_auth_usersocialauth` (
+  `id` int(11) NOT NULL,
+  `provider` varchar(32) NOT NULL,
+  `uid` varchar(255) NOT NULL,
+  `extra_data` longtext NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created` datetime(6) NOT NULL,
+  `modified` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `social_auth_usersocialauth`
+--
+
+INSERT INTO `social_auth_usersocialauth` (`id`, `provider`, `uid`, `extra_data`, `user_id`, `created`, `modified`) VALUES
+(1, 'google-oauth2', 'comalaband@gmail.com', '{\"auth_time\": 1623169108, \"expires\": 3599, \"token_type\": \"Bearer\", \"access_token\": \"ya29.a0AfH6SMDwpSnAD8kiRDHic8Y4kkne0Pm5pFsuDvEMNy2ct5zTuncAohfULGdGZNgqidLZH51ZTSE_fyIg9uAPrG-RSSzXVCWJyO3jLdb-XeQxjVFUP9kbL_JVOv5YdNyItmcekJuzglYPx0ej0CLB1KKF0H7m\"}', 12, '2021-06-08 15:55:27.619661', '2021-06-08 16:18:28.824624'),
+(3, 'facebook', '2922121581342673', '{\"auth_time\": 1623253734, \"id\": \"2922121581342673\", \"expires\": 5098891, \"granted_scopes\": [\"email\", \"public_profile\"], \"denied_scopes\": null, \"access_token\": \"EAANJKmA0c3UBALknMOzhokyiwDcW48u31kl0z3N6l46ebzN9H5oG9COuZAMCC0EK3ZCPfqa3JoAZCb5vW0Th5eL1LzvCRnUsz5EmYStAltmB3rlxwPPPOdCHReOvDLrYH9RprYZCCVyXyAuZCQASi3IijyOMq6sORhjQnsD4yXNdg9OESNzn5\", \"token_type\": null}', 14, '2021-06-08 16:17:31.059404', '2021-06-09 15:48:54.010150'),
+(4, 'google-oauth2', 'osunamario26@gmail.com', '{\"auth_time\": 1623253720, \"expires\": 3599, \"token_type\": \"Bearer\", \"access_token\": \"ya29.a0AfH6SMDsoak-cuwrq-_fp9qV5qo0WI6A1GUHD8DhDaWfgmNLoxrnvJ3rjSaHEUeGcwob7_fDp2qfPqLVwfRaNPPofmrb8f9-X9Cg-4rEbFX_zo7ZCSfdnVgJpVqNy2cfaxVj-CHUTa75-ZlEfSKbUypvePaQ\"}', 15, '2021-06-09 15:48:40.781843', '2021-06-09 15:48:40.786830'),
+(5, 'google-oauth2', 'marioosuna26@gmail.com', '{\"auth_time\": 1623256387, \"expires\": 3599, \"token_type\": \"Bearer\", \"access_token\": \"ya29.a0AfH6SMCAnR6pH17ICcsdCfD1UVjILuk6T4oHYt4PGgUcnMNQElhLzv2ExFyGd9FopchIhnANPkNZEVOpPdQ4ZPBQb1fzOH_jrGknXesGdaT2-iasn7pKlhceTRFRdjuhSICIn_TCnj3u9xb-b0XOLJp5URQ0\"}', 16, '2021-06-09 16:33:07.498675', '2021-06-09 16:33:07.508657');
 
 --
 -- Indexes for dumped tables
@@ -1192,7 +1350,9 @@ ALTER TABLE `auth_user_user_permissions`
 -- Indexes for table `chat_canal`
 --
 ALTER TABLE `chat_canal`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `chat_canal_emisor_id_27405b44_fk_auth_user_id` (`emisor_id`),
+  ADD KEY `chat_canal_receptor_id_6fb34d78_fk_auth_user_id` (`receptor_id`);
 
 --
 -- Indexes for table `chat_canal_mensajes_conver`
@@ -1290,6 +1450,46 @@ ALTER TABLE `noticias_noticias`
   ADD KEY `noticias_noticias_usuario_id_c63df26d_fk_auth_user_id` (`usuario_id`);
 
 --
+-- Indexes for table `social_auth_association`
+--
+ALTER TABLE `social_auth_association`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `social_auth_association_server_url_handle_078befa2_uniq` (`server_url`,`handle`);
+
+--
+-- Indexes for table `social_auth_code`
+--
+ALTER TABLE `social_auth_code`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `social_auth_code_email_code_801b2d02_uniq` (`email`,`code`),
+  ADD KEY `social_auth_code_code_a2393167` (`code`),
+  ADD KEY `social_auth_code_timestamp_176b341f` (`timestamp`);
+
+--
+-- Indexes for table `social_auth_nonce`
+--
+ALTER TABLE `social_auth_nonce`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `social_auth_nonce_server_url_timestamp_salt_f6284463_uniq` (`server_url`,`timestamp`,`salt`);
+
+--
+-- Indexes for table `social_auth_partial`
+--
+ALTER TABLE `social_auth_partial`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `social_auth_partial_token_3017fea3` (`token`),
+  ADD KEY `social_auth_partial_timestamp_50f2119f` (`timestamp`);
+
+--
+-- Indexes for table `social_auth_usersocialauth`
+--
+ALTER TABLE `social_auth_usersocialauth`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `social_auth_usersocialauth_provider_uid_e6b5e668_uniq` (`provider`,`uid`),
+  ADD KEY `social_auth_usersocialauth_user_id_17d28448_fk_auth_user_id` (`user_id`),
+  ADD KEY `social_auth_usersocialauth_uid_796e51dc` (`uid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1327,7 +1527,7 @@ ALTER TABLE `accounts_userprofilemusicos`
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_canal_mensajes`
 --
 ALTER TABLE `accounts_userprofilemusicos_canal_mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofilemusicos_generos`
@@ -1363,7 +1563,7 @@ ALTER TABLE `accounts_userprofileojeadores`
 -- AUTO_INCREMENT for table `accounts_userprofileojeadores_canal_mensajes`
 --
 ALTER TABLE `accounts_userprofileojeadores_canal_mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `accounts_userprofileojeadores_generos`
@@ -1399,13 +1599,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -1423,43 +1623,43 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `chat_canal`
 --
 ALTER TABLE `chat_canal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `chat_canal_mensajes_conver`
 --
 ALTER TABLE `chat_canal_mensajes_conver`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `chat_canal_usuarios`
 --
 ALTER TABLE `chat_canal_usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `chat_mensajes`
 --
 ALTER TABLE `chat_mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `foro_mensajes_post`
@@ -1496,6 +1696,36 @@ ALTER TABLE `foro_tema_foro_post_foro`
 --
 ALTER TABLE `noticias_noticias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `social_auth_association`
+--
+ALTER TABLE `social_auth_association`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `social_auth_code`
+--
+ALTER TABLE `social_auth_code`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `social_auth_nonce`
+--
+ALTER TABLE `social_auth_nonce`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `social_auth_partial`
+--
+ALTER TABLE `social_auth_partial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `social_auth_usersocialauth`
+--
+ALTER TABLE `social_auth_usersocialauth`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -1606,6 +1836,13 @@ ALTER TABLE `auth_user_user_permissions`
   ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
+-- Constraints for table `chat_canal`
+--
+ALTER TABLE `chat_canal`
+  ADD CONSTRAINT `chat_canal_emisor_id_27405b44_fk_auth_user_id` FOREIGN KEY (`emisor_id`) REFERENCES `auth_user` (`id`),
+  ADD CONSTRAINT `chat_canal_receptor_id_6fb34d78_fk_auth_user_id` FOREIGN KEY (`receptor_id`) REFERENCES `auth_user` (`id`);
+
+--
 -- Constraints for table `chat_canal_mensajes_conver`
 --
 ALTER TABLE `chat_canal_mensajes_conver`
@@ -1664,6 +1901,12 @@ ALTER TABLE `foro_tema_foro_post_foro`
 --
 ALTER TABLE `noticias_noticias`
   ADD CONSTRAINT `noticias_noticias_usuario_id_c63df26d_fk_auth_user_id` FOREIGN KEY (`usuario_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `social_auth_usersocialauth`
+--
+ALTER TABLE `social_auth_usersocialauth`
+  ADD CONSTRAINT `social_auth_usersocialauth_user_id_17d28448_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

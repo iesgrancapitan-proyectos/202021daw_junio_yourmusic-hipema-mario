@@ -4,52 +4,32 @@
     {% comment %}
     <p>{{usuario.username}}</p> {% endcomment %}
     <div class="lista-mensajes">
-        {% for row in canales %} 
-        {% for r in row.usuarios.all %}
-         
-        {% if r != usuario %} 
+        {% for row in canales %} {% for r in row.usuarios.all %} {% if r != usuario %} {% if row.emisor == usuario %} {% if row.eliminado_emisor != True %} {% if row.leido_emisor %}
+        <div class="status-mensaje"><i class="far fa-envelope-open"></i></div>
 
-            {% if row.emisor == usuario %} 
-                {% if row.eliminado_emisor != True %} 
+        {% else %}
+        <div class="status-mensaje"><i class="fas fa-envelope"></i></div>
 
-                    {% if row.leido_emisor %}
-                    <div class="status-mensaje"><i class="far fa-envelope-open"></i></div>
+        {% endif %}
+        <div class="titulo-mensaje"><a href="{% url 'chat:conversation' row.id %}">{{row.title}}</a></div>
+        <div class="usuario-mensaje">{{r.userprofileojeadores}}{{r.userprofilemusicos}}</div>
 
-                    {% else %}
-                    <div class="status-mensaje"><i class="fas fa-envelope"></i></div>
+        <div class="fecha-mensaje">{{row.updated_at}}
+            <a href="{% url 'chat:allMessage' row.id %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a></div>
+        {% endif %} {% else %} {% if row.eliminado_receptor != True %} {% if row.leido_receptor %}
+        <div class="status-mensaje"><i class="far fa-envelope-open"></i></div>
 
-                    {% endif %} 
-                    <div class="titulo-mensaje"><a href="{% url 'chat:conversation' row.id %}">{{row.title}}</a></div>
-                    <div class="usuario-mensaje">{{r.userprofileojeadores}}{{r.userprofilemusicos}}</div>
+        {% else %}
 
-                    <div class="fecha-mensaje">{{row.updated_at}}
-                    <a href="{% url 'chat:allMessage' row.id %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a></div>
-                {% endif %}
-            {% else %} 
-                {% if row.eliminado_receptor != True %} 
+        <div class="status-mensaje"><i class="fas fa-envelope"></i></div>
 
-        
-                    {% if row.leido_receptor %}
-                    <div class="status-mensaje"><i class="far fa-envelope-open"></i></div>
+        {% endif %}
+        <div class="titulo-mensaje"><a href="{% url 'chat:conversation' row.id %}">{{row.title}}</a></div>
+        <div class="usuario-mensaje">{{r.userprofileojeadores}}{{r.userprofilemusicos}}</div>
 
-                    {% else %}
-
-                    <div class="status-mensaje"><i class="fas fa-envelope"></i></div>
-
-                    {% endif %} 
-                    <div class="titulo-mensaje"><a href="{% url 'chat:conversation' row.id %}">{{row.title}}</a></div>
-                    <div class="usuario-mensaje">{{r.userprofileojeadores}}{{r.userprofilemusicos}}</div>
-
-                    <div class="fecha-mensaje">{{row.updated_at}}
-                    <a href="{% url 'chat:allMessage' row.id %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a></div>
-                {% endif %}
-            {% endif %}
-
-       
-
-        {% endif %} 
-        {% endfor %} 
-        {% endfor %}
+        <div class="fecha-mensaje">{{row.updated_at}}
+            <a href="{% url 'chat:allMessage' row.id %}" class="btn btn-black"><i class="fas fa-trash-alt"></i></a></div>
+        {% endif %} {% endif %} {% endif %} {% endfor %} {% endfor %}
     </div>
 </div>
 {% endblock %}
