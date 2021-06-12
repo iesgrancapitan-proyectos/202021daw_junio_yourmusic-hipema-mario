@@ -1044,6 +1044,12 @@ input.invalid {
   grid-gap: 10px 0;
 }
 
+.lista-mensajes div:nth-child(odd) {
+  background: #bbbbbb;
+  padding: 1px;
+  border-radius: 0.25rem;
+}
+
 .info-mensaje {
   display: grid;
   grid-template-columns: 1fr 8fr;
