@@ -12,8 +12,9 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 @login_required
-def allMessage(request):
+def allMessage(request, pk=None):
     usuario = request.user
+    pkDelete = pk if pk else None
 
     usuario = User.objects.get(username=usuario)
     """   print(usuario.pk)
@@ -21,8 +22,6 @@ def allMessage(request):
     print(usuario.userprofilemusicos) """
     canales = Canal.objects.filter(usuarios=usuario).order_by('-updated_at')
 
-
-   
     for item in canales.all():
         print(item)
 
@@ -36,9 +35,22 @@ def allMessage(request):
                     print("NOLeído")
             leidoBol.append(led) '''
 
-           
         else:
-            item.delete()                    
+            item.delete()
+    if(pkDelete):
+        print("PKDELETE")
+        canal = Canal.objects.get(id=pk)
+        if(canal.emisor == request.user):
+            Canal.objects.filter(id=pk).update(eliminado_emisor=True)
+            if(canal.eliminado_receptor):
+                Canal.objects.filter(id=pk).delete()
+        else:
+            Canal.objects.filter(id=pk).update(eliminado_receptor=True)
+            if(canal.eliminado_emisor):
+                Canal.objects.filter(id=pk).delete()        
+
+        
+        return redirect('chat:allMessage')
 
     return render(request, 'conversation.html', {'usuario': usuario, 'canales': canales})
 
@@ -47,23 +59,14 @@ def allMessage(request):
 def conversation(request, pk):
 
     canal = Canal.objects.get(id=pk)
-
-    if canal.emisor==request.user:
-        Canal.objects.filter(id=pk).update(leido_emisor=True)
+    print(canal)
+    print(canal.emisor)
+    if canal.emisor == request.user:
+        c = Canal.objects.filter(id=pk).update(leido_emisor=True)
+        print(c)
     else:
-        Canal.objects.filter(id=pk).update(leido_receptor=True)
-          
-    print("FOR")
-
-    ''' for item in canal.mensajes_conver.all():
-        Mensajes.objects.filter(id=item.id).update(leido=True)
-        
-        print(item.leido)
-
-    print("2FOR")
-    for item in canal.mensajes_conver.all():        
-        print(item.leido) '''
-         
+        c = Canal.objects.filter(id=pk).update(leido_receptor=True)
+        print(c)
 
     mensajes = canal.mensajes_conver.all().order_by('-date_posted')
     otroUsuario = ""
@@ -71,14 +74,23 @@ def conversation(request, pk):
         if item != request.user:
             otroUsuario = item
     if request.method == 'POST':
-       
-
         text = request.POST['text']
-        msg = Mensajes.objects.create(text=text, emisor=request.user, receptor=otroUsuario)
-        if 'title' in request.POST:           
-            c=Canal.objects.filter(id=pk).update(title=request.POST['title'])
-           
+        msg = Mensajes.objects.create(
+            text=text, emisor=request.user, receptor=otroUsuario)
+        if 'title' in request.POST:
+            c = Canal.objects.filter(id=pk).update(title=request.POST['title'])
+
             print(c)
+        if canal.emisor == request.user:
+            Canal.objects.filter(id=pk).update(leido_emisor=True)
+            Canal.objects.filter(id=pk).update(leido_receptor=False)
+            Canal.objects.filter(id=pk).update(eliminado_receptor=False)
+
+        else:
+            Canal.objects.filter(id=pk).update(leido_receptor=True)
+            Canal.objects.filter(id=pk).update(leido_emisor=False)
+            Canal.objects.filter(id=pk).update(eliminado_emisor=False)
+
         canal.mensajes_conver.add(msg)
         return redirect('chat:conversation', pk)
 
@@ -87,7 +99,7 @@ def conversation(request, pk):
     page_number = request.GET.get('page')
     mensajes_page = paginator.get_page(page_number)
 
-    return render(request, 'mensajes.html', {'mensajes': mensajes_page, 'usuario': request.user, 'otroUsuario': otroUsuario,'canal':canal})
+    return render(request, 'mensajes.html', {'mensajes': mensajes_page, 'usuario': request.user, 'otroUsuario': otroUsuario, 'canal': canal})
 
 
 @login_required
@@ -107,7 +119,6 @@ def contactar(request, pk, tipo):
             except Exception:
                 return redirect('account:profile')
 
-
     else:
         us = UserProfileOjeadores.objects.get(id=pk)
         try:
@@ -122,10 +133,13 @@ def contactar(request, pk, tipo):
             except Exception:
                 return redirect('account:profile')
 
-    canal = Canal.objects.create()
+    canal = Canal.objects.create(emisor=request.user, receptor=us.user)
 
     canal.usuarios.add(request.user)
     canal.usuarios.add(us.user)
+    Canal.objects.filter(id=canal.id).update(leido_emisor=True)
+    Canal.objects.filter(id=canal.id).update(leido_receptor=False)
+
     canal.save()
     print(canal)
     print(canal.id)

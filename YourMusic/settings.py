@@ -105,6 +105,9 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
     }
 
 }   """
+
+""" python manage.py runserver 0:8080 """
+
 # MARIO
 DATABASES = {
     'default': {
