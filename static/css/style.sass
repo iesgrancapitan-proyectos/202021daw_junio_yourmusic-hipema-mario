@@ -863,10 +863,25 @@ input.invalid
 
 .lista-mensajes
   display: grid
-  grid-template-columns: 1fr 18fr 4fr 4fr
+  grid-template-columns: 8fr 1fr
+  grid-gap: 10px 0
 
-.titulo-mensaje, .usuario-mensaje
+.info-mensaje
+  display: grid
+  grid-template-columns: 1fr 8fr
+
+.info2-mensaje
+  display: grid
+  grid-template-columns: 1fr 1fr
+
+.titulo-mensaje
   text-align: left
+  font-weight: 500
+  a
+    text-decoration: none
+    color: black
+  a:hover
+    color: $secondary-color
 
 .titulo-mensaje
   margin-left: 10px
@@ -932,3 +947,9 @@ input.invalid
 
 .foro-descripcion-seccion
   text-align: justify
+
+.btn-conv
+  margin: 0
+  a
+    text-decoration: none
+    color: white
