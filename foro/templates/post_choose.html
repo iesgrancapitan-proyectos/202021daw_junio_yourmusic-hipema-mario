@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base_gral.html" %} {% block content %} {% load static %}
+<script src="{% static 'js/post_choose.js' %}"></script>
 
 <div class="principal">
     <h2>Foro: {{tema.title}}</h2>
@@ -7,20 +8,26 @@
     <div class="post-general">
         <div class="post-titulo"><a href="{% url 'foro:post_mensajes' r.id %}">{{r}}</a></div>
         <div class="post-info">
+            <!-- TODO2 Aquí hay que extraer los datos del nombre del usuario, cantidad de mensajes y fecha -->
             <div class="post-autor texto-reducido">pepito</div>
             <div class="post-num-mensajes texto-reducido">Mensajes: 4</div>
             <div class="post-fecha-ultimo-mensaje texto-reducido">12/12/2020</div>
         </div>
-        <div class="post-descripcion-seccion">{{r.descripcion}}</div>
+        <div class="post-descripcion-seccion">{{r.descripcion|slice:":160"}}...</div>
     </div>
     {% endfor %}
     {% include "partials/pagination.html" with page_obj=tema %}
-<form method="post">
-    {% csrf_token %}
-    <h3>Añadir nuevo Post</h3>
-    <input type="text" placeholder="título" name="title" id=""><br><br>
-    <textarea name="text" placeholder="Descripción del post..." id="text" cols="30" rows="10"></textarea><br>
-    <input class="btn btn-black" type="submit" value="Enviar">
+
+    <div class="formulario-mensajes">
+        <div class="titulo-noticia">Añadir nuevo Post</div>
+        <form method="post">
+        {% csrf_token %}
+        <div class="usuario-mensaje">Título:</div>
+        <div><input class="input-mensajes" type="text" placeholder="Título" name="title" id="titMensaje"></div>
+        
+        <div class="usuario-mensaje">Mensaje:</div>
+        <div><textarea class="input-mensajes" name="text" placeholder="Descripción del post..." id="text" cols="30" rows="10"></textarea></div>
+        <div><input class="btn btn-black" type="submit" value="Enviar" id="enviarMensaje"></div>
 </form>
 
 

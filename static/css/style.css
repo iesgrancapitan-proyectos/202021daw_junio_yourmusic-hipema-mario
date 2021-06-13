@@ -1078,6 +1078,10 @@ input.invalid {
   margin-left: 10px;
 }
 
+.usuario-mensaje {
+  text-align: left;
+}
+
 .mensaje {
   text-align: left;
   margin-bottom: 20px;
@@ -1127,6 +1131,14 @@ input.invalid {
 
 .textarea-error {
   background-color: #ffdddd;
+}
+
+.foro-seccion {
+  margin-bottom: 20px;
+}
+
+.post-general {
+  margin-bottom: 20px;
 }
 
 .foro-titulo, .post-titulo {

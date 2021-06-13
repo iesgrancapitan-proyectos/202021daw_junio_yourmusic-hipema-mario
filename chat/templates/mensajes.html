@@ -10,9 +10,6 @@
     <div class="mensajeUsuario">
         <div class="mensaje">
             <div class="texto-reducido">{{row.emisor}} - {{row.date_posted.day|stringformat:"02d"}}/{{row.date_posted.month|stringformat:"02d"}}/{{row.date_posted.year}} - {{row.date_posted.hour}}:{{row.date_posted.minute}} horas</div>
-            {% comment %}
-            <h3 id="titulo">{{row.title}}</h3>
-            {% endcomment %}
             <div id="mensaje">{{row.text}}</div>
         </div>
     </div>
@@ -21,9 +18,6 @@
     <div class="mensajeOtro">
         <div class="mensaje">
             <div class="texto-reducido">{{row.emisor}} - {{row.date_posted}}</div>
-            {% comment %}
-            <h3 id="titulo">{{row.title}}</h3>
-            {% endcomment %}
             <div id="mensaje">{{row.text}}</div>
         </div>
     </div> {% endif %}
@@ -35,18 +29,12 @@
     <div class="titulo-noticia">Responder:</div>
     <form method="post">
         {% csrf_token %} {% if canal.title == 'conversation' %}
-        <div class="usuario-mensaje">Título</div>
+        <div class="usuario-mensaje">Título:</div>
         <div><input class="input-mensajes" type="text" placeholder="título" name="title" id="titMensaje"></div>
-
-
         {% endif %}
-
-
-        <div class="usuario-mensaje">Mensaje</div>
+        <div class="usuario-mensaje">Mensaje:</div>
         <div><textarea class="input-mensajes" name="text" placeholder="Mensaje para {{otroUsuario}}..." id="text" cols="30" rows="10"></textarea></div>
         <div><input class="btn btn-black" type="submit" value="Enviar" id="enviarMensaje" /></div>
     </form>
 </div>
-
-
 {% endblock %}
