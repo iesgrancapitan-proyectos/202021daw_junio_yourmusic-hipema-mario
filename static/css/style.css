@@ -1182,6 +1182,18 @@ input.invalid {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.post-inicial {
+  text-align: justify;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.post-detalles {
+  text-align: right;
+}
+
 .btn-conv {
   margin: 0;
 }

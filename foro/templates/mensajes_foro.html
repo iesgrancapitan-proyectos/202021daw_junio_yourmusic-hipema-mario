@@ -1,16 +1,21 @@
 {% extends "base.html" %} {% block content %}
-
-<!-- TODO: Dar estilo al apratado foro -->
-<h2>Mensajes</h2>
-<div>
-    <strong>{{post.title}}</strong>
-
+<div class="principal">
+<h2>{{post.title}}</h2>
+<div class="post-inicial">
+    <div>{{post.descripcion}}</div>
+    <div class="post-detalles texto-reducido">Autor - 12.12.2020 16:40 UTC</div>
+        {% comment %} <div>{{post.emisor}} - {{post.date_posted.day|stringformat:"02d"}}/{{post.date_posted.month|stringformat:"02d"}}/{{post.date_posted.year}} - {{post.date_posted.hour}}:{{post.date_posted.minute}} horas</div> {% endcomment %}
 </div>
-<br> {% for row in post.mensajes_post.all %}
-<div>
-    <strong>{{row.autor_mensaje}}</strong><small> {{row.date_posted}}</small>
-    <div>{{row.title}}-{{row.descripcion}}</div>
-</div> {% endfor %} {% include "partials/pagination.html" with page_obj=post %}
+{% for row in post.mensajes_post.all %}
+<div class="mensajeUsuario">
+    <div class="mensaje">
+        <div class="texto-reducido">{{row.autor_mensaje}} - {{row.date_posted.day|stringformat:"02d"}}/{{row.date_posted.month|stringformat:"02d"}}/{{row.date_posted.year}} - {{row.date_posted.hour}}:{{row.date_posted.minute}} horas</div>
+        <div class="mensaje-titulo">{{row.title}}</div>
+        <div class="mensaje-descripcion">{{row.descripcion}}</div>
+    </div>
+</div>
+{% endfor %}
+{% include "partials/pagination.html" with page_obj=post %}
 <form method="post">
     {% csrf_token %}
     <h3>Añadir nueva respuesta</h3>
@@ -19,6 +24,6 @@
     <input class="btn btn-black" type="submit" value="Añadir">
 </form>
 
-
+</div>
 
 {% endblock %}
