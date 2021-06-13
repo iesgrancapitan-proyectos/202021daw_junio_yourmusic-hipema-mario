@@ -6,7 +6,7 @@
     <div class="foro-general">
         {% for r in temas %}
         <div class="foro-seccion">
-            <button class="foro-titulo"><a href="{% url 'foro:post' r.id %}">{{r.title}}</a></button>
+            <div class="foro-titulo"><a href="{% url 'foro:post' r.id %}">{{r.title}}</a></div>
             <div class="foro-descripcion-seccion">{{r.descripcion}}</div>
         </div>
         {% endfor %}

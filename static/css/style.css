@@ -1129,7 +1129,7 @@ input.invalid {
   background-color: #ffdddd;
 }
 
-.foro-titulo {
+.foro-titulo, .post-titulo {
   font-weight: bold;
   font-size: 1.1rem;
   background: black;
@@ -1140,20 +1140,34 @@ input.invalid {
   margin: 0;
 }
 
-.foro-titulo a {
+.foro-titulo a, .post-titulo a {
   padding: 10px;
   display: block;
   text-decoration: none;
   color: white;
 }
 
-.foro-titulo:hover {
+.foro-titulo:hover, .post-titulo:hover {
   background-color: #666;
   color: white;
 }
 
 .foro-descripcion-seccion {
   text-align: justify;
+}
+
+.post-descripcion-seccion {
+  text-align: justify;
+}
+
+.foro-descripcion {
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+.post-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .btn-conv {

@@ -931,7 +931,7 @@ input.invalid
 // .foro-seccion
 //   margin: 0 20px
 
-.foro-titulo
+.foro-titulo, .post-titulo
   font-weight: bold
   font-size: 1.1rem
   background: $primary-color
@@ -945,15 +945,26 @@ input.invalid
     display: block
     text-decoration: none
     color: white
-.foro-titulo:hover
+.foro-titulo:hover, .post-titulo:hover
   background-color: #666
   color: white
 
 .foro-descripcion-seccion
   text-align: justify
+.post-descripcion-seccion
+  text-align: justify
+
+.foro-descripcion
+  text-align: justify
+  margin-bottom: 20px
+
+.post-info
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
 
 .btn-conv
   margin: 0
   a
     text-decoration: none
     color: white
+
