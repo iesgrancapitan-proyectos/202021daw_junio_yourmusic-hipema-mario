@@ -21,8 +21,7 @@
     <h3 class="tituloh3">Listado de noticias anteriores</h3>
     {% for row in noticias %}
     <div class="noticia-titulo">
-        <!--TODO2 El primero en vez de a editar, debería llevar a la opción de visualizarlo -->
-        <div><a href="{% url 'account:noticias_user' 'editar' row.id %}">{{row.title}}</a></div>
+        <div><a href="{% url 'noticias:noticia'  row.id %}">{{row.title}}</a></div>
         <div><a href="{% url 'account:noticias_user' 'editar' row.id %}"><i class="fas fa-edit"></i></a>
             <a href="{% url 'account:noticias_user' 'borrar' row.id %}"> <i class="fas fa-trash-alt"></i></a>
         </div>

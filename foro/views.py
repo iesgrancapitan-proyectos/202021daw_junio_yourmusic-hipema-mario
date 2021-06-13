@@ -12,7 +12,7 @@ def index_foro(request):
 
 def post(request,pk):    
     tema=Tema_foro.objects.get(id=pk)
-
+    logueado=False
     if request.method=='POST':
         titulo=request.POST['title']
         text=request.POST['text']
@@ -26,12 +26,17 @@ def post(request,pk):
 
     page_number = request.GET.get('page')
     tema_page = paginator.get_page(page_number) """
+    if request.user.is_authenticated:
+        logueado=True
+    else:
+        logueado=False
+
     
-    return render(request, 'post_choose.html',{'tema':tema})
+    return render(request, 'post_choose.html',{'tema':tema,'logueado':logueado})
 
 def post_mensajes(request,pk):    
     post=Post.objects.get(id=pk)
-
+    logueado=False
     if request.method=='POST':
         titulo=request.POST['title']
         text=request.POST['text']
@@ -45,5 +50,9 @@ def post_mensajes(request,pk):
 
     page_number = request.GET.get('page')
     post_page = paginator.get_page(page_number)
-     """
-    return render(request, 'mensajes_foro.html',{'post':post})
+    """
+    if request.user.is_authenticated:
+        logueado=True
+    else:
+        logueado=False
+    return render(request, 'mensajes_foro.html',{'post':post,'logueado':logueado})
