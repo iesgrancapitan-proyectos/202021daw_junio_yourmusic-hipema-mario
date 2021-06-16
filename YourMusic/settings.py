@@ -26,7 +26,7 @@ SECRET_KEY = 'e8x)y7zv3p3y0auhzoa!p*(!%u_$21t=$3ou#!r0@_vrp+-4@)'
 # SECURITY WARNING: don't run with debug turned on in production!
 ''' https://yourmusic.com:8000/ '''
 ALLOWED_HOSTS = [
-    'yourmusic.com', 'localhost', '127.0.0.1'
+    'yourmusic.iesgrancapitan.org', 'localhost', '127.0.0.1'
 ]
 
 
@@ -93,23 +93,8 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 
 # DATOS PARA CONECTAR CON LA DB
 
-# MANUEL
-''' DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'yourmusic',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-
-}  '''
-
-""" python manage.py runserver 0:8080 """
-
-# MARIO
-DATABASES = {
+# SERVER
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -119,7 +104,36 @@ DATABASES = {
         'PORT': '3306',
     }
 
+}'''
+
+# MANUEL
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'yourmusic',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+
 }
+
+""" python manage.py runserver 0:8080 """
+
+# MARIO
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'yourmusic',
+        'USER': 'root',
+        'PASSWORD': 'a19hipema$',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+
+}'''
+
 
 
 # Password validation
