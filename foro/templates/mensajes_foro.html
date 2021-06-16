@@ -5,9 +5,8 @@
     <!-- TODO2: poner mensaje principal -->
     <div class="post-inicial">
         <div>{{post.descripcion}}</div>
-        <div class="post-detalles texto-reducido">Autor - 12.12.2020 16:40 UTC</div>
-        {% comment %}
-        <div>{{post.emisor}} - {{post.date_posted.day|stringformat:"02d"}}/{{post.date_posted.month|stringformat:"02d"}}/{{post.date_posted.year}} - {{post.date_posted.hour}}:{{post.date_posted.minute}} horas</div> {% endcomment %}
+        <div class="post-detalles texto-reducido">{{post.autor_post}} - {{post.created_at.day|stringformat:"02d"}}/{{post.created_at.month|stringformat:"02d"}}/{{post.created_at.year}} - {{post.created_at.hour}}:{{post.created_at.minute}} horas</div>
+
     </div>
     {% for row in post.mensajes_post.all %}
     <div class="mensajeUsuario">
