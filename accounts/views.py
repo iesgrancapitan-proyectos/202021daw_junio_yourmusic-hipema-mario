@@ -541,7 +541,7 @@ def register(request):
                 nombre, email, request.POST['password'])
             send_email('Registrado con exito en Your Music',
                        'confirm_email.html', nombre, email)
-            make_login(request, user)
+            make_login(request, user,backend='django.contrib.auth.backends.ModelBackend')
             
             return redirect('account:choose_profile')
         else:
