@@ -23,7 +23,7 @@
                             <div class="usuario-mensaje">{{r.userprofileojeadores}}{{r.userprofilemusicos}}</div>
                             <div class="fecha-mensaje">{{row.updated_at.day|stringformat:"02d"}}/{{row.updated_at.month|stringformat:"02d"}}/{{row.updated_at.year}}</div>
                         </div>
-                    <div>
+                    </div>
                     <div class="btn btn-black btn-conv"><a href="{% url 'chat:allMessage' row.id %}"><i class="fas fa-trash-alt"></i></a></div>
                 {% endif %}
             {% else %} 
