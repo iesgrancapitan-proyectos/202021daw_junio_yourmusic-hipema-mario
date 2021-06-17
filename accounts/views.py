@@ -539,9 +539,10 @@ def register(request):
         if registrar:
             user = User.objects.create_user(
                 nombre, email, request.POST['password'])
-            make_login(request, user)
             send_email('Registrado con exito en Your Music',
                        'confirm_email.html', nombre, email)
+            make_login(request, user)
+            
             return redirect('account:choose_profile')
         else:
             return render(request, 'register.html', {'error': error})
