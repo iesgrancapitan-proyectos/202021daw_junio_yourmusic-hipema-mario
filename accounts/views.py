@@ -488,11 +488,8 @@ def choose_profile(request):
 
             usuario = UserProfileOjeadores.objects.create(user=request.user, nombre_profile=nombre, tipo_ojeador=TipoOjeador.objects.get(id=tipo),
                                                           descripcion=descripcion, email_profile=email,provincia_origen=Provincia.objects.get(id=request.POST['provincia']))
-        """ print(request.FILES)
-        print(request)
-        if 'inputFile' in request.FILES:        
-            usuario.avatar = request.FILES['inputFile'] """
        
+        usuario.avatar = request.FILES['inputFile']
         
         for item in request.POST.getlist('generos'):
             gen = Generos.objects.get(id=item)
