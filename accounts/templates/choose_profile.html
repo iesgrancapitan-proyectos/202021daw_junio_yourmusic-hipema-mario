@@ -55,8 +55,10 @@
         </div>
 
         <div class="tab">
-            <div><h3 class="tituloh3">Información necesaria para obtener busquedas:</h3></div>
-            
+            <div>
+                <h3 class="tituloh3">Información necesaria para obtener busquedas:</h3>
+            </div>
+
             <div id="selec-tipo-ojeador">
                 <div class="titulo-seccion-tab">Tipo de ojeador</div>
                 <select name="TipoOjeador" id="TipoOjeador">
@@ -68,7 +70,7 @@
 
             <div class="provincia">
                 <div class="titulo-seccion-tab">Provincia:</div>
-                    <select name="provincia" id="provincia">
+                <select name="provincia" id="provincia">
                     {% for row in provincias %}      
                         <option value="{{row.id}}">{{row}}</option>
                     {% endfor %}
