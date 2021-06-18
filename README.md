@@ -18,7 +18,12 @@ actuar en sus salas de conciertos, bares, etc.
 
 
 ## Información sobre despliegue
+
+Para consultar toda la información sobre el despliegue accede al apartado [Manual de despliegue](https://github.com/iesgrancapitan-proyectos/202021daw_junio_yourmusic-hipema-mario/wiki/Manual_Despliegue) de nuestra wiki
+
 ## Información sobre cómo usarlo
+
+Para consultar toda la información sobre el uso accede al apartado [Manual de usuario](https://github.com/iesgrancapitan-proyectos/202021daw_junio_yourmusic-hipema-mario/wiki/Manual_Usuario) de nuestra wiki
 
 ## Autores
 Proyecto Integrado _Your Music_ de _2 DAW_ del [IES Gran Capitan](https://informatica.iesgrancapitan.org) 
