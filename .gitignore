@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 YourMusic/.env
 =======
 YourMusic/.env
 >>>>>>> fffce80371b64c388b2d9765184f40798f0fbd38
+=======
+YourMusic/.env
+YourMusic/settings.py
+>>>>>>> Stashed changes
