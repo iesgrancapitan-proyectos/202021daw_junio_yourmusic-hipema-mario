@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function (){
             value = false;
             pass2.className = "invalid";
         }
-        if (pass1.value == pass2.value && pass1.value != ""){
+        if (pass1.value != pass2.value && pass1.value != "" && pass2.value != ""){
             value = false;
             alert("Las contraseñas no coinciden. Introduce de nuevo ambas contraseñas.");
             pass1.className = "invalid";
