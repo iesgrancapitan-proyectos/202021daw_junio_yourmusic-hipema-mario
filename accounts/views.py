@@ -280,17 +280,17 @@ def info_data(request, tipo, pk=None, code=None):
     if(codePk == 2):
         if(pkDelete):
             try:
-                pathOldAvatar = os.path.join(
+                """ pathOldAvatar = os.path.join(
                     "static/media/", str(userprofile.url_audios.get(id=pkDelete).url_audio))
                 print("Eliminado audio")
 
-                if pathOldAvatar is not None and os.path.isfile(pathOldAvatar):
-                    print("Eliminado")
-                    userprofile.url_audios.remove(pkDelete)
-                    Audios.objects.get(id=pkDelete).delete()
-                    os.remove(pathOldAvatar)
+                if pathOldAvatar is not None and os.path.isfile(pathOldAvatar): """
+                print("Eliminado")
+                userprofile.url_audios.remove(pkDelete)
+                Audios.objects.get(id=pkDelete).delete()
+                # os.remove(pathOldAvatar)
 
-                    return redirect('account:info_data', tipo)
+                return redirect('account:info_data', tipo)
 
             except Exception:
                 print("Da error")
