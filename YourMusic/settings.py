@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e8x)y7zv3p3y0auhzoa!p*(!%u_$21t=$3ou#!r0@_vrp+-4@)'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ''' https://yourmusic.com:8000/ '''
 ALLOWED_HOSTS = [
-    'yourmusic.iesgrancapitan.org', 'localhost', '127.0.0.1'
+    'yourmusic.iesgrancapitan.org', 'localhost', '127.0.0.1','yourmusic.com'
 ]
 
 
@@ -94,46 +97,17 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 # DATOS PARA CONECTAR CON LA DB
 
 # SERVER
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'yourmusic',
-        'USER': 'root',
-        'PASSWORD': 'a19hipema$',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-
-}'''
-
-# MANUEL
-''' DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'yourmusic',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-
-} '''
-
-""" python manage.py runserver 0:8080 """
-
-# MARIO
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'yourmusic',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASS'),
         'HOST': 'localhost',
         'PORT': '3306',
     }
 
 }
-
 
 
 # Password validation
