@@ -54,9 +54,13 @@
         <p><span>{{e.nombre_profile}}</span> - {{e.generos.all|join:", " }} - {{e.provincia_origen}} - {{e.descripcion}} </p>
     </div>
 
-{% endfor %}
-<!-- Paginación -->
-{% include "partials/pagination.html" with page_obj=grupos %}
+
+
+    {% endfor %}
+    <!-- Paginación -->
+    {% if grupos|length == 0 %}
+    <p>No se han encontrado resultados</p>
+    {% else %} {% include "partials/pagination.html" with page_obj=grupos %} {% endif %}
 </div>
 
 {% endblock content %}
