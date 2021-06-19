@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 # DATOS PARA CONECTAR CON LA DB
 
 # SERVER
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
         'PORT': '3306',
     }
 
-}'''
+}
 
 # MANUEL
 ''' DATABASES = {
@@ -122,7 +122,7 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 """ python manage.py runserver 0:8080 """
 
 # MARIO
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yourmusic',
@@ -132,7 +132,7 @@ DATABASES = {
         'PORT': '3306',
     }
 
-}
+}"""
 
 
 
