@@ -96,7 +96,6 @@ WSGI_APPLICATION = 'YourMusic.wsgi.application'
 
 # DATOS PARA CONECTAR CON LA DB
 
-# SERVER
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
