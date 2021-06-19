@@ -700,12 +700,36 @@ textarea.form-control-lg {
   display: none;
 }
 
+.paginacion-div {
+  padding-top: 1px;
+  padding-bottom: 5px;
+}
+
 .paginacion {
   list-style: none;
 }
 
 .paginacion li {
   display: inline;
+}
+
+.paginacion li a {
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+.paginacion li a:hover {
+  background: #ddddd988;
+}
+
+.paginacion li span {
+  background: black;
+  color: white;
+  padding: 16px;
+  border-radius: 5px;
 }
 
 .datos-acceso {
