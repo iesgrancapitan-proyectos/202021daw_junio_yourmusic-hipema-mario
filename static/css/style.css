@@ -826,6 +826,11 @@ footer a:hover {
   padding: 8px;
 }
 
+.noticia-enlace {
+  text-decoration: none;
+  color: black;
+}
+
 .listado .noticia-titulo:nth-child(odd) {
   background: rgba(0, 0, 0, 0.2);
 }
